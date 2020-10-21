@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     resources :activities
     resources :votes, only: [:index, :create, :destroy]
   end
+
+  get 'info' => 'home#info', as: 'info'
 end

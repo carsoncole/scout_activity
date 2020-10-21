@@ -1,4 +1,14 @@
-@import "bootstrap/scss/bootstrap";
+a {
+  text-decoration: none;
+  color: #0056b3;
+  &:hover {
+    background-color: transparent !important;
+    text-decoration: none;
+  }
+  &:visited {
+    color: #0056b3 !important;
+  }
+}
 
 nav.navbar {
   margin-bottom: 6rem;
@@ -35,4 +45,16 @@ table.activities {
     display: inline-block;
   }
 
+}
+
+#info {
+  h1 {
+    text-align: center;
+    margin-bottom: 1.666em;
+  }
+  p {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 1.5em;
+  }
 }
