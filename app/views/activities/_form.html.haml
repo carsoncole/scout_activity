@@ -16,7 +16,7 @@
 
   .form-group
     = f.label :summary, "1-2 sentences summarizing your idea"
-    = f.rich_text_area :summary, placeholder: 'A brief 2-3 lines summarizing your idea', class: 'form-control'
+    = f.rich_text_area :summary, placeholder: 'A brief 2-3 lines summarizing your idea', class: 'form-control', rows: "40"
   .form-group
     = f.label :itinerary, "What would the itinerary look like?"
     = f.rich_text_area :itinerary, class: 'form-control'
