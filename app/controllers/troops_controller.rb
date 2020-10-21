@@ -31,7 +31,7 @@ class TroopsController < ApplicationController
   def update
     respond_to do |format|
       if @troop.update(troop_params)
-        format.html { redirect_to @troop, notice: 'Troop was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Troop was successfully updated.' }
         format.json { render :show, status: :ok, location: @troop }
       else
         format.html { render :edit }
