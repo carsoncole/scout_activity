@@ -46,6 +46,41 @@ table.activities {
   }
 
 }
+#error-message {
+  background-color: red;
+  padding: 1.2em 1.5em;
+  margin: 2rem auto;
+  border-radius: 4px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 2em;
+
+  .error-icon {
+    margin-right: 0.8em;
+    display: inline-block;
+  }
+
+  ul li:last-child {
+    margin-bottom: 0;
+  }
+  ul {
+    margin-bottom: 0;
+  }
+}
+
+#error_explanation {
+  padding: 1em 1.5em 0.5em 1.5em;
+  background-color: #ddd;
+  margin: 1em 0;
+  color: #f00;
+  .message {
+    font-size: 1.2em;
+  }
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
 
 #activities {
   h1 {

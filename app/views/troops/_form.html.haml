@@ -6,8 +6,15 @@
         - @troop.errors.full_messages.each do |message|
           %li= message
 
-  .field
-    = f.label :unit_number
-    = f.text_field :unit_number
+  .form-group
+    = f.label :unit_name, "Troop Unit number and city"
+    %small.text-muted ex. Troop 100 Boise
+    = f.text_field :unit_name, class: 'form-control'
+
+
+  .form-group
+    = f.label :votes_allowed
+    = f.number_field :votes_allowed, class: 'form-control'
+
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'

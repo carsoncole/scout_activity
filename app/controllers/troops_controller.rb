@@ -1,17 +1,6 @@
 class TroopsController < ApplicationController
   before_action :set_troop, only: [:show, :edit, :update, :destroy]
 
-  # GET /troops
-  # GET /troops.json
-  def index
-    @troops = Troop.all
-  end
-
-  # GET /troops/1
-  # GET /troops/1.json
-  def show
-  end
-
   # GET /troops/new
   def new
     @troop = Troop.new
@@ -24,11 +13,11 @@ class TroopsController < ApplicationController
   # POST /troops
   # POST /troops.json
   def create
-    @troop = Troop.new(troop_params)
+    @troop = current_user.troops.new(troop_params)
 
     respond_to do |format|
       if @troop.save
-        format.html { redirect_to @troop, notice: 'Troop was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Troop was successfully created.' }
         format.json { render :show, status: :created, location: @troop }
       else
         format.html { render :new }
@@ -69,6 +58,6 @@ class TroopsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def troop_params
-      params.require(:troop).permit(:unit_number)
+      params.require(:troop).permit(:unit_name, :votes_allowed)
     end
 end

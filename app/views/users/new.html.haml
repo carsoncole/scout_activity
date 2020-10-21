@@ -5,6 +5,12 @@
       %h2= t(".title")
 
       = form_for @user do |form|
+        - if @user.errors.any?
+          #error_explanation
+            .message= "Ouch! Some bad stuff stopped me from creating your account:"
+            %ul
+              - @user.errors.full_messages.each do |message|
+                %li= message
         = render partial: '/users/form', object: form
 
         .submit-field
