@@ -61,4 +61,18 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  config.action_mailer.asset_host =  'localhost:3000'
+  config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp #:letter_opener #
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.gmail.com",
+      :port => 587, # Port 25 is throttled on AWS
+      :user_name => Rails.application.credentials.email[:user_name],
+      :password => Rails.application.credentials.email[:password],
+      :authentication => :login,
+      :enable_starttls_auto => true
+  }
+
 end

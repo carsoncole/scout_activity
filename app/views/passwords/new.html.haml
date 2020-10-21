@@ -1,0 +1,16 @@
+.row
+  .col-md-3
+  .col-md-6
+    #clearance.password-reset
+      %h2= t(".title")
+
+      %p= t(".description")
+
+      = form_for :password, url: passwords_path do |form|
+        .form-group
+          = form.label :email
+          = form.email_field :email, class: 'form-control'
+
+        .submit-field
+          = form.submit class: 'btn btn-primary'
+

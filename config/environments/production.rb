@@ -109,4 +109,20 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  config.action_mailer.asset_host =  'localhost:3000'
+  config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: 'localhost:3000' }
+  config.action_mailer.delivery_method = :smtp #:letter_opener #
+  config.action_mailer.smtp_settings = {
+      :address => ENV["ACTION_MAILER_SMTP_ADDRESS"],
+      :port => 587, # Port 25 is throttled on AWS
+      :user_name => ENV["ACTION_MAILER_SMTP_USER_NAME"],
+      :password => ENV["ACTION_MAILER_SMTP_PASSWORD"],
+      :authentication => :login,
+      :enable_starttls_auto => true
+  }
+
 end
