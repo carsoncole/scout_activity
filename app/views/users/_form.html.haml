@@ -7,3 +7,6 @@
   = form.label :password
   = form.password_field :password, class: 'form-control'
 
+.form-group
+  = form.label :troop
+  = form.collection_select :troop_id, Troop.all, :id, :unit_name, {}, class: 'form-control'
