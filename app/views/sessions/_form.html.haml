@@ -9,8 +9,6 @@
 
   .submit-field
     = form.submit class: 'btn btn-primary'
-
-  %br
   .other-links
     - if Clearance.configuration.allow_sign_up?
       = link_to t(".sign_up"), sign_up_path

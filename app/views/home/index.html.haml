@@ -14,3 +14,11 @@
       - @troops.each do |troop|
         %div.text-center=button_to "Troop " + troop.unit_number.to_s, troop_activities_path(troop), method: :get,class: 'btn btn-primary btn-lg'
         %br
+
+  .row.mt-5
+    .col-md-2
+    .col-md-8.justify-content-center
+      - if signed_in?
+        .text-center= button_to "Add your own Troop", new_troop_path, class: 'btn btn-warning'
+      - else
+        .text-center= button_to "Add your own Troop", sign_in_path, method: :get, data: { confirm: 'Sign in to add a Troop'}, class: 'btn btn-warning btn-lg'

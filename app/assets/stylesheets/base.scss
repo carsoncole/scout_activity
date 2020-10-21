@@ -70,3 +70,10 @@ table.activities {
     text-align: center;
   }
 }
+#clearance {
+  &.sign-up, &.sign-in {
+    .other-links {
+      margin-top: 1em;
+    }
+  }
+}
