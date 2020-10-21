@@ -7,6 +7,7 @@ class Activity < ApplicationRecord
   scope :non_high_adventure, -> {where(is_high_adventure: false) }
 
   validates :name, presence: true
+  validates :name, length: { maximum: 175 }
 
   has_rich_text :summary
   has_rich_text :itinerary
