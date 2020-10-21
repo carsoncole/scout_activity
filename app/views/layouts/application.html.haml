@@ -23,9 +23,6 @@
               = link_to "Vote", troop_activities_path(@troop), class: 'nav-link'
             %li.nav-item
               = link_to "Propose an Activity", new_troop_activity_path(@troop), class: 'nav-link'
-            %li.nav-item
-              = link_to info_path, class: 'nav-link' do
-                = fa_icon "question"
         - if signed_in?
           .dropdown
             = link_to "#", id: 'navbarDropdown', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle' do
@@ -40,3 +37,5 @@
 
     .container
       = yield
+
+    = render 'footer'

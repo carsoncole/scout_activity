@@ -98,6 +98,13 @@ table.activities {
     text-align: center;
     font-size: 1.2rem;
     line-height: 1.5em;
+    &.questions {
+      margin-top: 3em;
+    }
+  }
+  .strong {
+    display: inline-block;
+    font-weight: 700;
   }
 }
 #home {
@@ -111,4 +118,14 @@ table.activities {
       margin-top: 1em;
     }
   }
+}
+footer {
+  margin-top: 8rem;
+  margin-bottom: 2rem;
+  font-size: 0.8em;
+  text-align: center;
+  a {
+    color: #ccc;
+  }
+  color: #ccc;
 }
