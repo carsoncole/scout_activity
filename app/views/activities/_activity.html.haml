@@ -4,16 +4,16 @@
     = activity.votes_count
   %td.vote
     - if signed_in?
-      - if @user.votes_available.positive?
+      - if current_user.votes_available.positive?
         = button_to troop_votes_path(@troop, activity_id: activity.id), class: 'btn btn-primary' do
           = fa_icon "plus"
-      - if @user.votes.find_by(activity_id: activity.id)
-        - vote = @user.votes.find_by(activity_id: activity.id)
+      - if current_user.votes.find_by(activity_id: activity.id)
+        - vote = current_user.votes.find_by(activity_id: activity.id)
         = button_to troop_vote_path(@troop, vote), method: :delete, class: 'btn btn-primary' do
           = fa_icon "minus"
     - else
       = button_to "Sign in to vote", sign_in_path, method: :get, class: 'btn btn-primary'
   %td.votes-count
-    - count = activity.votes.where(user: @user).count
+    - count = activity.votes.where(user: current_user).count
     - if count.positive?
       = count

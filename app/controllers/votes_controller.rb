@@ -3,7 +3,7 @@ class VotesController < ApplicationController
   end
 
   def create
-    @vote = Vote.create(activity_id: params[:activity_id], user: @user)
+    @vote = Vote.create(activity_id: params[:activity_id], user: current_user)
     puts @vote.errors.full_messages
     redirect_to troop_activities_path(@troop)
   end
