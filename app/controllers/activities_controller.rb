@@ -66,7 +66,7 @@ class ActivitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_activity
-      @activity = current_user.activities.find(params[:id])
+      @activity = Activity.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

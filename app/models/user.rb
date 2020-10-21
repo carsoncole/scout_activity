@@ -3,6 +3,7 @@ class User < ApplicationRecord
 
   has_many :votes
   has_many :troops
+  has_many :activities
 
   def votes_available
     20 - votes.count

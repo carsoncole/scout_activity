@@ -1,5 +1,6 @@
 class Activity < ApplicationRecord
   belongs_to :troop
+  belongs_to :author, class_name: 'User'
   has_many :votes, dependent: :destroy
 
   scope :high_adventure, -> {where(is_high_adventure: true)}

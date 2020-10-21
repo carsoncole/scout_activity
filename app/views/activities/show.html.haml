@@ -16,6 +16,6 @@
   %b Duration days:
   = @activity.duration_days
 
-= link_to 'Edit', edit_activity_path(@activity)
-\|
-= link_to 'Back', activities_path
+- if @activity.author == current_user
+  = link_to 'Edit', edit_troop_activity_path(@troop, @activity)
+

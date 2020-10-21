@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_213001) do
+ActiveRecord::Schema.define(version: 2020_10_21_221842) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_213001) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "troop_id", null: false
     t.integer "votes_count"
+    t.integer "user_id"
     t.index ["troop_id"], name: "index_activities_on_troop_id"
   end
 
