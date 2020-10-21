@@ -1,38 +1,45 @@
-%h1.text-center Vote for Activities
+#activities
+
+  %h1 Vote for Activities
 
 
-.row
-  .col-md-3
-  .col-md-6
-    .text-center.mb-5
-      %h3
-        .badge.badge-primary= @user.votes_available
-        %span.text-muted votes left
-.row
-  .col-md-2
-  .col-md-8
-    %table.table.activities
-      %thead
-        %tr
-          %th
-          %th= fa_icon "users"
-          %th
-          %th= fa_icon "user"
-      %tbody
-        = render(@activities) || "There are no activities available."
+  - if signed_in?
+    .row
+      .col-md-3
+      .col-md-6
+        .text-center.mb-5
+          %h3
+            .badge.badge-primary= current_user.votes_available
+            %span.text-muted votes left
 
-%br
+  - if @activities.any?
 
-.row
-  .col-md-2
-  .col-md-8
-    %h3.text-center.mb-0 High Adventure
-    %p.text-muted.text-center.mb-4 Please only vote if you are at least 13 years old
+    .row
+      .col-md-2
+      .col-md-8
+        %table.table.activities
+          %thead
+            %tr
+              %th
+              %th= fa_icon "users"
+              %th
+              %th= fa_icon "user"
+          %tbody
+            = render(@activities)
 
-    %table.table.activities
-      %tbody
-        = render partial: 'activity', collection: @high_adventure_activities, as: :activity
+  %br
 
-- if @activities.empty?
-  %p.text-center
-    = link_to "Propose an Activity", new_troop_activity_path(@troop)
+  - if @high_adventure_activities.any?
+    .row
+      .col-md-2
+      .col-md-8
+        %h3.text-center.mb-0 High Adventure
+        %p.text-muted.text-center.mb-4 Please only vote if you are at least 13 years old
+
+        %table.table.activities
+          %tbody
+            = render partial: 'activity', collection: @high_adventure_activities, as: :activity
+
+  - if @activities.empty?
+    %p.text-center
+      = link_to "Propose an Activity", new_troop_activity_path(@troop)

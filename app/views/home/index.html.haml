@@ -12,5 +12,5 @@
   .col-md-2
   .col-md-8.justify-content-center
     - @troops.each do |troop|
-      %div.text-center=button_to "Troop " + troop.unit_number.to_s, new_troop_activity_path(troop), method: :get,class: 'btn btn-primary btn-lg'
+      %div.text-center=button_to "Troop " + troop.unit_number.to_s, troop_activities_path(troop), method: :get,class: 'btn btn-primary btn-lg'
       %br

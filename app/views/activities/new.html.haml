@@ -1,6 +1,9 @@
 
 %h1 What's your Activity idea?
 
-= render 'form'
 
-= link_to 'Back', troop_activities_path(@troop)
+- if signed_in?
+  = render 'form'
+
+- else
+  .mt-4= button_to "Sign in to propose and activity", sign_in_path, method: :get, class: 'btn btn-primary'

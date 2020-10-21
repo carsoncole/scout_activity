@@ -10,7 +10,9 @@
   Troop.find_or_create_by(unit_number: unit_number)
 end
 
-troop = Troop.first
-%w(Swimming Hiking\ Hoh\ River Capture\ the\ flag).each do |a|
-  troop.activities.create(name: a)
-end
+# troop = Troop.first
+# %w(Swimming Hiking\ Hoh\ River Capture\ the\ flag).each do |a|
+#   troop.activities.create(name: a)
+# end
+
+User.create(email: 'carson.cole@protonmail.com', password: 'SChiLanC67', is_admin: true)
