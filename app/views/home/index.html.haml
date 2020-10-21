@@ -1,16 +1,16 @@
+#home
+  .row
+    .col-md-12
+      .logo= image_tag "scout-activity-vertical.png", class: 'img-fluid'
 
-.row.mt-5
-  .col-md-12
-    %h1.text-center Scout Activity
+  .row
+    .col-md-2
+    .col-md-8
+      %h5.text-muted.text-center Tracking ideas for Scout activities.
 
-.row
-  .col-md-2
-  .col-md-8
-    %h5.text-muted.text-center Tracking ideas for Scout activities.
-
-.row.mt-5
-  .col-md-2
-  .col-md-8.justify-content-center
-    - @troops.each do |troop|
-      %div.text-center=button_to "Troop " + troop.unit_number.to_s, troop_activities_path(troop), method: :get,class: 'btn btn-primary btn-lg'
-      %br
+  .row.mt-5
+    .col-md-2
+    .col-md-8.justify-content-center
+      - @troops.each do |troop|
+        %div.text-center=button_to "Troop " + troop.unit_number.to_s, troop_activities_path(troop), method: :get,class: 'btn btn-primary btn-lg'
+        %br
