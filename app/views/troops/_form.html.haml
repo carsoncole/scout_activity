@@ -1,0 +1,13 @@
+= form_for @troop do |f|
+  - if @troop.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@troop.errors.count, "error")} prohibited this troop from being saved:"
+      %ul
+        - @troop.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :unit_number
+    = f.text_field :unit_number
+  .actions
+    = f.submit 'Save'

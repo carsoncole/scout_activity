@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @activity.name
+%p
+  %b Author:
+  = @activity.author
+%p
+  %b Summary:
+  = @activity.summary
+%p
+  %b Itinerary:
+  = @activity.itinerary
+%p
+  %b Duration days:
+  = @activity.duration_days
+
+= link_to 'Edit', edit_activity_path(@activity)
+\|
+= link_to 'Back', activities_path

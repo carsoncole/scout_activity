@@ -1,0 +1,33 @@
+= form_for [@troop, @activity] do |f|
+  - if @activity.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@activity.errors.count, "error")} prohibited this activity from being saved:"
+      %ul
+        - @activity.errors.full_messages.each do |message|
+          %li= message
+
+  .form-group
+    = f.label :author, "Your name"
+    = f.text_field :author, class: 'form-control'
+
+  .form-group
+    = f.label :name, "What's a good title for your activity idea?"
+    = f.text_field :name, class: 'form-control'
+
+  .form-group
+    = f.label :summary, "1-2 sentences summarizing your idea"
+    = f.rich_text_area :summary, placeholder: 'A brief 2-3 lines summarizing your idea', class: 'form-control'
+  .form-group
+    = f.label :itinerary, "What would the itinerary look like?"
+    = f.rich_text_area :itinerary, class: 'form-control'
+  .form-group
+    = f.label :duration_days, "Number of days"
+    = f.number_field :duration_days, class: 'form-control'
+  .form-group
+    = f.label :is_high_adventure, "Is this activity a High Adventure activity?"
+    = f.check_box :is_high_adventure, class: 'form-control'
+  .form-group
+    = f.label :is_author_volunteering, "If you are a parent, can you volunteer to help lead?"
+    = f.check_box :is_author_volunteering, class: 'form-control'
+  .actions
+    = f.submit 'Save'

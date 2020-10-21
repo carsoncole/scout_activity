@@ -1,0 +1,16 @@
+%tr
+  %td.name= link_to activity.name, troop_activity_path(@troop, activity)
+  %td.votes-count
+    = activity.votes_count
+  %td.vote
+    - if @user.votes_available.positive?
+      = button_to troop_votes_path(@troop, activity_id: activity.id), class: 'btn btn-primary' do
+        = fa_icon "plus"
+    - if @user.votes.find_by(activity_id: activity.id)
+      - vote = @user.votes.find_by(activity_id: activity.id)
+      = button_to troop_vote_path(@troop, vote), method: :delete, class: 'btn btn-primary' do
+        = fa_icon "minus"
+  %td.votes-count
+    - count = activity.votes.where(user: @user).count
+    - if count.positive?
+      = count
