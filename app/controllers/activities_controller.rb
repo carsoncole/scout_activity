@@ -27,6 +27,7 @@ class ActivitiesController < ApplicationController
   # POST /activities.json
   def create
     @activity = @troop.activities.new(activity_params)
+    @activity.author = current_user
 
     respond_to do |format|
       if @activity.save
@@ -43,8 +44,8 @@ class ActivitiesController < ApplicationController
   # PATCH/PUT /activities/1.json
   def update
     respond_to do |format|
-      if @activity.update(activity_params)
-        format.html { redirect_to @activity, notice: 'Activity was successfully updated.' }
+      if @activity.author == current_user && @activity.update(activity_params)
+        format.html { redirect_to troop_activity_path(@troop, @activity), notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
         format.html { render :edit }
@@ -56,9 +57,9 @@ class ActivitiesController < ApplicationController
   # DELETE /activities/1
   # DELETE /activities/1.json
   def destroy
-    @activity.destroy
+    @activity.destroy if @activity.author == current_user
     respond_to do |format|
-      format.html { redirect_to activities_url, notice: 'Activity was successfully destroyed.' }
+      format.html { redirect_to troop_activities_url(@troop), notice: 'Activity was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

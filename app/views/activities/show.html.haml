@@ -4,9 +4,6 @@
   %b Name:
   = @activity.name
 %p
-  %b Author:
-  = @activity.author
-%p
   %b Summary:
   = @activity.summary
 %p
@@ -18,4 +15,6 @@
 
 - if @activity.author == current_user
   = link_to 'Edit', edit_troop_activity_path(@troop, @activity)
-
+  %br
+  %br
+  = button_to "Destroy", troop_activity_path(@troop, @activity), method: :delete, data: { confirm: 'Are you sure? This will remove the Activity and all of the related votes for it.'}, class: 'btn btn-primary'

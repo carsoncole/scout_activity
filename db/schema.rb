@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_221842) do
+ActiveRecord::Schema.define(version: 2020_10_21_222648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,7 +48,6 @@ ActiveRecord::Schema.define(version: 2020_10_21_221842) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
-    t.string "author"
     t.string "duration_days", default: "1"
     t.boolean "is_high_adventure", default: false, null: false
     t.boolean "is_author_volunteering", default: false, null: false
@@ -56,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_10_21_221842) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "troop_id", null: false
     t.integer "votes_count"
-    t.integer "user_id"
+    t.integer "author_id"
     t.index ["troop_id"], name: "index_activities_on_troop_id"
   end
 
