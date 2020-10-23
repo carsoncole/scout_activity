@@ -67,7 +67,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :smtp #:letter_opener #
   config.action_mailer.smtp_settings = {
-      :address => "smtp.gmail.com",
+      :address => Rails.application.credentials.email[:user_name],
       :port => 587, # Port 25 is throttled on AWS
       :user_name => Rails.application.credentials.email[:user_name],
       :password => Rails.application.credentials.email[:password],
