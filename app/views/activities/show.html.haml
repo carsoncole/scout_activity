@@ -1,20 +1,43 @@
-%p#notice= notice
+#activity
+  .row
+    .col-md-9
 
-%p
-  %b Name:
-  = @activity.name
-%p
-  %b Summary:
-  = @activity.summary
-%p
-  %b Itinerary:
-  = @activity.itinerary
-%p
-  %b Duration days:
-  = @activity.duration_days
 
-- if @activity.author == current_user
-  = link_to 'Edit', edit_troop_activity_path(@troop, @activity)
-  %br
-  %br
-  = button_to "Destroy", troop_activity_path(@troop, @activity), method: :delete, data: { confirm: 'Are you sure? This will remove the Activity and all of the related votes for it.'}, class: 'btn btn-primary'
+      %h1= @activity.name
+
+      %p
+        Proposed by:
+        %br
+        = @activity.author.email
+    .col-md-3
+      .activity-count
+        = @activity.votes_count
+        100
+      .votes votes
+
+      %p.mt-5.text-center= link_to "All activities", troop_activities_path(@troop)
+  .row
+    .col-md-9
+
+      %hr
+
+      %h2 Summary
+      = @activity.summary
+
+      %br
+      %p
+        Activity length:
+        = pluralize(@activity.duration_days, "day")
+
+      %hr
+
+      %h2 Itinerary
+      = @activity.itinerary
+
+
+      - if @activity.author == current_user
+        %hr
+        = link_to 'Edit', edit_troop_activity_path(@troop, @activity)
+        %br
+        %br
+        = button_to "Destroy", troop_activity_path(@troop, @activity), method: :delete, data: { confirm: 'Are you sure? This will remove the Activity and all of the related votes for it.'}, class: 'btn btn-primary'

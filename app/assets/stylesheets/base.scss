@@ -133,6 +133,28 @@ trix-editor {
     height: 350px !important;
 }
 
+#activity {
+  h1 {
+    margin-bottom: 1em;
+  }
+  h2 {
+    font-size: 1.4rem;
+    margin-bottom: 1em;
+  }
+  .activity-count {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 1em;
+  }
+  .votes {
+    text-align: center;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 0.9em;
+  }
+}
+
 /* FLASH
    ============================================================ */
 
