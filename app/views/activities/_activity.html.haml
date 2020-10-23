@@ -1,5 +1,15 @@
 %tr
-  %td.name= link_to activity.name, troop_activity_path(@troop, activity)
+  %td.name
+    = link_to activity.name, troop_activity_path(@troop, activity)
+    &nbsp;
+    - if activity.is_hiking?
+      = fa_icon "hiking"
+    - if activity.is_swimming?
+      = fa_icon "swimmer"
+    - if activity.is_plane?
+      = fa_icon "plane"
+    - if activity.is_camping?
+      = fa_icon "campground"
   %td.votes-count
     = activity.votes_count
   %td.vote

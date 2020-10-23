@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_21_224355) do
+ActiveRecord::Schema.define(version: 2020_10_23_190455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,10 @@ ActiveRecord::Schema.define(version: 2020_10_21_224355) do
     t.bigint "troop_id", null: false
     t.integer "votes_count"
     t.integer "author_id"
+    t.boolean "is_hiking", default: false, null: false
+    t.boolean "is_camping", default: false, null: false
+    t.boolean "is_swimming", default: false, null: false
+    t.boolean "is_plane", default: false, null: false
     t.index ["troop_id"], name: "index_activities_on_troop_id"
   end
 

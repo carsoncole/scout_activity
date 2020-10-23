@@ -24,6 +24,15 @@
       = @activity.summary
 
       %br
+      - if @activity.is_hiking?
+        = fa_icon "hiking"
+      - if @activity.is_swimming?
+        = fa_icon "swimmer"
+      - if @activity.is_plane?
+        = fa_icon "plane"
+      - if @activity.is_camping?
+        = fa_icon "campground"
+      %br
       %p
         Activity length:
         = pluralize(@activity.duration_days, "day")
