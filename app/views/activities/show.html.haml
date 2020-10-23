@@ -11,8 +11,7 @@
         = @activity.author.email
     .col-md-3
       .activity-count
-        = @activity.votes_count
-        100
+        = @activity.votes_count || 0
       .votes votes
 
       %p.mt-5.text-center= link_to "All activities", troop_activities_path(@troop)
