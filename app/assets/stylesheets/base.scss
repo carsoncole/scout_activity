@@ -10,8 +10,8 @@ a {
   }
 }
 
-nav.navbar {
-  margin-bottom: 6rem;
+.container#main {
+  margin-top: 5rem;
 }
 
 table.activities {
@@ -131,4 +131,23 @@ footer {
 }
 trix-editor {
     height: 350px !important;
+}
+
+/* FLASH
+   ============================================================ */
+
+.flash {
+  padding: 1em;
+  font-weight: 500;
+  color: #fff;
+
+  &.notice {
+    background-color: #28a745;
+  }
+  &.warning {
+    background-color: #ffc107;
+  }
+  &.alert {
+    background-color: #ffc107;
+  }
 }

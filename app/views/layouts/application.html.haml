@@ -28,14 +28,16 @@
             = link_to "#", id: 'navbarDropdown', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle' do
               = fa_icon "user"
             .dropdown-menu.dropdown-menu-right
-              .dropdown-item= current_user.email
+              .dropdown-item= link_to current_user.email, edit_user_path(current_user)
               - current_user.troops.each do |troop|
                 = link_to troop.unit_name, edit_troop_path(troop), class: 'dropdown-item'
               = link_to 'Sign out', sign_out_path, method: :delete, class: 'dropdown-item'
         - else
           = link_to 'Sign in', sign_in_path
 
-    .container
+    = render 'flash'
+
+    .container#main
       = yield
 
     = render 'footer'
