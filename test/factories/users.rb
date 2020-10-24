@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user,aliases: [:author] do
-    email { "MyString" }
+    email { Faker::Internet.email }
     password { "Passsword"}
     troop
   end

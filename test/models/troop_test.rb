@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class TroopTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "creating a troop" do
+    assert create(:troop)
+  end
 end
