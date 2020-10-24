@@ -24,29 +24,36 @@
     = f.label :duration_days, "Number of days"
     = f.number_field :duration_days, class: 'form-control'
   .form-group
-    = f.label :is_hiking
-    = f.check_box :is_hiking, class: 'form-control'
-  .form-group
-    = f.label :is_camping
-    = f.check_box :is_camping, class: 'form-control'
-  .form-group
-    = f.label :is_swimming
-    = f.check_box :is_swimming, class: 'form-control'
-  .form-group
-    = f.label :is_biking
-    = f.check_box :is_biking, class: 'form-control'
-  .form-group
-    = f.label :is_plane
-    = f.check_box :is_plane, class: 'form-control'
-  .form-group
-    = f.label :is_community_service
-    = f.check_box :is_community_service, class: 'form-control'
+    = f.label :images
+    
+    = f.file_field :images, multiple: true, class: 'form-control-file'
+  %br
+  .form-check
+    = f.check_box :is_hiking, class: 'form-check-input'
+    = f.label :is_hiking, "Hiking", class: 'form-check-label'
+  .form-check
+    = f.check_box :is_camping, class: 'form-check-input'
+    = f.label :is_camping, "Camping", class: 'form-check-label'
+  .form-check
+    = f.check_box :is_swimming, class: 'form-check-input'
+    = f.label :is_swimming, "Swimming", class: 'form-check-label'
+  .form-check
+    = f.check_box :is_biking, class: 'form-check-input'
+    = f.label :is_biking, "Biking", class: 'form-check-label'
+  .form-check
+    = f.check_box :is_plane, class: 'form-check-input'
+    = f.label :is_plane, "Flying involved", class: 'form-check-label'
+  .form-check
+    = f.check_box :is_community_service, class: 'form-check-input'
+    = f.label :is_community_service, "Community Service", class: 'form-check-label'
+  .form-check
+    = f.check_box :is_high_adventure, class: 'form-check-input'
+    = f.label :is_high_adventure, "High Adventure", class: 'form-check-label'
 
-  .form-group
-    = f.label :is_high_adventure, "Is this activity a High Adventure activity?"
-    = f.check_box :is_high_adventure, class: 'form-control'
-  .form-group
-    = f.label :is_author_volunteering, "If you are a parent, can you volunteer to help lead?"
-    = f.check_box :is_author_volunteering, class: 'form-control'
+  %br
+  .form-check
+    = f.check_box :is_author_volunteering, class: 'form-check-input'
+    = f.label :is_author_volunteering, "If you are a parent, can you volunteer to help lead?", class: 'form-check-label'
+  %br
   .actions
     = f.submit 'Save', class: 'btn btn-primary'

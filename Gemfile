@@ -60,3 +60,5 @@ gem 'kaminari'
 gem 'font-awesome-rails'
 gem 'clearance'
 gem 'bugsnag'
+gem "aws-sdk-s3", require: false
+gem 'image_processing', '~> 1.2'
