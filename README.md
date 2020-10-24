@@ -6,6 +6,7 @@ ScoutActivity is a Ruby on Rails application for helping Scout troops solicit an
 
 * Activity authoring, viewing and voting
 * Vote tallying and showing ranking of activities
+* Users are given n (set at the troop level) votes to distribute amongst the proposed troop activities.
 
 
 ## Installation
