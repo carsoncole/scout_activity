@@ -24,14 +24,7 @@
       = @activity.summary
 
       %br
-      - if @activity.is_hiking?
-        = fa_icon "hiking"
-      - if @activity.is_swimming?
-        = fa_icon "swimmer"
-      - if @activity.is_plane?
-        = fa_icon "plane"
-      - if @activity.is_camping?
-        = fa_icon "campground"
+      = render partial: 'activity_icons', locals: { activity: @activity }
       %br
       %p
         Activity length:
