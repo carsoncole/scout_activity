@@ -134,6 +134,9 @@ footer {
 }
 trix-editor {
     height: 350px !important;
+    &.summary {
+      height: 50px !important;
+    }
 }
 
 #activity {
@@ -156,8 +159,11 @@ trix-editor {
     font-size: 3rem;
     line-height: 0.9em;
   }
-  .thumbnail {
-    margin: 1em 1em 1em 0;
+  img {
+    text-align: center;
+    margin: 1.77em auto;
+    padding: 1.77em;
+
   }
 }
 

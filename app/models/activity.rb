@@ -12,5 +12,6 @@ class Activity < ApplicationRecord
   validates :name, length: { maximum: 175 }
 
   has_rich_text :summary
+  has_rich_text :description
   has_rich_text :itinerary
 end
