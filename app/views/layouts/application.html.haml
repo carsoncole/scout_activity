@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    = render 'google_tag_manager_head' #if Rails.env.production?
     %title ScoutActivity
     = csrf_meta_tags
     = csp_meta_tag
@@ -16,6 +17,7 @@
   %script(src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-mutate-approach="sync")
 
   %body
+    = render 'google_tag_manager_body' #if Rails.env.production?
     %nav.navbar.navbar-expand-lg.navbar-light.bg-light
       = link_to root_path, class: 'navbar-brand' do
         = image_tag "scout-activity-horizontal.png", alt: 'ScoutActivity Logo', width: 150, class: 'img-fluid'
