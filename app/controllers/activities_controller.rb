@@ -20,6 +20,7 @@ class ActivitiesController < ApplicationController
   # GET /activities/1.json
   def show
     @votes = @activity.votes.includes(:user).group(:user_id).count
+    @title = "ScoutActivity | #{@activity.name}"
   end
 
   # GET /activities/new
