@@ -14,7 +14,7 @@ class ActivitiesController < ApplicationController
       @activities = @troop.activities.non_high_adventure.votable.order(votes_count: :desc)
       @high_adventure_activities  = @troop.activities.high_adventure.votable.order(votes_count: :desc)
     end
-    @title = "#{@troop.unit_name} - ScoutActivity"
+    @title = @troop.unit_name + " - " + @activity.name + " - ScoutActivity"
   end
 
   # GET /activities/1
