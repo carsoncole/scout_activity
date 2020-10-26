@@ -1,16 +1,20 @@
 #activities
 
-  %h1 Vote for Activities
+  %h1
+    - if params[:admin]
+      Activities
+    - else
+      Vote for Activities
 
 
-  - if signed_in?
-    .row
-      .col-md-3
-      .col-md-6
-        .text-center.mb-5
-          %h3
-            .badge.badge-primary= current_user.votes_available
-            %span.text-muted votes left
+      - if signed_in?
+        .row
+          .col-md-3
+          .col-md-6
+            .text-center.mb-5
+              %h3
+                .badge.badge-primary= current_user.votes_available
+                %span.text-muted votes left
 
   - if @activities.any?
 
@@ -18,18 +22,19 @@
       .col-md-2
       .col-md-8
         %table.table.activities
-          %thead
-            %tr
-              %th
-              %th= fa_icon "users"
-              %th
-              %th= fa_icon "user"
+          - unless params[:admin]
+            %thead
+              %tr
+                %th
+                %th= fa_icon "users"
+                %th
+                %th= fa_icon "user"
           %tbody
             = render(@activities)
 
   %br
 
-  - if @high_adventure_activities.any?
+  - if @high_adventure_activities&.any?
     .row
       .col-md-2
       .col-md-8

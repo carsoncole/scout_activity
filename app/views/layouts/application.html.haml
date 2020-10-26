@@ -20,10 +20,15 @@
       %div.collapse.navbar-collapse#navbarSupportedContent
         %ul.navbar-nav.mr-auto
           - if @troop && @troop.persisted?
+            %li.nav-item.nav-link
+              .badge.badge-primary= @troop.unit_name
             %li.nav-item
               = link_to "Vote", troop_activities_path(@troop), class: 'nav-link'
             %li.nav-item
               = link_to "Propose an Activity", new_troop_activity_path(@troop), class: 'nav-link'
+            - if @troop.owner == current_user || current_user.activities.any?
+              %li.nav-item.nav-link
+                = link_to "My Activities", troop_activities_path(@troop, admin: true)
         - if signed_in?
           .dropdown
             = link_to "#", id: 'navbarDropdown', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle' do

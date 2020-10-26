@@ -5,13 +5,20 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
-    @activities = @troop.activities.non_high_adventure.order(votes_count: :desc)
-    @high_adventure_activities  = @troop.activities.high_adventure.order(votes_count: :desc)
+    if params[:admin] && current_user == @troop.owner
+      @activities = @troop.activities
+    elsif params[:admin]
+      @activities = current_user.activities
+    else
+      @activities = @troop.activities.non_high_adventure.votable.order(votes_count: :desc)
+      @high_adventure_activities  = @troop.activities.high_adventure.votable.order(votes_count: :desc)
+    end
   end
 
   # GET /activities/1
   # GET /activities/1.json
   def show
+    @votes = @activity.votes.includes(:user).group(:user_id).count
   end
 
   # GET /activities/new
@@ -72,6 +79,6 @@ class ActivitiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def activity_params
-      params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_swimming, :is_community_service, :is_biking, images: [])
+      params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_swimming, :is_community_service, :is_archived, :is_biking, images: [])
     end
 end

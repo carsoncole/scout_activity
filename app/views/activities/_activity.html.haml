@@ -5,19 +5,27 @@
     %br
     = render partial: 'activity_icons', locals: { activity: activity }
   %td.votes-count
-    = activity.votes_count
+    - if params[:admin]
+      - if activity.is_archived?
+        .badge.badge-info Archived
+    - else
+      = activity.votes_count
   %td.vote
-    - if signed_in? && current_user.troop == @troop
-      - if current_user.votes_available.positive?
-        = button_to troop_votes_path(@troop, activity_id: activity.id), class: 'btn btn-primary' do
-          = fa_icon "plus"
-      - if current_user.votes.find_by(activity_id: activity.id)
-        - vote = current_user.votes.find_by(activity_id: activity.id)
-        = button_to troop_vote_path(@troop, vote), method: :delete, class: 'btn btn-primary' do
-          = fa_icon "minus"
-    - elsif !signed_in?
-      = button_to "Sign in to vote", sign_in_path, method: :get, class: 'btn btn-primary'
+    - if params[:admin]
+      = link_to "Edit", edit_troop_activity_path(@troop, activity)
+    - else
+      - if signed_in? && current_user.troop == @troop
+        - if current_user.votes_available.positive?
+          = button_to troop_votes_path(@troop, activity_id: activity.id), class: 'btn btn-primary' do
+            = fa_icon "plus"
+        - if current_user.votes.find_by(activity_id: activity.id)
+          - vote = current_user.votes.find_by(activity_id: activity.id)
+          = button_to troop_vote_path(@troop, vote), method: :delete, class: 'btn btn-primary' do
+            = fa_icon "minus"
+      - elsif !signed_in?
+        = button_to "Sign in to vote", sign_in_path, method: :get, class: 'btn btn-primary'
   %td.votes-count
-    - count = activity.votes.where(user: current_user).count
-    - if count.positive?
-      = count
+    - unless params[:admin]
+      - count = activity.votes.where(user: current_user).count
+      - if count.positive?
+        = count

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   belongs_to :troop, optional: true
   has_many :votes, dependent: :destroy
   has_many :troops
-  has_many :activities, dependent: :destroy
+  has_many :activities, dependent: :destroy, foreign_key: 'author_id'
 
   def votes_available
     troop.votes_allowed - votes.count
