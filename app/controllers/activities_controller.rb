@@ -1,6 +1,7 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:create, :update, :destroy]
+  before_action :set_title
 
   # GET /activities
   # GET /activities.json
@@ -77,6 +78,9 @@ class ActivitiesController < ApplicationController
       @activity = Activity.find(params[:id])
     end
 
+    def set_title
+      @title = 'ScoutActivity | Activities'
+    end
     # Only allow a list of trusted parameters through.
     def activity_params
       params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_swimming, :is_community_service, :is_archived, :is_biking, images: [])

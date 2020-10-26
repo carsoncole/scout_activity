@@ -2,7 +2,8 @@
 %html
   %head
     = render 'google_tag_manager_head' if Rails.env.production?
-    %title ScoutActivity
+    %title= @title || 'ScoutActivity | Tool for collecting ideas for Scouting activites'
+
     = csrf_meta_tags
     = csp_meta_tag
     %meta(name="viewport" content="width=device-width, initial-scale=1")
@@ -33,7 +34,7 @@
               = link_to "Vote", troop_activities_path(@troop), class: 'nav-link'
             %li.nav-item
               = link_to "Propose an Activity", new_troop_activity_path(@troop), class: 'nav-link'
-            - if @troop.owner == current_user || current_user.activities.any?
+            - if signed_in? && (@troop.owner == current_user || current_user.activities.any?)
               %li.nav-item.nav-link
                 = link_to "My Activities", troop_activities_path(@troop, admin: true)
         - if signed_in?
