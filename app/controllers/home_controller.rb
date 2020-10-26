@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   end
 
   def info
-    @title = 'ScoutActivity | Info'
+    @title = 'Info - ScoutActivity'
   end
 end

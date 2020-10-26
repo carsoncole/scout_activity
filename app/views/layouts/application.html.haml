@@ -2,7 +2,7 @@
 %html
   %head
     = render 'google_tag_manager_head' if Rails.env.production?
-    %title= @title || 'ScoutActivity | Tool for collecting ideas for Scouting activites'
+    %title= @title || 'ScoutActivity - Tool for collecting ideas for Scouting activites'
 
     = csrf_meta_tags
     = csp_meta_tag
