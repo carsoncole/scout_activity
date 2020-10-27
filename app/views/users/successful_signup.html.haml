@@ -1,0 +1,17 @@
+.row
+  .col-md-3
+  .col-md-6
+    %h1.text-center
+      = fa_icon "check"
+      %br
+      You're signed up with
+      %br
+      = succeed(".") do
+        = current_user.troop.unit_name
+
+
+    %h4.text-center.mt-4
+      You can now
+      = link_to "add a troop activity", new_troop_activity_path(current_user.troop)
+      or
+      = link_to "vote.", troop_activities_path(current_user.troop)

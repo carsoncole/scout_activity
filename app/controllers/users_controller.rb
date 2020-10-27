@@ -15,6 +15,10 @@ class UsersController < Clearance::UsersController
     end
   end
 
+  def url_after_create
+    successful_signup_path
+  end
+
   def user_params
     params.require(:user).permit(:email, :password, :troop_id)
   end
