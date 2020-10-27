@@ -10,8 +10,8 @@
       %h5.text-muted.text-center Tracking ideas for Scout activities.
 
   .row
-    .col-md-2
-    .col-md-8.text-center
+    .col-md-1
+    .col-md-10.text-center
 
       - @troops.each do |troop|
         =button_to troop.unit_name, troop_activities_path(troop), method: :get,class: 'btn btn-primary btn-lg troop'
@@ -24,3 +24,7 @@
           .text-center= button_to "Add your Troop", new_troop_path, method: :get, class: 'btn btn-warning btn-lg'
       - else 
         .text-center= button_to "Add your Troop", sign_in_path, method: :get, data: { confirm: 'Sign in or register to add a Troop'}, class: 'btn btn-warning btn-lg'
+
+#features
+  .row
+    .col-md-12

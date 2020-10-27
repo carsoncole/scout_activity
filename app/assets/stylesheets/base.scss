@@ -110,6 +110,9 @@ table.activities {
     font-weight: 700;
   }
 }
+#features {
+  margin-top: 5rem;
+}
 #home {
   .logo {
     text-align: center;
@@ -121,7 +124,7 @@ table.activities {
     display: inline-block;
   }
   .btn.troop {
-    margin: 0.5em;
+    margin: 0.5em 0.35em;
     display: inline-block;
     vertical-align: top;
   } 
