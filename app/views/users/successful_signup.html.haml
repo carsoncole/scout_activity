@@ -4,14 +4,23 @@
     %h1.text-center
       = fa_icon "check"
       %br
-      You're signed up with
-      %br
-      = succeed(".") do
-        = current_user.troop.unit_name
+      - if current_user.troop
+        You're signed up with
+        %br
+        = succeed(".") do
+          = current_user.troop.unit_name
 
 
-    %h4.text-center.mt-4
-      You can now
-      = link_to "add a troop activity", new_troop_activity_path(current_user.troop)
-      or
-      = link_to "vote.", troop_activities_path(current_user.troop)
+        %h4.text-center.mt-4
+          You can now
+          = link_to "add a troop activity", new_troop_activity_path(current_user.troop)
+          or
+          = link_to "vote.", troop_activities_path(current_user.troop)
+      - else
+        You're signed up.
+        %br
+        %h4.text-center.mt-4
+          The next step is to
+          = link_to "create a troop", new_troop_path
+          or,
+          = link_to "select an existing troop.", edit_user_path(current_user)

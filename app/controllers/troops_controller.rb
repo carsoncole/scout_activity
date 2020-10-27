@@ -17,6 +17,7 @@ class TroopsController < ApplicationController
 
     respond_to do |format|
       if @troop.save
+        current_user.update(troop_id: @troop.id)
         format.html { redirect_to root_path, notice: 'Troop was successfully created.' }
         format.json { render :show, status: :created, location: @troop }
       else
