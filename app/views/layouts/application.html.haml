@@ -47,7 +47,8 @@
                 = link_to troop.unit_name, edit_troop_path(troop), class: 'dropdown-item'
               = link_to 'Sign out', sign_out_path, method: :delete, class: 'dropdown-item'
         - else
-          = link_to 'Sign in', sign_in_path
+          = link_to 'Sign in', sign_in_path, class: 'nav-link'
+          = link_to 'Sign up', sign_up_path, class: 'nav-link'
 
     = render 'flash'
 
