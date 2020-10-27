@@ -19,6 +19,10 @@ class UsersController < Clearance::UsersController
     successful_signup_path
   end
 
+  def successful_signup
+    @title = "You are signed up - ScoutActivity"
+  end
+
   def user_params
     params.require(:user).permit(:email, :password, :troop_id)
   end
