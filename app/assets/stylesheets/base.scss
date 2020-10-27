@@ -153,6 +153,12 @@ trix-editor {
     }
 }
 
+
+.activity-icon {
+  display: inline;
+}
+
+
 #activity {
   h1 {
     margin-bottom: 0;
@@ -167,6 +173,7 @@ trix-editor {
     font-weight: 900;
     line-height: 1em;
   }
+
   .activity-icons {
     font-size: 1.3rem;
     margin-bottom: 1.5em;
