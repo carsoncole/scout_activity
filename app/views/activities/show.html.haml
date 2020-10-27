@@ -4,6 +4,8 @@
 
 
       %h1= @activity.name
+      
+      .activity-icons= render partial: 'activity_icons', locals: { activity: @activity }
 
       %p
         Proposed by:
@@ -24,8 +26,6 @@
       %h2 Summary
       = @activity.summary
 
-      %br
-      = render partial: 'activity_icons', locals: { activity: @activity }
       %br
       %p
         Activity length:

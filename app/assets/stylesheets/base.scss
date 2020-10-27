@@ -155,7 +155,7 @@ trix-editor {
 
 #activity {
   h1 {
-    margin-bottom: 1em;
+    margin-bottom: 0;
   }
   h2 {
     font-size: 1.4rem;
@@ -166,6 +166,13 @@ trix-editor {
     font-size: 5rem;
     font-weight: 900;
     line-height: 1em;
+  }
+  .activity-icons {
+    font-size: 1.3rem;
+    margin-bottom: 1.5em;
+  }
+  .activity-icon {
+    display: inline;
   }
   .votes {
     text-align: center;

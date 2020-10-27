@@ -1,6 +1,12 @@
-= fa_icon "hiking" if activity.is_hiking?
-= fa_icon "swimmer" if activity.is_swimming?
-= fa_icon "biking" if activity.is_biking?
-= fa_icon "plane" if activity.is_plane?
-= fa_icon "campground" if activity.is_camping?
-= fa_icon "store" if activity.is_camping?
+- if activity.is_hiking?
+  .activity-icon(data-toggle = "tooltip" data-placement = "top" title='Hiking')= fa_icon("hiking") 
+- if activity.is_swimming?
+  .activity-icon(data-toggle = "tooltip" data-placement = "top" title='Swimming')= fa_icon "swimmer" 
+- if activity.is_biking?
+  .activity-icon(data-toggle = "tooltip" data-placement = "top" title='Biking')= fa_icon "biking"
+- if activity.is_plane?
+  .activity-icon(data-toggle = "tooltip" data-placement = "top" title='Flying')= fa_icon "plane"
+- if activity.is_camping?
+  .activity-icon(data-toggle = "tooltip" data-placement = "top" title='Camping')= fa_icon "campground"
+- if activity.is_community_service?
+  .activity-icon(data-toggle = "tooltip" data-placement = "top" title='Community Service')= fa_icon "store" 
