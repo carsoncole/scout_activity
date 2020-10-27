@@ -31,10 +31,17 @@
         Activity length:
         = pluralize(@activity.duration_days, "day")
 
-      %hr
+      - if @activity.description.present?
+        %hr
 
-      %h2 Itinerary
-      = @activity.itinerary
+        %h2 Description
+        = @activity.description
+
+      - if @activity.itinerary.present?
+        %hr
+
+        %h2 Itinerary
+        = @activity.itinerary
 
 
       - if @activity.author == current_user
