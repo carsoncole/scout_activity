@@ -9,7 +9,7 @@
       - if activity.is_archived?
         .badge.badge-info Archived
     - else
-      = activity.votes_count
+      = activity.votes_count || 0
   %td.vote
     - if params[:admin]
       = link_to "Edit", edit_troop_activity_path(@troop, activity)
@@ -27,5 +27,4 @@
   %td.votes-count
     - unless params[:admin]
       - count = activity.votes.where(user: current_user).count
-      - if count.positive?
-        = count
+      = count || 0
