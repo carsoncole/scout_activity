@@ -188,9 +188,10 @@ trix-editor {
     line-height: 0.9em;
   }
   img {
+    clear: both;
     text-align: center;
-    margin: 1.77em auto;
-    padding: 1.77em;
+    margin: 1em auto;
+    padding: 1.25em 0;
 
   }
 }

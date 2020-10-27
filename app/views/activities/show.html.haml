@@ -7,10 +7,7 @@
       
       .activity-icons= render partial: 'activity_icons', locals: { activity: @activity }
 
-      %p
-        Proposed by:
-        %br
-        = @activity.author.email
+
     .col-md-3
       .activity-count
         = @activity.votes_count || 0
@@ -54,6 +51,14 @@
   .row.mt-5
     .col-md-12
       - @activity.images.each do |image|
-        .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'img-fluid rounded'
-        %br
         %hr
+        .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'img-fluid rounded'
+
+
+  .row
+    .col-md-12
+      %hr
+      %p
+        Activity proposed by:
+        %br
+        = @activity.author.email
