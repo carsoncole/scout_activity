@@ -114,6 +114,17 @@ table.activities {
   .logo {
     text-align: center;
   }
+  h5 {
+    margin-bottom: 1em;
+  }
+  form.button_to {
+    display: inline-block;
+  }
+  .btn.troop {
+    margin: 0.5em;
+    display: inline-block;
+    vertical-align: top;
+  } 
 }
 #clearance {
   &.sign-up, &.sign-in {
