@@ -130,7 +130,7 @@ table.activities {
   } 
 }
 #clearance {
-  &.sign-up, &.sign-in {
+  &.sign-up, &.sign-in, &.password-reset {
     h1 {
       margin-bottom: 1.66em;
     }
@@ -143,7 +143,7 @@ table.activities {
 footer {
   margin-top: 8rem;
   margin-bottom: 2rem;
-  font-size: 0.8em;
+  font-size: 0.85em;
   text-align: center;
   a {
     color: #ccc;

@@ -32,4 +32,18 @@ class PublicPagesTest < ApplicationSystemTestCase
     click_on "brand-logo"
     assert_text "Tracking ideas for Scout activities."
   end
+
+  test "forgetting password" do
+    visit sign_in_url
+    click_on "Forgot password?"
+    assert_selector "h1", text: "Reset your password"
+    fill_in "Email address", with: Faker::Internet.email
+    click_on "Reset password"
+  end
+
+  test "Adding a Troop without signed in" do
+    visit root_url
+    click_on "Add your Troop"
+  end
+
 end

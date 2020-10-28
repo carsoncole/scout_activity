@@ -3,10 +3,9 @@
   .col-md-6
     %h1.text-center
       = fa_icon "check"
-      %br
-      - if current_user.troop
+    - if current_user.troop
+      %h2 
         You're signed up with
-        %br
         = succeed(".") do
           = current_user.troop.unit_name
 
@@ -16,11 +15,16 @@
           = link_to "add a troop activity", new_troop_activity_path(current_user.troop)
           or
           = link_to "vote.", troop_activities_path(current_user.troop)
-      - else
-        You're signed up.
-        %br
-        %h4.text-center.mt-4
-          The next step is to
-          = link_to "create a troop", new_troop_path
-          or,
-          = link_to "select an existing troop.", edit_user_path(current_user)
+    - else
+      %h2.text-center You're signed up.
+      %h4.text-center.mt-4
+        The next step is to
+        = link_to "create a troop", new_troop_path
+        or,
+        = link_to "select an existing troop.", edit_user_path(current_user)
+
+      %br
+      %hr
+      %h5.text-center.mb-3 Existing Troops
+      - Troop.all.each do |t|
+        .text-center= t.unit_name
