@@ -1,5 +1,6 @@
 class TroopsController < ApplicationController
   before_action :set_troop, only: [:show, :edit, :update, :destroy]
+  before_action :set_title
 
   # GET /troops/new
   def new
@@ -55,6 +56,10 @@ class TroopsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_troop
       @troop = Troop.find(params[:id])
+    end
+
+    def set_title
+      @title = 'Troop | ScoutActivity'
     end
 
     # Only allow a list of trusted parameters through.
