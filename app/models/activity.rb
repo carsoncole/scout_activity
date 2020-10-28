@@ -19,7 +19,7 @@ class Activity < ApplicationRecord
   before_save :remove_votes_if_archived!, if: Proc.new {|a| a.is_archived_changed? && a.is_archived? }
 
   def activity_icons?
-    if is_swimming || is_hiking || is_plane || is_camping || is_community_service || is_biking
+    if is_swimming || is_hiking || is_plane || is_camping || is_community_service || is_biking || is_cooking
       true
     else
       false
