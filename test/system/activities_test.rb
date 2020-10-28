@@ -1,51 +1,53 @@
 require "application_system_test_case"
 
 class ActivitiesTest < ApplicationSystemTestCase
-  # setup do
-  #   @activity = activities(:one)
-  # end
+  test "visiting the index" do
+    @activity = create(:activity)
+    visit troop_activities_url(@activity.troop)
+    assert_selector "h1", text: "Vote for Activities"
+  end
 
-  # test "visiting the index" do
-  #   visit activities_url
-  #   assert_selector "h1", text: "Activities"
-  # end
+  test "creating an activity" do
+    sign_in
+    assert_text "No activities have been proposed."
+    within "#activities" do
+      click_on "Propose an Activity"
+    end
+    assert_selector "h1", text: "What's your Activity idea?"
 
-  # test "creating a Activity" do
-  #   visit activities_url
-  #   click_on "New Activity"
+    fill_in "What's a good title for your activity idea?", with: Faker::Lorem.sentence(word_count: 5)
+    fill_in "Number of days", with: "3"
+    check "Swimming"
+    check "Biking"
+    click_on "Create Activity"
+    assert_text "Activity was successfully created."
+  end
 
-  #   fill_in "Author", with: @activity.author
-  #   fill_in "Duration days", with: @activity.duration_days
-  #   fill_in "Itinerary", with: @activity.itinerary
-  #   fill_in "Name", with: @activity.name
-  #   fill_in "Summary", with: @activity.summary
-  #   click_on "Create Activity"
+  test "viewing an activity" do
+    @activity = create(:activity)
 
-  #   assert_text "Activity was successfully created"
-  #   click_on "Back"
-  # end
+    visit troop_activity_path(@activity.troop, @activity)
+    assert_selector "h1", text: @activity.name
+  end
 
-  # test "updating a Activity" do
-  #   visit activities_url
-  #   click_on "Edit", match: :first
+  test "updating an activity" do
+    sign_in
+    @activity = create(:activity, author: @user)
+    visit troop_activity_path(@activity.troop, @activity)
+    click_on "Edit"
+    fill_in "Number of days", with: '5'
+    click_on "Update Activity"
+    assert_text "Activity was successfully updated."
+  end
 
-  #   fill_in "Author", with: @activity.author
-  #   fill_in "Duration days", with: @activity.duration_days
-  #   fill_in "Itinerary", with: @activity.itinerary
-  #   fill_in "Name", with: @activity.name
-  #   fill_in "Summary", with: @activity.summary
-  #   click_on "Update Activity"
+  test "destroying a Activity" do
+    sign_in
+    @activity = create(:activity, author: @user)
+    visit troop_activity_path(@activity.troop, @activity)
+    page.accept_confirm do
+      click_on "Destroy", match: :first
+    end
 
-  #   assert_text "Activity was successfully updated"
-  #   click_on "Back"
-  # end
-
-  # test "destroying a Activity" do
-  #   visit activities_url
-  #   page.accept_confirm do
-  #     click_on "Destroy", match: :first
-  #   end
-
-  #   assert_text "Activity was successfully destroyed"
-  # end
+    assert_text "Activity was successfully destroyed"
+  end
 end

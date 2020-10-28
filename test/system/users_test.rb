@@ -1,7 +1,7 @@
 require "application_system_test_case"
 
 class UsersTest < ApplicationSystemTestCase
-  test "signing up without selecting a troop" do
+  test "signing up, creating a troop" do
     visit root_url
     within "#main-nav" do
       click_on "Sign up"
@@ -35,4 +35,6 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Update Troop"
     assert_text "Troop was successfully updated."
   end
+
+
 end
