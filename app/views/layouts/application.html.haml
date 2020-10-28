@@ -19,8 +19,8 @@
 
   %body
     = render 'google_tag_manager_body' if Rails.env.production?
-    %nav.navbar.navbar-expand-lg.navbar-light.bg-light
-      = link_to root_path, class: 'navbar-brand' do
+    %nav.navbar.navbar-expand-lg.navbar-light.bg-light#main-nav
+      = link_to root_path, class: 'navbar-brand', id: 'brand-logo' do
         = image_tag "scout-activity-horizontal.png", alt: 'ScoutActivity Logo', width: 150, class: 'img-fluid'
       %button.navbar-toggler(type='button' data-toggle="collapse" data-target="#navbarSupportedContent")
         %span.navbar-toggler-icon

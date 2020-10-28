@@ -131,6 +131,10 @@ table.activities {
 }
 #clearance {
   &.sign-up, &.sign-in {
+    h1 {
+      margin-bottom: 1.66em;
+    }
+
     .other-links {
       margin-top: 1em;
     }

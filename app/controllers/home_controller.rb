@@ -3,7 +3,7 @@ class HomeController < ApplicationController
     @troops = Troop.all
   end
 
-  def info
+  def about
     @title = 'Info - ScoutActivity'
   end
 end
