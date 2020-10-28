@@ -6,6 +6,8 @@
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Biking')= fa_icon "biking"
 - if activity.is_plane?
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Flying')= fa_icon "plane"
+- if activity.is_cooking?
+  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Cooking')= fa_icon "hat-chef"
 - if activity.is_camping?
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Camping')= fa_icon "campground"
 - if activity.is_community_service?

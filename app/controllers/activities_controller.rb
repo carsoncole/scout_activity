@@ -14,7 +14,7 @@ class ActivitiesController < ApplicationController
       @activities = @troop.activities.non_high_adventure.votable.order(votes_count: :desc)
       @high_adventure_activities  = @troop.activities.high_adventure.votable.order(votes_count: :desc)
     end
-    @title = @troop.unit_name + " - Activities - ScoutActivity"
+    @title = @troop.unit_name + " - Vote - ScoutActivity"
     @title = @troop.unit_name + " - My Activities - ScoutActivity" if params[:admin].present?
   end
 
@@ -88,6 +88,6 @@ class ActivitiesController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def activity_params
-      params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_swimming, :is_community_service, :is_archived, :is_biking, images: [])
+      params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_swimming, :is_community_service, :is_archived, :is_biking, :is_cooking, images: [])
     end
 end
