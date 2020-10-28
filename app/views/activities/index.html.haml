@@ -28,7 +28,9 @@
                 %th
                 %th= fa_icon "users"
                 %th
-                %th= fa_icon "user"
+                - if signed_in?
+                  %th
+                    = fa_icon "user"
           %tbody
             = render(@activities)
 

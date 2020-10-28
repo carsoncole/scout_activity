@@ -28,7 +28,8 @@
             = fa_icon "minus"
       - elsif !signed_in?
         = button_to "Sign in to vote", sign_in_path, method: :get, class: 'btn btn-primary'
-  %td.votes-count
-    - unless params[:admin]
-      - count = activity.votes.where(user: current_user).count
-      = count || 0
+  - if signed_in?
+    %td.votes-count
+      - unless params[:admin]
+        - count = activity.votes.where(user: current_user).count
+        = count || 0
