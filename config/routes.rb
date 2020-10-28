@@ -19,5 +19,5 @@ Rails.application.routes.draw do
     resources :votes, only: [:index, :create, :destroy]
   end
 
-  get 'info' => 'home#about', as: 'about'
+  get 'about' => 'home#about', as: 'about'
 end
