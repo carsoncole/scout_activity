@@ -1,4 +1,5 @@
 class UsersController < Clearance::UsersController
+  before_action :set_title, only: [:edit]
 
   def edit
     @user = current_user
@@ -9,7 +10,7 @@ class UsersController < Clearance::UsersController
     new_params = user_params
     new_params = user_params.reject! { |k,v| v.blank? }
     if current_user.update(new_params)
-      redirect_to edit_user_path(current_user), notice: 'Your account has been updated'
+      redirect_to troop_activities_path(current_user.troop), notice: 'Your account has been updated'
     else
       render :edit
     end
@@ -21,6 +22,10 @@ class UsersController < Clearance::UsersController
 
   def successful_signup
     @title = "You are signed up - ScoutActivity"
+  end
+
+  def set_title
+    @title = 'Profile | ScoutActivity'
   end
 
   def user_params
