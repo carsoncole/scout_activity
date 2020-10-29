@@ -8,6 +8,8 @@
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Flying')= fa_icon "plane"
 - if activity.is_cooking?
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Cooking')= fa_icon "utensils"
+- if activity.is_merit_badge?
+  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Merit Badge')= image_tag "merit-badge.svg", width: '26px'
 - if activity.is_camping?
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Camping')= fa_icon "campground"
 - if activity.is_community_service?
