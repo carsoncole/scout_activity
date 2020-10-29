@@ -11,6 +11,10 @@ class TroopsController < ApplicationController
   def edit
   end
 
+  def troop_created
+    @title = @troop.unit_name + ' - Created - ScoutActivity'
+  end
+
   # POST /troops
   # POST /troops.json
   def create
