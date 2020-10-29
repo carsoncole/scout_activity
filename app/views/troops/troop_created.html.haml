@@ -18,6 +18,6 @@
     %p.mt-5.text-center
       You can also share your activities list on your Facebook page to encourage parents to add activites.
       %br
-      = link_to 'http://www.facebook.com/sharer.php?u=https://scoutactivity.com/troops' + @troop.id.to_s + '/activities' , target: :blank do
+      = link_to 'http://www.facebook.com/sharer.php?u=https://scoutactivity.com/troops/' + @troop.id.to_s + '/activities' , target: :blank do
         = fa_icon "share"
         Share to Facebook

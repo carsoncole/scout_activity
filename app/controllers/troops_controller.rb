@@ -12,7 +12,7 @@ class TroopsController < ApplicationController
   end
 
   def troop_created
-    @title = @troop.unit_name + ' - Created - ScoutActivity'
+    @title = 'Troop Created - ' + @troop.unit_name + ' - ScoutActivity'
   end
 
   # POST /troops
