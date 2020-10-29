@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'sitemap/index'
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "sessions", only: [:create]
 
@@ -20,4 +21,5 @@ Rails.application.routes.draw do
   end
 
   get 'about' => 'home#about', as: 'about'
+  get '/sitemap' => 'sitemap#sitemap', as: 'sitemap'
 end

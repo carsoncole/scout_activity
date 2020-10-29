@@ -1,0 +1,24 @@
+%urlset(xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")
+  
+  %url
+    %loc= root_url
+    %lastmod= Troop.last.updated_at.strftime("%Y-%m-%d")
+    %priority 1.00
+  %url
+    %loc= about_url
+    %lastmod= File.new("app/views/home/about.html.haml").ctime.strftime("%Y-%m-%d")
+    %priority 0.90
+  - @troops.each do |troop|
+    %url
+      %loc= troop_activities_url(troop)
+      - if troop.activities.any?
+        %lastmod= troop.activities.last.updated_at.strftime("%Y-%m-%d")
+      - else
+        %lastmod= troop.updated_at.strftime("%Y-%m-%d")
+      %priority 0.85
+
+  - @activities.each do |activity|
+    %url
+      %loc= troop_activity_url(activity.troop, activity)
+      %lastmod= activity.updated_at.strftime("%Y-%m-%d")
+      %priority 0.80
