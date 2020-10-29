@@ -1,0 +1,16 @@
+= render 'google_tag_manager_head' if Rails.env.production?
+%title= @title || 'ScoutActivity - Tool for collecting ideas for Scouting activites'
+
+= csrf_meta_tags
+= csp_meta_tag
+%meta(name="viewport" content="width=device-width, initial-scale=1")
+%meta(property="og:description" content="Scouting troop tool for promoting new ideas for activities from Scouts and parents and let Scouts vote on them.")
+%meta(property="og:title" content="ScoutActivity")
+%meta(property="og:image" content="#{image_url 'scout-activity-vertical.png'}")
+%meta(property="og:url" content="https://scoutactivity.com")
+%meta(property="og:type" content="website")
+
+= favicon_link_tag asset_path('scout-activity.ico')
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+%script(src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" data-mutate-approach="sync")
