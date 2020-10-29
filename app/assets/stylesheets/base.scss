@@ -165,10 +165,10 @@ footer {
   color: #ccc;
 }
 trix-editor {
-    height: 350px !important;
-    &.summary {
-      height: 50px !important;
-    }
+  overflow-y: auto;
+  &.summary {
+    height: 50px !important;
+  }
 }
 
 
