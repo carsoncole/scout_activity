@@ -6,15 +6,14 @@
     - else
       Vote for Activities
 
-
-      - if signed_in? && @troop == current_user.troop
-        .row
-          .col-md-3
-          .col-md-6
-            .text-center.mb-5
-              %h3
-                .badge.badge-primary= current_user.votes_available
-                %span.text-muted votes left
+  - if signed_in? && @troop == current_user.troop && !params[:admin]
+    .row
+      .col-md-3
+      .col-md-6
+        .text-center.mb-5
+          .vote-count
+            .badge.badge-primary= current_user.votes_available
+            %span.text-muted votes left
 
   - if @activities.any?
 
@@ -33,6 +32,8 @@
                     = fa_icon "user"
           %tbody
             = render(@activities)
+        %hr
+        %br
 
   %br
 
@@ -47,6 +48,7 @@
           %tbody
             = render partial: 'activity', collection: @high_adventure_activities, as: :activity
 
+        %hr
   - if @activities.empty?
     %p.text-center
       No activities have been proposed.
@@ -54,3 +56,12 @@
   - if @activities.empty? && current_user && current_user.troop == @troop
     %p.text-center
       = link_to "Propose an Activity", new_troop_activity_path(@troop)
+
+
+  - unless params[:admin]
+    .row
+      .col-md-12.text-center
+        .share-link
+          = link_to 'http://www.facebook.com/sharer.php?u=' +request.url, target: :blank do
+            = fa_icon "share"
+            Share
