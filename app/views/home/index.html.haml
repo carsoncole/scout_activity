@@ -25,6 +25,4 @@
       - else 
         .text-center= button_to "Add your Troop", sign_in_path, method: :get, data: { confirm: 'Sign in or register to add a Troop'}, class: 'btn btn-warning btn-lg'
 
-#features
-  .row
-    .col-md-12
+= render 'features'

@@ -230,3 +230,29 @@ trix-editor {
   font-weight: normal;
   padding: 0.75em 1em;
 }
+
+#features {
+  margin-top: 6rem;
+  padding-top: 2.5rem;
+  border-top: 3px solid #ccc;
+  h1 {
+    font-size: 3.4rem;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+    margin-bottom: 2em;
+  }
+  h2 {
+    margin-top: 2em;
+    font-size: 2.4rem;
+    font-weight: 300;
+  }
+  p {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.666em;
+  }
+  img {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+}
