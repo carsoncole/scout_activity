@@ -256,3 +256,12 @@ trix-editor {
     margin-bottom: 2.5rem;
   }
 }
+
+a.btn {
+  &:visited {
+    color: #fff !important;
+  }
+  &:hover {
+    color: #0056b3 !important;
+  }
+}
