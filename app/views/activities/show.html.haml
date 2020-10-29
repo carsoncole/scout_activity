@@ -43,14 +43,9 @@
         = @activity.itinerary
 
 
-      - if @activity.author == current_user
-        %hr
-        = link_to 'Edit', edit_troop_activity_path(@troop, @activity)
-        %br
-        %br
-        = button_to "Destroy", troop_activity_path(@troop, @activity), method: :delete, data: { confirm: 'Are you sure? This will remove the Activity and all of the related votes for it.'}, class: 'btn btn-primary'
 
-  .row.mt-5
+
+  .row
     .col-md-12
       #activity-images
         - @activity.images.each do |image|
@@ -62,6 +57,18 @@
     .col-md-12
       %hr
       %p
-        Activity proposed by:
+        %strong Proposed by:
         %br
         = @activity.author.email
+        - if @activity.is_author_volunteering?
+          %br
+          The proposer is willing to help lead this activity.
+
+  .row
+    .col-md-12
+      %hr
+        - if @activity.author == current_user
+          .actions
+            = link_to 'Edit', edit_troop_activity_path(@troop, @activity), class: 'action'
+            = button_to "Archive", troop_archive_activity_path(@troop, @activity), data: {confirm: 'Archiving will remove the Activity from voting and return any votes placed for it. You can still access and un-archive the activity from your own activities "My Activities".'}, class: 'btn btn-primary action'
+            = button_to "Destroy", troop_activity_path(@troop, @activity), method: :delete, data: { confirm: 'Are you sure? This will destroy the Activity and return any votes placed for it.'}, class: 'btn btn-danger action'

@@ -212,6 +212,14 @@ trix-editor {
     padding: 1.25em 0;
 
   }
+  form {
+    display: inline-block;
+  }
+  .action {
+    display: inline-block;
+    margin-right: 1rem;
+    line-height: 1.66em;
+  }
 }
 
 /* FLASH
