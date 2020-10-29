@@ -1,0 +1,23 @@
+.row
+  .col-md-3
+  .col-md-6
+    %h1.text-center Your Troop is set up!
+
+    %h2.mt-4.text-center
+      = surround("-", "-") do
+        = @troop.unit_name
+    %p.mt-3.text-center
+      You can
+      = link_to "edit", edit_troop_path(@troop)
+      your Troop settings by accessing your Troop link in top-right.
+
+    %p.mt-5.text-center
+      The next step is to
+      = link_to "add your first proposed activity.", new_troop_activity_path(@troop)
+
+    %p.mt-5.text-center
+      You can also share your activities list on your Facebook page to encourage parents to add activites.
+      %br
+      = link_to 'http://www.facebook.com/sharer.php?u=https://scoutactivity.com/troops' + @troop.id.to_s + '/activities' , target: :blank do
+        = fa_icon "share"
+        Share to Facebook

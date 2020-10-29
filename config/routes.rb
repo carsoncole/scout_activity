@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :troops, except: [:index, :show] do
     resources :activities
+    get '/troop-created' => 'troops#troop_created', as: 'troop_created'
     post '/archive-activity' => 'activities#archive_activity', as: 'archive_activity'
     resources :votes, only: [:index, :create, :destroy]
   end

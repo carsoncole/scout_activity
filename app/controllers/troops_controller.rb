@@ -1,5 +1,5 @@
 class TroopsController < ApplicationController
-  before_action :set_troop, only: [:show, :edit, :update, :destroy]
+  before_action :get_troop, only: [:show, :edit, :update, :destroy]
   before_action :set_title
 
   # GET /troops/new
@@ -54,7 +54,7 @@ class TroopsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_troop
+    def get_troop
       @troop = Troop.find(params[:id])
     end
 
