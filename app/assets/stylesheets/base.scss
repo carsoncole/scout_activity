@@ -127,7 +127,7 @@ table.activities {
     margin: 0.5em 0.35em;
     display: inline-block;
     vertical-align: top;
-  } 
+  }
 }
 #clearance {
   &.sign-up, &.sign-in, &.password-reset {
@@ -251,9 +251,16 @@ trix-editor {
     font-size: 1.2rem;
     line-height: 1.666em;
   }
-  img {
-    margin-top: 2.5rem;
-    margin-bottom: 2.5rem;
+
+  ul li {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.9rem;
+    margin-left: 4em;
+    .activity-icon {
+      margin-left: 0.6em;
+      display: inline-block;
+    }
   }
 }
 
