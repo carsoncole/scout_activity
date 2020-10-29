@@ -3,7 +3,7 @@
   %head
     = render 'head'
   %body
-    = render 'google_tag_manager_body' if Rails.env.production?
+    = render 'google_tag_manager_body' if Rails.env.production? && !cookies[:debug].present?
     %nav.navbar.navbar-expand-lg.navbar-light.bg-light#main-nav
       = link_to root_path, class: 'navbar-brand', id: 'brand-logo' do
         = image_tag "scout-activity-horizontal.png", alt: 'ScoutActivity Logo', width: 150, class: 'img-fluid'

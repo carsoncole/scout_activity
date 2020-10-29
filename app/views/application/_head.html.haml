@@ -1,4 +1,4 @@
-= render 'google_tag_manager_head' if Rails.env.production?
+= render 'google_tag_manager_head' if Rails.env.production? && !cookies[:debug].present?
 %title= @title || 'ScoutActivity - Tool for collecting ideas for Scouting activites'
 
 = csrf_meta_tags

@@ -5,6 +5,12 @@ class SessionsController < Clearance::SessionsController
     super
   end
 
+  def create
+    puts "8"*80
+    cookies[:debug] = true if params[:session][:email] == 'carson.cole@protonmail.com'
+    super
+  end
+
 
   def url_after_create
     if current_user.troop
