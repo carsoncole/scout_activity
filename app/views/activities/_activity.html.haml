@@ -2,6 +2,8 @@
   %td.name
     = link_to activity.name, troop_activity_path(@troop, activity)
     &nbsp;
+    - if activity.created_at > Time.now - 7.days
+      .badge.badge-primary NEW
     %br
     = render partial: 'activity_icons', locals: { activity: activity }
     - if activity.activity_icons?

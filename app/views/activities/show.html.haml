@@ -3,8 +3,10 @@
     .col-md-9
 
 
-      %h1= @activity.name
-      
+      %h1
+        = @activity.name
+        - if @activity.created_at > Time.now - 7.days
+          .badge.badge-primary NEW
       .activity-icons= render partial: 'activity_icons', locals: { activity: @activity }
 
 

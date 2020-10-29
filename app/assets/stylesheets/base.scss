@@ -1,3 +1,5 @@
+$text-muted-color: #999;
+
 a {
   text-decoration: none;
   color: #0056b3;
@@ -44,7 +46,10 @@ table.activities {
   form {
     display: inline-block;
   }
-
+  .last-update {
+    color: $text-muted-color;
+    font-size: 0.7em;
+  }
 }
 #error-message {
   background-color: red;

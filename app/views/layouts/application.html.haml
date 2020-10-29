@@ -20,8 +20,8 @@
             %li.nav-item
               = link_to "Propose an Activity", new_troop_activity_path(@troop), class: 'nav-link'
             - if signed_in? && (@troop.owner == current_user || current_user.activities.any?)
-              %li.nav-item.nav-link
-                = link_to "My Activities", troop_activities_path(@troop, admin: true)
+              %li.nav-item
+                = link_to "My Activities", troop_activities_path(@troop, admin: true), class: 'nav-link'
         - if signed_in?
           .dropdown
             = link_to "#", id: 'navbarDropdown', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle' do
