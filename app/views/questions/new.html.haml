@@ -1,0 +1,18 @@
+.row
+  .col-md-12
+    %h2= link_to @activity.name, troop_activity_path(@troop, @activity)
+
+.row
+  .col-md-12
+    %h1 Ask a Question
+
+
+%br
+
+.row
+  .col-md-8
+    = render 'form'
+
+
+%br
+= link_to "< " + @activity.name, troop_activity_path(@troop, @activity)

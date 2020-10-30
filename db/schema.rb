@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_29_164541) do
+ActiveRecord::Schema.define(version: 2020_10_30_151039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,26 @@ ActiveRecord::Schema.define(version: 2020_10_29_164541) do
     t.index ["troop_id"], name: "index_activities_on_troop_id"
   end
 
+  create_table "answers", force: :cascade do |t|
+    t.bigint "question_id", null: false
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id"], name: "index_answers_on_user_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.string "content"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_id"], name: "index_questions_on_activity_id"
+    t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
   create_table "troops", force: :cascade do |t|
     t.string "unit_name"
     t.boolean "is_polling_active", default: false
@@ -102,5 +122,9 @@ ActiveRecord::Schema.define(version: 2020_10_29_164541) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "troops"
+  add_foreign_key "answers", "questions"
+  add_foreign_key "answers", "users"
+  add_foreign_key "questions", "activities"
+  add_foreign_key "questions", "users"
   add_foreign_key "votes", "activities"
 end

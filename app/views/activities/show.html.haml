@@ -11,14 +11,14 @@
 
 
     .col-md-3
-      .activity-count
-        = @activity.votes_count || 0
-      .votes votes
+      #activity-vote-count
+        .activity-count
+          = @activity.votes_count || 0
+        .votes votes
 
-      %p.mt-5.text-center= link_to "All activities", troop_activities_path(@troop)
 
   .row
-    .col-md-9
+    .col-md-8
 
       %hr
 
@@ -42,19 +42,19 @@
         %h2 Itinerary
         = @activity.itinerary
 
-
-
-
-  .row
-    .col-md-12
       #activity-images
         - @activity.images.each do |image|
           %hr
           .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'img-fluid rounded'
 
 
-  .row
-    .col-md-12
+      %hr
+        - if @activity.author == current_user
+          .actions
+            = link_to 'Edit', edit_troop_activity_path(@troop, @activity), class: 'action'
+            = button_to "Archive", troop_archive_activity_path(@troop, @activity), data: {confirm: 'Archiving will remove the Activity from voting and return any votes placed for it. You can still access and un-archive the activity from your own activities "My Activities".'}, class: 'btn btn-primary action'
+            = button_to "Destroy", troop_activity_path(@troop, @activity), method: :delete, data: { confirm: 'Are you sure? This will destroy the Activity and return any votes placed for it.'}, class: 'btn btn-danger action'
+
       %hr
       %p
         %strong Proposed by:
@@ -62,13 +62,19 @@
         = @activity.author.email
         - if @activity.is_author_volunteering?
           %br
-          The proposer is willing to help lead this activity.
+            The proposer is willing to help lead this activity.
 
-  .row
-    .col-md-12
-      %hr
-        - if @activity.author == current_user
-          .actions
-            = link_to 'Edit', edit_troop_activity_path(@troop, @activity), class: 'action'
-            = button_to "Archive", troop_archive_activity_path(@troop, @activity), data: {confirm: 'Archiving will remove the Activity from voting and return any votes placed for it. You can still access and un-archive the activity from your own activities "My Activities".'}, class: 'btn btn-primary action'
-            = button_to "Destroy", troop_activity_path(@troop, @activity), method: :delete, data: { confirm: 'Are you sure? This will destroy the Activity and return any votes placed for it.'}, class: 'btn btn-danger action'
+    .col-md-4
+      #discussion
+        .row
+          .col-md-12
+            %h1 Discussion
+            = render partial: 'questions/question', collection: @questions
+
+            - if signed_in? && @troop == current_user.troop
+              = link_to "Ask a question", new_troop_activity_question_path(@troop, @activity), class: 'question-link'
+
+        - unless signed_in? && @troop == current_user.troop
+          .row
+            .col-md-12
+              = link_to "Sign in to ask questions or answer", sign_in_path, class: 'sign-in-link'

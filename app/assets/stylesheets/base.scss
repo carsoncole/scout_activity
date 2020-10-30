@@ -19,7 +19,7 @@ a {
 table.activities {
   th, td {
     padding: 0.3em;
-    line-height: 1.3em !important;
+    line-height: 1.5em !important;
   }
   width: 100%;
   th, td {
@@ -299,5 +299,45 @@ a.btn {
     color: #fff !important;
     background-color: #0069d9 !important;
     border-color: #0062cc !important;
+  }
+}
+#discussion {
+  margin-top: 2.5rem;
+  background-color: #efefef;
+  padding: 1em;
+  h1 {
+    font-size: 1.3rem;
+    margin-bottom: 0;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 0.5em;
+  }
+  .question, .answer {
+    line-height: 1.4em;
+  }
+  .question {
+    font-weight: 700;
+    margin-top: 1.2em;
+  }
+  .question-author, .answer-author {
+    font-size: 0.8em;
+    color: $text-muted-color;
+  }
+  .answer {
+    margin-left: 1rem;
+    margin-top: 0.5em;
+  }
+  .answer-link, .question-link {
+    display: block;
+    margin-top: 0.5em;
+  }
+  .answer-author, .answer-link {
+    margin-left: 1rem;
+  }
+  .answer-link {
+    margin-bottom: 1.1em;
+  }
+  .sign-in-link {
+    display: block;
+    margin-top: 1.5em;
   }
 }

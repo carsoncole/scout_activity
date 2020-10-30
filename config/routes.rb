@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  get 'sitemap/index'
+  get 'answers/show'
+  get 'answers/new'
+  get 'answers/create'
+  get 'answers/destroy'
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "sessions", only: [:create]
 
@@ -16,7 +19,11 @@ Rails.application.routes.draw do
   root to: 'home#index'
 
   resources :troops, except: [:index, :show] do
-    resources :activities
+    resources :activities do
+      resources :questions do
+        resources :answers, only: [:new, :create, :destroy]
+      end
+    end
     get '/troop-created' => 'troops#troop_created', as: 'troop_created'
     post '/archive-activity' => 'activities#archive_activity', as: 'archive_activity'
     resources :votes, only: [:index, :create, :destroy]

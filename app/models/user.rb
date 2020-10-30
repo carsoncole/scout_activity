@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :troops
   has_many :activities, dependent: :destroy, foreign_key: 'author_id'
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
 
   def votes_available
     troop.votes_allowed - votes.count
