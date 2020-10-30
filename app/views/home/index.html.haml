@@ -1,28 +1,36 @@
 #home
   .row
     .col-md-3
-    .col-md-6
-      .logo= image_tag "scout-activity-vertical.png", class: 'img-fluid', id: 'root-page-logo', class: 'img-fluid'
+    .col-md-6.text-center
+      = image_tag "scout-activity-vertical.png", class: 'img-fluid', id: 'root-page-logo', class: 'logo img-fluid', width: 300
 
   .row
     .col-md-2
     .col-md-8
       %h5.text-muted.text-center Tracking ideas for Scout activities.
 
+
+  .row
+    .col-md-12.text-center
+      %hr
+      %h2.choice Select a Troop
+
   .row
     .col-md-1
-    .col-md-10.text-center
+    .col-md-10.mb-3.text-center
 
       - @troops.each do |troop|
         = link_to troop.unit_name, troop_activities_path(troop), class: 'btn btn-primary btn-lg troop'
 
-  .row.mt-3
+  .row
     .col-md-2
     .col-md-8.justify-content-center
       - if signed_in?
         - if current_user.troop.nil?
+          %h2.choice Or, if your Troop is not listed
           .text-center= button_to "Add your Troop", new_troop_path, method: :get, class: 'btn btn-warning btn-lg'
       - else 
-        .text-center= button_to "Add your Troop", sign_in_path, method: :get, data: { confirm: 'Sign in or register to add a Troop'}, class: 'btn btn-warning btn-lg'
+        %h2.choice Or, if your Troop is not listed
+        .text-center= button_to "Add your Troop", sign_up_path, method: :get, class: 'btn btn-warning btn-lg'
 
 = render 'features'
