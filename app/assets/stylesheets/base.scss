@@ -17,6 +17,10 @@ a {
 }
 
 table.activities {
+  th, td {
+    padding: 0.3em;
+    line-height: 1.3em !important;
+  }
   width: 100%;
   th, td {
     vertical-align: middle;
@@ -32,15 +36,15 @@ table.activities {
   }
 
   td.vote, th.vote {
-    width: 8rem;
+    width: 7.5rem;
     button {
       margin-left: 0.3rem;
       margin-right: 0.3rem;
     }
   }
   th.votes-count, td.votes-count {
-    width: 5rem;
-    font-weight: 900;
+    width: 4rem;
+    font-weight: 800;
     font-size: 1.3rem;
   }
   form {
