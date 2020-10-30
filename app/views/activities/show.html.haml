@@ -72,9 +72,9 @@
             = render partial: 'questions/question', collection: @questions
 
             - if signed_in? && @troop == current_user.troop
-              = link_to "Ask a question", new_troop_activity_question_path(@troop, @activity), class: 'question-link'
+              = link_to "Question, comment?", new_troop_activity_question_path(@troop, @activity), class: 'question-link'
 
         - unless signed_in? && @troop == current_user.troop
           .row
             .col-md-12
-              = link_to "Sign in to ask questions or answer", sign_in_path, class: 'sign-in-link'
+              = link_to "Sign in to ask questions/comments", sign_in_path, class: 'sign-in-link'

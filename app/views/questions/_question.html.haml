@@ -14,4 +14,4 @@
   .answer-author= answer.user.email
 
 - if signed_in? && @troop == current_user.troop
-  = link_to "Add an answer", new_troop_activity_question_answer_path(@troop, @activity, question), class: 'answer-link'
+  = link_to "Add answer/comment", new_troop_activity_question_answer_path(@troop, @activity, question), class: 'answer-link'
