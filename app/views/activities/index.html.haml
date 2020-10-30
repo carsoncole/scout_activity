@@ -17,6 +17,9 @@
 
   - if @activities.any?
 
+    - unless signed_in?
+      .text-center.mb-4= button_to "Sign in to vote", sign_in_path, method: :get, class: 'btn btn-primary'
+
     .row
       .col-md-2
       .col-md-8
@@ -26,8 +29,8 @@
               %tr
                 %th
                 %th= fa_icon "users"
-                %th
                 - if signed_in?
+                  %th
                   %th
                     = fa_icon "user"
           %tbody
