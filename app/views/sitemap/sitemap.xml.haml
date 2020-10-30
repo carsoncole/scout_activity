@@ -2,11 +2,12 @@
   
   %url
     %loc= root_url
-    %lastmod= Troop&.last&.updated_at&.strftime("%Y-%m-%d")
+    %lastmod= @last_root_page_update
     %priority 1.00
   %url
     %loc= about_url
     %lastmod= File.new("app/views/home/about.html.haml").ctime.strftime("%Y-%m-%d")
+
     %priority 0.90
   - @troops.each do |troop|
     %url
