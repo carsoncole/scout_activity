@@ -2,7 +2,7 @@
   
   %url
     %loc= root_url
-    %lastmod= Troop.last.updated_at.strftime("%Y-%m-%d")
+    %lastmod= Troop&.last&.updated_at&.strftime("%Y-%m-%d")
     %priority 1.00
   %url
     %loc= about_url

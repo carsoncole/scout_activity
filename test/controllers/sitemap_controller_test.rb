@@ -1,9 +1,10 @@
 require 'test_helper'
 
 class SitemapControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get sitemap_index_url
+  test "should get sitemap" do
+    troop = create(:activity).troop
+    create_list(:activity, 10, troop: troop)
+    get '/sitemap.xml'
     assert_response :success
   end
-
 end
