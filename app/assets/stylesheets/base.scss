@@ -153,8 +153,11 @@ table.activities {
     h1 {
       margin-bottom: 1.66em;
     }
-
     .other-links {
+      margin-top: 1em;
+    }
+    small.text-muted {
+      display: block;
       margin-top: 1em;
     }
   }
@@ -337,6 +340,10 @@ a.btn {
     margin-bottom: 1.1em;
   }
   .sign-in-link {
+    display: block;
+    margin-top: 1.5em;
+  }
+  .question-link {
     display: block;
     margin-top: 1.5em;
   }
