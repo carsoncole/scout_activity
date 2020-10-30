@@ -4,7 +4,7 @@
     - if params[:admin]
       Activities
     - else
-      Vote for Activities
+      Vote
 
   - if signed_in? && @troop == current_user.troop && !params[:admin]
     .row
