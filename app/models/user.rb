@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
 
+  scope :owner, -> { where(is_owner: true) }
+
   def votes_available
     troop.votes_allowed - votes.count
   end

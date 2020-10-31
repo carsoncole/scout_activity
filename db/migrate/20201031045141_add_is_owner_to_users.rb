@@ -3,7 +3,7 @@ class AddIsOwnerToUsers < ActiveRecord::Migration[6.0]
     add_column :users, :is_owner, :boolean, default: false, null: false
 
     Troop.all.each do |troop|
-      troop.owner.update(is_owner: true)
+      User.find(troop.user_id).update(is_owner: true)
     end
   end
 
