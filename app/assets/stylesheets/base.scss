@@ -277,7 +277,8 @@ trix-editor {
     margin-bottom: 1.7em;
   }
   h2 {
-    margin-top: 2em;
+    margin-top: 1.2em;
+    margin-bottom: 2em;
     font-size: 2.4rem;
     font-weight: 300;
   }
@@ -296,6 +297,33 @@ trix-editor {
       margin-left: 0.6em;
       display: inline-block;
     }
+    img {
+      margin: 0;
+    }
+  }
+  img {
+    margin: 2rem auto;
+  }
+
+  .target-message {
+    font-weight: 600rem;
+    font-style: italic;
+    font-size: 1.4rem;
+    background-color: #efefef;
+    padding: 1.8em 2.2em;
+    margin: 2em;
+  }
+}
+
+.get-started {
+  margin: 2em 0;
+  padding: 2.5em 0;
+  border-top: 2px solid #efefef;
+  border-bottom: 2px solid #efefef;
+  text-transform: uppercase;
+  .btn.btn-lg {
+    font-weight: 700 !important;
+    padding: 0.6em 2em;
   }
 }
 
