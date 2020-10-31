@@ -6,7 +6,7 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
-    if params[:admin] && current_user == @troop.owner
+    if params[:admin] && current_user.troop == @troop && current_user.is_owner?
       @activities = @troop.activities
     elsif params[:admin]
       @activities = current_user.activities

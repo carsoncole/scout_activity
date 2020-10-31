@@ -9,8 +9,9 @@
     .col-md-7
       %p The annual challenge for planning Scout activities is a ritual all Troops go through. ScoutActivity makes it easy to offer one place that your Troop's Scouts, leaders, parents and other volunteers can offer up ideas that bring excitement, new adventures, and new opportunities for learning to your Scouts. And on the site, Scouts can vote for the ideas that excite them the most, engaging them in the planning process.
 
-      %p.text-center
-        = link_to "View an example troop's activites", troop_activities_path(Troop.first)
+      - if Troop.first
+        %p.text-center
+          = link_to "View an example troop's activites", troop_activities_path(Troop.first)
 
   .row
     .col-md-12

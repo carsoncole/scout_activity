@@ -3,7 +3,6 @@ class User < ApplicationRecord
 
   belongs_to :troop, optional: true
   has_many :votes, dependent: :destroy
-  has_many :troops
   has_many :activities, dependent: :destroy, foreign_key: 'author_id'
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy

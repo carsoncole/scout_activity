@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_151039) do
+ActiveRecord::Schema.define(version: 2020_10_31_045141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_151039) do
     t.string "remember_token", limit: 128
     t.integer "troop_id"
     t.boolean "is_admin", default: false
+    t.boolean "is_owner", default: false, null: false
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

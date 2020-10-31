@@ -9,6 +9,7 @@ class TroopsController < ApplicationController
 
   # GET /troops/1/edit
   def edit
+    redirect_to troop_activities_path(@troop) unless current_user.troop == @troop && current_user.is_owner?
   end
 
   def troop_created
@@ -18,11 +19,11 @@ class TroopsController < ApplicationController
   # POST /troops
   # POST /troops.json
   def create
-    @troop = current_user.troops.new(troop_params)
+    @troop = Troop.new(troop_params)
 
     respond_to do |format|
       if @troop.save
-        current_user.update(troop_id: @troop.id)
+        current_user.update(troop_id: @troop.id, is_owner: true)
         format.html { redirect_to root_path, notice: 'Troop was successfully created.' }
         format.json { render :show, status: :created, location: @troop }
       else

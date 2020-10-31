@@ -19,17 +19,17 @@
               = link_to "Vote", troop_activities_path(@troop), class: 'nav-link'
             %li.nav-item
               = link_to "Propose an Activity", new_troop_activity_path(@troop), class: 'nav-link'
-            - if signed_in? && (@troop.owner == current_user || current_user.activities.any?)
-              %li.nav-item
-                = link_to "My Activities", troop_activities_path(@troop, admin: true), class: 'nav-link'
+            / - if signed_in? && (@troop.owner == current_user || current_user.activities.any?)
+            /   %li.nav-item
+            /     = link_to "My Activities", troop_activities_path(@troop, admin: true), class: 'nav-link'
         - if signed_in?
           .dropdown
             = link_to "#", id: 'navbarDropdown', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle' do
               = fa_icon "user"
             .dropdown-menu.dropdown-menu-right#user-menu
               .dropdown-item= link_to current_user.email, edit_user_path(current_user)
-              - current_user.troops.each do |troop|
-                = link_to troop.unit_name, edit_troop_path(troop), class: 'dropdown-item'
+              - if current_user&.troop && current_user.is_owner?
+                = link_to current_user.troop.unit_name, edit_troop_path(current_user.troop), class: 'dropdown-item'
               = link_to 'Sign out', sign_out_path, method: :delete, class: 'dropdown-item'
         - else
           = link_to 'Sign in', sign_in_path, class: 'nav-link'

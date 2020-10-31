@@ -22,7 +22,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Create Troop"
     assert_text "Troop was successfully created."
     click_on unit_name
-    assert_selector "h1", text: "Vote for Activities"
+    assert_selector "h1", text: "Vote"
     assert_text "No activities have been proposed."
 
     click_on "navbarDropdown"

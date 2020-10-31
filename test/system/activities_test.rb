@@ -4,7 +4,7 @@ class ActivitiesTest < ApplicationSystemTestCase
   test "visiting the index" do
     @activity = create(:activity)
     visit troop_activities_url(@activity.troop)
-    assert_selector "h1", text: "Vote for Activities"
+    assert_selector "h1", text: "Vote"
   end
 
   test "creating an activity" do
