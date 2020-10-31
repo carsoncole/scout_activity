@@ -7,7 +7,7 @@ class SessionsController < Clearance::SessionsController
 
   def create
     puts "8"*80
-    cookies[:debug] = true if params[:session][:email] == 'carson.cole@protonmail.com'
+    cookies[:debug] = {value: true, expires: 1.year} if params[:session][:email] == 'carson.cole@protonmail.com'
     super
   end
 
