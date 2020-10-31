@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_045141) do
+ActiveRecord::Schema.define(version: 2020_10_31_061725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2020_10_31_045141) do
 
   create_table "troops", force: :cascade do |t|
     t.string "unit_name"
-    t.boolean "is_polling_active", default: false
+    t.boolean "is_polling_active", default: true
     t.integer "votes_allowed", default: 20, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
