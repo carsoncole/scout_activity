@@ -22,7 +22,11 @@
     .col-md-8
       %p.questions
         %span.strong Questions or feedback?
-        = mail_to "carson.cole@gmail.com"
+        Join our
+        = link_to "Facebook Group", "https://www.facebook.com/groups/scoutactivity"
+        or email me directly at
+        = succeed(".") do
+          = mail_to "carson.cole@gmail.com"
 
   .row
     .col-md-2
