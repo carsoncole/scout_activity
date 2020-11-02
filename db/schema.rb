@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_02_193631) do
+ActiveRecord::Schema.define(version: 2020_11_02_194628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2020_11_02_193631) do
     t.boolean "is_cooking", default: false, null: false
     t.boolean "is_merit_badge", default: false, null: false
     t.boolean "is_fundraising", default: false, null: false
-    t.boolean "is_international_scouting", default: false, null: false
+    t.boolean "is_international", default: false, null: false
     t.boolean "is_virtual", default: false, null: false
     t.index ["troop_id"], name: "index_activities_on_troop_id"
   end

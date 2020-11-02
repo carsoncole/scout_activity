@@ -5,7 +5,6 @@ class PublicPagesTest < ApplicationSystemTestCase
   test "visiting root" do
     visit root_url
     assert_selector "img", id: 'root-page-logo'
-    assert_text "Tracking ideas for Scout activities."
 
     within("#main-nav") do
       click_on "Sign in"
@@ -30,7 +29,7 @@ class PublicPagesTest < ApplicationSystemTestCase
   test "main nav logo" do
     visit root_url
     click_on "brand-logo"
-    assert_text "Tracking ideas for Scout activities."
+    assert_text "Scouting tool for collecting, promoting and voting on unit activity ideas."
   end
 
   test "forgetting password" do

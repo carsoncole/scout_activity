@@ -18,7 +18,7 @@
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Fundraising')= fa_icon "dollar-sign"
 - if activity.is_community_service?
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Community Service')= fa_icon "store" 
-- if activity.is_international_scouting?
+- if activity.is_international?
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='International Scouting')= image_tag "world-crest.png", width: '26px'
 - if activity.is_high_adventure?
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='High Adventure')= fa_icon "mountain"
