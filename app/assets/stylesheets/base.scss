@@ -21,6 +21,19 @@ h1 {
   margin-top: 3rem;
 }
 
+.share-link {
+  text-align: center;
+  .link {
+    background-color: #efefef;
+    padding: 1em 1.25em;
+    font-weight: 500;
+    margin-top: 1em;
+  }
+  border: 1px solid #efefef;
+  padding: 1.5rem;
+  margin: 1.666rem 0;
+}
+
 table.activities {
   th, td {
     padding: 0.3em;

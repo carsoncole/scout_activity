@@ -53,11 +53,8 @@
   - if @activities.empty?
     %p.text-center
       No activities have been proposed.
-
-  - if @activities.empty? && current_user && current_user.troop == @troop
-    %p.text-center
-      = link_to "Propose an Activity", new_troop_activity_path(@troop)
-
+      
+    = render 'share_link'
 
   - unless params[:admin]
     .row
