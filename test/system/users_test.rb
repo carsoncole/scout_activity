@@ -36,5 +36,15 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "Troop was successfully updated."
   end
 
-
+  test "signing up, and using an existing troop" do
+    troop = create(:troop)
+    visit sign_up_url
+    within "#clearance.sign-up" do
+      fill_in "Email", with: Faker::Internet.email
+      fill_in "Password", with: "password"
+      all('#troop-select option')[1].select_option
+      click_on "Sign up"
+    end
+    assert_equal troop, User.last.troop
+  end
 end

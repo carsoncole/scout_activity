@@ -43,7 +43,7 @@ class PublicPagesTest < ApplicationSystemTestCase
 
   test "Adding a Troop without signed in" do
     visit root_url
-    click_on "Add your Troop"
+    click_on "Get started"
   end
 
 end

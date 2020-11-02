@@ -11,7 +11,7 @@
 
   = form.label :troop
   
-  = form.collection_select :troop_id, Troop.all, :id, :unit_name, {include_blank: true }, class: 'form-control', disabled: current_user && current_user.persisted? && current_user.is_owner? ? true : false
+  = form.collection_select :troop_id, Troop.all, :id, :unit_name, {include_blank: true }, class: 'form-control', id: 'troop-select', disabled: current_user && current_user.persisted? && current_user.is_owner? ? true : false
   - unless current_user
     %small.text-muted Select your Troop, or leave blank if your troop has not been added yet. You'll do that next.
 

@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'answers/show'
-  get 'answers/new'
-  get 'answers/create'
-  get 'answers/destroy'
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "sessions", only: [:create]
 
@@ -30,5 +26,6 @@ Rails.application.routes.draw do
   end
 
   get 'about' => 'home#about', as: 'about'
+  get 'resources' => 'home#resources', as: 'activity_resources'
   get '/sitemap' => 'sitemap#sitemap', as: 'sitemap'
 end
