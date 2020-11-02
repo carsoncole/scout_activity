@@ -6,4 +6,8 @@ class HomeController < ApplicationController
   def about
     @title = 'About - ScoutActivity'
   end
+
+  def resources
+    @title = 'Activity Resources - ScoutActivity'
+  end
 end
