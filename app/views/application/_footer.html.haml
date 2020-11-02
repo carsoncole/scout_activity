@@ -2,12 +2,10 @@
   Copyright
   = Time.now.year
   \|
-  = link_to "About", about_path
+  = link_to "About", about_path(utm_source: 'footer')
+  \|
+  = link_to "Resources", activity_resources_path(utm_source: 'footer')
   \|
   = link_to 'http://www.facebook.com/sharer.php?u=' +request.url, target: :blank do
     = fa_icon "share"
     Share
-  \|
-  = link_to "Resources", activity_resources_path
-  \|
-  Built by an Eagle Scout, for Scouts
