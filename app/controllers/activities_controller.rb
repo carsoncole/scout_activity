@@ -23,6 +23,7 @@ class ActivitiesController < ApplicationController
   def show
     @votes = @activity.votes.includes(:user).group(:user_id).count
     @title = "#{@troop.unit_name} - #{@activity.name} - ScoutActivity"
+    @troop.increment!(:visit_event_count)
     @questions = @activity.questions
   end
 
