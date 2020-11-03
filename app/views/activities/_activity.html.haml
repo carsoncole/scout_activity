@@ -16,7 +16,7 @@
         .badge.badge-info Archived
     - else
       = activity.votes_count || 0
-  - if signed_in?
+  - if signed_in? && current_user.troop == @troop
     %td.vote
       - if params[:admin]
         = link_to "Edit", edit_troop_activity_path(@troop, activity)

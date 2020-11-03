@@ -29,7 +29,7 @@
               %tr
                 %th
                 %th= fa_icon "users"
-                - if signed_in?
+                - if signed_in? && current_user.troop == @troop
                   %th
                   %th
                     = fa_icon "user"
