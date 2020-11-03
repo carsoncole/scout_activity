@@ -1,6 +1,9 @@
 class Troop < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
   has_many :activities, dependent: :destroy
 
-  validates :unit_name, presence: true
-  validates :unit_name, length: { maximum: 35 }
+  validates :name, presence: true
+  validates :name, length: { maximum: 35 }
 end

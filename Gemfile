@@ -62,3 +62,4 @@ gem 'clearance'
 gem 'bugsnag'
 gem "aws-sdk-s3", require: false
 gem 'image_processing', '~> 1.2'
+gem 'friendly_id', '~> 5.4.0'

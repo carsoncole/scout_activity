@@ -13,7 +13,7 @@ class TroopsController < ApplicationController
   end
 
   def troop_created
-    @title = 'Troop Created - ' + @troop.unit_name + ' - ScoutActivity'
+    @title = 'Troop Created - ' + @troop.name + ' - ScoutActivity'
   end
 
   # POST /troops
@@ -60,7 +60,7 @@ class TroopsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def get_troop
-      @troop = Troop.find(params[:id])
+      @troop = Troop.friendly.find(params[:id])
     end
 
     def set_title
@@ -69,6 +69,6 @@ class TroopsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def troop_params
-      params.require(:troop).permit(:unit_name, :votes_allowed)
+      params.require(:troop).permit(:name, :votes_allowed)
     end
 end

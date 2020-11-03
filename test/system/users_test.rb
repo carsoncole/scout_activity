@@ -17,21 +17,21 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "The next step is to"
     click_on "create a troop"
     assert_selector "h1", text: "Add your Troop"
-    unit_name = "Troop 100 Anytown"
-    fill_in "Troop Unit number and city", with: unit_name
+    name = "Troop 100 Anytown"
+    fill_in "Troop Unit number and city", with: name
     click_on "Create Troop"
     assert_text "Troop was successfully created."
-    click_on unit_name
+    click_on name
     assert_selector "h1", text: "Vote"
     assert_text "No activities have been proposed."
 
     click_on "navbarDropdown"
     within "#user-menu" do
-      click_on unit_name
+      click_on name
     end
 
     assert_selector "h1", text: "Edit Troop"
-    fill_in "Troop Unit number and city", with: unit_name + ", USA"
+    fill_in "Troop Unit number and city", with: name + ", USA"
     click_on "Update Troop"
     assert_text "Troop was successfully updated."
   end

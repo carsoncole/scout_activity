@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-['Troop 1564', 'Troop 1804'].each do |unit_name|
-  Troop.find_or_create_by(unit_name: unit_name)
+['Troop 1564', 'Troop 1804'].each do |name|
+  Troop.find_or_create_by(name: name)
 end
 
 # troop = Troop.first

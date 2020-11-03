@@ -7,7 +7,7 @@
       %h2 
         You're signed up with
         = succeed(".") do
-          = current_user.troop.unit_name
+          = current_user.troop.name
 
 
         %h4.text-center.mt-4
@@ -27,4 +27,4 @@
       %hr
       %h5.text-center.mb-3 Existing Troops
       - Troop.all.each do |t|
-        .text-center= t.unit_name
+        .text-center= t.name

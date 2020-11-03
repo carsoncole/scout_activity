@@ -10,9 +10,8 @@ class ActivitiesTest < ApplicationSystemTestCase
   test "creating an activity" do
     sign_in
     assert_text "No activities have been proposed."
-    within "#activities" do
-      click_on "Propose an Activity"
-    end
+    click_on "Propose an Activity"
+
     assert_selector "h1", text: "What's your Activity idea?"
 
     fill_in "What's a good title for your activity idea?", with: Faker::Lorem.sentence(word_count: 5)

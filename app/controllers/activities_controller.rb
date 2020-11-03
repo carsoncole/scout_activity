@@ -14,15 +14,15 @@ class ActivitiesController < ApplicationController
       @activities = @troop.activities.non_high_adventure.votable.order(votes_count: :desc)
       @high_adventure_activities  = @troop.activities.high_adventure.votable.order(votes_count: :desc)
     end
-    @title = @troop.unit_name + " - Vote - ScoutActivity"
-    @title = @troop.unit_name + " - My Activities - ScoutActivity" if params[:admin].present?
+    @title = @troop.name + " - Vote - ScoutActivity"
+    @title = @troop.name + " - My Activities - ScoutActivity" if params[:admin].present?
   end
 
   # GET /activities/1
   # GET /activities/1.json
   def show
     @votes = @activity.votes.includes(:user).group(:user_id).count
-    @title = "#{@troop.unit_name} - #{@activity.name} - ScoutActivity"
+    @title = "#{@troop.name} - #{@activity.name} - ScoutActivity"
     @troop.increment!(:visit_event_count)
     @questions = @activity.questions
   end
@@ -30,12 +30,12 @@ class ActivitiesController < ApplicationController
   # GET /activities/new
   def new
     @activity = Activity.new
-    @title = @troop.unit_name + ' - New Activity - ScoutActivity'
+    @title = @troop.name + ' - New Activity - ScoutActivity'
   end
 
   # GET /activities/1/edit
   def edit
-    @title = @troop.unit_name + ' - Edit ' + @activity.name +  ' - ScoutActivity'
+    @title = @troop.name + ' - Edit ' + @activity.name +  ' - ScoutActivity'
   end
 
   # POST /activities
@@ -86,7 +86,7 @@ class ActivitiesController < ApplicationController
     end
 
     def set_title
-      @title = @troop.unit_name + ' - Activities - ScoutActivity'
+      @title = @troop.name + ' - Activities - ScoutActivity'
     end
     # Only allow a list of trusted parameters through.
     def activity_params

@@ -1,4 +1,4 @@
-s#TODO Add icon for community service
+#TODO Add icon for community service
 class Activity < ApplicationRecord
   belongs_to :troop
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
