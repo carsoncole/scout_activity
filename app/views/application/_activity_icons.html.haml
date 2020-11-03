@@ -14,6 +14,8 @@
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Camping')= fa_icon "campground"
 - if activity.is_virtual?
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Virtual')= fa_icon "video"
+- if activity.is_game?
+  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Game')= fa_icon "trophy"
 - if activity.is_fundraising?
   .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Fundraising')= fa_icon "dollar-sign"
 - if activity.is_community_service?
