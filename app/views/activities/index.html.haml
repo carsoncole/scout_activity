@@ -14,6 +14,11 @@
           .vote-count
             .badge.badge-primary= current_user.votes_available
             %span.text-muted votes left
+  - else
+    .row
+      .col-md-3
+      .col-md-6.mb-5
+        .text-center.text-muted (You need to have selected this Troop to vote for its activities)
 
   - if @activities.any?
 
