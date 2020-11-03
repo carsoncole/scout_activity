@@ -12,6 +12,10 @@
     %loc= activity_resources_url
     %lastmod= File.new("app/views/home/resources.html.haml").ctime.strftime("%Y-%m-%d")
     %priority 0.80
+  %url
+    %loc= faqs_url
+    %lastmod= File.new("app/views/home/faqs.html.haml").ctime.strftime("%Y-%m-%d")
+    %priority 0.80
   - @troops.each do |troop|
     %url
       %loc= troop_activities_url(troop)

@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
 
   get 'about' => 'home#about', as: 'about'
+  get 'faqs' => 'home#faqs', as: 'faqs'
   get 'resources' => 'home#resources', as: 'activity_resources'
   get '/sitemap' => 'sitemap#sitemap', as: 'sitemap'
 end
