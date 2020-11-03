@@ -17,7 +17,7 @@ class UsersController < Clearance::UsersController
   end
 
   def url_after_create
-    successful_signup_path
+    successful_signup_path(signup: 'success')
   end
 
   def successful_signup
