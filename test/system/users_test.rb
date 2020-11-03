@@ -47,4 +47,18 @@ class UsersTest < ApplicationSystemTestCase
     end
     assert_equal troop, User.last.troop
   end
+
+  test "visiting profile" do
+    user = create(:user)
+    visit sign_in_url
+    fill_in "Email", with: user.email
+    fill_in "Password", with: user.password
+    within "#clearance.sign-in" do
+      click_on "Sign in"
+    end
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      click_on user.email
+    end
+  end
 end

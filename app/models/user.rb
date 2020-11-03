@@ -9,6 +9,11 @@ class User < ApplicationRecord
 
   scope :owner, -> { where(is_owner: true) }
 
+  def initialize(args)
+    super(args)
+    self.token = SecureRandom.hex unless self.token.present?
+  end
+
   def votes_available
     troop.votes_allowed - votes.count
   end

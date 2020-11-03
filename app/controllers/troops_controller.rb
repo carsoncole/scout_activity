@@ -1,4 +1,5 @@
 class TroopsController < ApplicationController
+  before_action :require_login
   before_action :get_troop, only: [:show, :edit, :update, :destroy]
   before_action :set_title
 

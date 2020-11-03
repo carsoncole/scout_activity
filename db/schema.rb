@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_160231) do
+ActiveRecord::Schema.define(version: 2020_11_03_183624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -126,6 +126,8 @@ ActiveRecord::Schema.define(version: 2020_11_03_160231) do
     t.integer "troop_id"
     t.boolean "is_admin", default: false
     t.boolean "is_owner", default: false, null: false
+    t.boolean "is_subscribed", default: true, null: false
+    t.string "token"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end
