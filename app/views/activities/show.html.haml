@@ -48,7 +48,7 @@
       #activity-images
         - @activity.images.each do |image|
           %hr
-          .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'img-fluid rounded'
+          .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'activity-image img-fluid rounded'
 
 
       - if @activity.author == current_user
