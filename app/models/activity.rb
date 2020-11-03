@@ -1,4 +1,4 @@
-#TODO Add icon for community service
+s#TODO Add icon for community service
 class Activity < ApplicationRecord
   belongs_to :troop
   belongs_to :author, class_name: 'User', foreign_key: 'author_id'
@@ -11,7 +11,7 @@ class Activity < ApplicationRecord
   scope :votable, -> {where(is_archived: false)}
 
   validates :name, presence: true
-  validates :name, length: { maximum: 175 }
+  validates :name, length: { maximum: 75 }
 
   has_rich_text :summary
   has_rich_text :description
