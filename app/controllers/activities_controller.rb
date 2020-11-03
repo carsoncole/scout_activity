@@ -6,47 +6,47 @@ class ActivitiesController < ApplicationController
   # GET /activities
   # GET /activities.json
   def index
-    if params[:admin] && current_user.troop == @troop && current_user.is_owner?
-      @activities = @troop.activities
+    if params[:admin] && current_user.unit == @unit && current_user.is_owner?
+      @activities = @unit.activities
     elsif params[:admin]
       @activities = current_user.activities
     else
-      @activities = @troop.activities.non_high_adventure.votable.order(votes_count: :desc)
-      @high_adventure_activities  = @troop.activities.high_adventure.votable.order(votes_count: :desc)
+      @activities = @unit.activities.non_high_adventure.votable.order(votes_count: :desc)
+      @high_adventure_activities  = @unit.activities.high_adventure.votable.order(votes_count: :desc)
     end
-    @title = @troop.name + " - Vote - ScoutActivity"
-    @title = @troop.name + " - My Activities - ScoutActivity" if params[:admin].present?
+    @title = @unit.name + " - Vote - ScoutActivity"
+    @title = @unit.name + " - My Activities - ScoutActivity" if params[:admin].present?
   end
 
   # GET /activities/1
   # GET /activities/1.json
   def show
     @votes = @activity.votes.includes(:user).group(:user_id).count
-    @title = "#{@troop.name} - #{@activity.name} - ScoutActivity"
-    @troop.increment!(:visit_event_count)
+    @title = "#{@unit.name} - #{@activity.name} - ScoutActivity"
+    @unit.increment!(:visit_event_count)
     @questions = @activity.questions
   end
 
   # GET /activities/new
   def new
     @activity = Activity.new
-    @title = @troop.name + ' - New Activity - ScoutActivity'
+    @title = @unit.name + ' - New Activity - ScoutActivity'
   end
 
   # GET /activities/1/edit
   def edit
-    @title = @troop.name + ' - Edit ' + @activity.name +  ' - ScoutActivity'
+    @title = @unit.name + ' - Edit ' + @activity.name +  ' - ScoutActivity'
   end
 
   # POST /activities
   # POST /activities.json
   def create
-    @activity = @troop.activities.new(activity_params)
+    @activity = @unit.activities.new(activity_params)
     @activity.author = current_user
 
     respond_to do |format|
       if @activity.save
-        format.html { redirect_to troop_activities_path(@troop), notice: 'Activity was successfully created.' }
+        format.html { redirect_to unit_activities_path(@unit), notice: 'Activity was successfully created.' }
         format.json { render :show, status: :created, location: @activity }
       else
         format.html { render :new }
@@ -60,7 +60,7 @@ class ActivitiesController < ApplicationController
   def update
     respond_to do |format|
       if @activity.author == current_user && @activity.update(activity_params)
-        format.html { redirect_to troop_activity_path(@troop, @activity), notice: 'Activity was successfully updated.' }
+        format.html { redirect_to unit_activity_path(@unit, @activity), notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
         format.html { render :edit }
@@ -74,7 +74,7 @@ class ActivitiesController < ApplicationController
   def destroy
     @activity.destroy if @activity.author == current_user
     respond_to do |format|
-      format.html { redirect_to troop_activities_url(@troop), notice: 'Activity was successfully destroyed.' }
+      format.html { redirect_to unit_activities_url(@unit), notice: 'Activity was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -86,7 +86,7 @@ class ActivitiesController < ApplicationController
     end
 
     def set_title
-      @title = @troop.name + ' - Activities - ScoutActivity'
+      @title = @unit.name + ' - Activities - ScoutActivity'
     end
     # Only allow a list of trusted parameters through.
     def activity_params

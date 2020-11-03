@@ -3,13 +3,13 @@ require "application_system_test_case"
 class ActivitiesTest < ApplicationSystemTestCase
   test "visiting the index" do
     @activity = create(:activity)
-    visit troop_activities_url(@activity.troop)
+    visit unit_activities_url(@activity.unit)
     assert_selector "h1", text: "Vote"
   end
 
   test "creating an activity" do
     sign_in
-    assert_text "No activities have been proposed."
+    assert_text "No activities have been pr\oposed."
     click_on "Propose an Activity"
 
     assert_selector "h1", text: "What's your Activity idea?"
@@ -25,14 +25,14 @@ class ActivitiesTest < ApplicationSystemTestCase
   test "viewing an activity" do
     @activity = create(:activity)
 
-    visit troop_activity_path(@activity.troop, @activity)
+    visit unit_activity_path(@activity.unit, @activity)
     assert_selector "h1", text: @activity.name
   end
 
   test "updating an activity" do
     sign_in
     @activity = create(:activity, author: @user)
-    visit troop_activity_path(@activity.troop, @activity)
+    visit unit_activity_path(@activity.unit, @activity)
     click_on "Edit"
     fill_in "Number of days", with: '5'
     click_on "Update Activity"
@@ -42,7 +42,7 @@ class ActivitiesTest < ApplicationSystemTestCase
   test "destroying a Activity" do
     sign_in
     @activity = create(:activity, author: @user)
-    visit troop_activity_path(@activity.troop, @activity)
+    visit unit_activity_path(@activity.unit, @activity)
     page.accept_confirm do
       click_on "Destroy", match: :first
     end

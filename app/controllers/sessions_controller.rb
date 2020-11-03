@@ -12,8 +12,8 @@ class SessionsController < Clearance::SessionsController
 
 
   def url_after_create
-    if current_user.troop
-      troop_activities_path(current_user.troop, logged_in: 'success')
+    if current_user.unit
+      unit_activities_path(current_user.unit, logged_in: 'success')
     else
       root_url(logged_in: 'success')
     end

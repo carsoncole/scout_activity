@@ -22,8 +22,4 @@ module ApplicationHelper
   def local_time
     in_time_zone("Pacific Time (US & Canada)")
   end
-
-  def visit_event(troop)
-    troop.update( visit_)
-  end
 end

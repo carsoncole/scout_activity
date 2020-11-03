@@ -9,9 +9,9 @@
     .col-md-7
       %p The annual challenge for planning Scout activities is a ritual all Troops go through. ScoutActivity makes it easy to offer one place that your Troop's Scouts, leaders, parents and other volunteers can offer up ideas that bring excitement, new adventures, and new opportunities for learning to your Scouts. And on the site, Scouts can vote for the ideas that excite them the most, engaging them in the planning process.
 
-      - if Troop.first
+      - if Unit.first
         %p.text-center
-          = link_to "View an example troop's activites", troop_activities_path(Troop.first)
+          = link_to "View an example unit's activites", unit_activities_path(Unit.first)
 
 
   .row
@@ -49,7 +49,7 @@
       %p
         Anyone can offer activity ideas to your unit, and all they need to do is
         = link_to "register", sign_up_path
-        and then select your troop.
+        and then select your unit.
 
       %p Activities can be classified in multiple ways, making it easy for Scouts to identify the types of activities they are looking for. The classifications include:
 

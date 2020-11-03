@@ -12,24 +12,24 @@
 
       %div.collapse.navbar-collapse#navbarSupportedContent
         %ul.navbar-nav.mr-auto
-          - if @troop && @troop.persisted?
+          - if @unit && @unit.persisted?
             %li.nav-item.nav-link
-              .badge.badge-primary= @troop.name
+              .badge.badge-primary= @unit.name
             %li.nav-item
-              = link_to "Vote", troop_activities_path(@troop), class: 'nav-link'
+              = link_to "Vote", unit_activities_path(@unit), class: 'nav-link'
             %li.nav-item
-              = link_to "Propose an Activity", new_troop_activity_path(@troop), class: 'nav-link'
-            / - if signed_in? && (@troop.owner == current_user || current_user.activities.any?)
+              = link_to "Propose an Activity", new_unit_activity_path(@unit), class: 'nav-link'
+            / - if signed_in? && (@unit.owner == current_user || current_user.activities.any?)
             /   %li.nav-item
-            /     = link_to "My Activities", troop_activities_path(@troop, admin: true), class: 'nav-link'
+            /     = link_to "My Activities", unit_activities_path(@unit, admin: true), class: 'nav-link'
         - if signed_in?
           .dropdown
             = link_to "#", id: 'navbarDropdown', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle' do
               = fa_icon "user"
             .dropdown-menu.dropdown-menu-right#user-menu
               .dropdown-item= link_to current_user.email, edit_user_path(current_user)
-              - if current_user&.troop && current_user.is_owner?
-                = link_to current_user.troop.name, edit_troop_path(current_user.troop), class: 'dropdown-item'
+              - if current_user&.unit && current_user.is_owner?
+                = link_to current_user.unit.name, edit_unit_path(current_user.unit), class: 'dropdown-item'
               = link_to 'Sign out', sign_out_path, method: :delete, class: 'dropdown-item'
         - else
           = link_to 'Sign in', sign_in_path, class: 'nav-link'

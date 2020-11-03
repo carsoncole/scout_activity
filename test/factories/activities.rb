@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :activity do
     name { "MyString" }
-    troop
+    unit
     author
   end
 end

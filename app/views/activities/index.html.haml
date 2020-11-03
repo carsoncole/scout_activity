@@ -6,7 +6,7 @@
     - else
       Vote
 
-  - if signed_in? && @troop == current_user.troop && !params[:admin]
+  - if signed_in? && @unit == current_user.unit && !params[:admin]
     .row
       .col-md-3
       .col-md-6
@@ -34,7 +34,7 @@
               %tr
                 %th
                 %th= fa_icon "users"
-                - if signed_in? && current_user.troop == @troop
+                - if signed_in? && current_user.unit == @unit
                   %th
                   %th
                     = fa_icon "user"

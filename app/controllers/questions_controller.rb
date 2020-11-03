@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
     @question = @activity.questions.new(question_params)
     @question.user = current_user
     if @question.save
-      redirect_to troop_activity_path(@troop, @activity), notice: 'Your question has been posted.'
+      redirect_to unit_activity_path(@unit, @activity), notice: 'Your question has been posted.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
     if @activity.author == current_user || question.user == current_user
       @question.destroy
     end
-    redirect_to troop_activity_path(@troop, @activity)
+    redirect_to unit_activity_path(@unit, @activity)
   end
 
   private

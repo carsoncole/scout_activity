@@ -11,7 +11,7 @@ class UsersController < Clearance::UsersController
     new_params = user_params
     new_params = user_params.reject! { |k,v| v.blank? }
     if current_user.update(new_params)
-      redirect_to troop_activities_path(current_user.troop), notice: 'Your account has been updated'
+      redirect_to unit_activities_path(current_user.unit), notice: 'Your account has been updated'
     else
       render :edit
     end
@@ -35,6 +35,6 @@ class UsersController < Clearance::UsersController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :troop_id, :is_subscribed)
+    params.require(:user).permit(:email, :password, :unit_id, :is_subscribed)
   end
 end

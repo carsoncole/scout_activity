@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_183624) do
+ActiveRecord::Schema.define(version: 2020_11_03_210041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_183624) do
     t.boolean "is_author_volunteering", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "troop_id", null: false
+    t.bigint "unit_id", null: false
     t.integer "votes_count", default: 0
     t.integer "author_id"
     t.boolean "is_hiking", default: false, null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_183624) do
     t.boolean "is_fundraising", default: false, null: false
     t.boolean "is_international", default: false, null: false
     t.boolean "is_virtual", default: false, null: false
-    t.index ["troop_id"], name: "index_activities_on_troop_id"
+    t.index ["unit_id"], name: "index_activities_on_unit_id"
   end
 
   create_table "answers", force: :cascade do |t|
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_183624) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
-  create_table "troops", force: :cascade do |t|
+  create_table "units", force: :cascade do |t|
     t.string "name"
     t.boolean "is_polling_active", default: true
     t.integer "votes_allowed", default: 20, null: false
@@ -111,8 +111,8 @@ ActiveRecord::Schema.define(version: 2020_11_03_183624) do
     t.integer "user_id"
     t.integer "visit_event_count", default: 0
     t.string "slug"
-    t.index ["slug"], name: "index_troops_on_slug", unique: true
-    t.index ["visit_event_count"], name: "index_troops_on_visit_event_count"
+    t.index ["slug"], name: "index_units_on_slug", unique: true
+    t.index ["visit_event_count"], name: "index_units_on_visit_event_count"
   end
 
   create_table "users", force: :cascade do |t|
@@ -123,7 +123,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_183624) do
     t.string "encrypted_password", limit: 128
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128
-    t.integer "troop_id"
+    t.integer "unit_id"
     t.boolean "is_admin", default: false
     t.boolean "is_owner", default: false, null: false
     t.boolean "is_subscribed", default: true, null: false
@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_183624) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "activities", "troops"
+  add_foreign_key "activities", "units"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
   add_foreign_key "questions", "activities"

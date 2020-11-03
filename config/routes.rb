@@ -16,13 +16,13 @@ Rails.application.routes.draw do
   get "successful-signup" => "users#successful_signup", as: 'successful_signup'
   root to: 'home#index'
 
-  resources :troops, except: [:index, :show] do
+  resources :units, except: [:index, :show] do
     resources :activities do
       resources :questions do
         resources :answers, only: [:new, :create, :destroy]
       end
     end
-    get '/troop-created' => 'troops#troop_created', as: 'troop_created'
+    get '/unit-created' => 'units#unit_created', as: 'unit_created'
     post '/archive-activity' => 'activities#archive_activity', as: 'archive_activity'
     resources :votes, only: [:index, :create, :destroy]
   end

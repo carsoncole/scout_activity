@@ -14,7 +14,7 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
     @answer.user = current_user
     if @answer.save
-      redirect_to troop_activity_path(@troop, @activity), notice: 'Your answer has been posted.'
+      redirect_to unit_activity_path(@unit, @activity), notice: 'Your answer has been posted.'
     else
       render :new
     end
@@ -25,7 +25,7 @@ class AnswersController < ApplicationController
     if @activity.author == current_user || answer.user == current_user
       @answer.destroy
     end
-    redirect_to troop_activity_path(@troop, @activity)
+    redirect_to unit_activity_path(@unit, @activity)
   end
 
   private

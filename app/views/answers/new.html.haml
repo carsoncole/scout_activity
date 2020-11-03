@@ -1,6 +1,6 @@
 .row
   .col-md-12
-    %h2= link_to @activity.name, troop_activity_path(@troop, @activity)
+    %h2= link_to @activity.name, unit_activity_path(@unit, @activity)
 
 .row
   .col-md-8
@@ -9,4 +9,4 @@
     = render 'form'
 
 %br
-= link_to "< " + @activity.name, troop_activity_path(@troop, @activity)
+= link_to "< " + @activity.name, unit_activity_path(@unit, @activity)

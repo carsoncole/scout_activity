@@ -16,17 +16,17 @@
     %loc= faqs_url
     %lastmod= File.new("app/views/home/faqs.html.haml").ctime.strftime("%Y-%m-%d")
     %priority 0.80
-  - @troops.each do |troop|
+  - @units.each do |unit|
     %url
-      %loc= troop_activities_url(troop)
-      - if troop.activities.any?
-        %lastmod= troop.activities.last.updated_at.strftime("%Y-%m-%d")
+      %loc= unit_activities_url(unit)
+      - if unit.activities.any?
+        %lastmod= unit.activities.last.updated_at.strftime("%Y-%m-%d")
       - else
-        %lastmod= troop.updated_at.strftime("%Y-%m-%d")
+        %lastmod= unit.updated_at.strftime("%Y-%m-%d")
       %priority 0.85
 
   - @activities.each do |activity|
     %url
-      %loc= troop_activity_url(activity.troop, activity)
+      %loc= unit_activity_url(activity.unit, activity)
       %lastmod= activity.updated_at.strftime("%Y-%m-%d")
       %priority 0.80

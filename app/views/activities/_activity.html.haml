@@ -1,6 +1,6 @@
 %tr
   %td.name
-    = link_to activity.name, troop_activity_path(@troop, activity)
+    = link_to activity.name, unit_activity_path(@unit, activity)
     &nbsp;
     - if activity.created_at > Time.now - 7.days
       .badge.badge-primary NEW
@@ -16,18 +16,18 @@
         .badge.badge-info Archived
     - else
       = activity.votes_count || 0
-  - if signed_in? && current_user.troop == @troop
+  - if signed_in? && current_user.unit == @unit
     %td.vote
       - if params[:admin]
-        = link_to "Edit", edit_troop_activity_path(@troop, activity)
+        = link_to "Edit", edit_unit_activity_path(@unit, activity)
       - else
-        - if signed_in? && current_user.troop == @troop
+        - if signed_in? && current_user.unit == @unit
           - if current_user.votes_available.positive?
-            = button_to troop_votes_path(@troop, activity_id: activity.id), class: 'btn btn-primary' do
+            = button_to unit_votes_path(@unit, activity_id: activity.id), class: 'btn btn-primary' do
               = fa_icon "plus"
           - if current_user.votes.find_by(activity_id: activity.id)
             - vote = current_user.votes.find_by(activity_id: activity.id)
-            = button_to troop_vote_path(@troop, vote), method: :delete, class: 'btn btn-primary' do
+            = button_to unit_vote_path(@unit, vote), method: :delete, class: 'btn btn-primary' do
               = fa_icon "minus"
       %td.votes-count
         - unless params[:admin]

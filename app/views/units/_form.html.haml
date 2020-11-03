@@ -1,13 +1,13 @@
-= form_for @troop do |f|
-  - if @troop.errors.any?
+= form_for @unit do |f|
+  - if @unit.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@troop.errors.count, "error")} prohibited this troop from being saved:"
+      %h2= "#{pluralize(@unit.errors.count, "error")} prohibited this unit from being saved:"
       %ul
-        - @troop.errors.full_messages.each do |message|
+        - @unit.errors.full_messages.each do |message|
           %li= message
 
   .form-group
-    = f.label :name, "Troop Unit number and city"
+    = f.label :name, "Unit number and city"
     %small.text-muted ex. "Troop 100 Boise, ID"
     = f.text_field :name, class: 'form-control'
 

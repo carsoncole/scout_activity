@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 ['Troop 1564', 'Troop 1804'].each do |name|
-  Troop.find_or_create_by(name: name)
+  Unit.find_or_create_by(name: name)
 end
 
 # troop = Troop.first

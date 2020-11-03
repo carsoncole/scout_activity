@@ -1,4 +1,4 @@
-= form_for [@troop, @activity, @question, @answer] do |f|
+= form_for [@unit, @activity, @question, @answer] do |f|
   - if @answer.errors.any?
     #error_explanation
       %h2= "#{pluralize(@answer.errors.count, "error")} prohibited this answer from being saved:"

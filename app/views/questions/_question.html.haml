@@ -1,7 +1,7 @@
 .question
   = question.content
   - if @activity.author == current_user || question.user == current_user
-    = link_to troop_activity_question_path(@troop, @activity, question), method: :delete do
+    = link_to unit_activity_question_path(@unit, @activity, question), method: :delete do
       = fa_icon "trash-alt"
 .question-author= question.user.email
 
@@ -9,9 +9,9 @@
   .answer
     = answer.content
     - if @activity.author == current_user || answer.user == current_user
-      = link_to troop_activity_question_answer_path(@troop, @activity, question, answer), method: :delete do
+      = link_to unit_activity_question_answer_path(@unit, @activity, question, answer), method: :delete do
         = fa_icon "trash-alt"
   .answer-author= answer.user.email
 
-- if signed_in? && @troop == current_user.troop
-  = link_to "Add answer/comment", new_troop_activity_question_answer_path(@troop, @activity, question), class: 'answer-link'
+- if signed_in? && @unit == current_user.unit
+  = link_to "Add answer/comment", new_unit_activity_question_answer_path(@unit, @activity, question), class: 'answer-link'

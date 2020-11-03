@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include Clearance::User
 
-  belongs_to :troop, optional: true
+  belongs_to :unit, optional: true
   has_many :votes, dependent: :destroy
   has_many :activities, dependent: :destroy, foreign_key: 'author_id'
   has_many :questions, dependent: :destroy
@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   scope :owner, -> { where(is_owner: true) }
 
-  before_save :clear_votes!, if: Proc.new {|u| u.troop_id_changed?}
+  before_save :clear_votes!, if: Proc.new {|u| u.unit_id_changed?}
 
   def initialize(args)
     super(args)
@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def votes_available
-    troop.votes_allowed - votes.count
+    unit.votes_allowed - votes.count
   end
 
   def votes_cast

@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    @troops = Troop.order(visit_event_count: :desc)
+    @units = Unit.order(visit_event_count: :desc)
   end
 
   def about
