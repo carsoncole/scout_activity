@@ -1,0 +1,11 @@
+.row
+  .col-md-12
+    %h3.mb-3 Unsubscribed
+    %p
+      = succeed(",") do
+        = @user.email
+      you are unsubscribed from our emails.
+    %p
+      You can resubscribe from within
+      = succeed(".") do
+        = link_to "your account", edit_user_path(@user)

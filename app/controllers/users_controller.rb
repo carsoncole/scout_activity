@@ -1,4 +1,5 @@
 class UsersController < Clearance::UsersController
+  before_action :require_login, except: [:unsubscribe, :new, :create]
   before_action :set_title, only: [:edit]
 
   def edit
@@ -16,6 +17,11 @@ class UsersController < Clearance::UsersController
     end
   end
 
+  def unsubscribe
+    @user = User.find(params[:user_id])
+    @user.update(is_subscribed: false)
+  end
+
   def url_after_create
     successful_signup_path(signup: 'success')
   end
@@ -29,6 +35,6 @@ class UsersController < Clearance::UsersController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :troop_id)
+    params.require(:user).permit(:email, :password, :troop_id, :is_subscribed)
   end
 end

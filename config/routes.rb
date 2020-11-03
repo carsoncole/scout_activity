@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "sessions", only: [:create]
 
+
   resources :users, controller: "users", only: [:edit, :create, :show, :update] do
+    get '/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     resource :password,
       controller: "clearance/passwords",
       only: [:edit, :update]

@@ -1,0 +1,39 @@
+%h1(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;text-align: center;margin-bottom: 1.77em;")
+  Welcome to ScoutActivity
+
+- if @created_troop && @created_activities
+  %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left")
+    I see that you've added your Unit and have already started creating activities. That's great. Good luck in running a program to figure out good activities to host.
+
+- elsif @created_troop
+  %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.6em;")
+    You have created your Unit,
+    = succeed(",") do
+      %strong= @user.troop.name
+    and its ready to go!
+
+
+  %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.6em;")
+    Now you just need to start adding activities. You can do that by visiting this link
+    %br
+    = link_to new_troop_activity_url(@user.troop), new_troop_activity_url(@user.troop)
+
+- else
+  %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left")
+    Thanks for signing up, now you need to either
+    = succeed(",") do
+      = link_to "join an existing Unit", edit_user_url(@user)
+    or
+    = succeed(".") do
+      = link_to "add your Unit", new_troop_url
+
+%p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.6em;")
+  If you have questions or comments, or even feature requests, join our Facebook page
+  = link_to "https://www.facebook.com/groups/scoutactivity", "https://www.facebook.com/groups/scoutactivity"
+
+
+%p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left; margin-top:2.5em")
+  %strong
+    Carson Cole
+    %br
+    ScoutActivity
