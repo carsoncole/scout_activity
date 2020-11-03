@@ -51,7 +51,7 @@
           .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'activity-image img-fluid rounded'
 
 
-      - if @activity.author == current_user || (current_user.is_owner && current_user.troop == @activity.troop)
+      - if current_user && (@activity.author == current_user || (current_user.is_owner && current_user.troop == @activity.troop))
         %hr
         .actions
           = link_to 'Edit', edit_troop_activity_path(@troop, @activity), class: 'action'

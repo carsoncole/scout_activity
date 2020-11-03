@@ -19,11 +19,23 @@ class PublicPagesTest < ApplicationSystemTestCase
     assert_selector "h1", text: 'Sign up'
   end
 
-  test "visiting info" do
+  test "visiting about" do
     visit '/'
     click_on "About"
     assert_selector "h1", text: 'About'
     assert_text "Questions or feedback?"
+  end
+
+  test "visiting FAQs" do
+    visit '/'
+    click_on "FAQs"
+    assert_selector "h1", text: 'FAQs'
+  end
+
+  test "visiting Resources" do
+    visit '/'
+    click_on "Resources"
+    assert_selector "h1", text: 'Activity Resources'
   end
 
   test "main nav logo" do
