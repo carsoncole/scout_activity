@@ -9,6 +9,8 @@ class User < ApplicationRecord
 
   scope :owner, -> { where(is_owner: true) }
 
+  before_save :clear_votes!, if: Proc.new {|u| u.troop_id_changed?}
+
   def initialize(args)
     super(args)
     self.token = SecureRandom.hex unless self.token.present?
@@ -24,5 +26,11 @@ class User < ApplicationRecord
 
   def admin?
     is_admin
+  end
+
+  private
+
+  def clear_votes!
+    votes.destroy_all
   end
 end
