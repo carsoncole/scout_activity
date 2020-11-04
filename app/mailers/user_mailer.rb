@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
   def welcome_email
-    @created_unit = @user.unit.present?
-    @created_activities = @user.unit if @created_units
-    mail to: @user.email
+    @unit = @user.unit
+    return unless (@user.unit && @user.is_owner?) || !@user.unit
+    mail to: @user.email, subject: 'Welcome to ScoutActivity'
   end
 end

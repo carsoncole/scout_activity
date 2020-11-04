@@ -7,8 +7,8 @@
   %body
     = yield
 
-    %footer(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;text-align:left;font-size:0.9em;margin:3.5em auto 1em auto;")
-      = link_to "ScoutActivity.com", root_url(utm_medium: 'email', utm_source: 'welcome_email'), style: 'text-decoration:none'
+    %footer(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;text-align:center;font-size:0.9em;margin:2.5em auto 1em auto;")
+      = link_to "ScoutActivity.com", root_url(utm_medium: 'email', utm_source: 'app-email', utm_campaign: 'existing-users'), style: 'text-decoration:none'
       - if @user && !@no_unsubscribe
         \|
         = link_to "Unsubscribe", user_unsubscribe_url(@user), style: 'text-decoration:none'
