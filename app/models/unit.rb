@@ -8,7 +8,19 @@ class Unit < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 35 }
 
+  before_save :update_vote_counts!, if: Proc.new{|u| u.votes_allowed_changed?}
+
   def owners
     users.where(is_owner: true)
   end
+
+  def update_vote_counts!
+    return if votes_allowed_was < votes_allowed
+    users.each do |user|
+      while user.votes.count > votes_allowed
+        user.votes.order(created_at: :desc).limit(1).first.destroy
+      end
+    end
+  end
+
 end
