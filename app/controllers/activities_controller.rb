@@ -33,6 +33,10 @@ class ActivitiesController < ApplicationController
     new_activity.author_id = current_user.id
     new_activity.unit = current_user.unit
     new_activity.save
+    activity.images.each do |image|
+      new_activity.images.attach image.blob
+    end
+
     redirect_to unit_activities_path(current_user.unit), notice: "Activity '#{new_activity.name}' copied."
   end
 
