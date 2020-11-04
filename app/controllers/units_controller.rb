@@ -6,7 +6,7 @@ class UnitsController < ApplicationController
   # GET /units/new
   def new
     @unit = Unit.new
-    @title = "New Unit - #{@unit.name} - ScoutActivity"
+    @title = "New Unit - ScoutActivity"
   end
 
   # GET /units/1/edit
