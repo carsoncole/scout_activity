@@ -6,12 +6,14 @@ class UnitsController < ApplicationController
   # GET /units/new
   def new
     @unit = Unit.new
+    @title = "New Unit - #{@unit.name} - ScoutActivity"
   end
 
   # GET /units/1/edit
   def edit
     redirect_to unit_activities_path(@unit) unless current_user.unit == @unit && current_user.is_owner?
     @users = @unit.users
+    @title = "Edit Unit - #{@unit.name} - ScoutActivity"
   end
 
   def unit_created
@@ -66,7 +68,7 @@ class UnitsController < ApplicationController
     end
 
     def set_title
-      @title = 'Unit | ScoutActivity'
+      @title = 'Unit - ScoutActivity'
     end
 
     # Only allow a list of trusted parameters through.
