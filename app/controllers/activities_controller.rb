@@ -3,23 +3,17 @@ class ActivitiesController < ApplicationController
   before_action :require_login, only: [:create, :update, :destroy]
   before_action :set_title
 
-  # GET /activities
-  # GET /activities.json
   def index
-    if params[:admin] && current_user.unit == @unit && current_user.is_owner?
-      @activities = @unit.activities
-    elsif params[:admin]
-      @activities = current_user.activities
-    else
-      @activities = @unit.activities.non_high_adventure.votable.order(votes_count: :desc)
-      @high_adventure_activities  = @unit.activities.high_adventure.votable.order(votes_count: :desc)
+    @activities = @unit.activities.non_high_adventure.votable.order(votes_count: :desc)
+    @high_adventure_activities  = @unit.activities.high_adventure.votable.order(votes_count: :desc)
+    if signed_in? && current_user.is_owner? && current_user.unit == @unit
+      @archived_activities = @unit.activities.archived if current_user.is_owner? && current_user.unit == @unit
+    elsif signed_in? && current_user.activities.where(unit_id: @unit.id).archived.any?
+      @archived_activities = current_user.activities.where(unit_id: @unit.id).archived
     end
     @title = @unit.name + " - Vote - ScoutActivity"
-    @title = @unit.name + " - My Activities - ScoutActivity" if params[:admin].present?
   end
 
-  # GET /activities/1
-  # GET /activities/1.json
   def show
     @votes = @activity.votes.includes(:user).group(:user_id).count
     @title = "#{@unit.name} - #{@activity.name} - ScoutActivity"
@@ -27,19 +21,21 @@ class ActivitiesController < ApplicationController
     @questions = @activity.questions
   end
 
-  # GET /activities/new
+  def archive_activity
+    @activity = @unit.activities.find(params[:activity_id])
+    @activity.toggle!(:is_archived)
+    redirect_to unit_activity_path(@unit, @activity)
+  end
+
   def new
     @activity = Activity.new
     @title = @unit.name + ' - New Activity - ScoutActivity'
   end
 
-  # GET /activities/1/edit
   def edit
     @title = @unit.name + ' - Edit ' + @activity.name +  ' - ScoutActivity'
   end
 
-  # POST /activities
-  # POST /activities.json
   def create
     @activity = @unit.activities.new(activity_params)
     @activity.author = current_user
@@ -55,8 +51,6 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /activities/1
-  # PATCH/PUT /activities/1.json
   def update
     respond_to do |format|
       if @activity.author == current_user && @activity.update(activity_params)
@@ -69,8 +63,6 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  # DELETE /activities/1
-  # DELETE /activities/1.json
   def destroy
     @activity.destroy if @activity.author == current_user
     respond_to do |format|

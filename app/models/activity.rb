@@ -6,9 +6,10 @@ class Activity < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many_attached :images
 
-  scope :high_adventure, -> {where(is_high_adventure: true)}
-  scope :non_high_adventure, -> {where(is_high_adventure: false)}
-  scope :votable, -> {where(is_archived: false)}
+  scope :high_adventure, -> { where(is_high_adventure: true) }
+  scope :non_high_adventure, -> { where(is_high_adventure: false) }
+  scope :votable, -> { where(is_archived: false) }
+  scope :archived, -> { where(is_archived: true) }
 
   validates :name, presence: true
   validates :name, length: { maximum: 75 }

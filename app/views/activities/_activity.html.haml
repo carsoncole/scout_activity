@@ -11,16 +11,13 @@
     %span.text-muted
       = pluralize(activity.duration_days, 'day')
   %td.votes-count
-    - if params[:admin]
-      - if activity.is_archived?
-        .badge.badge-info Archived
+    - if activity.is_archived?
+      .badge.badge-info Archived
     - else
       = activity.votes_count || 0
   - if signed_in? && current_user.unit == @unit
     %td.vote
-      - if params[:admin]
-        = link_to "Edit", edit_unit_activity_path(@unit, activity)
-      - else
+      - unless activity.is_archived?
         - if signed_in? && current_user.unit == @unit
           - if current_user.votes_available.positive?
             = button_to unit_votes_path(@unit, activity_id: activity.id), class: 'btn btn-primary' do
@@ -30,6 +27,6 @@
             = button_to unit_vote_path(@unit, vote), method: :delete, class: 'btn btn-primary' do
               = fa_icon "minus"
       %td.votes-count
-        - unless params[:admin]
+        - unless activity.is_archived?
           - count = activity.votes.where(user: current_user).count
           = count || 0

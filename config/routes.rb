@@ -21,9 +21,9 @@ Rails.application.routes.draw do
       resources :questions do
         resources :answers, only: [:new, :create, :destroy]
       end
+      post '/archive-activity' => 'activities#archive_activity', as: 'archive_activity'
     end
     get '/unit-created' => 'units#unit_created', as: 'unit_created'
-    post '/archive-activity' => 'activities#archive_activity', as: 'archive_activity'
     resources :votes, only: [:index, :create, :destroy]
   end
 

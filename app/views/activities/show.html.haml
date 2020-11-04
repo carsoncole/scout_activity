@@ -55,7 +55,10 @@
         %hr
         .actions
           = link_to 'Edit', edit_unit_activity_path(@unit, @activity), class: 'action'
-          = button_to "Archive", unit_archive_activity_path(@unit, @activity), data: {confirm: 'Archiving will remove the Activity from voting and return any votes placed for it. You can still access and un-archive the activity from your own activities "My Activities".'}, class: 'btn btn-primary action'
+          - if @activity.is_archived?
+            = button_to "Unarchive", unit_activity_archive_activity_path(@unit, @activity), class: 'btn btn-primary action'
+          - else
+            = button_to "Archive", unit_activity_archive_activity_path(@unit, @activity), data: {confirm: 'Archiving will remove the Activity from voting and return any votes placed for it. You can still access and un-archive the activity from your own activities "My Activities".'}, class: 'btn btn-primary action'
           = button_to "Destroy", unit_activity_path(@unit, @activity), method: :delete, data: { confirm: 'Are you sure? This will destroy the Activity and return any votes placed for it.'}, class: 'btn btn-danger action'
 
       %hr

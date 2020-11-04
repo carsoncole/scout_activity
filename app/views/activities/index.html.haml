@@ -1,12 +1,8 @@
 #activities
 
-  %h1
-    - if params[:admin]
-      Activities
-    - else
-      Vote
+  %h1 Vote
 
-  - if signed_in? && @unit == current_user.unit && !params[:admin]
+  - if signed_in? && @unit == current_user.unit
     .row
       .col-md-3
       .col-md-6
@@ -29,15 +25,14 @@
       .col-md-2
       .col-md-8
         %table.table.activities
-          - unless params[:admin]
-            %thead
-              %tr
+          %thead
+            %tr
+              %th
+              %th= fa_icon "users"
+              - if signed_in? && current_user.unit == @unit
                 %th
-                %th= fa_icon "users"
-                - if signed_in? && current_user.unit == @unit
-                  %th
-                  %th
-                    = fa_icon "user"
+                %th
+                  = fa_icon "user"
           %tbody
             = render(@activities)
 
@@ -47,7 +42,7 @@
     .row
       .col-md-2
       .col-md-8
-        %h3.text-center.mb-0 High Adventure
+        %h3.text-center.mb-2 High Adventure
         %p.text-muted.text-center.mb-4 Please only vote if you are at least 13 years old
 
         %table.table.activities
@@ -61,10 +56,21 @@
       
     = render 'share_link'
 
-  - unless params[:admin]
+  - if @archived_activities&.any?
+    %br
     .row
-      .col-md-12.text-center
-        .share-link
-          = link_to 'http://www.facebook.com/sharer.php?u=' +request.url, target: :blank do
-            = fa_icon "share"
-            Share
+      .col-md-2
+      .col-md-8
+        %h3.text-center.mb-2 Archived
+
+        %table.table.activities
+          %tbody
+            = render partial: 'activity', collection: @archived_activities, as: :activity
+
+
+  .row
+    .col-md-12.text-center
+      .share-link
+        = link_to 'http://www.facebook.com/sharer.php?u=' +request.url, target: :blank do
+          = fa_icon "share"
+          Share
