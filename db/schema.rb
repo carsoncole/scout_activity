@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_03_213818) do
+ActiveRecord::Schema.define(version: 2020_11_04_020731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,7 +109,6 @@ ActiveRecord::Schema.define(version: 2020_11_03_213818) do
     t.integer "votes_allowed", default: 20, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
     t.integer "visit_event_count", default: 0
     t.string "slug"
     t.index ["slug"], name: "index_units_on_slug", unique: true
@@ -135,7 +134,7 @@ ActiveRecord::Schema.define(version: 2020_11_03_213818) do
 
   create_table "votes", force: :cascade do |t|
     t.bigint "activity_id", null: false
-    t.string "user_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["activity_id"], name: "index_votes_on_activity_id"

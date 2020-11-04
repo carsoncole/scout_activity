@@ -28,8 +28,6 @@ class User < ApplicationRecord
     is_admin
   end
 
-  private
-
   def clear_votes!
     votes.destroy_all
   end
