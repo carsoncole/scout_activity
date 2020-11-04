@@ -7,9 +7,7 @@ a {
     background-color: transparent !important;
     text-decoration: none;
   }
-  &:visited {
-    color: #0056b3 !important;
-  }
+
 }
 
 h1 {
@@ -157,6 +155,12 @@ table.activities {
     margin: 0.3em 0.3em;
     display: inline-block;
     vertical-align: top;
+  }
+  .btn-primary {
+    color: #fff;
+    &:visited {
+      color: #fff;
+    }
   }
   h2.choice {
     color: #999;
@@ -342,7 +346,7 @@ trix-editor {
 
 a.btn {
   &:visited {
-    color: #fff !important;
+    color: inherit;
   }
   &:hover {
     color: #fff !important;

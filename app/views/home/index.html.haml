@@ -20,7 +20,10 @@
     .col-md-10.mb-3.text-center
 
       - @units.each do |unit|
-        = link_to unit.name, unit_activities_path(unit), class: 'btn btn-primary btn-lg troop'
+        - if signed_in? && current_user.unit == unit
+          = link_to unit.name, unit_activities_path(unit), class: 'btn btn-outline-primary btn-lg troop'
+        - else
+          = link_to unit.name, unit_activities_path(unit), class: 'btn btn-primary btn-lg troop'
 
   .row
     .col-md-2
