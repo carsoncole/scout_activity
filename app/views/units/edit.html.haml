@@ -1,8 +1,24 @@
-.row
-  .col-md-3
-  .col-md-6
-    %h1 Edit Unit
-    = render 'form'
+#unit
+  .row
+    .col-md-3
+    .col-md-6
+      %h1 Edit Unit
+      = render 'form'
 
-    = render 'share_link'
+      = render 'share_link'
+
+  .row
+    .col-md-3
+    .col-md-6
+      %h2 Users
+      %table.table.table-sm#users
+        %thead
+          %tr
+            %th.email User
+            %th.vote-count Votes cast
+        - @users.each do |user|
+          %tr
+            %td.email= user.email
+            %td.vote-count= user.votes_count
+
 

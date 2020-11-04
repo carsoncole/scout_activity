@@ -11,6 +11,7 @@ class UnitsController < ApplicationController
   # GET /units/1/edit
   def edit
     redirect_to unit_activities_path(@unit) unless current_user.unit == @unit && current_user.is_owner?
+    @users = @unit.users
   end
 
   def unit_created

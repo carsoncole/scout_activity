@@ -184,6 +184,20 @@ table.activities {
     }
   }
 }
+#unit {
+  h2 {
+    margin-top: 2rem;
+  }
+  table#users {
+    margin-top: 1.66em;
+    th.email, td.email {
+    }
+    th.vote-count, td.vote-count {
+      width: 8em;
+      text-align: center;
+    }
+  }
+}
 footer {
   margin-top: 8rem;
   margin-bottom: 2rem;
