@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :activities, dependent: :destroy, foreign_key: 'author_id'
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
+  has_many :logs, dependent: :destroy
 
   scope :owner, -> { where(is_owner: true) }
 
