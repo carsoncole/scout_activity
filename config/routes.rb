@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :units, except: [:index, :show] do
     resources :activities do
+      post 'copy' => 'activities#copy', as: 'copy'
       resources :questions do
         resources :answers, only: [:new, :create, :destroy]
       end

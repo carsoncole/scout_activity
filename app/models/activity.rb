@@ -28,6 +28,15 @@ class Activity < ApplicationRecord
     end
   end
 
+  def self.duplicate(activity)
+    new_activity  = activity.dup
+    new_activity.is_author_volunteering = false
+    new_activity.author_id = false
+    new_activity.unit_id = nil
+    new_activity.votes_count = 0
+    new_activity
+  end
+
   private
 
   def remove_votes_if_archived!

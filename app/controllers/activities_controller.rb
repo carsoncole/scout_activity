@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:create, :update, :destroy]
+  before_action :require_login, only: [:create, :update, :destroy, :copy]
   before_action :set_title
 
   def index
@@ -25,6 +25,15 @@ class ActivitiesController < ApplicationController
     @activity = @unit.activities.find(params[:activity_id])
     @activity.toggle!(:is_archived)
     redirect_to unit_activity_path(@unit, @activity)
+  end
+
+  def copy
+    activity = Activity.find(params[:activity_id])
+    new_activity = Activity.duplicate(activity)
+    new_activity.author_id = current_user.id
+    new_activity.unit = current_user.unit
+    new_activity.save
+    redirect_to unit_activities_path(current_user.unit), notice: "Activity '#{new_activity.name}' copied."
   end
 
   def new

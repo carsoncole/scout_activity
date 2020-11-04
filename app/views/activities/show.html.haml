@@ -51,16 +51,6 @@
           .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'activity-image img-fluid rounded'
 
 
-      - if current_user && (@activity.author == current_user || (current_user.is_owner && current_user.unit == @activity.unit))
-        %hr
-        .actions
-          = link_to 'Edit', edit_unit_activity_path(@unit, @activity), class: 'action'
-          - if @activity.is_archived?
-            = button_to "Unarchive", unit_activity_archive_activity_path(@unit, @activity), class: 'btn btn-primary action'
-          - else
-            = button_to "Archive", unit_activity_archive_activity_path(@unit, @activity), data: {confirm: 'Archiving will remove the Activity from voting and return any votes placed for it. You can still access and un-archive the activity from your own activities "My Activities".'}, class: 'btn btn-primary action'
-          = button_to "Destroy", unit_activity_path(@unit, @activity), method: :delete, data: { confirm: 'Are you sure? This will destroy the Activity and return any votes placed for it.'}, class: 'btn btn-danger action'
-
       %hr
       %p
         %strong Proposed by:
@@ -69,6 +59,21 @@
         - if @activity.is_author_volunteering?
           %br
             The proposer is willing to help lead this activity.
+
+
+      - if current_user && (@activity.author == current_user || (current_user.is_owner && current_user.unit == @activity.unit)) || current_user&.is_owner
+        %hr
+        - if current_user && (@activity.author == current_user || (current_user.is_owner && current_user.unit == @activity.unit))
+          = link_to edit_unit_activity_path(@unit, @activity), class: 'action' do
+            = fa_icon "edit"
+          - if @activity.is_archived?
+            = button_to "Unarchive", unit_activity_archive_activity_path(@unit, @activity), class: 'btn btn-primary action'
+          - else
+            = button_to "Archive", unit_activity_archive_activity_path(@unit, @activity), data: {confirm: 'Archiving will remove the Activity from voting and return any votes placed for it. You can still access and un-archive the activity from your own activities "My Activities".'}, class: 'btn btn-primary action'
+          = button_to "Destroy", unit_activity_path(@unit, @activity), method: :delete, data: { confirm: 'Are you sure? This will destroy the Activity and return any votes placed for it.'}, class: 'btn btn-danger action'
+        - if current_user&.is_owner?
+          = link_to unit_activity_copy_path(current_user.unit, @activity), id: 'copy-activity-link', method: :post do
+            = fa_icon "copy"
 
     .col-md-4
       #discussion
