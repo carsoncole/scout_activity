@@ -36,7 +36,6 @@ class ActivitiesController < ApplicationController
     activity.images.each do |image|
       new_activity.images.attach image.blob
     end
-
     redirect_to unit_activities_path(current_user.unit), notice: "Activity '#{new_activity.name}' copied."
   end
 
