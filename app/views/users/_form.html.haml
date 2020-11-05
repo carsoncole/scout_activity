@@ -15,7 +15,7 @@
   - unless current_user
     %small.text-muted Select your Unit, or leave blank if your Unit has not been added yet. You'll do that next.
 
-- unless @user.unit
+- if @user.persisted? && @user.unit.nil?
   %p= link_to "Add a Unit", new_unit_path
 
 - if current_user && current_user.persisted?
