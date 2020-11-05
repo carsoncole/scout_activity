@@ -44,6 +44,10 @@ class PublicPagesTest < ApplicationSystemTestCase
     assert_text "Scouting tool for collecting, promoting and voting on unit activity ideas."
   end
 
+  test "visiting sitemap" do
+    visit '/sitemap.xml'
+  end
+
   test "forgetting password" do
     visit sign_in_url
     click_on "Forgot password?"

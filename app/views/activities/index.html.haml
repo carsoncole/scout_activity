@@ -8,7 +8,7 @@
       .col-md-6
         .text-center.mb-5
           .vote-count
-            .badge.badge-primary= current_user.votes_available
+            .badge.badge-primary#votes-available= current_user.votes_available
             %span.text-muted votes left
   - else
     .row
