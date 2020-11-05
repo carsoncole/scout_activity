@@ -1,9 +1,16 @@
 require "application_system_test_case"
 
 class UnitsTest < ApplicationSystemTestCase
-  # setup do
-  #   @unit = units(:one)
-  # end
+  test "viewing unit page" do
+    admin = create(:user, is_owner: true)
+    sign_in(admin)
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      click_on admin.unit.name
+    end
+    assert_selector "h1", text: 'Edit Unit'
+    assert_selector "h2", text: 'Users'
+  end
 
   # test "visiting the index" do
   #   visit units_url

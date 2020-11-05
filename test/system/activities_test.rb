@@ -33,7 +33,7 @@ class ActivitiesTest < ApplicationSystemTestCase
     sign_in
     @activity = create(:activity, author: @user)
     visit unit_activity_path(@activity.unit, @activity)
-    click_on "Edit"
+    click_on "activity-edit-link"
     fill_in "Number of days", with: '5'
     click_on "Update Activity"
     assert_text "Activity was successfully updated."

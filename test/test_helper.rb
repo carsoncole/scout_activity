@@ -7,8 +7,8 @@ class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
 
-  def sign_in
-    @user = create(:user)
+  def sign_in(user=nil)
+    @user = user || create(:user)
     visit sign_in_url
     within "#clearance.sign-in" do
       fill_in "Email", with: @user.email
