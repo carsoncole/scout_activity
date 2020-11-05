@@ -5,7 +5,7 @@ class ApplicationMailer < ActionMailer::Base
   before_action :set_user
 
   def set_user
-    if params[:user]
+    if params && params[:user]
       @user = params[:user]
     end
   end

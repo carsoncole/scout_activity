@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :logs, dependent: :destroy
 
   scope :owner, -> { where(is_owner: true) }
+  scope :admin, -> { where(is_admin: true) }
+  scope :active, -> { where("last_sign_in_at > ?", Time.now - 7.days) }
 
   before_save :clear_votes!, if: Proc.new {|u| u.unit_id_changed?}
 
