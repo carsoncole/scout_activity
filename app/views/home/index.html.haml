@@ -21,9 +21,9 @@
 
       - @units.each do |unit|
         - if signed_in? && current_user.unit == unit
-          = link_to unit.name, unit_activities_path(unit), class: 'btn btn-outline-primary btn-lg troop'
+          = link_to unit.name, unit_activities_path(unit), class: 'btn btn-outline-primary troop'
         - else
-          = link_to unit.name, unit_activities_path(unit), class: 'btn btn-primary btn-lg troop'
+          = link_to unit.name, unit_activities_path(unit), class: 'btn btn-primary troop'
 
   .row
     .col-md-2
