@@ -23,7 +23,7 @@
             = button_to unit_votes_path(@unit, activity_id: activity.id), class: 'btn btn-primary' do
               = fa_icon "plus"
           - if current_user.votes.find_by(activity_id: activity.id)
-            - vote = current_user.votes.find_by(activity_id: activity.id)
+            - vote = current_user.votes.order(created_at: :desc).where(activity_id: activity.id).first
             = button_to unit_vote_path(@unit, vote), method: :delete, class: 'btn btn-primary' do
               = fa_icon "minus"
       %td.votes-count

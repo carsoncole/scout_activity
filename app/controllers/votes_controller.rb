@@ -9,7 +9,7 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    @vote = Vote.find(params[:id])
+    @vote = Vote.find(params[:id]) rescue nil
     @vote.destroy if @vote
     redirect_to unit_activities_path(@unit)
   end

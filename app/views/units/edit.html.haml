@@ -18,7 +18,11 @@
             %th.vote-count Votes cast
         - @users.each do |user|
           %tr
-            %td.email= user.email
+            %td.email
+              = user.email
+              - if user.is_owner?
+                .badge.badge-info Admin
+
             %td.vote-count= user.votes_count
 
 

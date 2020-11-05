@@ -27,7 +27,7 @@
             = link_to "#", id: 'navbarDropdown', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle' do
               = fa_icon "user"
             .dropdown-menu.dropdown-menu-right#user-menu
-              .dropdown-item= link_to current_user.email, edit_user_path(current_user)
+              = link_to current_user.email, edit_user_path(current_user), class: 'dropdown-item'
               - if current_user&.unit && current_user.is_owner?
                 = link_to current_user.unit.name, edit_unit_path(current_user.unit), class: 'dropdown-item'
               = link_to 'Sign out', sign_out_path, method: :delete, class: 'dropdown-item'
