@@ -3,13 +3,11 @@ class UnitsController < ApplicationController
   before_action :get_unit, only: [:show, :edit, :update, :destroy]
   before_action :set_title
 
-  # GET /units/new
   def new
     @unit = Unit.new
     @title = "New Unit - ScoutActivity"
   end
 
-  # GET /units/1/edit
   def edit
     redirect_to unit_activities_path(@unit) unless current_user.unit == @unit && current_user.is_owner?
     @users = @unit.users
@@ -20,8 +18,6 @@ class UnitsController < ApplicationController
     @title = 'Unit Created - ' + @unit.name + ' - ScoutActivity'
   end
 
-  # POST /units
-  # POST /units.json
   def create
     @unit = Unit.new(unit_params)
 
@@ -37,11 +33,9 @@ class UnitsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /units/1
-  # PATCH/PUT /units/1.json
   def update
     respond_to do |format|
-      if @unit.update(unit_params)
+      if current_user.unit == @unit && current_user.is_owner? && @unit.update(unit_params)
         format.html { redirect_to unit_activities_path(@unit), notice: 'Unit was successfully updated.' }
         format.json { render :show, status: :ok, location: @unit }
       else
@@ -51,14 +45,12 @@ class UnitsController < ApplicationController
     end
   end
 
-  # DELETE /units/1
-  # DELETE /units/1.json
   def destroy
-    @unit.destroy
-    respond_to do |format|
-      format.html { redirect_to units_url, notice: 'Unit was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    # @unit.destroy
+    # respond_to do |format|
+    #   format.html { redirect_to units_url, notice: 'Unit was successfully destroyed.' }
+    #   format.json { head :no_content }
+    # end
   end
 
   private
