@@ -12,7 +12,9 @@ class SessionsController < Clearance::SessionsController
 
 
   def url_after_create
-    if current_user.unit
+    if current_user.unit && current_user.is_owner?
+      unit_activities_path(current_user.unit, logged_in: 'success', admin: true)
+    elsif current_user.unit
       unit_activities_path(current_user.unit, logged_in: 'success')
     else
       root_url(logged_in: 'success')
