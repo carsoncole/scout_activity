@@ -9,3 +9,7 @@ task :send_welcome_email => :environment do
     UserMailer.with(user: user).welcome_email.deliver_now
   end
 end
+
+task :send_master_report_email => :environment do
+  AdminMailer.master_report.deliver_now
+end
