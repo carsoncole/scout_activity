@@ -24,7 +24,7 @@ class UnitsController < ApplicationController
     respond_to do |format|
       if @unit.save
         current_user.update(unit_id: @unit.id, is_owner: true)
-        format.html { redirect_to root_path, notice: 'Unit was successfully created.' }
+        format.html { redirect_to unit_activities_path(@unit), notice: 'Unit was successfully created.' }
         format.json { render :show, status: :created, location: @unit }
       else
         format.html { render :new }

@@ -53,6 +53,8 @@
   - if @activities.empty?
     %p.text-center
       No activities have been proposed.
+      - if signed_in? && @unit == current_user.unit
+        = link_to "Propose an Activity", new_unit_activity_path(@unit)
       
     = render 'share_link'
 

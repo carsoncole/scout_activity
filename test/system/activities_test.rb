@@ -9,8 +9,10 @@ class ActivitiesTest < ApplicationSystemTestCase
 
   test "creating an activity" do
     sign_in
-    assert_text "No activities have been pr\oposed."
-    click_on "Propose an Activity"
+    assert_text "No activities have been proposed."
+    within "#activities" do
+      click_on "Propose an Activity"
+    end
 
     assert_selector "h1", text: "What's your Activity idea?"
 

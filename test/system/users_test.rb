@@ -21,7 +21,6 @@ class UsersTest < ApplicationSystemTestCase
     fill_in "Unit number and city", with: name
     click_on "Create Unit"
     assert_text "Unit was successfully created."
-    click_on name
     assert_selector "h1", text: "Vote"
     assert_text "No activities have been proposed."
 
