@@ -11,5 +11,7 @@ task :send_welcome_email => :environment do
 end
 
 task :send_master_report_email => :environment do
+  next unless Date.today.monday?
   AdminMailer.master_report.deliver_now
+  puts 'Done'
 end
