@@ -10,4 +10,8 @@ class HomeController < ApplicationController
   def resources
     @title = 'Activity Resources - ScoutActivity'
   end
+
+  def faqs
+    @title = 'FAQs - ScoutActivity'
+  end
 end

@@ -31,7 +31,7 @@ class UsersController < Clearance::UsersController
   end
 
   def set_title
-    @title = 'Profile | ScoutActivity'
+    @title = 'Profile - ScoutActivity'
   end
 
   def user_params
