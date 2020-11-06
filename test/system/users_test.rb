@@ -29,7 +29,7 @@ class UsersTest < ApplicationSystemTestCase
       click_on name
     end
 
-    assert_selector "h1", text: "Edit Unit"
+    assert_selector "h1", text: name
     fill_in "Unit number and city", with: name + ", USA"
     click_on "Update Unit"
     assert_text "Unit was successfully updated."

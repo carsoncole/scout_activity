@@ -3,5 +3,9 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { "Passsword"}
     unit
+
+    factory :owner_user do
+      is_owner { true }
+    end
   end
 end

@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class LoggedInUiTest < ApplicationSystemTestCase
+class LoggedInUnitUserUiTest < ApplicationSystemTestCase
   test "clicking all ui elements" do
     user = create(:user, is_owner: true)
     sign_in(user)
@@ -27,14 +27,6 @@ class LoggedInUiTest < ApplicationSystemTestCase
       click_on user.email
     end
     assert_selector "h1", text: user.email
-
-    # main nav dropdown unit link
-    click_on "navbarDropdown"
-    within "#user-menu" do
-      click_on user.unit.name
-    end
-    assert_selector "h1", text: "Edit Unit"
-
 
     # main nav dropdown sign out
     click_on "navbarDropdown"

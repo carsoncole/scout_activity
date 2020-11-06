@@ -11,7 +11,7 @@ class UnitsController < ApplicationController
   def edit
     redirect_to unit_activities_path(@unit) unless current_user.unit == @unit && current_user.is_owner?
     @users = @unit.users
-    @title = "Edit Unit - #{@unit.name} - ScoutActivity"
+    @title = "Unit info - #{@unit.name} - ScoutActivity"
   end
 
   def unit_created
