@@ -23,7 +23,7 @@
   %div(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: center;line-height: 1.5em;padding:1em;background-color:#efefef;margin-top:1.5em;margin-bottom:1.5em;")
     Here is your custom link to share out to your Scouts and parents:
     %br
-    = link_to new_unit_activity_url(@user.unit), new_unit_activity_url(@user.unit)
+    = link_to sign_up_url(unit_id: @unit.id), sign_up_url(unit_id: @unit.id)
 
 - else
   %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
