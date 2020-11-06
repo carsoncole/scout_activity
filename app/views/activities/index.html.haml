@@ -19,7 +19,7 @@
   - if @activities.any?
 
     - unless signed_in?
-      .text-center.mb-4= button_to "Sign in to vote", sign_in_path, method: :get, class: 'btn btn-primary'
+      .text-center.mb-4= button_to "Sign in or sign up to vote", sign_in_path, method: :get, class: 'btn btn-primary'
 
     .row
       .col-md-2

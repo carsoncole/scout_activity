@@ -7,16 +7,19 @@
   = form.label :password
   = form.password_field :password, class: 'form-control'
 
-.form-group
+- if @unit
+  = form.hidden_field :unit_id, value: @unit.id
+- else
+  .form-group
 
-  = form.label :unit
-  
-  = form.collection_select :unit_id, Unit.all, :id, :name, {include_blank: true }, class: 'form-control', id: 'unit-select', disabled: current_user && current_user.persisted? && current_user.unit.present? && current_user.is_owner?
-  - unless current_user
-    %small.text-muted Select your Unit, or leave blank if your Unit has not been added yet. You'll do that next.
+    = form.label :unit
+    
+    = form.collection_select :unit_id, Unit.all, :id, :name, {include_blank: true }, class: 'form-control', id: 'unit-select', disabled: current_user && current_user.persisted? && current_user.unit.present? && current_user.is_owner?
+    - unless current_user
+      %small.text-muted Select your Unit, or leave blank if your Unit has not been added yet. You'll do that next.
 
-- if @user.persisted? && @user.unit.nil?
-  %p= link_to "Add a Unit", new_unit_path
+  - if @user.persisted? && @user.unit.nil?
+    %p= link_to "Add a Unit", new_unit_path
 
 - if current_user && current_user.persisted?
   %br

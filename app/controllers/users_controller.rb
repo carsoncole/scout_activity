@@ -6,6 +6,11 @@ class UsersController < Clearance::UsersController
     @user = current_user
   end
 
+  def new
+    @unit = Unit.find(params[:unit_id]) if params[:unit_id]
+    super
+  end
+
   def update
     @user = current_user
     new_params = user_params

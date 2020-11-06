@@ -2,8 +2,19 @@
   .col-md-3
   .col-md-6
     #clearance.sign-up
-      %h1.mb-2= t(".title")
-      %p.mb-5.text-muted Sign up to vote, add a unit, or add an activity
+      %h1.mb-2
+        - if @unit
+          Sign up to vote for
+          = succeed("'s") do
+            = @unit.name
+          activities
+        - else
+          = t(".title")
+      %p.mb-5.text-muted
+        - if @unit
+          Sign up to vote, or add an activity
+        - else
+          Sign up to vote, add a unit, or add an activity
 
       = form_for @user do |form|
         - if @user.errors.any?
@@ -18,6 +29,7 @@
           = form.submit class: 'btn btn-primary'
 
         .other-links
+          Already signed up?
           = link_to t(".sign_in"), sign_in_path
 
 

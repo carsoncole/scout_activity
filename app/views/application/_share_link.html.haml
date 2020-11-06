@@ -1,4 +1,7 @@
-.share-link
-  %p Share the following link to your Scouts, parents and community to get them to propose an activity.
+#share-links
+  / %h1 Share links
 
-  .link= link_to new_unit_activity_url(@unit), new_unit_activity_path(@unit)
+  %p Share the following link to promote signing up for your Unit, voting, and proposing activities.
+
+  .link
+    = link_to sign_up_url(unit_id: @unit.id)
