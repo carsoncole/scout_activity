@@ -36,7 +36,7 @@ class ActivitiesController < ApplicationController
     activity.images.each do |image|
       new_activity.images.attach image.blob
     end
-    redirect_to unit_activities_path(current_user.unit), notice: "Activity '#{new_activity.name}' copied."
+    redirect_to unit_activities_path(current_user.unit), notice: "Activity '#{new_activity.name}' copied to your Unit."
   end
 
   def new
@@ -76,7 +76,7 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    @activity.destroy if @activity.author == current_user
+    @activity.destroy if @activity.author == current_user || (@activity.unit == current_user.unit && current_user.is_owner?)
     respond_to do |format|
       format.html { redirect_to unit_activities_url(@unit), notice: 'Activity was successfully destroyed.' }
       format.json { head :no_content }

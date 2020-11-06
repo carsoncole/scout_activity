@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :activity do
-    name { "MyString" }
+    name { Faker::Lorem.sentence(word_count: 4) }
     author
     unit { author.unit }
   end
