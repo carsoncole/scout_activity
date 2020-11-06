@@ -11,6 +11,7 @@ class ActivitiesController < ApplicationController
     elsif signed_in? && current_user.activities.where(unit_id: @unit.id).archived.any?
       @archived_activities = current_user.activities.where(unit_id: @unit.id).archived
     end
+    @description = 'View this example Unit for ideas that can be copied to your own Unit.' if @unit.is_example
     @title = @unit.name + " - Vote - ScoutActivity"
   end
 
@@ -19,6 +20,7 @@ class ActivitiesController < ApplicationController
     @title = "#{@unit.name} - #{@activity.name} - ScoutActivity"
     @unit.increment!(:visit_event_count)
     @questions = @activity.questions
+    @description = @activity.description || @activity.name
   end
 
   def archive_activity
@@ -42,6 +44,7 @@ class ActivitiesController < ApplicationController
   def new
     @activity = Activity.new
     @title = @unit.name + ' - New Activity - ScoutActivity'
+    @description = "Propose and activity for #{@unit.name} that Scouts can vote on as an activity to do."
   end
 
   def edit

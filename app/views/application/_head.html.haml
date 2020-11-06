@@ -1,10 +1,10 @@
 = render 'google_tag_manager_head' if Rails.env.production? && !cookies[:debug].present?
-%title= @title || 'ScoutActivity - Tool for collecting ideas for Scouting activites'
+%title= @title || 'ScoutActivity - Tool for generating and voting on Scouting Unit activites.'
 
 = csrf_meta_tags
 = csp_meta_tag
 %meta(name="viewport" content="width=device-width, initial-scale=1")
-%meta(property="og:description" content="Scouting unit tool for collecting and voting on new ideas.")
+%meta{property: "og:description", content: @description || "Scouting unit tool for collecting and voting on new ideas."}
 %meta(property="og:title" content="ScoutActivity")
 %meta(property="og:image" content="#{image_url 'scout-activity-vertical.png'}")
 %meta(property="og:url" content="https://scoutactivity.com")
