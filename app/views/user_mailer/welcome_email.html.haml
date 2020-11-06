@@ -2,7 +2,7 @@
   Welcome to ScoutActivity
 
 %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
-  Welcome to ScoutActivity.com, an app for helping Scouting Units generate and vote on activity ideas. My app is brand new, live now for only a week! Hopefully, this will help you in inspiring your Scouts and parents to be involved in the process and come up with some great new ideas to consider!
+  Welcome to ScoutActivity.com, an app for helping Scouting Units generate and vote on activity ideas. Hopefully, this will help you in inspiring your Scouts and parents to be involved in the process and come up with some great new ideas to consider!
 
 
 - if @unit
@@ -42,7 +42,9 @@
   = link_to "FAQs", faqs_url(utm_source: 'app-email', utm_medium: 'email', utm_campaign: 'existing-users')
   and a 
   = link_to "Resources", activity_resources_url(utm_source: 'app-email', utm_medium: 'email', utm_campaign: 'existing-users')
-  section on our site that you can check out.
+  section on our site that you can check out. And lastly, we do have an
+  = link_to "example Scout troop", example_unit_url 
+  set up that you can view, and even copy it's activities (we just introduced a copy function).
 
 
 %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left; margin-top:2.5em")
