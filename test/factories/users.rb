@@ -7,5 +7,9 @@ FactoryBot.define do
     factory :owner_user do
       is_owner { true }
     end
+
+    factory :admin_user do
+      is_admin { true }
+    end
   end
 end

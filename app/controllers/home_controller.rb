@@ -17,4 +17,10 @@ class HomeController < ApplicationController
     @title = 'FAQs - ScoutActivity'
     @description = 'Frequently asked questions about how to best use ScoutActivity.com'
   end
+
+  def example_units
+    @example_units = Unit.example
+    @title = 'Example units - ScoutActivity'
+    @description = 'Here are Unit examples that you can view and copy the activities'
+  end
 end

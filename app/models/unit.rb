@@ -8,6 +8,8 @@ class Unit < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 35 }
 
+  scope :example, -> { where(is_example: true) }
+
   before_save :update_vote_counts!, if: Proc.new{|u| u.votes_allowed_changed?}
 
   def owners

@@ -31,5 +31,6 @@ Rails.application.routes.draw do
   get 'about' => 'home#about', as: 'about'
   get 'faqs' => 'home#faqs', as: 'faqs'
   get 'resources' => 'home#resources', as: 'activity_resources'
+  get 'example-units' => 'home#example_units', as: 'example_units'
   get '/sitemap' => 'sitemap#sitemap', as: 'sitemap'
 end
