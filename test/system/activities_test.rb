@@ -45,6 +45,24 @@ class ActivitiesTest < ApplicationSystemTestCase
     assert_text "Activity length: 5 days"
   end
 
+  test "archiving an activity" do
+    sign_in
+    activity = create(:activity, author: @user)
+    create_list(:vote, 5, activity: activity, user: @user)
+    click_on "Vote"
+    assert_link activity.name
+    # assert_selector "table .activities tbody tr", count: 1
+    visit unit_activity_path(activity.unit, activity)
+    click_button 'Archive'
+    assert_selector "#flash", text: 'Activity is archived, and no longer in the activity voting list.'
+    assert_selector "#activity-vote-count", text: '0'
+    click_on "Vote"
+    assert_no_link activity.name
+    visit unit_activity_path(activity.unit, activity)
+    click_button 'Unarchive'
+    assert_selector "#flash", text: 'Activity is unarchived and showing in the activity voting list.'
+  end
+
   test "destroying a activity" do
     sign_in
     activity = create(:activity, author: @user)

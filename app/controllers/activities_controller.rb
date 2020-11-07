@@ -26,7 +26,12 @@ class ActivitiesController < ApplicationController
   def archive_activity
     @activity = @unit.activities.find(params[:activity_id])
     @activity.toggle!(:is_archived)
-    redirect_to unit_activity_path(@unit, @activity)
+    if @activity.is_archived
+      message = 'Activity is archived, and no longer in the activity voting list.'
+    else
+      message = 'Activity is unarchived and showing in the activity voting list.'
+    end
+    redirect_to unit_activity_path(@unit, @activity), notice: message
   end
 
   def copy
