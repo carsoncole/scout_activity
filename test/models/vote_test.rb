@@ -8,4 +8,12 @@ class VoteTest < ActiveSupport::TestCase
     vote = activity.votes.build(user: activity.author)
     assert_not vote.valid?
   end
+
+  test "creating invalid votes" do
+    vote = build(:vote, user: nil)
+    assert_not vote.valid?
+
+    vote = build(:vote, activity: nil)
+    assert_not vote.valid?
+  end
 end

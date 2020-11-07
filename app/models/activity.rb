@@ -1,7 +1,7 @@
 #TODO Add icon for community service
 class Activity < ApplicationRecord
-  belongs_to :unit
-  belongs_to :author, class_name: 'User', foreign_key: 'author_id'
+  belongs_to :unit, touch: true
+  belongs_to :author, optional: true, class_name: 'User'
   has_many :votes, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many_attached :images

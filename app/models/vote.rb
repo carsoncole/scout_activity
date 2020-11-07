@@ -8,12 +8,14 @@ class Vote < ApplicationRecord
   private
 
   def check_votes_allowed
-    errors.add(:base, "Maximum number of allowed votes has been reached") if self.user.votes_available == 0
+    if user
+      errors.add(:base, "Maximum number of allowed votes has been reached") if user.votes_available == 0
+    end
   end
 
   def voting_within_troop
     if activity
-      errors.add(:base, "Voting only allowed in connected unit") unless user.unit && user.unit == activity.unit
+      errors.add(:base, "Voting only allowed in connected unit") if self&.user&.unit && self&.user.unit != activity.unit 
     end
   end
 end

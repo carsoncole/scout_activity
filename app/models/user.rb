@@ -3,9 +3,9 @@ class User < ApplicationRecord
 
   belongs_to :unit, optional: true
   has_many :votes, dependent: :destroy
-  has_many :activities, dependent: :destroy, foreign_key: 'author_id'
-  has_many :questions, dependent: :destroy
-  has_many :answers, dependent: :destroy
+  has_many :activities, foreign_key: 'author_id', dependent: :nullify
+  has_many :questions, dependent: :nullify
+  has_many :answers, dependent: :nullify
   has_many :logs, dependent: :destroy
 
   scope :owner, -> { where(is_owner: true) }

@@ -4,6 +4,7 @@ class Unit < ApplicationRecord
 
   has_many :activities, dependent: :destroy
   has_many :users
+  has_many :votes, through: :activities
 
   validates :name, presence: true
   validates :name, length: { maximum: 35 }
@@ -14,6 +15,10 @@ class Unit < ApplicationRecord
 
   def owners
     users.where(is_owner: true)
+  end
+
+  def votes_cast
+    activities.sum(:votes_count)
   end
 
   def update_vote_counts!
