@@ -5,20 +5,17 @@
   .row
     .col-md-9
 
-
       %h1
         = @activity.name
       - if @activity.created_at > Time.now - 7.days
         %span.badge.badge-primary NEW
       .activity-icons= render partial: 'activity_icons', locals: { activity: @activity }
 
-
     .col-md-3
       #activity-vote-count
         .activity-count
           = @activity.votes_count || 0
         .votes votes
-
 
   .row
     .col-md-8
@@ -50,7 +47,6 @@
           %hr
           .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'activity-image img-fluid rounded'
 
-
       - if @activity.author
         %hr
         %p
@@ -60,7 +56,6 @@
           - if @activity.is_author_volunteering?
             %br
               The proposer is willing to help lead this activity.
-
 
       - if current_user && (@activity.author == current_user || (current_user.is_owner && current_user.unit == @activity.unit)) || current_user&.is_owner
         %hr
