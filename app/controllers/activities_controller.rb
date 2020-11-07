@@ -11,8 +11,9 @@ class ActivitiesController < ApplicationController
     elsif signed_in? && current_user.activities.where(unit_id: @unit.id).archived.any?
       @archived_activities = current_user.activities.where(unit_id: @unit.id).archived
     end
+    @description = "Here are the list of activities for #{@unit.name} that are being considered. Vote for your favorite activities."
     @description = 'View this example Unit for ideas that can be copied to your own Unit.' if @unit.is_example
-    @title = @unit.name + " - Vote - ScoutActivity"
+    @title = @unit.name + " - Activity Vote - ScoutActivity"
   end
 
   def show
