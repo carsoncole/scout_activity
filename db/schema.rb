@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_142548) do
+ActiveRecord::Schema.define(version: 2020_11_07_163859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_142548) do
     t.boolean "is_international", default: false, null: false
     t.boolean "is_virtual", default: false, null: false
     t.boolean "is_game", default: false, null: false
+    t.string "summary_new"
     t.index ["unit_id"], name: "index_activities_on_unit_id"
   end
 

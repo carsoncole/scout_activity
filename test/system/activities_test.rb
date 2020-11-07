@@ -18,6 +18,7 @@ class ActivitiesTest < ApplicationSystemTestCase
 
     fill_in "What's a good title for your activity idea?", with: Faker::Lorem.sentence(word_count: 5)
     fill_in "Number of days", with: "3"
+    fill_in "Summary", with: Faker::Lorem.sentence(word_count: 3) 
     check "Swimming"
     check "Biking"
     click_on "Create Activity"

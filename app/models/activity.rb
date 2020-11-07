@@ -13,6 +13,7 @@ class Activity < ApplicationRecord
 
   validates :name, presence: true
   validates :name, length: { maximum: 75 }
+  validates :summary_new, presence: true
 
   has_rich_text :summary
   has_rich_text :description
