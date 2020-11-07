@@ -11,11 +11,11 @@ class LoggedInUnitUserUiTest < ApplicationSystemTestCase
     
     # unit button-home page
     click_on user.unit.name
-    assert_selector "h1", text: "Vote"
+    assert_selector "h1", text: user.unit.name + " Activity Vote"
 
     # main nav vote links
     click_on "vote-link"
-    assert_selector "h1", text: "Vote"
+    assert_selector "h1", text: user.unit.name + " Activity Vote"
 
     # main nav propose link
     click_on "propose-link"

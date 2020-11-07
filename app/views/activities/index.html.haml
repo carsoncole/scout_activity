@@ -1,6 +1,8 @@
 #activities
 
-  %h1 Vote
+  %h1
+    = @unit.name
+    Activity Vote
 
   - if signed_in? && @unit == current_user.unit
     .row
@@ -10,11 +12,6 @@
           .vote-count
             .badge.badge-primary#votes-available= current_user.votes_available
             %span.text-muted votes left
-  - else
-    .row
-      .col-md-3
-      .col-md-6.mb-5
-        .text-center.text-muted (You need to have selected this Troop to vote for its activities)
 
   - if @activities.any?
 
@@ -69,6 +66,12 @@
           %tbody
             = render partial: 'activity', collection: @archived_activities, as: :activity
 
+  - unless signed_in?
+    .row
+      .col-md-3
+      .col-md-6.mt-2.mb-5
+        %small
+          .text-center.text-muted (You need to have selected this Troop to vote for its activities)
 
   .row
     .col-md-12.text-center

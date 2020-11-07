@@ -15,6 +15,5 @@ class ActiveSupport::TestCase
       fill_in "Password", with: @user.password
       click_on "Sign in"
     end
-    assert_selector "h1", text: "Vote"
   end
 end

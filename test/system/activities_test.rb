@@ -4,7 +4,7 @@ class ActivitiesTest < ApplicationSystemTestCase
   test "visiting the index" do
     @activity = create(:activity)
     visit unit_activities_url(@activity.unit)
-    assert_selector "h1", text: "Vote"
+    assert_selector "h1", text: @activity.unit.name + " Activity Vote"
   end
 
   test "creating an activity" do
@@ -83,7 +83,7 @@ class ActivitiesTest < ApplicationSystemTestCase
     click_on activity.unit.name
     click_on activity.name
     click_on "copy-activity-link"
-    assert_selector "h1", text: "Vote"
+    assert_selector "h1", text: user.unit.name + " Activity Vote"
     assert_text "Activity '#{activity.name}' copied to your Unit."
     click_on activity.name
   end
