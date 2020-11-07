@@ -21,7 +21,7 @@ class ActivitiesController < ApplicationController
     @title = "#{@unit.name} - #{@activity.name} - ScoutActivity"
     @unit.increment!(:visit_event_count)
     @questions = @activity.questions
-    @description = @activity.description || @activity.name
+    @description = "Activity proposed: " +  @activity.name
   end
 
   def archive_activity

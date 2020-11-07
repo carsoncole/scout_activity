@@ -6,6 +6,7 @@
     .col-md-9
 
       %h1
+        = @unit.name
         = @activity.name
       - if @activity.created_at > Time.now - 7.days
         %span.badge.badge-primary NEW
