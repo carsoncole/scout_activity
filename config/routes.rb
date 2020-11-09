@@ -10,13 +10,14 @@ Rails.application.routes.draw do
       only: [:edit, :update]
   end
 
-  get "/sign_in" => "sessions#new", as: "sign_in"
-  delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
-  get "/sign_up" => "clearance/users#new", as: "sign_up"
+  get "/sign-in" => "sessions#new", as: "sign_in"
+  delete "/sign-out" => "clearance/sessions#destroy", as: "sign_out"
+  get "/sign-up" => "clearance/users#new", as: "sign_up"
   get "successful-signup" => "users#successful_signup", as: 'successful_signup'
   root to: 'home#index'
 
   resources :units, except: [:index, :show, :destroy] do
+    get "/sign-up" => "clearance/users#new", as: "sign_up"
     resources :activities do
       post 'copy' => 'activities#copy', as: 'copy'
       resources :questions do

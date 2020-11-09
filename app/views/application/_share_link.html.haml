@@ -1,7 +1,7 @@
-#share-links
+%aside#share-links
   / %h1 Share links
 
   %p Share the following link to promote signing up for your Unit, voting, and proposing activities.
 
   .link
-    = link_to sign_up_url(unit_id: @unit.id), sign_up_url(unit_id: @unit.id)
+    = link_to unit_sign_up_url(@unit), unit_sign_up_url(@unit)

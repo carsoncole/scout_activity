@@ -50,8 +50,13 @@
   - if @activities.empty?
     %p.text-center
       No activities have been proposed.
-      - if signed_in? && @unit == current_user.unit
-        = link_to "Propose an Activity", new_unit_activity_path(@unit)
+      - if signed_in?
+        = link_to "Propose an Activity.", new_unit_activity_path(@unit)
+      - else
+        = link_to "Sign in", sign_in_path
+        or 
+        = link_to "sign up", sign_up_path
+        to vote or propose and activity.
       
     = render 'share_link'
 
@@ -65,13 +70,6 @@
         %table.table.activities
           %tbody
             = render partial: 'activity', collection: @archived_activities, as: :activity
-
-  - unless signed_in?
-    .row
-      .col-md-3
-      .col-md-6.mt-2.mb-5
-        %small
-          .text-center.text-muted (You need to have selected this Troop to vote for its activities)
 
   .row
     .col-md-12.text-center
