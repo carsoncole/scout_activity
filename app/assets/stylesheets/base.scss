@@ -41,17 +41,19 @@ h1 {
   margin: 1.666rem 0;
 }
 
+
 ul.activities {
   margin-bottom: 3rem;
   .name {
     font-size: 1rem;
     font-weight: 600;
-    display: inline-block;
+    line-height: 1.5em;
   }
   .voting {
     float: right;
-    width: 18em;
+    width: 16.5em;
     text-align: right;
+
   }
   .vote {
     display: inline-block;
@@ -74,9 +76,9 @@ ul.activities {
     line-height: 1em;
     width: 4rem;
     font-weight: 800;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     .votes {
-      font-size: 1rem;
+      font-size: 0.9rem;
       color: $text-muted-color;
       font-weight: 400;
     }
@@ -174,9 +176,8 @@ table.activities {
     text-align: center;
     margin-top: 4rem;
   }
-  .vote-count {
-    font-weight: 600;
-    font-size: 1.5rem;
+  .list-group-item {
+    padding-right: 0.4em;
   }
 }
 

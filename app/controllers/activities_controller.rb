@@ -79,10 +79,12 @@ class ActivitiesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @activity.author == current_user && @activity.update(activity_params)
+      if (@activity.author == current_user || @activity.unit == current_user.unit ) && @activity.update(activity_params)
         format.html { redirect_to unit_activity_path(@unit, @activity), notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
+        puts "*"*80
+        puts @activity.errors.full_messages
         format.html { render :edit }
         format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
