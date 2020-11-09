@@ -10,9 +10,11 @@ class User < ApplicationRecord
 
   scope :owner, -> { where(is_owner: true) }
   scope :admin, -> { where(is_admin: true) }
+  scope :app_admin, -> { where(is_app_admin: true)}
   scope :active, -> { where("last_sign_in_at > ?", Time.now - 7.days) }
 
   before_save :clear_votes!, if: Proc.new {|u| u.unit_id_changed?}
+  before_save :remove_admin!, if: Proc.new {|u| u.unit_id_changed? && u.persisted? }
 
   def initialize(args)
     super(args)
@@ -31,7 +33,23 @@ class User < ApplicationRecord
     is_admin
   end
 
+  def owner?
+    is_owner
+  end
+
+  def admin_or_owner?
+    admin? || owner?
+  end
+
+  def app_admin?
+    is_app_admin
+  end
+
   def clear_votes!
     votes.destroy_all
+  end
+
+  def remove_admin!
+    self.is_admin = false
   end
 end

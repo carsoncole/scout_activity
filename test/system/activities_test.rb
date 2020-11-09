@@ -30,6 +30,10 @@ class ActivitiesTest < ApplicationSystemTestCase
 
     visit unit_activity_path(@activity.unit, @activity)
     assert_selector "h1", text: @activity.name
+    assert_no_selector "#activity-edit-link"
+    assert_no_selector "#copy-activity-link"
+    assert_no_selector "#archive-button"
+    assert_no_selector "#destroy-button"
   end
 
   test "updating an activity" do
@@ -44,6 +48,11 @@ class ActivitiesTest < ApplicationSystemTestCase
     assert_text "Activity was successfully updated."
     assert_selector "h1", text: activity.name
     assert_text "Activity length: 5 days"
+
+    assert_selector "#activity-edit-link"
+    assert_no_selector "#copy-activity-link"
+    assert_selector "#archive-button"
+    assert_selector "#destroy-button"
   end
 
   test "archiving an activity" do
@@ -87,5 +96,17 @@ class ActivitiesTest < ApplicationSystemTestCase
     assert_selector "h1", text: user.unit.name + " Activity Vote"
     assert_text "Activity '#{activity.name}' copied to your Unit."
     click_on activity.name
+  end
+
+  test "admnin user viewing activities" do
+    user = create(:admin_user)
+    activities = create_list(:activity, 3, unit: user.unit, author: user)
+    sign_in(user)
+    visit unit_activity_path(user.unit, activities[1])
+
+    assert_selector "#activity-edit-link"
+    assert_selector "#copy-activity-link"
+    assert_selector "#archive-button"
+    assert_selector "#destroy-button"
   end
 end

@@ -11,5 +11,9 @@ FactoryBot.define do
     factory :admin_user do
       is_admin { true }
     end
+
+    factory :app_admin_user do
+      is_app_admin { true }
+    end
   end
 end

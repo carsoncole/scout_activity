@@ -11,7 +11,7 @@ class AdminMailer < ApplicationMailer
     @new_activities_count = Activity.where("created_at > ?", Time.now - 7.days).count
     @active_users_count = User.active.all.count
     @total_users_count = User.all.count
-    emails = User.admin.collect(&:email).join(",")
+    emails = User.app_admin.collect(&:email).join(",")
     User.admin.each {|u| u.logs.create(mailer_instance: 'master_report')}
     mail to: emails, subject: "ScoutActivity Management Report"
   end

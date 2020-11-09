@@ -10,7 +10,11 @@ class UsersTest < ApplicationSystemTestCase
       assert_selector "h1", text: "Sign up"
       fill_in "Email", with: Faker::Internet.email
       fill_in "Password", with: "password"
-      
+
+      assert_no_selector "user_is_admin"
+      assert_no_selector "user_is_owner"
+      assert_no_selector "user_is_subscribed"
+
       click_on "Sign up"
     end
     assert_selector "h2", text: "You're signed up."
@@ -43,7 +47,7 @@ class UsersTest < ApplicationSystemTestCase
       fill_in "Password", with: "password"
       all('#unit-select option')[1].select_option
       click_on "Sign up"
-    end
+        end
     assert_equal unit, User.last.unit
   end
 
@@ -59,5 +63,93 @@ class UsersTest < ApplicationSystemTestCase
     within "#user-menu" do
       click_on user.email
     end
+  end
+
+  test "editing a user" do
+    user = create(:user)
+    sign_in(user)
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      click_on user.email
+    end
+
+    assert_no_selector "#user_is_admin"
+    assert_no_selector "#user_is_owner"
+    assert_selector "#user_is_subscribed"
+  end
+
+  test "editing an admin" do
+    user = create(:admin_user)
+    sign_in(user)
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      click_on user.email
+    end
+
+    assert_selector "#user_is_admin"
+    assert_no_selector "#user_is_owner"
+    assert_selector "#user_is_subscribed"
+  end
+
+  test "editing an owner" do
+    user = create(:owner_user)
+    sign_in(user)
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      click_on user.email
+    end
+
+    assert_no_selector "#user_is_admin"
+    assert_selector "#user_is_owner"
+    assert_selector "#user_is_subscribed"
+  end
+
+  test "editing a user unit" do
+    user = create(:user)
+    sign_in(user)
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      assert_no_link user.unit.name
+    end
+  end
+
+  test "editing a admin unit" do
+    user = create(:admin_user)
+    sign_in(user)
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      assert_link user.unit.name
+      click_on user.unit.name
+    end
+    assert_selector "h1", text: user.unit.name
+    has_table? "#users"
+  end
+
+  test "editing a owner unit" do
+    user = create(:owner_user)
+    user_2 = create(:user, unit: user.unit)
+    sign_in(user)
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      assert_link user.unit.name
+      click_on user.unit.name
+    end
+    assert_selector "h1", text: user.unit.name
+    has_table? "#users"
+
+    click_on "user-#{user.id}-edit-link"
+    assert_no_selector "#user_is_admin"
+    find_field "user[is_owner]", disabled: true
+    assert_selector "#user_is_subscribed"
+
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      assert_link user.unit.name
+      click_on user.unit.name
+    end
+    click_on "user-#{user_2.id}-edit-link"
+    assert_no_selector "#user_is_admin"
+    assert_no_selector "#user_is_owner"
+    assert_selector "#user_is_subscribed"
   end
 end

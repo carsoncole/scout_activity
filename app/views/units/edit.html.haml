@@ -21,7 +21,11 @@
             %td.email
               = user.email
               - if user.is_owner?
+                .badge.badge-info Owner
+              - if user.is_admin?
                 .badge.badge-info Admin
-
+              - if current_user.admin_or_owner?
+                = link_to edit_user_path(user), id: "user-#{user.id}-edit-link" do
+                  = fa_icon "edit"
             %td.vote-count= user.votes_count
 

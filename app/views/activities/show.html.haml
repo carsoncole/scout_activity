@@ -58,17 +58,17 @@
             %br
               The proposer is willing to help lead this activity.
 
-      - if current_user && (@activity.author == current_user || (current_user.is_owner && current_user.unit == @activity.unit)) || current_user&.is_owner
+      - if current_user && (@activity.author == current_user || (current_user.admin_or_owner? && current_user.unit == @activity.unit)) || current_user&.admin_or_owner?
         %hr
-        - if current_user && (@activity.author == current_user || (current_user.is_owner && current_user.unit == @activity.unit))
+        - if current_user && (@activity.author == current_user || (current_user.admin_or_owner? && current_user.unit == @activity.unit))
           = link_to edit_unit_activity_path(@unit, @activity), class: 'action', id: 'activity-edit-link' do
             = fa_icon "edit"
           - if @activity.is_archived?
-            = button_to "Unarchive", unit_activity_archive_activity_path(@unit, @activity), class: 'btn btn-primary action'
+            = button_to "Unarchive", unit_activity_archive_activity_path(@unit, @activity), class: 'btn btn-primary action', id: 'unarchive-button'
           - else
-            = button_to "Archive", unit_activity_archive_activity_path(@unit, @activity), class: 'btn btn-primary action'
-          = button_to "Destroy", unit_activity_path(@unit, @activity), method: :delete, data: { confirm: 'Are you sure? This will destroy the Activity and return any votes placed for it.'}, class: 'btn btn-danger action'
-        - if current_user&.is_owner?
+            = button_to "Archive", unit_activity_archive_activity_path(@unit, @activity), class: 'btn btn-primary action', id: 'archive-button'
+          = button_to "Destroy", unit_activity_path(@unit, @activity), method: :delete, data: { confirm: 'Are you sure? This will destroy the Activity and return any votes placed for it.'}, class: 'btn btn-danger action', id: 'destroy-button'
+        - if current_user&.admin_or_owner?
           = link_to unit_activity_copy_path(current_user.unit, @activity), id: 'copy-activity-link', method: :post do
             = fa_icon "copy"
 

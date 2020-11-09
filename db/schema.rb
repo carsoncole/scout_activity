@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_163859) do
+ActiveRecord::Schema.define(version: 2020_11_09_194702) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -135,12 +135,13 @@ ActiveRecord::Schema.define(version: 2020_11_07_163859) do
     t.string "confirmation_token", limit: 128
     t.string "remember_token", limit: 128
     t.integer "unit_id"
-    t.boolean "is_admin", default: false
+    t.boolean "is_app_admin", default: false
     t.boolean "is_owner", default: false, null: false
     t.boolean "is_subscribed", default: true, null: false
     t.string "token"
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "last_sign_in_at"
+    t.boolean "is_admin", default: false, null: false
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

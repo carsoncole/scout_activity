@@ -6,8 +6,8 @@ class ActivitiesController < ApplicationController
   def index
     @activities = @unit.activities.non_high_adventure.votable.order(votes_count: :desc)
     @high_adventure_activities  = @unit.activities.high_adventure.votable.order(votes_count: :desc)
-    if signed_in? && current_user.is_owner? && current_user.unit == @unit
-      @archived_activities = @unit.activities.archived if current_user.is_owner? && current_user.unit == @unit
+    if signed_in? && current_user.admin_or_owner? && current_user.unit == @unit
+      @archived_activities = @unit.activities.archived if current_user.admin_or_owner? && current_user.unit == @unit
     elsif signed_in? && current_user.activities.where(unit_id: @unit.id).archived.any?
       @archived_activities = current_user.activities.where(unit_id: @unit.id).archived
     end
@@ -92,7 +92,7 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    @activity.destroy if @activity.author == current_user || (@activity.unit == current_user.unit && current_user.is_owner?)
+    @activity.destroy if @activity.author == current_user || (@activity.unit == current_user.unit && current_user.admin_or_owner?)
     respond_to do |format|
       format.html { redirect_to unit_activities_url(@unit), notice: 'Activity was successfully destroyed.' }
       format.json { head :no_content }

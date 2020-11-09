@@ -2,7 +2,7 @@ require 'test_helper'
 
 class AdminMailerTest < ActionMailer::TestCase
   test "master_report" do
-    create(:admin_user, email: 'admin@example.com')
+    create(:app_admin_user, email: 'admin@example.com')
     mail = AdminMailer.master_report
     assert_equal "ScoutActivity Management Report", mail.subject
     assert_equal ["admin@example.com"], mail.to

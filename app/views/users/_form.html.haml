@@ -14,12 +14,22 @@
 
     = form.label :unit
     
-    = form.collection_select :unit_id, Unit.all, :id, :name, {include_blank: true }, class: 'form-control', id: 'unit-select', disabled: current_user && current_user.persisted? && current_user.unit.present? && current_user.is_owner?
+    = form.collection_select :unit_id, Unit.all, :id, :name, {include_blank: true }, class: 'form-control', id: 'unit-select', disabled: @user && @user.persisted? && @user.unit.present? && @user.is_owner?
     - unless current_user
       %small.text-muted Select your Unit, or leave blank if your Unit has not been added yet. You'll do that next.
 
   - if @user.persisted? && @user.unit.nil?
     %p= link_to "Add a Unit", new_unit_path
+
+- if @user.unit && !@user.owner? && current_user.admin_or_owner?
+  .form-group.form-check-inline
+    = form.check_box :is_admin, class: 'form-check-input'
+    = form.label :admin, class: 'form-check-label'
+
+- if @user.owner?
+  .form-group.form-check-inline
+    = form.check_box :is_owner, class: 'form-check-input', disabled: true
+    = form.label :owner, class: 'form-check-label'
 
 - if current_user && current_user.persisted?
   %br

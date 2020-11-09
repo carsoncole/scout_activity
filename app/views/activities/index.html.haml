@@ -48,16 +48,14 @@
       
     = render 'share_link'
 
-  / - if @archived_activities&.any?
-  /   %br
-  /   .row
-  /     .col-md-2
-  /     .col-md-8
-  /       %h3.text-center.mb-2 Archived
+  - if @archived_activities&.any?
+    .row
+      .col-md-2
+      .col-md-8
+        %h3.text-center.mb-2 Archived
 
-  /       %table.table.activities
-  /         %tbody
-  /           = render partial: 'activity', collection: @archived_activities, as: :activity
+        %ul.activities.list-group
+          = render partial: 'activity', collection: @archived_activities, as: :activity
 
   .row
     .col-md-12.text-center

@@ -15,4 +15,4 @@ end
 #   troop.activities.create(name: a)
 # end
 
-User.create(email: 'carson.cole@protonmail.com', password: 'SChiLanC67', is_admin: true)
+User.create(email: 'carson.cole@protonmail.com', password: 'SChiLanC67', is_app_admin: true)

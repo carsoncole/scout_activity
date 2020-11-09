@@ -1,10 +1,28 @@
 require "application_system_test_case"
 
 class UnitsTest < ApplicationSystemTestCase
-  # test "visiting the index" do
-  #   visit units_url
-  #   assert_selector "h1", text: "Troops"
-  # end
+  test "visiting the unit edit as a user" do
+    user = create(:user)
+    sign_in(user)
+    visit edit_unit_url(user.unit)
+    assert_selector "h1", text: user.unit.name + ' Activity Vote' # redirect to root
+  end
+
+  test "visiting unit as owner" do
+    owner = create(:owner_user)
+    sign_in(owner)
+    visit edit_unit_url(owner.unit)
+    assert_selector "h1", text: owner.unit.name
+    assert_table "users"
+  end
+
+  test "visiting unit as admin" do
+    admin = create(:admin_user)
+    sign_in(admin)
+    visit edit_unit_url(admin.unit)
+    assert_selector "h1", text: admin.unit.name
+    assert_table "users"
+  end
 
   # test "creating a Troop" do
   #   visit units_url
