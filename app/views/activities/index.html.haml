@@ -18,22 +18,12 @@
     - unless signed_in?
       .text-center.mb-4= button_to "Sign in or sign up to vote", sign_in_path, method: :get, class: 'btn btn-primary'
 
+
     .row
       .col-md-2
       .col-md-8
-        %table.table.activities
-          %thead
-            %tr
-              %th
-              %th= fa_icon "users"
-              - if signed_in? && current_user.unit == @unit
-                %th
-                %th
-                  = fa_icon "user"
-          %tbody
-            = render(@activities)
-
-  %br
+        %ul.activities.list-group
+          = render(@activities)
 
   - if @high_adventure_activities&.any?
     .row
@@ -42,11 +32,9 @@
         %h3.text-center.mb-2 High Adventure
         %p.text-muted.text-center.mb-4 Please only vote if you are at least 13 years old
 
-        %table.table.activities
-          %tbody
-            = render partial: 'activity', collection: @high_adventure_activities, as: :activity
+        %ul.activities.list-group
+          = render partial: 'activity', collection: @high_adventure_activities, as: :activity
 
-        %hr
   - if @activities.empty?
     %p.text-center
       No activities have been proposed.
@@ -60,16 +48,16 @@
       
     = render 'share_link'
 
-  - if @archived_activities&.any?
-    %br
-    .row
-      .col-md-2
-      .col-md-8
-        %h3.text-center.mb-2 Archived
+  / - if @archived_activities&.any?
+  /   %br
+  /   .row
+  /     .col-md-2
+  /     .col-md-8
+  /       %h3.text-center.mb-2 Archived
 
-        %table.table.activities
-          %tbody
-            = render partial: 'activity', collection: @archived_activities, as: :activity
+  /       %table.table.activities
+  /         %tbody
+  /           = render partial: 'activity', collection: @archived_activities, as: :activity
 
   .row
     .col-md-12.text-center

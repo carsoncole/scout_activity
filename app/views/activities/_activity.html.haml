@@ -1,5 +1,5 @@
-%tr
-  %td.name
+%li.list-group-item
+  .name
     = link_to activity.name, unit_activity_path(@unit, activity)
     &nbsp;
     - if activity.created_at > Time.now - 7.days
@@ -10,23 +10,59 @@
       \|
     %span.text-muted
       = pluralize(activity.duration_days, 'day')
-  %td.votes-count(id="activity-#{activity.id}-total-count")
-    - if activity.is_archived?
-      .badge.badge-info Archived
-    - else
-      = activity.votes_count || 0
-  - if signed_in? && current_user.unit == @unit
-    %td.vote
-      - unless activity.is_archived?
-        - if signed_in? && current_user.unit == @unit
-          - if current_user.votes_available.positive?
-            = button_to unit_votes_path(@unit, activity_id: activity.id), class: 'btn btn-primary', id: "place-vote-#{activity.id}" do
-              = fa_icon "plus"
-          - if current_user.votes.find_by(activity_id: activity.id)
-            - vote = current_user.votes.order(created_at: :desc).where(activity_id: activity.id).first
-            = button_to unit_vote_path(@unit, vote), method: :delete, class: 'btn btn-primary', id: "remove-vote-#{activity.id}" do
-              = fa_icon "minus"
-      %td.votes-count
+  .voting
+    .votes-count(id="activity-#{activity.id}-total-count")
+      - if activity.is_archived?
+        .badge.badge-info Archived
+      - else
+        = activity.votes_count || 0
+        .votes
+          = "vote".pluralize(activity.votes_count)
+    - if signed_in? && current_user.unit == @unit
+      .vote
+        - unless activity.is_archived?
+          - if signed_in? && current_user.unit == @unit
+            - if current_user.votes_available.positive?
+              = button_to unit_votes_path(@unit, activity_id: activity.id), class: 'btn btn-primary', id: "place-vote-#{activity.id}" do
+                = fa_icon "plus"
+            - if current_user.votes.find_by(activity_id: activity.id)
+              - vote = current_user.votes.order(created_at: :desc).where(activity_id: activity.id).first
+              = button_to unit_vote_path(@unit, vote), method: :delete, class: 'btn btn-primary', id: "remove-vote-#{activity.id}" do
+                = fa_icon "minus"
+      .votes-count
         - unless activity.is_archived?
           - count = activity.votes.where(user: current_user).count
           = count || 0
+
+/ %tr
+/   %td.name
+/     = link_to activity.name, unit_activity_path(@unit, activity)
+/     &nbsp;
+/     - if activity.created_at > Time.now - 7.days
+/       .badge.badge-primary NEW
+/     %br
+/     = render partial: 'activity_icons', locals: { activity: activity }
+/     - if activity.activity_icons?
+/       \|
+/     %span.text-muted
+/       = pluralize(activity.duration_days, 'day')
+/   %td.votes-count(id="activity-#{activity.id}-total-count")
+/     - if activity.is_archived?
+/       .badge.badge-info Archived
+/     - else
+/       = activity.votes_count || 0
+/   - if signed_in? && current_user.unit == @unit
+/     %td.vote
+/       - unless activity.is_archived?
+/         - if signed_in? && current_user.unit == @unit
+/           - if current_user.votes_available.positive?
+/             = button_to unit_votes_path(@unit, activity_id: activity.id), class: 'btn btn-primary', id: "place-vote-#{activity.id}" do
+/               = fa_icon "plus"
+/           - if current_user.votes.find_by(activity_id: activity.id)
+/             - vote = current_user.votes.order(created_at: :desc).where(activity_id: activity.id).first
+/             = button_to unit_vote_path(@unit, vote), method: :delete, class: 'btn btn-primary', id: "remove-vote-#{activity.id}" do
+/               = fa_icon "minus"
+/       %td.votes-count
+/         - unless activity.is_archived?
+/           - count = activity.votes.where(user: current_user).count
+/           = count || 0

@@ -41,6 +41,48 @@ h1 {
   margin: 1.666rem 0;
 }
 
+ul.activities {
+  margin-bottom: 3rem;
+  .name {
+    font-size: 1rem;
+    font-weight: 600;
+    display: inline-block;
+  }
+  .voting {
+    float: right;
+    width: 18em;
+    text-align: right;
+  }
+  .vote {
+    display: inline-block;
+    width: 7rem;
+    text-align: center;
+    form {
+      display: inline-block;
+
+      button {
+        display: inline-block;
+        margin-left: 0.3rem;
+        margin-right: 0.3rem;
+      }
+    }
+  }
+  .votes-count {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1em;
+    width: 4rem;
+    font-weight: 800;
+    font-size: 1.3rem;
+    .votes {
+      font-size: 1rem;
+      color: $text-muted-color;
+      font-weight: 400;
+    }
+  }
+}
+
 table.activities {
   th, td {
     padding: 0.3em;
