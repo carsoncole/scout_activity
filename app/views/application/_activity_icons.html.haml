@@ -1,26 +1,26 @@
 - if activity.is_hiking?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Hiking')= fa_icon("hiking") 
+  .activity-icon#hiking-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Hiking')= fa_icon("hiking") 
 - if activity.is_swimming?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Swimming')= fa_icon "swimmer" 
+  .activity-icon#swimming-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Swimming')= fa_icon "swimmer" 
 - if activity.is_biking?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Biking')= fa_icon "biking"
+  .activity-icon#biking-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Biking')= fa_icon "biking"
 - if activity.is_plane?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Flying')= fa_icon "plane"
+  .activity-icon#flying-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Flying')= fa_icon "plane"
 - if activity.is_cooking?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Cooking')= fa_icon "utensils"
+  .activity-icon#cooking-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Cooking')= fa_icon "utensils"
 - if activity.is_merit_badge?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Merit Badge')= image_tag "merit-badge.svg", width: '26px'
+  .activity-icon#merit-badge-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Merit Badge')= image_tag "merit-badge.svg", width: '26px'
 - if activity.is_camping?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Camping')= fa_icon "campground"
+  .activity-icon#camping-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Camping')= fa_icon "campground"
 - if activity.is_virtual?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Virtual')= fa_icon "video"
+  .activity-icon#virtual-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Virtual')= fa_icon "video"
 - if activity.is_game?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Game')= fa_icon "trophy"
+  .activity-icon#game-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Game')= fa_icon "trophy"
 - if activity.is_fundraising?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Fundraising')= fa_icon "dollar-sign"
+  .activity-icon#fundraising-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Fundraising')= fa_icon "dollar-sign"
 - if activity.is_community_service?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Community Service')= fa_icon "store" 
+  .activity-icon#community-service-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Community Service')= fa_icon "store" 
 - if activity.is_international?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='International Scouting')= image_tag "world-crest.png", width: '26px'
+  .activity-icon#international-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='International Scouting')= image_tag "world-crest.png", width: '26px'
 - if activity.is_high_adventure?
-  .activity-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='High Adventure')= fa_icon "mountain"
+  .activity-icon#high-adventure-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='High Adventure')= fa_icon "mountain"

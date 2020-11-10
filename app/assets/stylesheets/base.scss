@@ -466,6 +466,14 @@ a.btn {
 }
 #faqs {
   .faq {
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    p {
+      font-size: 1rem;
+      font-weight: 300;
+    }
     margin-bottom: 2em;
     .question {
       font-weight: 600;
