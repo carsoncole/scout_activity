@@ -1,0 +1,14 @@
+.row
+  .col-md-8
+
+    %strong= @newsletter.subject
+
+    %div.mb-5.mt-3= @newsletter.content
+
+    - if @newsletter.sent_at.present?
+      %div
+        Sent:
+        = nice_datetime(@newsletter.sent_at)
+    - else
+      %strong
+        DRAFT

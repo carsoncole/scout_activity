@@ -1,0 +1,8 @@
+= form_for @newsletter do |f|
+  = f.label :subject
+  = f.text_field :subject
+
+  = f.label :content
+  = f.rich_text_area :content
+
+  = f.submit

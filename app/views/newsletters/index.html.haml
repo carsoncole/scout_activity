@@ -1,0 +1,9 @@
+.row
+  .col-md-8
+    %h1 Newsletters
+
+    %table.table
+      - @newsletters.each do |newsletter|
+        %tr
+          %td= link_to newsletter.subject, edit_newsletter_path(newsletter)
+
