@@ -1,31 +1,35 @@
 .row
-  .col-md-3
-  .col-md-6
+  .col-md-2
+  .col-md-8
     #faqs
-      %h1 FAQs
+      %h1 ScoutActivity Frequently Asked Questions (FAQs)
 
       .faq
-        .question Does voting require registering?
-        .answer Yes. A person must register AND they must select the correct Unit, as they can only vote for the Unit's activities that they selected. 
+        %h2.question Does voting require registering?
+        %p.answer Yes. A person must register AND they must select the correct Unit, as they can only vote for the Unit's activities that they selected. 
 
       .faq
-        .question How many votes does each User get?
-        .answer The default number of votes is 20, but this can be changed by the adminstrator of the Unit.
+        %h2.question How many votes does each User get?
+        %p.answer The default number of votes is 20, but this can be changed by the adminstrator of the Unit.
 
       .faq
-        .question Can I delete or archive an activity?
-        .answer Yes. Deleting or archiving can be done by the author of the activity or Administrator of the Unit and will remove the activity from voting and also return all votes.
+        %h2.question Can I delete or archive an activity?
+        %p.answer Yes. Deleting or archiving can be done by the author of the activity or Administrator of the Unit and will remove the activity from voting and also return all votes.
 
       .faq
-        .question How can I reset the votes?
-        .answer
+        %h2.question Can I reset the votes?
+        %p.answer
           To remove votes, the Administrator of the Unit should set the votes allowed
           to `0`, which will remove all votes (the system will remove any user excess votes as you reduce the number). Once the votes have been removed, the votes allowed can be set to any number.
 
       .faq
-        .question How can I copy an activity?
-        .answer
+        %h2.question Can I copy an activity?
+        %p.answer
           Yes. You must be a Unit administrator (you created the Unit). View any activity and click the copy link, which will result in the activity being copied. Images will be copied. Questions and answers will not be copied.
           %br
           .text-center= image_tag "activity-action-links.jp2", class: 'img-fluid rounded shadow-sm p-3 mb-5'
-          
+
+      .faq
+        %h2.question Can I give admin rights to other users?
+        %p.answer
+          Yes. Owners of Units (whomever created the Unit), can assign users as Admins in Unit settings.
