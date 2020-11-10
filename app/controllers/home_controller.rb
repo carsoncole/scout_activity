@@ -17,7 +17,7 @@ class HomeController < ApplicationController
   end
 
   def faqs
-    @title = 'FAQs - ScoutActivity'
+    @title = 'Frequently Asked Questions - ScoutActivity'
     @description = 'Frequently asked questions about how to best use ScoutActivity.com'
   end
 
