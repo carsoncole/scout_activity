@@ -215,7 +215,16 @@ table.activities {
       color: #fff;
     }
   }
-  h1.choice {
+}
+#troop-selection {
+  h1 {
+    color: #999;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin: 0.5em 0;
+    text-align: center;
+  }
+  h2 {
     color: #999;
     font-weight: 600;
     font-size: 1.1rem;
@@ -223,6 +232,7 @@ table.activities {
     text-align: center;
   }
 }
+
 #clearance {
   &.sign-up, &.sign-in, &.password-reset {
     h1 {
