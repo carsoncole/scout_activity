@@ -27,5 +27,8 @@
               - if current_user.admin_or_owner?
                 = link_to edit_user_path(user), id: "user-#{user.id}-edit-link" do
                   = fa_icon "edit"
+                - unless user.is_owner?
+                  = link_to unit_user_path(@unit, user), method: :delete, id: "user-#{user.id}-remove-link", data: { confirm: 'This will remove the User from your Unit, and remove any votes they placed. The User will still have a ScoutActivity account and they can re-associate to any Unit.'} do
+                    = fa_icon "trash"
             %td.vote-count= user.votes_count
 

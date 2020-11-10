@@ -5,7 +5,7 @@ class UnitsTest < ApplicationSystemTestCase
     user = create(:user)
     sign_in(user)
     visit edit_unit_url(user.unit)
-    assert_selector "h1", text: user.unit.name + ' Activity Vote' # redirect to root
+    assert_selector "h1", text: 'Planning Scout Activities' # redirect to root
   end
 
   test "visiting unit as owner" do

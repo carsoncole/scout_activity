@@ -16,8 +16,9 @@ Rails.application.routes.draw do
   get "successful-signup" => "users#successful_signup", as: 'successful_signup'
   root to: 'home#index'
 
-  resources :units, except: [:index, :show, :destroy] do
+  resources :units, except: [:index, :show] do
     get "/sign-up" => "clearance/users#new", as: "sign_up"
+    resources :users, only: [:destroy]
     resources :activities do
       post 'copy' => 'activities#copy', as: 'copy'
       resources :questions do

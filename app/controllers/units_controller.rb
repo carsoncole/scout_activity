@@ -1,6 +1,7 @@
 class UnitsController < ApplicationController
   before_action :require_login
-  before_action :get_unit, only: [:show, :edit, :update, :destroy]
+  before_action :get_unit, only: [:edit, :update]
+  before_action :require_admin_owner_login, only: [:edit, :update]
   before_action :set_title
 
   def new
@@ -9,7 +10,6 @@ class UnitsController < ApplicationController
   end
 
   def edit
-    redirect_to unit_activities_path(@unit) unless current_user.unit == @unit && current_user.admin_or_owner?
     @users = @unit.users
     @title = "Unit info - #{@unit.name} - ScoutActivity"
   end
@@ -35,7 +35,7 @@ class UnitsController < ApplicationController
 
   def update
     respond_to do |format|
-      if current_user.unit == @unit && current_user.admin_or_owner? && @unit.update(unit_params)
+      if @unit.update(unit_params)
         format.html { redirect_to unit_activities_path(@unit), notice: 'Unit was successfully updated.' }
         format.json { render :show, status: :ok, location: @unit }
       else
