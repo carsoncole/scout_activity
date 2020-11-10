@@ -11,22 +11,22 @@
         %h5.text-muted.text-center Scouting tool for collecting, promoting and voting on unit activity ideas.
 
 
-  .row
-    .col-md-12.text-center
-      %h2.choice Select a Troop
+  %aside#troop-selection
+    .row
+      .col-md-12.text-center
+        %h1.choice Select a Troop
 
-  .row
-    .col-md-1
-    .col-md-10.mb-3.text-center
-
-      - @units.each do |unit|
-        - if unit.id == 1
-          = link_to unit.name, unit_activities_path(unit), class: 'btn btn-primary troop', id: 'example-unit'
-        - else
-          - if signed_in? && current_user.unit == unit
-            = link_to unit.name, unit_activities_path(unit), class: 'btn btn-outline-primary troop'
+    .row
+      .col-md-1
+      .col-md-10.mb-3.text-center
+        - @units.each do |unit|
+          - if unit.id == 1
+            = link_to unit.name, unit_activities_path(unit), class: 'btn btn-primary troop', id: 'example-unit'
           - else
-            = link_to unit.name, unit_activities_path(unit), class: 'btn btn-primary troop'
+            - if signed_in? && current_user.unit == unit
+              = link_to unit.name, unit_activities_path(unit), class: 'btn btn-outline-primary troop'
+            - else
+              = link_to unit.name, unit_activities_path(unit), class: 'btn btn-primary troop'
 
   .row
     .col-md-2
