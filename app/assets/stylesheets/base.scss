@@ -183,6 +183,11 @@ table.activities {
   #activity-filter {
     margin: 1.25rem 0 0.5rem 0;
   }
+  p.top-activities-message {
+    color: $text-muted-color;
+    font-size: 0.8rem;
+    text-align: center;
+  }
 }
 
 #info {

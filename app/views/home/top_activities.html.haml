@@ -3,6 +3,9 @@
     .col-md-8
       %h1 Top Scout Troop Activities
 
+      %p.top-activities-message
+        Logged in users can vote for their favorite activities. Votes don't count against Unit votes.
+
       %nav.nav#activity-filter
         = link_to top_activities_path(filter: 'is_hiking'), class: 'nav-link' do
           = fa_icon "hiking"
