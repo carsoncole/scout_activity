@@ -22,8 +22,16 @@ class HomeController < ApplicationController
   end
 
   def example_unit
-    @example_unit = Unit.example.first
+    @example_unit = Unit.example
     @title = 'Example Unit - ScoutActivity'
     @description = 'Here are Unit examples that you can view and copy the activities'
+  end
+
+  def top_activities
+    @unit = Unit.example
+    @activities = @unit.activities.votable
+    if params[:filter]
+      @activities = @activities.where(params[:filter])
+    end
   end
 end

@@ -35,4 +35,5 @@ Rails.application.routes.draw do
   get 'resources' => 'home#resources', as: 'activity_resources'
   get 'example-unit' => 'home#example_unit', as: 'example_unit'
   get '/sitemap' => 'sitemap#sitemap', as: 'sitemap'
+  get '/top-activites' => 'home#top_activities', as: 'top_activities'
 end
