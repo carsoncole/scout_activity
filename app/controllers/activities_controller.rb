@@ -105,11 +105,11 @@ class ActivitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def require_unit_user
-      redirect_to root_path unless current_user.unit == @unit
+      redirect_to root_path unless signed_in? && current_user.unit == @unit
     end
 
     def require_author_admin_owner
-      redirect_to root_path unless @activity.author == current_user || current_user.admin_or_owner?
+      redirect_to root_path unless signed_in? && (@activity.author == current_user || current_user.admin_or_owner?)
     end
 
     def set_activity
