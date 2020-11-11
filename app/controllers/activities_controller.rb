@@ -1,6 +1,8 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:create, :update, :destroy, :copy]
+  before_action :require_unit_user, except: [:index, :show, :copy]
+  before_action :require_author_admin_owner, only: [:edit, :update, :destroy]
   before_action :set_title
 
   def index
@@ -82,7 +84,7 @@ class ActivitiesController < ApplicationController
 
   def update
     respond_to do |format|
-      if (@activity.author == current_user || @activity.unit == current_user.unit ) && @activity.update(activity_params)
+      if @activity.update(activity_params)
         format.html { redirect_to unit_activity_path(@unit, @activity), notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
@@ -93,7 +95,7 @@ class ActivitiesController < ApplicationController
   end
 
   def destroy
-    @activity.destroy if @activity.author == current_user || (@activity.unit == current_user.unit && current_user.admin_or_owner?)
+    @activity.destroy
     respond_to do |format|
       format.html { redirect_to unit_activities_url(@unit), notice: 'Activity was successfully destroyed.' }
       format.json { head :no_content }
@@ -102,6 +104,14 @@ class ActivitiesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def require_unit_user
+      redirect_to root_path unless current_user.unit == @unit
+    end
+
+    def require_author_admin_owner
+      redirect_to root_path unless @activity.author == current_user || current_user.admin_or_owner?
+    end
+
     def set_activity
       @activity = Activity.find(params[:id])
     end

@@ -21,6 +21,17 @@ class ActivitiesTest < ApplicationSystemTestCase
     assert_no_selector "#destroy-button"
   end
 
+  test "activity action buttons for user not in a unit" do
+    activity = create(:activity)
+    
+    sign_in
+    visit unit_activity_path(activity.unit, activity)
+    assert_no_selector "#activity-edit-link"
+    assert_no_selector "#copy-activity-link"
+    assert_no_selector "#archive-button"
+    assert_no_selector "#destroy-button"
+  end
+
   test "editing an activity (as author)" do
     sign_in
     activity = create(:activity, author: @user)
@@ -31,14 +42,14 @@ class ActivitiesTest < ApplicationSystemTestCase
     assert_selector "#archive-button"
     assert_selector "#destroy-button"
 
-    assert_text "Activity length: " + activity.duration_days
+    assert_text activity.duration_days + ' day'
     click_on "activity-edit-link"
     fill_in "Number of days", with: '5'
     fill_in "What's a good title for your activity idea?", with: activity.name + 'New'
     click_on "Update Activity"
     assert_text "Activity was successfully updated."
     assert_selector "h1", text: activity.name
-    assert_text "Activity length: 5 days"
+    assert_text "5 days"
   end
 
   test "editing an activity (as admin)" do
@@ -52,14 +63,14 @@ class ActivitiesTest < ApplicationSystemTestCase
     assert_selector "#archive-button"
     assert_selector "#destroy-button"
 
-    assert_text "Activity length: " + activity.duration_days
+    assert_text activity.duration_days + ' day'
     click_on "activity-edit-link"
     fill_in "Number of days", with: '5'
     fill_in "What's a good title for your activity idea?", with: activity.name + 'New'
     click_on "Update Activity"
     assert_text "Activity was successfully updated."
     assert_selector "h1", text: activity.reload.name
-    assert_text "Activity length: 5 days"
+    assert_text "5 days"
   end
 
   test "editing an activity (as owner)" do
@@ -73,17 +84,28 @@ class ActivitiesTest < ApplicationSystemTestCase
     assert_selector "#archive-button"
     assert_selector "#destroy-button"
 
-    assert_text "Activity length: " + activity.duration_days
+    assert_text activity.duration_days + ' day'
     click_on "activity-edit-link"
     fill_in "Number of days", with: '10'
     fill_in "What's a good title for your activity idea?", with: activity.name + 'NewAgain'
     click_on "Update Activity"
     assert_text "Activity was successfully updated."
     assert_selector "h1", text: activity.reload.name
-    assert_text "Activity length: 10 days"
+    assert_text "10 days"
   end
 
-  test "creating an activity" do
+  test "creating an activity out of a users unit" do
+    unit = create(:unit)
+    sign_in
+    visit unit_activities_path(unit)
+    assert_no_link "Vote"
+    assert_no_link "Propose an Activity"
+
+    visit new_unit_activity_path(unit)
+    assert_selector "h1", text: 'Planning Scout Activities'
+  end
+
+  test "creating an activity within a users unit" do
     sign_in
     assert_text "No activities have been proposed."
     within "#activities" do
