@@ -290,9 +290,10 @@ trix-editor {
 
 #activity {
   h1 {
-    font-size: 2.4rem;
-    line-height: 1.66em;
-    margin-bottom: 0.5em;
+    font-size: 2.2rem;
+    line-height: 1.5em;
+    margin-top: 0.5em;
+    margin-bottom: 0.75em;
   }
   h2 {
     font-size: 1.4rem;
@@ -307,6 +308,7 @@ trix-editor {
   .new-badge {
     font-size: 1.2rem;
     text-tansform: uppercase;
+    vertical-align: middle;
   }
   .activity-icons {
     font-size: 1.3rem;

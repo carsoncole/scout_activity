@@ -9,6 +9,7 @@
         %span.badge.badge-primary.new-badge NEW
       %h1
         = @unit.name
+        \-
         = @activity.name
       .activity-icons= render partial: 'activity_icons', locals: { activity: @activity }
       = pluralize(@activity.duration_days, "day")
