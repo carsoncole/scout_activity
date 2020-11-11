@@ -35,6 +35,8 @@ class Activity < ApplicationRecord
     new_activity.author_id = false
     new_activity.unit_id = nil
     new_activity.votes_count = 0
+    new_activity.description = activity.description.dup
+    new_activity.itinerary = activity.itinerary.dup
     new_activity
   end
 
