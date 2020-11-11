@@ -7,31 +7,33 @@
         Logged in users can vote for their favorite activities. Votes don't count against Unit votes.
 
       %nav.nav#activity-filter
-        = link_to top_activities_path(filter: 'is_hiking'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_hiking'), class: "nav-link #{params[:filter]=='is_hiking' ? 'active':nil}" do
           = fa_icon "hiking"
-        = link_to top_activities_path(filter: 'is_swimming'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_swimming'), class: "nav-link #{params[:filter]=='is_swimming' ? 'active':nil}" do
           = fa_icon "swimmer"
-        = link_to top_activities_path(filter: 'is_biking'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_biking'), class: "nav-link #{params[:filter]=='is_biking' ? 'active':nil}" do
           = fa_icon "biking"
-        = link_to top_activities_path(filter: 'is_plane'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_plane'), class: "nav-link #{params[:filter]=='is_plane' ? 'active':nil}" do
           = fa_icon "plane"
-        = link_to top_activities_path(filter: 'is_cooking'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_cooking'), class: "nav-link #{params[:filter]=='is_cooking' ? 'active':nil}" do
           = fa_icon "utensils"
-        = link_to top_activities_path(filter: 'is_merit_badge'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_merit_badge'), class: "nav-link #{params[:filter]=='is_merit_badge' ? 'active':nil}" do
           = image_tag "merit-badge.svg", width: '26px'
-        = link_to top_activities_path(filter: 'is_camping'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_camping'), class: "nav-link #{params[:filter]=='is_camping' ? 'active':nil}" do
           = fa_icon "campground"
-        = link_to top_activities_path(filter: 'is_virtual'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_virtual'), class: "nav-link #{params[:filter]=='is_virtual' ? 'active':nil}" do
           = fa_icon "video"
-        = link_to top_activities_path(filter: 'is_fundraising'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_fundraising'), class: "nav-link #{params[:filter]=='is_fundraising' ? 'active':nil}" do
           = fa_icon "dollar-sign"
-        = link_to top_activities_path(filter: 'is_game'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_game'), class: "nav-link #{params[:filter]=='is_game' ? 'active':nil}" do
           = fa_icon "trophy"
-        = link_to top_activities_path(filter: 'is_community_service'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_boating'), class: "nav-link #{params[:filter]=='is_boating' ? 'active':nil}" do
+          = fa_icon "anchor"
+        = link_to top_activities_path(filter: 'is_community_service'), class: "nav-link #{params[:filter]=='is_community_service' ? 'active':nil}" do
           = fa_icon "store"
-        = link_to top_activities_path(filter: 'is_international'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_international'), class: "nav-link #{params[:filter]=='is_international' ? 'active':nil}" do
           = image_tag "world-crest.png", width: '26px'
-        = link_to top_activities_path(filter: 'is_high_adventure'), class: 'nav-link' do
+        = link_to top_activities_path(filter: 'is_high_adventure'), class: "nav-link #{params[:filter]=='is_high_adventure' ? 'active':nil}" do
           = fa_icon "mountain"
         = link_to "clear", top_activities_path, class: 'nav-link'
 

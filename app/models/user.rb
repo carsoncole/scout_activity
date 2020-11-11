@@ -25,6 +25,18 @@ class User < ApplicationRecord
     unit.votes_allowed - votes.count
   end
 
+  def name_email
+    result = ""
+    result = last_name + ' ' + result if last_name.present? && first_name.present?
+    result = first_name + ' ' + result if first_name.present?
+    result = if result.present?
+        result + '(' + email + ')'
+      else
+        email
+      end
+    result
+  end
+
   def votes_cast
     votes.count
   end

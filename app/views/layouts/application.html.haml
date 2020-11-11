@@ -15,10 +15,11 @@
           - if @unit && @unit.persisted?
             %li.nav-item.nav-link
               .badge.badge-primary= @unit.name
-            %li.nav-item
-              = link_to "Vote", unit_activities_path(@unit), class: 'nav-link', id: 'vote-link'
-            %li.nav-item
-              = link_to "Propose an Activity", new_unit_activity_path(@unit), class: 'nav-link', id: 'propose-link'
+            - if current_user&.unit == @unit
+              %li.nav-item
+                = link_to "Vote", unit_activities_path(@unit), class: 'nav-link', id: 'vote-link'
+              %li.nav-item
+                = link_to "Propose an Activity", new_unit_activity_path(@unit), class: 'nav-link', id: 'propose-link'
             / - if signed_in? && (@unit.owner == current_user || current_user.activities.any?)
             /   %li.nav-item
             /     = link_to "My Activities", unit_activities_path(@unit, admin: true), class: 'nav-link'
