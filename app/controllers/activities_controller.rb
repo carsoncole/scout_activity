@@ -86,8 +86,6 @@ class ActivitiesController < ApplicationController
         format.html { redirect_to unit_activity_path(@unit, @activity), notice: 'Activity was successfully updated.' }
         format.json { render :show, status: :ok, location: @activity }
       else
-        puts "*"*80
-        puts @activity.errors.full_messages
         format.html { render :edit }
         format.json { render json: @activity.errors, status: :unprocessable_entity }
       end
@@ -113,6 +111,6 @@ class ActivitiesController < ApplicationController
     end
     # Only allow a list of trusted parameters through.
     def activity_params
-      params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_virtual, :is_swimming, :is_community_service, :is_archived, :is_biking, :is_cooking, :is_game, :is_fundraising, :is_merit_badge, :is_international, :summary_new, images: [])
+      params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_virtual, :is_swimming, :is_community_service, :is_archived, :is_biking, :is_cooking, :is_boating, :is_game, :is_fundraising, :is_merit_badge, :is_international, :summary_new, images: [])
     end
 end

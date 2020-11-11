@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_09_194702) do
+ActiveRecord::Schema.define(version: 2020_11_11_051550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2020_11_09_194702) do
     t.boolean "is_virtual", default: false, null: false
     t.boolean "is_game", default: false, null: false
     t.string "summary_new"
+    t.boolean "is_boating", default: false, null: false
     t.index ["unit_id"], name: "index_activities_on_unit_id"
   end
 
@@ -99,6 +100,14 @@ ActiveRecord::Schema.define(version: 2020_11_09_194702) do
     t.integer "unit_it"
     t.string "mailer_instance"
     t.string "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "newsletters", force: :cascade do |t|
+    t.string "date"
+    t.string "subject"
+    t.datetime "sent_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -142,6 +151,8 @@ ActiveRecord::Schema.define(version: 2020_11_09_194702) do
     t.integer "sign_in_count", default: 0, null: false
     t.datetime "last_sign_in_at"
     t.boolean "is_admin", default: false, null: false
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
   end

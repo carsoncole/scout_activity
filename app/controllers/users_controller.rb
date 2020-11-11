@@ -55,7 +55,7 @@ class UsersController < Clearance::UsersController
   end
 
   def user_params
-    params.require(:user).permit(:email, :password, :unit_id, :is_subscribed, :is_admin)
+    params.require(:user).permit(:email, :password, :unit_id, :is_subscribed, :is_admin, :first_name, :last_name)
   end
 
   def require_admin_owner

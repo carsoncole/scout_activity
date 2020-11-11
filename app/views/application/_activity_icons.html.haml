@@ -12,6 +12,8 @@
   .activity-icon#merit-badge-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Merit Badge')= image_tag "merit-badge.svg", width: '26px'
 - if activity.is_camping?
   .activity-icon#camping-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Camping')= fa_icon "campground"
+- if activity.is_boating?
+  .activity-icon#camping-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Boating')= fa_icon "anchor"
 - if activity.is_virtual?
   .activity-icon#virtual-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Virtual')= fa_icon "video"
 - if activity.is_game?

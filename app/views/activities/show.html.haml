@@ -51,7 +51,7 @@
         %p
           %strong Proposed by:
           %br
-          = @activity.author.email
+          = @activity.author.name_email
           - if @activity.is_author_volunteering?
             %br
               The proposer is willing to help lead this activity.
