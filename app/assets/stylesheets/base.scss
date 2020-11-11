@@ -204,7 +204,7 @@ table.activities {
     display: inline-block;
   }
   .btn.troop {
-    margin: 0.3em 0.3em;
+    margin: 0.4em 0.4em;
     display: inline-block;
     vertical-align: top;
   }
@@ -263,12 +263,8 @@ table.activities {
 footer {
   margin-top: 8rem;
   margin-bottom: 2rem;
-  font-size: 0.85em;
   text-align: center;
-  a {
-    color: #ccc;
-  }
-  color: #ccc;
+
 }
 trix-editor {
   overflow-y: auto;

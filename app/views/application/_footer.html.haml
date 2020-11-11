@@ -1,15 +1,18 @@
-%footer
-  Copyright
-  = Time.now.year
-  \|
-  = link_to "About", about_path(utm_source: 'footer')
-  \|
-  = link_to "Activity Resources", activity_resources_path(utm_source: 'footer')
-  \|
-  = link_to "Example Unit", example_unit_path(utm_source: 'footer')
-  \|
-  = link_to "FAQs", faqs_path(utm_source: 'footer')
-  \|
-  = link_to 'http://www.facebook.com/sharer.php?u=' +request.url, target: :blank do
-    = fa_icon "share"
-    Share
+%footer.font-small
+  .container
+    %nav.nav.justify-content-center
+      .nav-item.nav-link
+        Copyright
+        = Time.now.year
+      .nav-item 
+        = link_to "About", about_path(utm_source: 'footer'), class: 'nav-link'
+      .nav-item
+        = link_to "Activity Resources", activity_resources_path(utm_source: 'footer'), class: 'nav-link'
+      .nav-item
+        = link_to "Example Unit", example_unit_path(utm_source: 'footer'), class: 'nav-link'
+      .nav-item
+        = link_to "FAQs", faqs_path(utm_source: 'footer'), class: 'nav-link'
+      .nav-item
+        = link_to 'http://www.facebook.com/sharer.php?u=' +request.url, class: 'nav-link', target: :blank do
+          = fa_icon "share"
+          Share
