@@ -1,132 +1,133 @@
-#features
+%main
+  #features
 
-  .row
-    .col-md-12
-      %hr
-      %h1 Planning Scout Activities
-  .row
-    .col-md-5
-    .col-md-7
-      %p The annual challenge for planning Scout activities is a ritual all Troops go through. ScoutActivity makes it easy to offer one place that your Troop's Scouts, leaders, parents and other volunteers can offer up ideas that bring excitement, new adventures, and new opportunities for learning to your Scouts. And on the site, Scouts can vote for the ideas that excite them the most, engaging them in the planning process.
+    .row
+      .col-md-12
+        %hr
+        %h1 Planning Scout Activities
+    .row
+      .col-md-5
+      .col-md-7
+        %p The annual challenge for planning Scout activities is a ritual all Troops go through. ScoutActivity makes it easy to offer one place that your Troop's Scouts, leaders, parents and other volunteers can offer up ideas that bring excitement, new adventures, and new opportunities for learning to your Scouts. And on the site, Scouts can vote for the ideas that excite them the most, engaging them in the planning process.
 
-      - if Unit.first
-        %p.text-center
-          = link_to "View an example unit's activites", unit_activities_path(Unit.first)
-
-
-  .row
-    .col-md-12
-      %h2 Getting started
-
-  .row
-    .col-md-5
-    .col-md-7
-      %p The primary reason you'd benefit from using ScoutActivity is the centralization of ideas that your Troop or Pack will consider for future activities. But first, you'll set up your Unit so that Scouts, parents, and other unit volunteers have a place to go to describe their idea.
-
-      = image_tag "create-troop.png", class: 'img-fluid rounded shadow-sm p-3 mb-5'
-
-      %p You also set the number of the votes that voters can allocate over their activity picks. They can allocate all of their votes to one, or across all of the activities.
-
-      = image_tag "select-troop.png", class: 'img-fluid rounded shadow-sm p-3 mb-5'
-
-  = render 'get_started'
-
-  .row
-    .col-md-12
-      %h2 Promote getting ideas from your community
-
-  .row
-    .col-md-5
-    .col-md-7
-      %p Once you've created your unit on ScoutActivity, promote the collection of activity ideas to whichever group you want to target, or your entire unit, from Scouts, to parents and the wider community. By encouraging parents and other volunteers to propose ideas to the Troop, you also open the door for their involvement in helping prepare for and hold the activity. You may be surprised at what can be made available to you. You may have a aerospace engineer in your midst that could invite you unit onto a factory floor, or a Coast Guard officer that offers up a tour of what its like to be on an ice breaker. Or an active bicyclist that offers up their time to host bike clinics and ultimately a long-distance biking trip.
-
-      .target-message "Parents - We want your ideas! Our PLC will be meeting to identify and plan out the year all of our activities, but they need your input. Tell us what you'd like to offer, ie. a high adventure trip, an afternoon visiting your company, training for a skill."
-
-      %p Asking for ideas from parents also encourage their involvement, expanding the reservoir of volunteers and skillsets that will be available to and benefit your Scouting program.
-
-      = image_tag "feature-volunteer.png", class: 'img-fluid rounded shadow-sm p-3 mb-5'
-
-      %p
-        Anyone can offer activity ideas to your unit, and all they need to do is
-        = link_to "register", sign_up_path
-        and then select your unit.
-
-      %p Activities can be classified in multiple ways, making it easy for Scouts to identify the types of activities they are looking for. The classifications include:
-
-      %ul
-        %li
-          Camping
-          .activity-icon= fa_icon "campground"
-        %li
-          Cooking
-          .activity-icon= fa_icon "utensils"
-        %li
-          Hiking
-          .activity-icon= fa_icon "hiking"
-        %li
-          Swimming
-          .activity-icon= fa_icon "swimmer"
-        %li
-          Biking
-          .activity-icon= fa_icon "biking"
-        %li 
-          Flying
-          .activity-icon= fa_icon "plane"
-        %li 
-          Merit badge
-          .activity-icon= image_tag "merit-badge.svg", width: '25px', height: '25px'
-        %li
-          Community Service
-          .activity-icon= fa_icon "store"
-        %li
-          Game
-          .activity-icon= fa_icon "trophy"
-        %li
-          Fundraising
-          .activity-icon= fa_icon "dollar-sign"
-        %li
-          Virtual
-          .activity-icon= fa_icon "video"
-        %li
-          High adventure
-          .activity-icon= fa_icon "mountain"
-        %li
-          International Scouting
-          .activity-icon= image_tag "world-crest.png", width: '25px'
-
-  = render 'get_started'
-
-  .row
-    .col-md-12
-      %h2 Start the voting!
-
-  .row
-    .col-md-5
-    .col-md-7
-      %p
-        Once activity ideas start showing up, all of your Scouts can start viewing them and considering which they are most excited about. Do they want to go to summer camp and which ones? Maybe there is a new one that has been written up that they can learn about. 
-
-      = image_tag "feature-description.jp2", class: 'img-fluid rounded shadow-sm p-3 mb-5'
-      = image_tag "feature-canoe.jpg", class: 'img-fluid rounded'
-
-      %p
-        All the activities are viewable by anyone, but to vote, Scouts will need to
-        = link_to "sign up", sign_up_path
-        which will give them a set number of votes that they can start allocating to activities. They can come back anytime to reconsider and reallocate their votes, up until the time your unit begins to decide which fun activities they will more forward on.
-        
-      = image_tag "feature-vote.jp2", class: 'img-fluid rounded shadow-sm p-3 mb-5'
-      = image_tag "feature-sand.jp2", class: 'img-fluid rounded shadow-sm p-0 mb-5'
-      = image_tag "feature-activity-icons.png", class: 'img-fluid rounded shadow-sm p-0 mb-5'
-  .row
-    .col-md-12
-      %h2 Discussion
-
-  .row
-    .col-md-5
-    .col-md-7
-      %p Posing questions or adding activity comments is possible, enabling an interactive discussion with the author of the activity and everyone else in your unit.
-
-      = image_tag "feature-discussion.png", class: 'img-fluid rounded shadow-sm p-3 mb-5'
+        - if Unit.first
+          %p.text-center
+            = link_to "View an example unit's activites", unit_activities_path(Unit.first)
 
 
-  = render 'get_started'
+    .row
+      .col-md-12
+        %h2 Getting started
+
+    .row
+      .col-md-5
+      .col-md-7
+        %p The primary reason you'd benefit from using ScoutActivity is the centralization of ideas that your Troop or Pack will consider for future activities. But first, you'll set up your Unit so that Scouts, parents, and other unit volunteers have a place to go to describe their idea.
+
+        = image_tag "create-troop.png", class: 'img-fluid rounded shadow-sm p-3 mb-5'
+
+        %p You also set the number of the votes that voters can allocate over their activity picks. They can allocate all of their votes to one, or across all of the activities.
+
+        = image_tag "select-troop.png", class: 'img-fluid rounded shadow-sm p-3 mb-5'
+
+    = render 'get_started'
+
+    .row
+      .col-md-12
+        %h2 Promote getting ideas from your community
+
+    .row
+      .col-md-5
+      .col-md-7
+        %p Once you've created your unit on ScoutActivity, promote the collection of activity ideas to whichever group you want to target, or your entire unit, from Scouts, to parents and the wider community. By encouraging parents and other volunteers to propose ideas to the Troop, you also open the door for their involvement in helping prepare for and hold the activity. You may be surprised at what can be made available to you. You may have a aerospace engineer in your midst that could invite you unit onto a factory floor, or a Coast Guard officer that offers up a tour of what its like to be on an ice breaker. Or an active bicyclist that offers up their time to host bike clinics and ultimately a long-distance biking trip.
+
+        .target-message "Parents - We want your ideas! Our PLC will be meeting to identify and plan out the year all of our activities, but they need your input. Tell us what you'd like to offer, ie. a high adventure trip, an afternoon visiting your company, training for a skill."
+
+        %p Asking for ideas from parents also encourage their involvement, expanding the reservoir of volunteers and skillsets that will be available to and benefit your Scouting program.
+
+        = image_tag "feature-volunteer.png", class: 'img-fluid rounded shadow-sm p-3 mb-5'
+
+        %p
+          Anyone can offer activity ideas to your unit, and all they need to do is
+          = link_to "register", sign_up_path
+          and then select your unit.
+
+        %p Activities can be classified in multiple ways, making it easy for Scouts to identify the types of activities they are looking for. The classifications include:
+
+        %ul
+          %li
+            Camping
+            .activity-icon= fa_icon "campground"
+          %li
+            Cooking
+            .activity-icon= fa_icon "utensils"
+          %li
+            Hiking
+            .activity-icon= fa_icon "hiking"
+          %li
+            Swimming
+            .activity-icon= fa_icon "swimmer"
+          %li
+            Biking
+            .activity-icon= fa_icon "biking"
+          %li 
+            Flying
+            .activity-icon= fa_icon "plane"
+          %li 
+            Merit badge
+            .activity-icon= image_tag "merit-badge.svg", width: '25px', height: '25px'
+          %li
+            Community Service
+            .activity-icon= fa_icon "store"
+          %li
+            Game
+            .activity-icon= fa_icon "trophy"
+          %li
+            Fundraising
+            .activity-icon= fa_icon "dollar-sign"
+          %li
+            Virtual
+            .activity-icon= fa_icon "video"
+          %li
+            High adventure
+            .activity-icon= fa_icon "mountain"
+          %li
+            International Scouting
+            .activity-icon= image_tag "world-crest.png", width: '25px'
+
+    = render 'get_started'
+
+    .row
+      .col-md-12
+        %h2 Start the voting!
+
+    .row
+      .col-md-5
+      .col-md-7
+        %p
+          Once activity ideas start showing up, all of your Scouts can start viewing them and considering which they are most excited about. Do they want to go to summer camp and which ones? Maybe there is a new one that has been written up that they can learn about. 
+
+        = image_tag "feature-description.jp2", class: 'img-fluid rounded shadow-sm p-3 mb-5'
+        = image_tag "feature-canoe.jpg", class: 'img-fluid rounded'
+
+        %p
+          All the activities are viewable by anyone, but to vote, Scouts will need to
+          = link_to "sign up", sign_up_path
+          which will give them a set number of votes that they can start allocating to activities. They can come back anytime to reconsider and reallocate their votes, up until the time your unit begins to decide which fun activities they will more forward on.
+          
+        = image_tag "feature-vote.jp2", class: 'img-fluid rounded shadow-sm p-3 mb-5'
+        = image_tag "feature-sand.jp2", class: 'img-fluid rounded shadow-sm p-0 mb-5'
+        = image_tag "feature-activity-icons.png", class: 'img-fluid rounded shadow-sm p-0 mb-5'
+    .row
+      .col-md-12
+        %h2 Discussion
+
+    .row
+      .col-md-5
+      .col-md-7
+        %p Posing questions or adding activity comments is possible, enabling an interactive discussion with the author of the activity and everyone else in your unit.
+
+        = image_tag "feature-discussion.png", class: 'img-fluid rounded shadow-sm p-3 mb-5'
+
+
+    = render 'get_started'
