@@ -188,7 +188,7 @@ class ActivitiesTest < ApplicationSystemTestCase
     assert_selector "#activity-vote-count", text: '0'
 
     click_on 'Vote'
-    assert_selector "h3", text: "Archived"
+    assert_selector "h2", text: "Archived"
 
     visit unit_activity_path(@user.unit, activity)
     click_button "Unarchive"

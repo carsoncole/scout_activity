@@ -6,8 +6,8 @@ class UsersTest < ApplicationSystemTestCase
     within "#main-nav" do
       click_on "Sign up"
     end
+    assert_selector "h1", text: "Sign up"
     within "#clearance.sign-up" do
-      assert_selector "h1", text: "Sign up"
       fill_in "Email", with: Faker::Internet.email
       fill_in "Password", with: "password"
 
