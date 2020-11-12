@@ -1,7 +1,7 @@
-%aside#discussion
+#discussion
   .row
     .col-md-12
-      %h1 Discussion
+      %h2 Discussion
       = render partial: 'questions/question', collection: @questions
 
       - if signed_in? && @unit == current_user.unit
