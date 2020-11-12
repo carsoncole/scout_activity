@@ -29,7 +29,7 @@ class HomeController < ApplicationController
 
   def top_activities
     @unit = Unit.example
-    @activities = @unit.activities.votable
+    @activities = @unit.activities
     if params[:filter]
       @activities = @activities.where(params[:filter])
     end

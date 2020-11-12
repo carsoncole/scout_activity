@@ -12,7 +12,7 @@
 
       %div.collapse.navbar-collapse#navbarSupportedContent
         %ul.navbar-nav.mr-auto
-          - if @unit && @unit.persisted?
+          - if @unit && @unit.persisted? && action_name != 'top_activities'
             %li.nav-item.nav-link
               .badge.badge-primary= @unit.name
             - if current_user&.unit == @unit

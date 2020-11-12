@@ -22,14 +22,14 @@
     .row
       .col-md-1
       .col-md-10
-        %h3.text-center.mb-2 High Adventure
+        %h3.text-center.mb-4 General
         %ul.activities.list-group
           = render(@activities)
 
   - if @high_adventure_activities&.any?
     .row
-      .col-md-2
-      .col-md-8
+      .col-md-1
+      .col-md-10
         %h3.text-center.mb-2 High Adventure
         %p.text-muted.text-center.mb-4 Please only vote if you are at least 13 years old
 
@@ -51,9 +51,9 @@
 
   - if @archived_activities&.any?
     .row
-      .col-md-2
-      .col-md-8
-        %h3.text-center.mb-2 Archived
+      .col-md-1
+      .col-md-10
+        %h3.text-center.mb-4 Archived
 
         %ul.activities.list-group
           = render partial: 'activity', collection: @archived_activities, as: :activity

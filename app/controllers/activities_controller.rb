@@ -54,7 +54,7 @@ class ActivitiesController < ApplicationController
     activity.images.each do |image|
       new_activity.images.attach image.blob
     end
-    redirect_to unit_activities_path(current_user.unit), notice: "Activity '#{new_activity.name}' copied to your Unit."
+    redirect_back(fallback_location: unit_activities_path(current_user.unit), notice: "Activity '#{new_activity.name}' copied to your Unit.")
   end
 
   def new
@@ -105,11 +105,11 @@ class ActivitiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def require_unit_user
-      redirect_to root_path unless current_user.unit == @unit
+      redirect_to root_path unless signed_in? && current_user.unit == @unit
     end
 
     def require_author_admin_owner
-      redirect_to root_path unless @activity.author == current_user || current_user.admin_or_owner?
+      redirect_to root_path unless signed_in? && (@activity.author == current_user || current_user.admin_or_owner?)
     end
 
     def set_activity
