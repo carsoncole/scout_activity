@@ -1,6 +1,6 @@
 %li.list-group-item
   .row
-    .col-md-7
+    .col-xl-8
       .name
         = link_to activity.name, unit_activity_path(@unit, activity)
         &nbsp;
@@ -13,7 +13,7 @@
         %span.text-muted
           = pluralize(activity.duration_days, 'day')
 
-    .col-md-5
+    .col-xl-4
       .voting
         .votes-count(id="activity-#{activity.id}-total-count")
           - if activity.is_archived?

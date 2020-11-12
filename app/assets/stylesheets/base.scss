@@ -52,36 +52,34 @@ ul.activities {
     line-height: 1.5em;
   }
   .voting {
-    text-align: center;
-    margin-top: 1rem;
-
-  }
-  .vote {
-    display: inline-block;
-    width: 6.5rem;
-    text-align: center;
-    form {
-      display: inline-block;
-
-      button {
+    .vote {
+      float: right;
+      width: 6.5rem;
+      text-align: center;
+      form {
         display: inline-block;
-        margin-left: 0.3rem;
-        margin-right: 0.3rem;
+
+        button {
+          display: inline-block;
+          margin-left: 0.3rem;
+          margin-right: 0.3rem;
+        }
       }
     }
-  }
-  .votes-count {
-    display: inline-block;
-    text-align: center;
-    vertical-align: middle;
-    line-height: 1em;
-    width: 3.5rem;
-    font-weight: 800;
-    font-size: 1.2rem;
-    .votes {
-      font-size: 0.8rem;
-      color: $text-muted-color;
-      font-weight: 300;
+    .votes-count {
+      float: right;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 1em;
+      width: 3.5rem;
+      margin-top: 0.6em;
+      font-weight: 800;
+      font-size: 1.2rem;
+      .votes {
+        font-size: 0.8rem;
+        color: $text-muted-color;
+        font-weight: 300;
+      }
     }
   }
 }
