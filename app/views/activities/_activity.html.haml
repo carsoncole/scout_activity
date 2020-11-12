@@ -15,9 +15,7 @@
     .col-xl-4
       .voting
         .votes-count(id="activity-#{activity.id}-total-count")
-          - if activity.is_archived?
-            .badge.badge-info Archived
-          - else
+          - unless activity.is_archived?
             = activity.votes_count || 0
             / .votes
             / # = "vote".pluralize(activity.votes_count)

@@ -1,5 +1,5 @@
-
-= render partial: 'breadcrumbs', locals: { link_url: unit_activities_path(@unit), link_text: 'All activities' }
+.container
+  = render partial: 'breadcrumbs', locals: { link_url: unit_activities_path(@unit), link_text: 'All activities' }
 
 #activity
   .container
@@ -18,7 +18,7 @@
         #activity-vote-count
           .activity-count
             = @activity.votes_count || 0
-          .votes votes
+          .votes= "vote".pluralize(@activity.votes_count)
 
     .row
       .col-md-9
