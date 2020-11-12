@@ -218,11 +218,12 @@ class ActivitiesTest < ApplicationSystemTestCase
     activity = create(:activity)
     user = create(:user, is_owner: true)
     sign_in(user)
+    assert_equal 0, user.unit.activities.count
     click_on "brand-logo"
     click_on activity.unit.name
     click_on activity.name
-    save_screenshot('tmp/screenshots/copy-button.png')
     click_on "copy-activity-link"
+    assert_equal 1, user.unit.activities.count
     assert_selector "h1", text: user.unit.name + " Activity Vote"
     assert_text "Activity '#{activity.name}' copied to your Unit."
     click_on activity.name
