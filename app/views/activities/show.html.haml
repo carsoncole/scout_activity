@@ -50,6 +50,7 @@
         = render 'discussion'
 
     - if @activity.author
+      %h2 Details
       #proposer
         .row
           .col-md-9
@@ -60,6 +61,8 @@
               %br
                 The proposer is willing to help lead this activity.
 
+    .row
+      .col-md-7
         = render 'actions'
 
 

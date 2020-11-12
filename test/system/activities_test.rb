@@ -221,6 +221,7 @@ class ActivitiesTest < ApplicationSystemTestCase
     click_on "brand-logo"
     click_on activity.unit.name
     click_on activity.name
+    save_screenshot('tmp/screenshots/copy-button.png')
     click_on "copy-activity-link"
     assert_selector "h1", text: user.unit.name + " Activity Vote"
     assert_text "Activity '#{activity.name}' copied to your Unit."

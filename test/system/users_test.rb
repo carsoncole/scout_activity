@@ -47,7 +47,7 @@ class UsersTest < ApplicationSystemTestCase
       fill_in "Password", with: "password"
       all('#unit-select option')[1].select_option
       click_on "Sign up"
-        end
+    end
     assert_equal unit, User.last.unit
   end
 

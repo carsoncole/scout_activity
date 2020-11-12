@@ -3,7 +3,7 @@ class Unit < ApplicationRecord
   friendly_id :name, use: :slugged
 
   has_many :activities, dependent: :destroy
-  has_many :users
+  has_many :users, dependent: :nullify
   has_many :votes, through: :activities
 
   validates :name, presence: true
