@@ -50,15 +50,14 @@ class ActivitiesController < ApplicationController
     new_activity = Activity.duplicate(activity)
     new_activity.author_id = current_user.id
     new_activity.unit = current_user.unit
-    begin
-      new_activity.save
+    if new_activity.save
       activity.increment!(:copy_count)
       activity.images.each do |image|
         new_activity.images.attach image.blob
       end
       redirect_to unit_activities_path(current_user.unit), notice: "Activity '#{new_activity.name}' copied to your Unit."
-    rescue => e
-      Bugsnag.notify(e) rescue nil
+    else
+      Bugsnag.notify(new_activity) rescue nil
       redirect_to unit_activities_path(current_user.unit), alert: "There was a problem. The activity '#{new_activity.name}' was not copied to your Unit."
     end
   end
