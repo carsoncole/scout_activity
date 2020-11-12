@@ -1,4 +1,5 @@
 $text-muted-color: #999;
+$muted-color: #bbb;
 
 a {
   text-decoration: none;
@@ -264,7 +265,20 @@ footer {
   margin-top: 8rem;
   margin-bottom: 2rem;
   text-align: center;
-
+  nav {
+    .nav-item {
+      border-right: 1px solid $muted-color;
+      vertical-align: middle;
+      padding: 0 1em;
+      line-height: 1.5em;
+      .nav-link {
+        padding: 0;
+      }
+      &:last-of-type {
+        border-right: none;
+      }
+    }
+  }
 }
 trix-editor {
   overflow-y: auto;
