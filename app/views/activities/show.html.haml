@@ -22,32 +22,25 @@
   .row
     .col-md-8
 
-      %hr
-
       %h2 Summary
       = @activity.summary_new
 
       %br
 
       - if @activity.description.present?
-        %hr
-
         %h2 Description
         = @activity.description
 
       - if @activity.itinerary.present?
-        %hr
-
         %h2 Itinerary
         = @activity.itinerary
 
-      #activity-images
-        - @activity.images.each do |image|
-          %hr
-          .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'activity-image img-fluid rounded'
+      - if @activity.images.attached?
+        #activity-images
+          - @activity.images.each do |image|
+            .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'activity-image img-fluid rounded'
 
       - if @activity.author
-        %hr
         %p
           %strong Proposed by:
           %br
@@ -56,31 +49,7 @@
             %br
               The proposer is willing to help lead this activity.
 
-      - if current_user && (@activity.author == current_user || (current_user.admin_or_owner? && current_user.unit == @activity.unit)) || current_user&.admin_or_owner?
-        %hr
-        - if current_user && (@activity.author == current_user || (current_user.admin_or_owner? && current_user.unit == @activity.unit))
-          = link_to edit_unit_activity_path(@unit, @activity), class: 'action', id: 'activity-edit-link' do
-            = fa_icon "edit"
-          - if @activity.is_archived?
-            = button_to "Unarchive", unit_activity_archive_activity_path(@unit, @activity), class: 'btn btn-primary action', id: 'unarchive-button'
-          - else
-            = button_to "Archive", unit_activity_archive_activity_path(@unit, @activity), class: 'btn btn-primary action', id: 'archive-button'
-          = button_to "Destroy", unit_activity_path(@unit, @activity), method: :delete, data: { confirm: 'Are you sure? This will destroy the Activity and return any votes placed for it.'}, class: 'btn btn-danger action', id: 'destroy-button'
-        - if current_user&.admin_or_owner?
-          = link_to unit_activity_copy_path(current_user.unit, @activity), id: 'copy-activity-link', method: :post do
-            = fa_icon "copy"
+      = render 'actions'
 
     .col-md-4
-      %aside#discussion
-        .row
-          .col-md-12
-            %h1 Discussion
-            = render partial: 'questions/question', collection: @questions
-
-            - if signed_in? && @unit == current_user.unit
-              = link_to "Question, comment?", new_unit_activity_question_path(@unit, @activity), class: 'question-link'
-
-        - unless signed_in? && @unit == current_user.unit
-          .row
-            .col-md-12
-              = link_to "Sign in to ask questions/comments", sign_in_path, class: 'sign-in-link'
+      = render 'discussion'

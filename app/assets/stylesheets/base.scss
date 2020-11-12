@@ -1,5 +1,10 @@
 $text-muted-color: #999;
-$muted-color: #bbb;
+$muted-color: #ccc;
+$border-color: #e8e8ed;
+
+
+/* COMMON SELECTORS
+   ============================================================ */
 
 a {
   text-decoration: none;
@@ -14,116 +19,72 @@ a {
 h1 {
   font-size: 2.2em;
   margin-bottom: 2em;
+  text-align: center;
 }
 
-.container#main {
+#main {
   margin-top: 3rem;
 }
 
-#share-links {
-  h1 {
-    font-size: 1.1em;
-    font-weight: 700;
-    margin-bottom: 0.2em;
-  }
+/* FOOTER
+   ============================================================ */
+
+footer {
+  margin-top: 8rem;
+  margin-bottom: 2rem;
   text-align: center;
-  .link {
-    background-color: #efefef;
-    padding: 0.75em;
-    font-weight: 500;
-    margin-top: 0.75em;
-    margin-bottom: 1.2em;
-  }
-  p {
-
-    margin-bottom: 0;
-  }
-  border: 1px solid #efefef;
-  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
-  margin: 1.666rem 0;
-}
-
-
-ul.activities {
-  margin-bottom: 3rem;
-  .name {
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1.5em;
-  }
-  .voting {
-    margin-top: 0.5rem;
-    .vote {
-      float: right;
-      width: 6.5rem;
-      text-align: center;
-      form {
-        display: inline-block;
-
-        button {
-          display: inline-block;
-          margin-left: 0.3rem;
-          margin-right: 0.3rem;
-        }
-      }
-    }
-    .votes-count {
-      float: right;
-      text-align: center;
+  nav {
+    .nav-item {
+      border-right: 1px solid $muted-color;
       vertical-align: middle;
-      line-height: 1em;
-      width: 3.5rem;
-      margin-top: 0.6em;
-      font-weight: 800;
-      font-size: 1.2rem;
-      .votes {
-        font-size: 0.8rem;
-        color: $text-muted-color;
-        font-weight: 300;
+      padding: 0 1em;
+      line-height: 1.5em;
+      .nav-link {
+        padding: 0;
+      }
+      &:last-of-type {
+        border-right: none;
       }
     }
   }
 }
 
-table.activities {
-  th, td {
-    padding: 0.3em;
-    line-height: 1.5em !important;
-  }
-  width: 100%;
-  th, td {
-    vertical-align: middle;
-    line-height: 1.666em;
-  }
+/* FLASH
+   ============================================================ */
 
-  td {
-    font-size: 1.2rem;
-  }
+.flash {
+  padding: 1em;
+  font-weight: 500;
+  color: #fff;
 
-  td:not(:first-child), th {
-    text-align: center;
+  &.notice {
+    background-color: #28a745;
   }
-
-  td.vote, th.vote {
-    width: 7.5rem;
-    button {
-      margin-left: 0.3rem;
-      margin-right: 0.3rem;
-    }
+  &.warning {
+    background-color: #ffc107;
   }
-  th.votes-count, td.votes-count {
-    width: 4rem;
-    font-weight: 800;
-    font-size: 1.3rem;
-  }
-  form {
-    display: inline-block;
-  }
-  .last-update {
-    color: $text-muted-color;
-    font-size: 0.7em;
+  &.alert {
+    background-color: #ffc107;
   }
 }
+
+/* TOOLTIPS
+   ============================================================ */
+
+.tooltip {
+  margin-top: 8px;
+}
+
+.tooltip-inner {
+  font-size: 1em;
+  font-weight: normal;
+  padding: 0.75em 1em;
+}
+
+
+/* ERRORS
+   ============================================================ */
+
 #error-message {
   background-color: red;
   padding: 1.2em 1.5em;
@@ -160,40 +121,28 @@ table.activities {
   }
 }
 
-#activities {
+
+#share-links {
   h1 {
-    margin-bottom: 1.5em;
-    line-height: 1.2em;
-    text-align: center;
-    font-weight: 300;
-    font-size: 2.4rem;
-    letter-spacing: 0.03em;
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 0.2em;
   }
-  h2 {
-  }
-  h3 {
-    font-size: 1.2rem;
+  text-align: center;
+  .link {
+    background-color: #efefef;
+    padding: 0.75em;
     font-weight: 500;
-    margin: 0 0 0.05em 0;
-    line-height: 1.5em;
+    margin-top: 0.75em;
+    margin-bottom: 1.2em;
   }
-  .btn {
-    margin: 0.25em;
+  p {
+
+    margin-bottom: 0;
   }
-  .new-badge {
-    display: inline-block;
-  }
-  .share-link {
-    display: block;
-    text-align: center;
-    margin-top: 4rem;
-  }
-  .list-group-item {
-    padding-right: 0.4em;
-  }
-  #activity-icons {
-    display: inline-block;
-  }
+  border: 1px solid #efefef;
+  padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+  margin: 1.666rem 0;
 }
 
 #info {
@@ -211,25 +160,7 @@ table.activities {
     font-weight: 700;
   }
 }
-#home {
-  h5 {
-    margin-bottom: 1em;
-  }
-  form.button_to {
-    display: inline-block;
-  }
-  .btn.troop {
-    margin: 0.4em 0.4em;
-    display: inline-block;
-    vertical-align: top;
-  }
-  .btn-primary {
-    color: #fff;
-    &:visited {
-      color: #fff;
-    }
-  }
-}
+
 #troop-selection {
   h1 {
     color: #999;
@@ -261,6 +192,7 @@ table.activities {
     }
   }
 }
+
 #unit {
   h2 {
     margin-top: 2rem;
@@ -275,25 +207,7 @@ table.activities {
     }
   }
 }
-footer {
-  margin-top: 8rem;
-  margin-bottom: 2rem;
-  text-align: center;
-  nav {
-    .nav-item {
-      border-right: 1px solid $muted-color;
-      vertical-align: middle;
-      padding: 0 1em;
-      line-height: 1.5em;
-      .nav-link {
-        padding: 0;
-      }
-      &:last-of-type {
-        border-right: none;
-      }
-    }
-  }
-}
+
 trix-editor {
   overflow-y: auto;
   &.summary {
@@ -301,160 +215,9 @@ trix-editor {
   }
 }
 
-
-.activity-icon {
-  display: inline;
-}
-
 .link-breadcrumb {
   margin: 1em 0 2.6em 0;
   font-size: 1rem;
-}
-
-#activity {
-  h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    line-height: 1.5em;
-    margin-top: 0.5em;
-    margin-bottom: 0.75em;
-  }
-  h2 {
-    font-size: 1.4rem;
-    margin-bottom: 1em;
-  }
-  .activity-count {
-    text-align: center;
-    font-size: 5rem;
-    font-weight: 900;
-    line-height: 1em;
-  }
-  .new-badge {
-    font-size: 1.2rem;
-    text-tansform: uppercase;
-    vertical-align: middle;
-  }
-  .activity-icons {
-    font-size: 1.3rem;
-    line-height: 1.66em;
-    margin: 0;
-  }
-  .activity-icon {
-    display: inline-block;
-  }
-  .votes {
-    text-align: center;
-    font-weight: 700;
-    font-size: 3rem;
-    line-height: 0.9em;
-  }
-  img {
-    clear: both;
-    text-align: center;
-    margin: 1em auto;
-    padding: 1.25em 0;
-
-  }
-  form {
-    display: inline-block;
-  }
-  .action {
-    display: inline-block;
-    margin-right: 1rem;
-    line-height: 1.66em;
-  }
-}
-
-/* FLASH
-   ============================================================ */
-
-.flash {
-  padding: 1em;
-  font-weight: 500;
-  color: #fff;
-
-  &.notice {
-    background-color: #28a745;
-  }
-  &.warning {
-    background-color: #ffc107;
-  }
-  &.alert {
-    background-color: #ffc107;
-  }
-}
-/* Tooltips
-   ============================================================ */
-
-.tooltip {
-  margin-top: 8px;
-}
-
-.tooltip-inner {
-  font-size: 1em;
-  font-weight: normal;
-  padding: 0.75em 1em;
-}
-
-#features {
-  margin-top: 1.7rem;
-
-  h1 {
-    font-size: 3.8rem;
-    margin-top: 0.8em;
-    font-weight: 300;
-    letter-spacing: 0.2px;
-    margin-bottom: 1.7em;
-  }
-  h2 {
-    margin-top: 1.2em;
-    margin-bottom: 2em;
-    font-size: 2.9rem;
-    font-weight: 300;
-  }
-  p {
-    font-weight: 400;
-    font-size: 1.2rem;
-    line-height: 1.666em;
-  }
-
-  ul li {
-    font-weight: 400;
-    font-size: 1.2rem;
-    line-height: 1.9rem;
-    margin-left: 4em;
-    .activity-icon {
-      margin-left: 0.6em;
-      display: inline-block;
-    }
-    img {
-      margin: 0;
-    }
-  }
-  img {
-    margin: 2rem auto;
-  }
-
-  .target-message {
-    font-weight: 600rem;
-    font-style: italic;
-    font-size: 1.4rem;
-    background-color: #efefef;
-    padding: 1.8em 2.2em;
-    margin: 2em;
-  }
-}
-
-.get-started {
-  margin: 2em 0;
-  padding: 2.5em 0;
-  border-top: 2px solid #efefef;
-  border-bottom: 2px solid #efefef;
-  text-transform: uppercase;
-  .btn.btn-lg {
-    font-weight: 700 !important;
-    padding: 0.6em 2em;
-  }
 }
 
 a.btn {
@@ -467,63 +230,9 @@ a.btn {
     border-color: #0062cc !important;
   }
 }
-#discussion {
-  margin-top: 2.5rem;
-  background-color: #efefef;
-  padding: 1em;
-  h1 {
-    font-size: 1.3rem;
-    margin-bottom: 0;
-    border-bottom: 2px solid #ffffff;
-    padding-bottom: 0.5em;
-  }
-  .question, .answer {
-    line-height: 1.4em;
-  }
-  .question {
-    font-weight: 700;
-    margin-top: 1.2em;
-  }
-  .question-author, .answer-author {
-    font-size: 0.8em;
-    color: $text-muted-color;
-  }
-  .answer {
-    margin-left: 1rem;
-    margin-top: 0.5em;
-  }
-  .answer-link, .question-link {
-    display: block;
-    margin-top: 0.5em;
-  }
-  .answer-author, .answer-link {
-    margin-left: 1rem;
-  }
-  .answer-link {
-    margin-bottom: 1.1em;
-  }
-  .sign-in-link {
-    display: block;
-    margin-top: 1.5em;
-  }
-  .question-link {
-    display: block;
-    margin-top: 1.5em;
-  }
-}
-#faqs {
-  .faq {
-    h2 {
-      font-size: 1.2rem;
-      font-weight: 500;
-    }
-    p {
-      font-size: 1rem;
-      font-weight: 300;
-    }
-    margin-bottom: 2em;
-    .question {
-      font-weight: 600;
-    }
+
+#activity-icons {
+  .activity-icon {
+    display: inline;
   }
 }
