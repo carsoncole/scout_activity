@@ -1,17 +1,16 @@
 %li.list-group-item
   .row
     .col-xl-8
-      .name
+      %h3.name
         = link_to activity.name, unit_activity_path(@unit, activity)
         &nbsp;
-        - if activity.created_at > Time.now - 7.days
-          .badge.badge-primary NEW
-        %br
-        = render partial: 'activity_icons', locals: { activity: activity }
-        - if activity.activity_icons?
-          \|
-        %span.text-muted
-          = pluralize(activity.duration_days, 'day')
+      - if activity.created_at > Time.now - 7.days
+        .badge.badge-primary.new-badge NEW
+      = render partial: 'activity_icons', locals: { activity: activity }
+      - if activity.activity_icons?
+        \|
+      %span.text-muted
+        = pluralize(activity.duration_days, 'day')
 
     .col-xl-4
       .voting

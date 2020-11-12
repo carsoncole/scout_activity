@@ -52,6 +52,7 @@ ul.activities {
     line-height: 1.5em;
   }
   .voting {
+    margin-top: 0.5rem;
     .vote {
       float: right;
       width: 6.5rem;
@@ -165,10 +166,22 @@ table.activities {
     line-height: 1.2em;
     text-align: center;
     font-weight: 300;
-    font-size: 2rem;
+    font-size: 2.4rem;
+    letter-spacing: 0.03em;
+  }
+  h2 {
+  }
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0 0 0.05em 0;
+    line-height: 1.5em;
   }
   .btn {
     margin: 0.25em;
+  }
+  .new-badge {
+    display: inline-block;
   }
   .share-link {
     display: block;
@@ -177,6 +190,9 @@ table.activities {
   }
   .list-group-item {
     padding-right: 0.4em;
+  }
+  #activity-icons {
+    display: inline-block;
   }
 }
 
