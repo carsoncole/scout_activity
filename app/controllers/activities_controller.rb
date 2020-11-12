@@ -50,8 +50,9 @@ class ActivitiesController < ApplicationController
     new_activity = Activity.duplicate(activity)
     new_activity.author_id = current_user.id
     new_activity.unit = current_user.unit
-    Begin
+    begin
       new_activity.save
+      activity.increment!(:copy_count)
       activity.images.each do |image|
         new_activity.images.attach image.blob
       end
