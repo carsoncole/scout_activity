@@ -2,54 +2,63 @@
 = render partial: 'breadcrumbs', locals: { link_url: unit_activities_path(@unit), link_text: 'All activities' }
 
 #activity
-  .row
-    .col-md-9
+  .container
+    .row
+      .col-md-9
 
-      - if @activity.created_at > Time.now - 7.days
-        %span.badge.badge-primary.new-badge NEW
-      %h1
-        = @unit.name
-        \-
-        = @activity.name
-      .activity-icons= render partial: 'activity_icons', locals: { activity: @activity }
-      = pluralize(@activity.duration_days, "day")
-    .col-md-3
-      #activity-vote-count
-        .activity-count
-          = @activity.votes_count || 0
-        .votes votes
+        - if @activity.created_at > Time.now - 7.days
+          %span.badge.badge-primary.new-badge NEW
+        %h1
+          = @unit.name
+          \-
+          = @activity.name
+        .activity-icons= render partial: 'activity_icons', locals: { activity: @activity }
+        = pluralize(@activity.duration_days, "day")
+      .col-md-3
+        #activity-vote-count
+          .activity-count
+            = @activity.votes_count || 0
+          .votes votes
 
-  .row
-    .col-md-8
+    .row
+      .col-md-9
 
-      %h2 Summary
-      = @activity.summary_new
+        %h2 Summary
+        = @activity.summary_new
 
-      %br
+        %br
 
-      - if @activity.description.present?
-        %h2 Description
-        = @activity.description
+        - if @activity.description.present?
+          %h2 Description
+          = @activity.description
 
-      - if @activity.itinerary.present?
-        %h2 Itinerary
-        = @activity.itinerary
+        - if @activity.itinerary.present?
+          %h2 Itinerary
+          = @activity.itinerary
 
-      - if @activity.images.attached?
-        #activity-images
-          - @activity.images.each do |image|
-            .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'activity-image img-fluid rounded'
+  - if @activity.images.attached?
+    .container-fluid.pl-0.pr-0
+      #activity-images
+        - @activity.images.each do |image|
+          .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'activity-image img-fluid rounded'
 
-      - if @activity.author
-        %p
-          %strong Proposed by:
-          %br
-          = @activity.author.name_email
-          - if @activity.is_author_volunteering?
+  .container
+    .row
+      .col-md-7
+
+        = render 'discussion'
+
+    - if @activity.author
+      #proposer
+        .row
+          .col-md-9
+            %strong Proposed by:
             %br
-              The proposer is willing to help lead this activity.
+            = @activity.author.name_email
+            - if @activity.is_author_volunteering?
+              %br
+                The proposer is willing to help lead this activity.
 
-      = render 'actions'
+        = render 'actions'
 
-    .col-md-4
-      = render 'discussion'
+
