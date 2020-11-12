@@ -143,19 +143,12 @@ $border-color: #e8e8ed;
     background-color: #000;
   }
   #proposer {
-    margin: 1.66em 0;
+    margin: 3.2em 0;
   }
 }
 
 #discussion {
-  background-color: #efefef;
-  padding: 1.66rem;
-  h2 {
-    margin: 0 0 1.6em 0;
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 1em;
-  }
+
   .question, .answer {
     line-height: 1.4em;
   }
