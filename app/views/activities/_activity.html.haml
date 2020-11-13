@@ -38,4 +38,9 @@
               - unless activity.is_archived?
                 - count = activity.votes.where(user: current_user).count
                 = count || 0
+    - else
+      .col-xl-4
+        .copy
+          = link_to unit_activity_copy_path(activity.unit, activity), method: :post do
+            = fa_icon "copy"
 

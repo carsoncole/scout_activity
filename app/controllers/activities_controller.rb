@@ -57,7 +57,7 @@ class ActivitiesController < ApplicationController
       activity.images.each do |image|
         new_activity.images.attach image.blob
       end
-      redirect_back(fallback_location: unit_activities_path(current_user.unit), notice: "Activity '#{new_activity.name}' copied to your Unit.")
+      redirect_back(fallback_location: unit_activities_path(current_user.unit), notice: "'#{new_activity.name}' copied to your Unit.")
     else
       Bugsnag.notify(new_activity) rescue nil
       redirect_to unit_activities_path(current_user.unit), alert: "There was a problem. The activity '#{new_activity.name}' was not copied to your Unit."
@@ -113,6 +113,7 @@ class ActivitiesController < ApplicationController
     @activities = Unit.example.activities.troop
     @title = @activities.count.to_s + ' Ideas for Troop Activities'
     @no_vote = true
+    @description = "List of currated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events."
   end
 
   private
