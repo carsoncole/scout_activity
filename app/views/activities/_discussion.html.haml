@@ -1,0 +1,13 @@
+#discussion
+  .row
+    .col-md-12
+      %h2 Discussion
+      = render partial: 'questions/question', collection: @questions
+
+      - if signed_in? && @unit == current_user.unit
+        = link_to "Question, comment?", new_unit_activity_question_path(@unit, @activity), class: 'question-link'
+
+  - unless signed_in? && @unit == current_user.unit
+    .row
+      .col-md-12
+        = link_to "Sign in to ask questions/comments", sign_in_path, class: 'sign-in-link'

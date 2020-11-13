@@ -1,86 +1,71 @@
+.container
+  = render partial: 'breadcrumbs', locals: { link_url: unit_activities_path(@unit), link_text: 'All activities' }
 
-= render partial: 'breadcrumbs', locals: { link_url: unit_activities_path(@unit), link_text: 'All activities' }
 
-#activity
-  .row
-    .col-md-9
+%main#activity
+  %article
+    .container
+      .row
+        .col-md-9
 
-      - if @activity.created_at > Time.now - 7.days
-        %span.badge.badge-primary.new-badge NEW
-      %h1
-        = @unit.name
-        \-
-        = @activity.name
-      .activity-icons= render partial: 'activity_icons', locals: { activity: @activity }
-      = pluralize(@activity.duration_days, "day")
-    .col-md-3
-      #activity-vote-count
-        .activity-count
-          = @activity.votes_count || 0
-        .votes votes
+          - if @activity.created_at > Time.now - 7.days
+            %span.badge.badge-primary.new-badge NEW
+          %h1
+            = @unit.name
+            \-
+            = @activity.name
+          .activity-icons= render partial: 'activity_icons', locals: { activity: @activity }
+          = pluralize(@activity.duration_days, "day")
+        .col-md-3
+          #activity-vote-count
+            .activity-count
+              = @activity.votes_count || 0
+            .votes= "vote".pluralize(@activity.votes_count)
 
-  .row
-    .col-md-8
+      .row
+        .col-md-9
 
-      %hr
+          %h2 Summary
+          %p= @activity.summary_new
 
-      %h2 Summary
-      = @activity.summary_new
+          %br
 
-      %br
+          - if @activity.description.present?
+            %h2 Description
+            = @activity.description
 
-      - if @activity.description.present?
-        %hr
+          - if @activity.itinerary.present?
+            %h2 Itinerary
+            = @activity.itinerary
 
-        %h2 Description
-        = @activity.description
+    - if @activity.images.attached?
+      .container-fluid.pl-0.pr-0
+        #activity-images
+          - @activity.images.each do |image|
+            .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'activity-image img-fluid rounded'
 
-      - if @activity.itinerary.present?
-        %hr
+    .container
+      .row
+        .col-md-7
 
-        %h2 Itinerary
-        = @activity.itinerary
-
-      #activity-images
-        - @activity.images.each do |image|
-          %hr
-          .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'activity-image img-fluid rounded'
+          = render 'discussion'
 
       - if @activity.author
-        %hr
-        %p
-          %strong Proposed by:
-          %br
-          = @activity.author.name_email
-          - if @activity.is_author_volunteering?
-            %br
-              The proposer is willing to help lead this activity.
-
-      - if current_user && (@activity.author == current_user || (current_user.admin_or_owner? && current_user.unit == @activity.unit)) || current_user&.admin_or_owner?
-        %hr
-        - if current_user && (@activity.author == current_user || (current_user.admin_or_owner? && current_user.unit == @activity.unit))
-          = link_to edit_unit_activity_path(@unit, @activity), class: 'action', id: 'activity-edit-link' do
-            = fa_icon "edit"
-          - if @activity.is_archived?
-            = button_to "Unarchive", unit_activity_archive_activity_path(@unit, @activity), class: 'btn btn-primary action', id: 'unarchive-button'
-          - else
-            = button_to "Archive", unit_activity_archive_activity_path(@unit, @activity), class: 'btn btn-primary action', id: 'archive-button'
-          = button_to "Destroy", unit_activity_path(@unit, @activity), method: :delete, data: { confirm: 'Are you sure? This will destroy the Activity and return any votes placed for it.'}, class: 'btn btn-danger action', id: 'destroy-button'
-        - if current_user&.admin_or_owner?
-          = link_to unit_activity_copy_path(current_user.unit, @activity), id: 'copy-activity-link', method: :post do
-            = fa_icon "copy"
-
-    .col-md-4
-      %aside#discussion
         .row
-          .col-md-12
-            %h1 Discussion
-            = render partial: 'questions/question', collection: @questions
+          .col-md-7
+            %h2 Details
+            #proposer
+              .row
+                .col-md-9
+                  %strong Proposed by:
+                  %br
+                  = @activity.author.name_email
+                  - if @activity.is_author_volunteering?
+                    %br
+                      The proposer is willing to help lead this activity.
 
-            - if signed_in? && @unit == current_user.unit
-              = link_to "Question, comment?", new_unit_activity_question_path(@unit, @activity), class: 'question-link'
+      .row
+        .col-md-7
+          = render 'actions'
 
-        - unless signed_in? && @unit == current_user.unit
-          .row
-            .col-md-12
-              = link_to "Sign in to ask questions/comments", sign_in_path, class: 'sign-in-link'
+

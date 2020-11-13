@@ -188,7 +188,7 @@ class ActivitiesTest < ApplicationSystemTestCase
     assert_selector "#activity-vote-count", text: '0'
 
     click_on 'Vote'
-    assert_selector "h3", text: "Archived"
+    assert_selector "h2", text: "Archived"
 
     visit unit_activity_path(@user.unit, activity)
     click_button "Unarchive"
@@ -218,10 +218,12 @@ class ActivitiesTest < ApplicationSystemTestCase
     activity = create(:activity)
     user = create(:user, is_owner: true)
     sign_in(user)
+    assert_equal 0, user.unit.activities.count
     click_on "brand-logo"
     click_on activity.unit.name
     click_on activity.name
     click_on "copy-activity-link"
+    assert_equal 1, user.unit.activities.count
     assert_selector "h1", text: user.unit.name + " Activity Vote"
     assert_text "Activity '#{activity.name}' copied to your Unit."
     click_on activity.name

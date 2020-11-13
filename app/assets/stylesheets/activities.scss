@@ -1,3 +1,183 @@
-// Place all the styles related to the activities controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+$text-muted-color: #999;
+$muted-color: #ccc;
+$border-color: #e8e8ed;
+
+#activities {
+  h1 {
+    margin-bottom: 1.5em;
+    line-height: 1.2em;
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.4rem;
+    letter-spacing: 0.004em;
+  }
+  h2 {
+    margin: 1.5em 0;
+    font-weight: 600;
+    text-align: center;
+    font-size: 2.1rem;
+  }
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 0 0 0.05em 0;
+    line-height: 1.66em;
+  }
+  .btn {
+    margin: 0.25em;
+  }
+  .new-badge {
+    display: inline-block;
+  }
+  .share-link {
+    display: block;
+    text-align: center;
+    margin-top: 4rem;
+  }
+  .list-group-item {
+    padding: 1.25rem 0.5rem 1.25rem 1.25rem;
+  }
+  #activity-icons {
+    display: inline-block;
+  }
+
+  ul.activities {
+    margin-bottom: 3rem;
+    .voting {
+      margin-top: 0.5rem;
+      .vote {
+        float: right;
+        width: 6.5rem;
+        text-align: center;
+        form {
+          display: inline-block;
+
+          button {
+            display: inline-block;
+            margin-left: 0.3rem;
+            margin-right: 0.3rem;
+          }
+        }
+      }
+      .votes-count {
+        float: right;
+        text-align: center;
+        vertical-align: middle;
+        line-height: 1em;
+        width: 3.5rem;
+        margin-top: 0.6em;
+        font-weight: 800;
+        font-size: 1.2rem;
+        .votes {
+          font-size: 0.8rem;
+          color: $text-muted-color;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+
+#activity {
+  h1 {
+    font-size: 2.6rem;
+    text-align: left;
+    font-weight: 700;
+    line-height: 1.5em;
+    margin-top: 0.5em;
+    margin-bottom: 1.25em;
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin: 2.2em 0 1.66em 0;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 0.8em;
+    letter-spacing: 0.004em;
+  }
+  .activity-count {
+    text-align: center;
+    font-size: 5rem;
+    font-weight: 900;
+    line-height: 1em;
+  }
+  .new-badge {
+    font-size: 1.2rem;
+    text-tansform: uppercase;
+    vertical-align: middle;
+  }
+  .activity-icons {
+    font-size: 1.3rem;
+    line-height: 1.66em;
+    margin: 0;
+  }
+  .activity-icon {
+    display: inline-block;
+  }
+  .votes {
+    text-align: center;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 0.9em;
+  }
+  img {
+    clear: both;
+    text-align: center;
+    margin: 1em auto;
+    padding: 1.25em 0;
+
+  }
+  form {
+    display: inline-block;
+  }
+  .action {
+    display: inline-block;
+    margin-right: 1rem;
+    line-height: 1.66em;
+  }
+  #actions {
+    margin: 3.2rem 0;
+  }
+  #activity-images {
+    margin: 3.2rem 0;
+    padding: 3.2rem;
+    background-color: #000;
+  }
+  #proposer {
+    margin: 3.2em 0;
+  }
+}
+
+#discussion {
+
+  .question, .answer {
+    line-height: 1.4em;
+  }
+  .question {
+    font-weight: 700;
+    margin-top: 1.66em;
+  }
+  .question-author, .answer-author {
+    font-size: 0.8em;
+    color: $text-muted-color;
+  }
+  .answer {
+    margin-left: 1.66rem;
+    margin-top: 1em;
+  }
+  .answer-link, .question-link {
+    display: block;
+    margin-top: 1em;
+  }
+  .answer-author, .answer-link {
+    margin-left: 1.66rem;
+  }
+  .sign-in-link {
+    display: block;
+    margin-top: 1.5em;
+  }
+  .question-link {
+    display: block;
+    margin-top: 1.5em;
+  }
+}

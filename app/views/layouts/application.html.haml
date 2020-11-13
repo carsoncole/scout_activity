@@ -38,8 +38,13 @@
 
     = render 'flash'
 
-    .container#main
-      = yield
+    #content
+
+      - if controller_name == 'activities' && action_name == 'show'
+        = yield
+      - else
+        .container
+          = yield
 
     = render 'footer'
     = render 'tooltip'

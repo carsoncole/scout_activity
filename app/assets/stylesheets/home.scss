@@ -1,3 +1,100 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+$text-muted-color: #999;
+$muted-color: #ccc;
+$border-color: #e8e8ed;
+
+#home {
+  h5 {
+    margin-bottom: 1em;
+  }
+  form.button_to {
+    display: inline-block;
+  }
+  .btn.troop {
+    margin: 0.4em 0.4em;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .btn-primary {
+    color: #fff;
+    &:visited {
+      color: #fff;
+    }
+  }
+}
+
+#features {
+  margin-top: 1.7rem;
+
+  h1 {
+    font-size: 3.8rem;
+    margin-top: 0.8em;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+    margin-bottom: 1.7em;
+  }
+  h2 {
+    margin-top: 1.2em;
+    margin-bottom: 2em;
+    font-size: 2.9rem;
+    font-weight: 300;
+  }
+  p {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.666em;
+  }
+
+  ul li {
+    font-weight: 400;
+    font-size: 1.2rem;
+    line-height: 1.9rem;
+    margin-left: 4em;
+    .activity-icon {
+      margin-left: 0.6em;
+      display: inline-block;
+    }
+    img {
+      margin: 0;
+    }
+  }
+  img {
+    margin: 2rem auto;
+  }
+
+  .target-message {
+    font-weight: 600rem;
+    font-style: italic;
+    font-size: 1.4rem;
+    background-color: #efefef;
+    padding: 1.8em 2.2em;
+    margin: 2em;
+  }
+}
+
+.get-started {
+  margin: 2em 0;
+  padding: 2.5em 0;
+  border-top: 2px solid #efefef;
+  border-bottom: 2px solid #efefef;
+  text-transform: uppercase;
+  .btn.btn-lg {
+    font-weight: 700 !important;
+    padding: 0.6em 2em;
+  }
+}
+#faqs {
+  .faq {
+    h2 {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    p {
+      font-size: 1rem;
+      font-weight: 300;
+    }
+    margin-bottom: 2em;
+    .question {
+      font-weight: 600;
+    }
+  }
+}

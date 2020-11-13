@@ -6,8 +6,8 @@ class UsersTest < ApplicationSystemTestCase
     within "#main-nav" do
       click_on "Sign up"
     end
+    assert_selector "h1", text: "Sign up"
     within "#clearance.sign-up" do
-      assert_selector "h1", text: "Sign up"
       fill_in "Email", with: Faker::Internet.email
       fill_in "Password", with: "password"
 
@@ -47,7 +47,7 @@ class UsersTest < ApplicationSystemTestCase
       fill_in "Password", with: "password"
       all('#unit-select option')[1].select_option
       click_on "Sign up"
-        end
+    end
     assert_equal unit, User.last.unit
   end
 

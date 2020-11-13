@@ -24,6 +24,23 @@ class UnitsTest < ApplicationSystemTestCase
     assert_table "users"
   end
 
+  test "destroying unit but keeping users" do
+    owner = create(:owner_user)
+    sign_in(owner)
+
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      has_link? @user.unit.name
+    end
+    owner.unit.destroy
+    visit root_url
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      has_no_link? @user.unit.name
+    end
+    assert_nil owner.reload.unit_id
+  end
+
   # test "creating a Troop" do
   #   visit units_url
   #   click_on "New Troop"

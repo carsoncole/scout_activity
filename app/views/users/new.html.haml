@@ -1,16 +1,19 @@
 .row
+  .col-md-12
+    %h1 
+      - if @unit
+        Sign up to vote for
+        = succeed("'s") do
+          = @unit.name
+        activities
+      - else
+        = t(".title")
+
+.row
   .col-md-3
   .col-md-6
     #clearance.sign-up
-      %h1.mb-2
-        - if @unit
-          Sign up to vote for
-          = succeed("'s") do
-            = @unit.name
-          activities
-        - else
-          = t(".title")
-      %p.mb-5.text-muted
+      %p.mb-5.text-muted.text-center
         - if @unit
           Sign up to vote, or add an activity
         - else
