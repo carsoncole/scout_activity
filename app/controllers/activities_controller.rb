@@ -1,9 +1,9 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:create, :update, :destroy, :copy]
-  before_action :require_unit_user, except: [:index, :show, :copy]
+  before_action :require_unit_user, except: [:index, :show, :copy, :top_troop_activities]
   before_action :require_author_admin_owner, only: [:edit, :update, :destroy]
-  before_action :set_title
+  before_action :set_title, except: [:top_troop_activities]
 
   def index
     @activities = @unit.activities.non_high_adventure.votable.order(votes_count: :desc)
@@ -27,8 +27,10 @@ class ActivitiesController < ApplicationController
   end
 
   def show
+    @unit = @activity.unit
     @votes = @activity.votes.includes(:user).group(:user_id).count
-    @title = "#{@unit.name} - #{@activity.name} - ScoutActivity"
+    @title = "#{@activity.name} - ScoutActivity"
+    @title = @unit.name +  " - " + @title if @unit.is_example
     @unit.increment!(:visit_event_count)
     @questions = @activity.questions
     @description = "Activity proposed: " +  @activity.name
@@ -107,6 +109,12 @@ class ActivitiesController < ApplicationController
     end
   end
 
+  def top_troop_activities
+    @activities = Unit.example.activities.troop
+    @title = @activities.count.to_s + ' Ideas for Troop Activities'
+    @no_vote = true
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def require_unit_user
@@ -122,10 +130,14 @@ class ActivitiesController < ApplicationController
     end
 
     def set_title
-      @title = @unit.name + ' - Activities - ScoutActivity'
+      if @unit
+        @title = @unit.name + ' - Activities - ScoutActivity'
+      else
+        @title = @activity.unit.name + ' - Activities - ScoutActivity'
+      end
     end
     # Only allow a list of trusted parameters through.
     def activity_params
-      params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_virtual, :is_swimming, :is_community_service, :is_archived, :is_biking, :is_cooking, :is_boating, :is_game, :is_fundraising, :is_merit_badge, :is_international, :summary_new, images: [])
+      params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_virtual, :is_swimming, :is_community_service, :is_archived, :is_biking, :is_cooking, :is_boating, :is_game, :is_fundraising, :is_merit_badge, :is_international, :summary_new, :is_troop, :is_pack, images: [])
     end
 end

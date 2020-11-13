@@ -10,6 +10,9 @@ class Activity < ApplicationRecord
   scope :non_high_adventure, -> { where(is_high_adventure: false) }
   scope :votable, -> { where(is_archived: false) }
   scope :archived, -> { where(is_archived: true) }
+  scope :troop, -> { where(is_troop: true) }
+  scope :pack, -> { where(is_pack: true) }
+
 
   validates :name, presence: true
   validates :name, length: { maximum: 75 }
@@ -20,6 +23,10 @@ class Activity < ApplicationRecord
   has_rich_text :itinerary
 
   before_save :remove_votes_if_archived!, if: Proc.new {|a| a.is_archived_changed? && a.is_archived? }
+
+  def self.troop_ideas_count
+    Unit.example.activities.troop.count
+  end
 
   def activity_icons?
     if is_swimming || is_hiking || is_plane || is_camping || is_community_service || is_biking || is_cooking || is_virtual || is_international || is_merit_badge || is_high_adventure || is_fundraising || is_game

@@ -30,10 +30,13 @@ Rails.application.routes.draw do
     resources :votes, only: [:index, :create, :destroy]
   end
 
+  resources :activities, only: [:show]
+
   get 'about' => 'home#about', as: 'about'
   get 'faqs' => 'home#faqs', as: 'faqs'
   get 'resources' => 'home#resources', as: 'activity_resources'
   get 'example-unit' => 'home#example_unit', as: 'example_unit'
   get '/sitemap' => 'sitemap#sitemap', as: 'sitemap'
   get '/top-activites' => 'home#top_activities', as: 'top_activities'
+  get 'top-troop-activities' => 'activities#top_troop_activities', as: 'top_troop_activities'
 end

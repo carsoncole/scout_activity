@@ -224,9 +224,7 @@ class ActivitiesTest < ApplicationSystemTestCase
     click_on activity.name
     click_on "copy-activity-link"
     assert_equal 1, user.unit.activities.count
-    assert_selector "h1", text: user.unit.name + " Activity Vote"
     assert_text "Activity '#{activity.name}' copied to your Unit."
-    click_on activity.name
   end
 
   test "admnin user viewing activities" do

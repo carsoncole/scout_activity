@@ -11,8 +11,9 @@
           - if @activity.created_at > Time.now - 7.days
             %span.badge.badge-primary.new-badge NEW
           %h1
-            = @unit.name
-            \-
+            - unless @unit.is_example
+              = @unit.name
+              \-
             = @activity.name
           .activity-icons= render partial: 'activity_icons', locals: { activity: @activity }
           = pluralize(@activity.duration_days, "day")
@@ -50,7 +51,7 @@
 
           = render 'discussion'
 
-      - if @activity.author
+      - if @activity.author && !@unit.is_example?
         .row
           .col-md-7
             %h2 Details
