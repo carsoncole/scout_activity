@@ -38,7 +38,8 @@
 
     = render 'flash'
 
-    #main
+    #content
+
       - if controller_name == 'activities' && action_name == 'show'
         = yield
       - else
