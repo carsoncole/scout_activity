@@ -1,5 +1,8 @@
 .container
-  = render partial: 'breadcrumbs', locals: { link_url: unit_activities_path(@unit), link_text: 'All activities' }
+  - if @is_example
+    = render partial: 'breadcrumbs', locals: { link_url: ideas_for_troop_activities_path, link_text: 'Ideas for Troop activities' }
+  - else
+    = render partial: 'breadcrumbs', locals: { link_url: unit_activities_path(@unit), link_text: 'All activities' }
 
 
 %main#activity
@@ -11,17 +14,18 @@
           - if @activity.created_at > Time.now - 7.days
             %span.badge.badge-primary.new-badge NEW
           %h1
-            - unless @unit.is_example
-              = @unit.name
+            - unless @is_example
+              = @activity.unit.name
               \-
             = @activity.name
           .activity-icons= render partial: 'activity_icons', locals: { activity: @activity }
           = pluralize(@activity.duration_days, "day")
-        .col-md-3
-          #activity-vote-count
-            .activity-count
-              = @activity.votes_count || 0
-            .votes= "vote".pluralize(@activity.votes_count)
+        - unless @is_example
+          .col-md-3
+            #activity-vote-count
+              .activity-count
+                = @activity.votes_count || 0
+              .votes= "vote".pluralize(@activity.votes_count)
 
       .row
         .col-md-9
@@ -46,12 +50,13 @@
             .text-center= image_tag image.variant(resize_to_limit: [800, 800]), class: 'activity-image img-fluid rounded'
 
     .container
-      .row
-        .col-md-7
+      - unless @is_example
+        .row
+          .col-md-7
 
-          = render 'discussion'
+            = render 'discussion'
 
-      - if @activity.author && !@unit.is_example?
+      - if @activity.author && !@is_example
         .row
           .col-md-7
             %h2 Details

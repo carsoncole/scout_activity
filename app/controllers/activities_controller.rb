@@ -1,9 +1,9 @@
 class ActivitiesController < ApplicationController
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:create, :update, :destroy, :copy]
-  before_action :require_unit_user, except: [:index, :show, :copy, :top_troop_activities]
+  before_action :require_unit_user, except: [:index, :show, :copy, :ideas_for_troop_activities]
   before_action :require_author_admin_owner, only: [:edit, :update, :destroy]
-  before_action :set_title, except: [:top_troop_activities]
+  before_action :set_title, except: [:ideas_for_troop_activities]
 
   def index
     @activities = @unit.activities.non_high_adventure.votable.order(votes_count: :desc)
@@ -27,11 +27,12 @@ class ActivitiesController < ApplicationController
   end
 
   def show
-    @unit = @activity.unit
+    unit = @activity.unit
+    @is_example = true if unit.is_example
     @votes = @activity.votes.includes(:user).group(:user_id).count
     @title = "#{@activity.name} - ScoutActivity"
-    @title = @unit.name +  " - " + @title if @unit.is_example
-    @unit.increment!(:visit_event_count)
+    @title = unit.name +  " - " + @title if unit.is_example
+    unit.increment!(:visit_event_count)
     @questions = @activity.questions
     @description = "Activity proposed: " +  @activity.name
   end
@@ -109,8 +110,8 @@ class ActivitiesController < ApplicationController
     end
   end
 
-  def top_troop_activities
-    @activities = Unit.example.activities.troop
+  def ideas_for_troop_activities
+    @activities = Unit.example.first.activities.troop
     @title = @activities.count.to_s + ' Ideas for Troop Activities'
     @no_vote = true
     @description = "List of currated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events."

@@ -35,8 +35,7 @@ Rails.application.routes.draw do
   get 'about' => 'home#about', as: 'about'
   get 'faqs' => 'home#faqs', as: 'faqs'
   get 'resources' => 'home#resources', as: 'activity_resources'
-  get 'example-unit' => 'home#example_unit', as: 'example_unit'
   get '/sitemap' => 'sitemap#sitemap', as: 'sitemap'
   get '/top-activites' => 'home#top_activities', as: 'top_activities'
-  get 'top-troop-activities' => 'activities#top_troop_activities', as: 'top_troop_activities'
+  get 'ideas-for-troop-activities' => 'activities#ideas_for_troop_activities', as: 'ideas_for_troop_activities'
 end

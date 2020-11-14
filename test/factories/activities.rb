@@ -4,5 +4,9 @@ FactoryBot.define do
     author
     unit { author.unit }
     summary_new { Faker::Lorem.sentence(word_count: 10) }
+
+    factory :troop_activity do
+      is_troop { true }
+    end
   end
 end

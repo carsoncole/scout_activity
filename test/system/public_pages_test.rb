@@ -38,6 +38,16 @@ class PublicPagesTest < ApplicationSystemTestCase
     assert_selector "h1", text: 'Activity Resources'
   end
 
+  test "visiting ideas for troop activities" do
+    example_unit = create(:example_unit)
+    create_list(:troop_activity, 10, unit: example_unit)
+    count = Activity.troop_ideas_count
+    title = "#{count} Ideas for Troop Activities"
+    visit '/'
+    click_on "#{count} Ideas for Troop Activities"
+    assert_selector "h1", text: title
+  end
+
   test "main nav logo" do
     visit root_url
     click_on "brand-logo"

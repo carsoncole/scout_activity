@@ -8,11 +8,9 @@
         = link_to "About", about_path(utm_source: 'footer'), class: 'nav-link'
       .nav-item
         = link_to "Activity Resources", activity_resources_path(utm_source: 'footer'), class: 'nav-link'
-      - if signed_in? && current_user.is_app_admin?
+      - if Unit.example.any? && Unit.example.first.activities.troop.any?
         .nav-item
-          = link_to "#{Activity.troop_ideas_count} Ideas for Troop Activities", top_troop_activities_path(utm_source: 'footer'), class: 'nav-link'
-      .nav-item
-        = link_to "Example Unit", example_unit_path(utm_source: 'footer'), class: 'nav-link'
+          = link_to "#{Activity.troop_ideas_count} Ideas for Troop Activities", ideas_for_troop_activities_path(utm_source: 'footer'), class: 'nav-link'
       .nav-item
         = link_to "FAQs", faqs_path(utm_source: 'footer'), class: 'nav-link'
       .nav-item

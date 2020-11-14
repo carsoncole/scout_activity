@@ -1,0 +1,14 @@
+%main
+  .row
+    .col-md-12
+      %h1
+        = @activities.count
+        Ideas for Troop Activities
+
+
+  .row
+    .col-md-2
+    .col-md-8
+      #activities
+        %ul.activities.list-group
+          = render @activities
