@@ -10,11 +10,6 @@
       .col-md-7
         %p The annual challenge for planning Scout activities is a ritual all Troops go through. ScoutActivity makes it easy to offer one place that your Troop's Scouts, leaders, parents and other volunteers can offer up ideas that bring excitement, new adventures, and new opportunities for learning to your Scouts. And on the site, Scouts can vote for the ideas that excite them the most, engaging them in the planning process.
 
-        - if Unit.first
-          %p.text-center
-            = link_to "View an example unit's activites", unit_activities_path(Unit.first)
-
-
     .row
       .col-md-12
         %h2 Getting started
@@ -94,6 +89,15 @@
           %li
             International Scouting
             .activity-icon= image_tag "world-crest.png", width: '25px'
+
+    - if Unit.example.any?
+      .row
+        .col-md-5
+        .col-md-7
+          %p.mt-2
+            Lastly, for Troops, if you are still looking for ideas, check out our
+            = link_to "#{Activity.troop_ideas_count} Ideas for Troop Activities.", ideas_for_troop_activities_path
+
 
     = render 'get_started'
 
