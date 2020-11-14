@@ -53,10 +53,6 @@ class User < ApplicationRecord
     admin? || owner?
   end
 
-  def app_admin?
-    is_app_admin
-  end
-
   def clear_votes!
     votes.destroy_all
   end

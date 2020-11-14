@@ -1,3 +1,4 @@
+require 'simplecov'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
@@ -5,7 +6,7 @@ require 'rails/test_help'
 class ActiveSupport::TestCase
   include FactoryBot::Syntax::Methods
   # Run tests in parallel with specified workers
-  parallelize(workers: :number_of_processors)
+  # parallelize(workers: :number_of_processors)
 
   def sign_in(user=nil)
     @user = user || create(:user)

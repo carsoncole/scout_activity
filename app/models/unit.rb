@@ -11,11 +11,7 @@ class Unit < ApplicationRecord
 
   scope :example, -> { where(is_example: true)}
 
-  before_save :update_vote_counts!, if: Proc.new{|u| u.votes_allowed_changed?}
-
-  def owners
-    users.where(is_owner: true)
-  end
+  before_save :update_vote_counts!, if: Proc.new{|u| u.votes_allowed_changed?} 
 
   def votes_cast
     activities.sum(:votes_count)

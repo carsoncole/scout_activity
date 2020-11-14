@@ -43,8 +43,8 @@
   and a 
   = link_to "Resources", activity_resources_url(utm_source: 'app-email', utm_medium: 'email', utm_campaign: 'existing-users')
   section on our site that you can check out. And lastly, we do have an
-  = link_to "example Scout troop", example_unit_url 
-  set up that you can view, and even copy it's activities (we just introduced a copy function).
+  = link_to "#{Activity.troop_ideas_count} Ideas for Troop Activities", ideas_for_troop_activities_url 
+  that you can check out, and even copy the activities easily (we just introduced a copy function) to your Unit.
 
 
 %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left; margin-top:2.5em")

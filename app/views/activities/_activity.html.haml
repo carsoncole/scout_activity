@@ -3,7 +3,7 @@
     .row
       .col-xl-8
         %h3.name
-          - if activity.unit.is_example
+          - if activity.unit.is_example && action_name != 'index'
             = link_to activity.name, activity_path(activity)
           - else
             = link_to activity.name, unit_activity_path(activity.unit, activity)
@@ -44,4 +44,3 @@
           .copy
             = link_to unit_activity_copy_path(activity.unit, activity), id: "copy-activity-#{activity.id}-link", method: :post do
               = fa_icon "copy"
-
