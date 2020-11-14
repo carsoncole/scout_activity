@@ -6,31 +6,31 @@
     %priority 1.00
   %url
     %loc= about_url
-    %lastmod= File.new("app/views/home/about.html.haml").ctime.strftime("%Y-%m-%d")
+    %lastmod= File.new("app/views/home/about.html.haml").ctime.strftime("%FT%T")
     %priority 0.90
   %url
     %loc= activity_resources_url
-    %lastmod= File.new("app/views/home/resources.html.haml").ctime.strftime("%Y-%m-%d")
+    %lastmod= File.new("app/views/home/resources.html.haml").ctime.strftime("%FT%T")
     %priority 0.80
   %url
     %loc= faqs_url
-    %lastmod= File.new("app/views/home/faqs.html.haml").ctime.strftime("%Y-%m-%d")
+    %lastmod= File.new("app/views/home/faqs.html.haml").ctime.strftime("%FT%T")
     %priority 0.80
   %url
     %loc= ideas_for_troop_activities_url
-    %lastmod= File.new("app/views/activities/ideas_for_troop_activities.html.haml").ctime.strftime("%Y-%m-%d")
+    %lastmod= File.new("app/views/activities/ideas_for_troop_activities.html.haml").ctime.strftime("%FT%T")
     %priority 0.80
   - @units.each do |unit|
     %url
       %loc= unit_activities_url(unit)
       - if unit.activities.any?
-        %lastmod= unit.activities.last.updated_at.strftime("%Y-%m-%d")
+        %lastmod= unit.activities.last.updated_at.strftime("%FT%T")
       - else
-        %lastmod= unit.updated_at.strftime("%Y-%m-%d")
+        %lastmod= unit.updated_at.strftime("%FT%T")
       %priority 0.85
 
   - @activities.each do |activity|
     %url
       %loc= unit_activity_url(activity.unit, activity)
-      %lastmod= activity.updated_at.strftime("%Y-%m-%d")
+      %lastmod= activity.updated_at.strftime("%FT%T")
       %priority 0.80
