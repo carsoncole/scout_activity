@@ -28,3 +28,11 @@ email:
   password: password
 ```
 
+## Testing
+
+Rails Unit, System and Controller tests are used. SimpleCov is used for test coverage. For SimpleCov to correctly tabulate results, comment out the usage of multiple processors in test_helper.rb:
+
+```ruby
+# parallelize(workers: :number_of_processors)
+```
+
