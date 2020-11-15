@@ -18,7 +18,7 @@
     %priority 0.80
   %url
     %loc= ideas_for_troop_activities_url
-    %lastmod= File.new("app/views/activities/ideas_for_troop_activities.html.haml").ctime.strftime("%FT%TZ")
+    %lastmod= @last_troop_ideas_update.strftime("%FT%TZ")
     %priority 0.80
   - @units.each do |unit|
     %url
