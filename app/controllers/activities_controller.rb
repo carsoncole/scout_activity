@@ -1,4 +1,6 @@
 class ActivitiesController < ApplicationController
+  include ActivitiesHelper
+
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:create, :update, :destroy, :copy]
   before_action :require_unit_user, except: [:index, :show, :copy, :ideas_for_troop_activities]
@@ -13,13 +15,13 @@ class ActivitiesController < ApplicationController
     elsif signed_in? && current_user.activities.where(unit_id: @unit.id).archived.any?
       @archived_activities = current_user.activities.where(unit_id: @unit.id).archived
     end
-    if @activities.any?
+    if @activities.any? && !@unit.is_example
       @description = "Vote now for your favorite #{@unit.name} activities that you'd like to see happen. There are currently #{@unit.activities.count} activities. The Unit will consider the vote tally in determining which activites they schedule."
-    else
+    els
       @description = "Add your ideas to #{@unit.name}'s list of activities that the Unit's Scouts can vote on. They are looking for exciting activities to engage and excite them."
     end
-
-    @title = @unit.name + " - Activity Vote - ScoutActivity"
+    @title = "Activity Vote - ScoutActivity"
+    @title = @unit.name + " - " + @title unless @unit.is_example?
     if signed_in? && current_user.unit.nil?
       flash[:alert] = "To vote, select a Unit in your <a href='/users/#{current_user.id}/edit'>Profile</a> settings."
     end
@@ -29,8 +31,7 @@ class ActivitiesController < ApplicationController
     unit = @activity.unit
     @is_example = true if unit.is_example
     @votes = @activity.votes.includes(:user).group(:user_id).count
-    @title = "#{@activity.name} - ScoutActivity"
-    @title = unit.name +  " - " + @title if unit.is_example
+    @title = activity_page_title(@activity)
     unit.increment!(:visit_event_count)
     @questions = @activity.questions
     @description = "Activity proposed: " +  @activity.name
@@ -71,7 +72,7 @@ class ActivitiesController < ApplicationController
   end
 
   def edit
-    @title = @unit.name + ' - Edit ' + @activity.name +  ' - ScoutActivity'
+    @title = activity_page_title(@activity)
   end
 
   def create
@@ -101,7 +102,7 @@ class ActivitiesController < ApplicationController
   def ideas_for_troop_activities
     @activities = Unit.example.first.activities.troop
     @activities_count = @activities.count
-    @title = @activities.count.to_s + ' Ideas for Troop Activities'
+    @title = @activities.count.to_s + ' Ideas for Troop Activities - ScoutActivity'
     @no_vote = true
     @description = "List of currated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events."
     if params[:filter]
