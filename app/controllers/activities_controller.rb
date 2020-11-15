@@ -17,7 +17,7 @@ class ActivitiesController < ApplicationController
     end
     if @activities.any? && !@unit.is_example
       @description = "Vote now for your favorite #{@unit.name} activities that you'd like to see happen. There are currently #{@unit.activities.count} activities. The Unit will consider the vote tally in determining which activites they schedule."
-    els
+    else
       @description = "Add your ideas to #{@unit.name}'s list of activities that the Unit's Scouts can vote on. They are looking for exciting activities to engage and excite them."
     end
     @title = "Activity Vote - ScoutActivity"

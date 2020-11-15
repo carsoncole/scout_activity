@@ -16,10 +16,11 @@
     %loc= faqs_url
     %lastmod= File.new("app/views/home/faqs.html.haml").ctime.strftime("%FT%TZ")
     %priority 0.80
-  %url
-    %loc= ideas_for_troop_activities_url
-    %lastmod= @last_troop_ideas_update.strftime("%FT%TZ")
-    %priority 0.80
+  - if @last_troop_ideas_update
+    %url
+      %loc= ideas_for_troop_activities_url
+      %lastmod= @last_troop_ideas_update.strftime("%FT%TZ")
+      %priority 0.80
   - @units.each do |unit|
     %url
       %loc= unit_activities_url(unit)
