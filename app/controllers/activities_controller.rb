@@ -19,7 +19,6 @@ class ActivitiesController < ApplicationController
       @description = "Add your ideas to #{@unit.name}'s list of activities that the Unit's Scouts can vote on. They are looking for exciting activities to engage and excite them."
     end
 
-    @description = 'View this example Unit for ideas that can be copied to your own Unit.' if @unit.is_example
     @title = @unit.name + " - Activity Vote - ScoutActivity"
     if signed_in? && current_user.unit.nil?
       flash[:alert] = "To vote, select a Unit in your <a href='/users/#{current_user.id}/edit'>Profile</a> settings."
@@ -79,67 +78,60 @@ class ActivitiesController < ApplicationController
     @activity = @unit.activities.new(activity_params)
     @activity.author = current_user
 
-    respond_to do |format|
-      if @activity.save
-        format.html { redirect_to unit_activities_path(@unit), notice: 'Activity was successfully created.' }
-        format.json { render :show, status: :created, location: @activity }
-      else
-        format.html { render :new }
-        format.json { render json: @activity.errors, status: :unprocessable_entity }
-      end
+    if @activity.save
+      redirect_to unit_activities_path(@unit), notice: 'Activity was successfully created.'
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @activity.update(activity_params)
-        format.html { redirect_to unit_activity_path(@unit, @activity), notice: 'Activity was successfully updated.' }
-        format.json { render :show, status: :ok, location: @activity }
-      else
-        format.html { render :edit }
-        format.json { render json: @activity.errors, status: :unprocessable_entity }
-      end
+    if @activity.update(activity_params)
+      redirect_to unit_activity_path(@unit, @activity), notice: 'Activity was successfully updated.'
+    else
+      render :edit
     end
   end
 
   def destroy
     @activity.destroy
-    respond_to do |format|
-      format.html { redirect_to unit_activities_url(@unit), notice: 'Activity was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to unit_activities_url(@unit), notice: 'Activity was successfully destroyed.'
   end
 
   def ideas_for_troop_activities
     @activities = Unit.example.first.activities.troop
+    @activities_count = @activities.count
     @title = @activities.count.to_s + ' Ideas for Troop Activities'
     @no_vote = true
     @description = "List of currated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events."
+    if params[:filter]
+      @activities = @activities.where(params[:filter])
+    end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def require_unit_user
-      redirect_to root_path unless signed_in? && current_user.unit == @unit
-    end
 
-    def require_author_admin_owner
-      redirect_to root_path unless signed_in? && (@activity.author == current_user || current_user.admin_or_owner?)
-    end
+  def require_unit_user
+    redirect_to root_path unless signed_in? && current_user.unit == @unit
+  end
 
-    def set_activity
-      @activity = Activity.find(params[:id])
-    end
+  def require_author_admin_owner
+    redirect_to root_path unless signed_in? && (@activity.author == current_user || current_user.admin_or_owner?)
+  end
 
-    def set_title
-      if @unit
-        @title = @unit.name + ' - Activities - ScoutActivity'
-      else
-        @title = @activity.unit.name + ' - Activities - ScoutActivity'
-      end
+  def set_activity
+    @activity = Activity.find(params[:id])
+  end
+
+  def set_title
+    if @unit
+      @title = @unit.name + ' - Activities - ScoutActivity'
+    else
+      @title = @activity.unit.name + ' - Activities - ScoutActivity'
     end
-    # Only allow a list of trusted parameters through.
-    def activity_params
-      params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_virtual, :is_swimming, :is_community_service, :is_archived, :is_biking, :is_cooking, :is_boating, :is_game, :is_fundraising, :is_merit_badge, :is_international, :summary_new, :is_troop, :is_pack, images: [])
-    end
+  end
+  # Only allow a list of trusted parameters through.
+  def activity_params
+    params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_virtual, :is_swimming, :is_community_service, :is_archived, :is_biking, :is_cooking, :is_boating, :is_game, :is_fundraising, :is_merit_badge, :is_international, :summary_new, :is_troop, :is_pack, images: [])
+  end
 end

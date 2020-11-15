@@ -41,34 +41,54 @@ class UnitsTest < ApplicationSystemTestCase
     assert_nil owner.reload.unit_id
   end
 
-  # test "creating a Troop" do
-  #   visit units_url
-  #   click_on "New Troop"
+  test "deleting a user from a unit and returning their votes" do
+    owner = create(:owner_user)
+    user = create(:user, unit: owner.unit)
+    activity = create(:activity, unit: user.unit)
+    create_list(:vote, 10, activity: activity, user:user)
+    assert_equal 10, activity.votes.count
+    sign_in(owner)
+    visit edit_unit_url(owner.unit)
+    assert_selector "h1", text: owner.unit.name
+    assert_table "users"
+    # page.execute_script "window.scrollTo(800,800)"
+    within "#users" do
+      assert_selector "tr", count: 3
+      assert_selector "#user-#{user.id}-remove-link"
+      accept_confirm do
+        click_on "user-#{user.id}-remove-link"
+      end
+    end
+    assert_selector "tr", count: 2
+    assert user.reload
+    assert_nil user.unit_id
 
-  #   fill_in "Unit number", with: @unit.unit_number
-  #   click_on "Create Troop"
+    assert_equal 0, activity.reload.votes.count
+  end
 
-  #   assert_text "Troop was successfully created"
-  #   click_on "Back"
-  # end
+  test "updating a Unit" do
+    owner = create(:owner_user)
+    sign_in(owner)
 
-  # test "updating a Troop" do
-  #   visit units_url
-  #   click_on "Edit", match: :first
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      click_on owner.unit.name
+    end
 
-  #   fill_in "Unit number", with: @unit.unit_number
-  #   click_on "Update Troop"
+    fill_in "Unit number and city", with: ''
+    click_on "Update Unit"
 
-  #   assert_text "Troop was successfully updated"
-  #   click_on "Back"
-  # end
+    assert_text "1 error prohibited this unit from being saved"
+  end
 
-  # test "destroying a Troop" do
-  #   visit units_url
-  #   page.accept_confirm do
-  #     click_on "Destroy", match: :first
-  #   end
+  test "creating a Unit" do
+    user = create(:user, unit: nil)
+    sign_in(user)
 
-  #   assert_text "Troop was successfully destroyed"
-  # end
+    click_on "Add your Unit"
+    fill_in "Unit number and city", with: ''
+    click_on "Create Unit"
+
+    assert_text "error prohibited this unit from being saved"
+  end
 end

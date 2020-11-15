@@ -20,18 +20,4 @@ class HomeController < ApplicationController
     @title = 'Frequently Asked Questions - ScoutActivity'
     @description = 'Frequently asked questions about how to best use ScoutActivity.com'
   end
-
-  def example_unit
-    @example_unit = Unit.example.first
-    @title = 'Example Unit - ScoutActivity'
-    @description = 'Here are Unit examples that you can view and copy the activities'
-  end
-
-  def top_activities
-    @unit = Unit.example.first
-    @activities = @unit.activities
-    if params[:filter]
-      @activities = @activities.where(params[:filter])
-    end
-  end
 end

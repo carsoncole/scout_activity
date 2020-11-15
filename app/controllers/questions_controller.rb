@@ -29,9 +29,9 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = @activity.questions.find(params[:id])
+    question = @activity.questions.find(params[:id])
     if @activity.author == current_user || question.user == current_user
-      @question.destroy
+      question.destroy
     end
     redirect_to unit_activity_path(@unit, @activity)
   end

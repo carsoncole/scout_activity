@@ -65,6 +65,27 @@ class UsersTest < ApplicationSystemTestCase
     end
   end
 
+  test "unsubscribing and subscribing a user" do
+    user = create(:user)
+    assert user.is_subscribed
+    visit user_unsubscribe_path(user)
+    sign_in(user)
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      click_on user.email
+    end
+    assert_not find("#user_is_subscribed").checked?
+
+    check "user_is_subscribed"
+    click_on "Update"
+
+    click_on "navbarDropdown"
+    within "#user-menu" do
+      click_on user.email
+    end
+    assert find("#user_is_subscribed").checked?
+  end
+
   test "editing a user" do
     user = create(:user)
     sign_in(user)
@@ -76,6 +97,12 @@ class UsersTest < ApplicationSystemTestCase
     assert_no_selector "#user_is_admin"
     assert_no_selector "#user_is_owner"
     assert_selector "#user_is_subscribed"
+
+    fill_in "Email", with: "new_email@example.com"
+    click_on "Update"
+    assert_text "Your account has been updated"
+    # click_on "navbarDropdown"
+    # has_link? "new_email@example.com"
   end
 
   test "editing an admin" do

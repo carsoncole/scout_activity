@@ -1,17 +1,17 @@
 .question
   = question.content
-  - if @activity.author == current_user || question.user == current_user
-    = link_to unit_activity_question_path(@unit, @activity, question), method: :delete do
+  - if @activity.author == current_user || question.user == current_user || (current_user.admin_or_owner? && current_user.unit == @activity.unit)
+    = link_to unit_activity_question_path(@unit, @activity, question), method: :delete, id: "question-#{question.id}-destroy-link" do
       = fa_icon "trash-alt"
 .question-author= question.user.email
 
 - question.answers.each do |answer|
   .answer
     = answer.content
-    - if @activity.author == current_user || answer.user == current_user
-      = link_to unit_activity_question_answer_path(@unit, @activity, question, answer), method: :delete do
+    - if @activity.author == current_user || answer.user == current_user || (current_user.admin_or_owner? && current_user.unit == @activity.unit)
+      = link_to unit_activity_question_answer_path(@unit, @activity, question, answer), method: :delete, id: "answer-#{answer.id}-destroy-link" do
         = fa_icon "trash-alt"
   .answer-author= answer.user.email
 
 - if signed_in? && @unit == current_user.unit
-  = link_to "Add answer/comment", new_unit_activity_question_answer_path(@unit, @activity, question), class: 'answer-link'
+  = link_to "Add answer/comment", new_unit_activity_question_answer_path(@unit, @activity, question), class: 'answer-link', id: "question-#{question.id}-add-answer-link"

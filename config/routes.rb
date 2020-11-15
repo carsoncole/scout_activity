@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "sessions", only: [:create]
 
-
   resources :users, controller: "users", only: [:edit, :create, :show, :update] do
     get '/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     resource :password,
@@ -26,7 +25,6 @@ Rails.application.routes.draw do
       end
       post '/archive-activity' => 'activities#archive_activity', as: 'archive_activity'
     end
-    get '/unit-created' => 'units#unit_created', as: 'unit_created'
     resources :votes, only: [:index, :create, :destroy]
   end
 
@@ -36,6 +34,5 @@ Rails.application.routes.draw do
   get 'faqs' => 'home#faqs', as: 'faqs'
   get 'resources' => 'home#resources', as: 'activity_resources'
   get '/sitemap' => 'sitemap#sitemap', as: 'sitemap'
-  get '/top-activites' => 'home#top_activities', as: 'top_activities'
   get 'ideas-for-troop-activities' => 'activities#ideas_for_troop_activities', as: 'ideas_for_troop_activities'
 end

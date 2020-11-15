@@ -2,10 +2,6 @@ class AnswersController < ApplicationController
   before_action :get_activity
   before_action :get_question
 
-  def show
-    @answer = @question.answers.find(params[:id])
-  end
-
   def new
     @answer = @question.answers.new
   end
@@ -21,9 +17,9 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @answer = @question.answers.find(params[:id])
+    answer = @question.answers.find(params[:id])
     if @activity.author == current_user || answer.user == current_user
-      @answer.destroy
+      answer.destroy
     end
     redirect_to unit_activity_path(@unit, @activity)
   end

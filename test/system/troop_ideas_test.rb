@@ -108,4 +108,38 @@ class TroopIdeasTest < ApplicationSystemTestCase
     click_on "copy-activity-link"
     assert_text "'#{@activities[1].name}' copied to your Unit."
   end
+
+  test "index and using filter" do
+    @activities[0].update(is_hiking: true, is_camping: true)
+    @activities[1].update(is_swimming: true, is_camping: true)
+    @activities[2].update(is_merit_badge: true)
+    @activities[3].update(is_plane: true, is_camping: true)
+    @activities[4].update(is_swimming: true)
+    @activities[5].update(is_game: true, is_virtual: true)
+    @activities[6].update(is_community_service: true, is_camping: true)
+    @activities[7].update(is_boating: true, is_camping: true)
+    @activities[8].update(is_fundraising: true)
+    @activities[9].update(is_hiking: true, is_camping: true)
+
+    assert_equal 10, Unit.example.first.activities.troop.count
+
+    visit root_url
+    within "footer" do
+      click_on "#{@count} Ideas for Troop Activities"
+    end
+    assert_selector "#activities"
+    assert_selector "article", count: 10
+
+    click_on "hiking-filter"
+    assert_selector "article", count: 2
+
+    click_on "flying-filter"
+    assert_selector "article", count: 1
+
+    click_on "swimming-filter"
+    assert_selector "article", count: 2
+
+    click_on "clear-filter"
+    assert_selector "article", count: 10
+  end
 end

@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'scoutactivity@gmail.com'
+  default from: 'ScoutActivity <scoutactivity@gmail.com>'
   layout 'mailer'
 
   before_action :set_user

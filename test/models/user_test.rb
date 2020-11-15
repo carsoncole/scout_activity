@@ -32,4 +32,18 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 0, unit.reload.votes_cast # unit votes reduced by same amount
     assert_equal 5, unit.activities.count # unit activities unchanged
   end
+
+  test "name_email method" do
+    user = create(:user)
+    assert_equal user.email, user.name_email
+
+    user.update(first_name: 'John')
+    assert_equal "John (#{user.email})", user.name_email
+
+    user.update(first_name: nil, last_name: 'Smith')
+    assert_equal user.email, user.name_email
+
+    user.update(first_name: 'John', last_name: 'Smith')
+    assert_equal "John Smith (#{user.email})", user.name_email
+  end
 end

@@ -7,23 +7,12 @@ class UsersController < Clearance::UsersController
   def edit
   end
 
-  def new
-    @unit = Unit.find(params[:unit_id]) if params[:unit_id]
-    super
-  end
-
   def update
     new_params = user_params
     new_params = user_params.reject! { |k,v| v.blank? }
     if @user.update(new_params)
-      if current_user == @user
-        redirect_to unit_activities_path(@user.unit), notice: 'Your account has been updated'
-      else
-        redirect_to edit_unit_path(@user.unit), notice: 'The account has been updated'
-      end
+      redirect_to unit_activities_path(@user.unit), notice: 'Your account has been updated'
     else
-      byebug
-      puts @user.errors.full_messages
       render :edit
     end
   end

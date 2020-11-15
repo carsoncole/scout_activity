@@ -11,6 +11,16 @@ class ActivitiesTest < ApplicationSystemTestCase
     click_link activity.name
   end
 
+  test "activities index logged in without a unit" do
+    activity = create(:activity)
+    user = create(:user, unit: nil)
+    sign_in(user)
+    visit unit_activities_url(activity.unit)
+    assert_selector "h1", text: activity.unit.name + " Activity Vote"
+    has_button? "Sign in or sign up to vote"
+    assert_selector "#flash", text: 'To vote, select a Unit in your'
+  end
+
   test "showing an activity (not logged in)" do
     activity = create(:activity)
     visit unit_activity_url(activity.unit, activity)
