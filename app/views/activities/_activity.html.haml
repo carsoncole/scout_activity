@@ -15,6 +15,10 @@
           \|
         %span.text-muted
           = pluralize(activity.duration_days, 'day')
+        - if signed_in? && current_user.admin_or_owner?
+          .copy
+            = link_to unit_activity_copy_path(activity.unit, activity), id: "copy-activity-#{activity.id}-link", method: :post do
+              = fa_icon "copy"
 
       - if @no_vote != true
         .col-xl-4
@@ -39,8 +43,12 @@
                 - unless activity.is_archived?
                   - count = activity.votes.where(user: current_user).count
                   = count || 0
-      - elsif signed_in? && current_user.admin_or_owner?
-        .col-xl-4
-          .copy
-            = link_to unit_activity_copy_path(activity.unit, activity), id: "copy-activity-#{activity.id}-link", method: :post do
-              = fa_icon "copy"
+      .col-xl-4
+        - if @no_vote == true && activity.images.attached?
+          .images
+            - images = activity.images
+            - if images.any?
+              - if images.first.variable?
+                = image_tag activity.images.first.variant(resize_to_limit: [90, 90]), class: 'img-fluid rounded'
+              - if images.count > 1 && images[1].variable?
+                = image_tag images[1].variant(resize_to_limit: [90, 90]), class: 'img-fluid rounded'

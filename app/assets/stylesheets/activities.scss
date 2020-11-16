@@ -76,9 +76,19 @@ $border-color: #e8e8ed;
       }
     }
     .copy {
-      float: right;
-      margin-right: 1.66em;
-      font-size: 1.7rem;
+      display: inline-block;
+      margin-left: 0.5em;
+      font-size: 1.2rem;
+    }
+    .images {
+      vertical-align: middle;
+      text-align: center;
+      margin-top: 0.50rem;
+
+      img {
+        display: inline-block;
+        padding: 0.2rem 0.2rem;
+      }
     }
   }
 }
