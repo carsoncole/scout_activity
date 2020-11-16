@@ -13,8 +13,10 @@ class TroopIdeasTest < ApplicationSystemTestCase
     click_on "#{@count} Ideas for Troop Activities"
     assert_selector "h1", text: @title
     assert_selector "#activities", count: 1
-    assert_selector "li", count: @count
-    assert_no_selector "#copy-activity-#{@activities[0].id}-link"
+    within "#activities" do
+      assert_selector "li", count: @count
+      assert_no_selector "#copy-activity-#{@activities[0].id}-link"
+    end
 
     click_on @activities[1].name
     assert_no_selector "#activity-vote-count"
@@ -30,9 +32,10 @@ class TroopIdeasTest < ApplicationSystemTestCase
     click_on "#{@count} Ideas for Troop Activities"
     assert_selector "h1", text: @title
     assert_selector "#activities", count: 1
-    assert_selector "li", count: @count
-    assert_no_selector "#copy-activity-#{@activities[0].id}-link"
-
+    within "#activities" do
+      assert_selector "li", count: @count
+      assert_no_selector "#copy-activity-#{@activities[0].id}-link"
+    end
     click_on @activities[1].name
     assert_no_selector "#activity-vote-count"
 
@@ -48,9 +51,10 @@ class TroopIdeasTest < ApplicationSystemTestCase
     click_on "#{@count} Ideas for Troop Activities"
     assert_selector "h1", text: @title
     assert_selector "#activities", count: 1
-    assert_selector "li", count: @count
-    assert_selector "#copy-activity-#{@activities[0].id}-link"
-
+    within "#activities" do
+      assert_selector "li", count: @count
+      assert_selector "#copy-activity-#{@activities[0].id}-link"
+    end
     click_on @activities[1].name
     assert_no_selector "#activity-vote-count"
 
@@ -66,9 +70,10 @@ class TroopIdeasTest < ApplicationSystemTestCase
     click_on "#{@count} Ideas for Troop Activities"
     assert_selector "h1", text: @title
     assert_selector "#activities", count: 1
-    assert_selector "li", count: @count
-    assert_selector "#copy-activity-#{@activities[0].id}-link"
-
+    within "#activities" do
+      assert_selector "li", count: @count
+      assert_selector "#copy-activity-#{@activities[0].id}-link"
+    end
     click_on @activities[1].name
     assert_no_selector "#activity-vote-count"
 
@@ -84,9 +89,10 @@ class TroopIdeasTest < ApplicationSystemTestCase
     click_on "#{@count} Ideas for Troop Activities"
     assert_selector "h1", text: @title
     assert_selector "#activities", count: 1
-    assert_selector "li", count: @count
-    assert_selector "#copy-activity-#{@activities[0].id}-link"
-
+    within "#activities" do
+      assert_selector "li", count: @count
+      assert_selector "#copy-activity-#{@activities[0].id}-link"
+    end
     click_on @activities[1].name
     assert_no_selector "#activity-vote-count"
 
