@@ -1,20 +1,20 @@
 %h1(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;text-align: center;margin-bottom: 1.77em;")
   ScoutActivity Report
 
-%h2(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;font-size: 1em;font-weight:500")
-  In the past week, there were
+%h2(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; margin-bottom: 1em;text-align: left;line-height: 1.5em;font-size: 1em;font-weight:500")
+  In the past week, there were:
 
-%table.table(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;width:200px;border:none;")
-  %tr
-    %th(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;border:none;padding:0.15em;text-align: left;")
-      New Users
-    %td(style="border:none;padding:0.15em;text-align:right;")  
-      = @new_users_count
+%table.table(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;width:200px;border:none;margin-left: 1em;")
   %tr
     %th(style="border:none;padding:0.15em;text-align: left;")
       Total Users
     %td(style="border:none;padding:0.15em;text-align:right;")  
       = @total_users_count
+  %tr
+    %th(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;border:none;padding:0.15em;text-align: left;")
+      New Users
+    %td(style="border:none;padding:0.15em;text-align:right;")  
+      = @new_users_count
   %tr
     %th(style="border:none;padding:0.15em;text-align: left;")
       Active Users
@@ -27,10 +27,24 @@
       = @new_units_count
   %tr
     %th(style="border:none;padding:0.15em;text-align: left;")
+      Total Activities
+    %td(style="border:none;padding:0.15em;text-align:right;")  
+      = @total_activities_count
+  %tr
+    %th(style="border:none;padding:0.15em;text-align: left;")
       New Activities
     %td(style="border:none;padding:0.15em;text-align:right;")  
       = @new_activities_count
-
+  %tr
+    %th(style="border:none;padding:0.15em;text-align: left;")
+      Total Votes
+    %td(style="border:none;padding:0.15em;text-align:right;")  
+      = @total_votes_count
+  %tr
+    %th(style="border:none;padding:0.15em;text-align: left;")
+      New Votes
+    %td(style="border:none;padding:0.15em;text-align:right;")  
+      = @new_votes_count
 
   / %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, Sego=e UI, Helvetica Neue, Helvetica, Arial, sans-serif; text-align: center; margin-top: 30px;")
   /   There are currently a total of

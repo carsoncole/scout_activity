@@ -8,6 +8,7 @@ class AdminMailerTest < ActionMailer::TestCase
     assert_equal ["admin@example.com"], mail.to
     assert_equal ["scoutactivity@gmail.com"], mail.from
     assert_match "ScoutActivity Report", mail.body.encoded
+    mail.deliver_now
+    assert_equal 1, ActionMailer::Base.deliveries.count
   end
-
 end
