@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   include Clearance::User
 
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } # this allows bad emails such as "test@examplecom"
+
   belongs_to :unit, optional: true
   has_many :votes, dependent: :destroy
   has_many :activities, foreign_key: 'author_id', dependent: :nullify

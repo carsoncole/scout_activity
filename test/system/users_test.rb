@@ -39,6 +39,17 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "Unit was successfully updated."
   end
 
+  test "creating user with invalid email" do
+    visit sign_up_url
+    assert_no_difference("User.count", "user should not have been added with a bad email") do
+      within "#clearance.sign-up" do
+        fill_in "Email", with: "bademail" 
+        fill_in "Password", with: Faker::Internet.password
+        click_on "Sign up"
+      end
+    end
+  end
+
   test "signing up, and using an existing unit" do
     unit = create(:unit)
     visit sign_up_url
