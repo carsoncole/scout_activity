@@ -23,7 +23,7 @@
           %li.nav-item
             .d-inline-block
               = link_to ideas_for_troop_activities_path, class: 'nav-link' do
-                = "#{Activity.troop_ideas_count} Ideas for Troop Ideas"
+                = "#{Activity.troop_ideas_count} Ideas for Troop Activities"
                 .badge.badge-warning NEW
             / - if signed_in? && (@unit.owner == current_user || current_user.activities.any?)
             /   %li.nav-item
