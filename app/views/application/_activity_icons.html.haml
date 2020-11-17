@@ -21,6 +21,8 @@
     .activity-icon#game-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Game')= fa_icon "trophy"
   - if activity.is_fundraising?
     .activity-icon#fundraising-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Fundraising')= fa_icon "dollar-sign"
+  - if activity.is_covid_safe?
+    .activity-icon#fundraising-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='COVID Safe')= fa_icon "head-side-mask"
   - if activity.is_community_service?
     .activity-icon#community-service-icon(data-toggle = "tooltip" data-type="primary" data-placement = "top" title='Community Service')= fa_icon "store" 
   - if activity.is_international?

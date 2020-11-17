@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_13_191418) do
+ActiveRecord::Schema.define(version: 2020_11_17_191613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_11_13_191418) do
     t.integer "copy_count", default: 0
     t.boolean "is_troop", default: false, null: false
     t.boolean "is_pack", default: false, null: false
+    t.boolean "is_covid_safe", default: false, null: false
     t.index ["unit_id"], name: "index_activities_on_unit_id"
   end
 
