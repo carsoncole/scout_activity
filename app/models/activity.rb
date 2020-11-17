@@ -32,6 +32,14 @@ class Activity < ApplicationRecord
     end
   end
 
+  def self.covid_safe_troop_ideas_count
+    if Unit.example.any?
+      Unit.example.first.activities&.troop&.where(is_covid_safe: true).count
+    else
+      0
+    end
+  end
+
   def types
     result = []
     result << 'swimming' if is_swimming

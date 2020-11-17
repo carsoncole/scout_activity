@@ -26,9 +26,12 @@
                 = link_to ideas_for_troop_activities_path, class: 'nav-link' do
                   = "#{Activity.troop_ideas_count} Ideas for Troop Activities"
                   .badge.badge-warning NEW
-              / - if signed_in? && (@unit.owner == current_user || current_user.activities.any?)
-              /   %li.nav-item
-              /     = link_to "My Activities", unit_activities_path(@unit, admin: true), class: 'nav-link'
+          - if Activity.covid_safe_troop_ideas_count.positive?
+            %li.nav-item
+              .d-inline-block
+                = link_to ideas_for_covid_safe_troop_activities_path, class: 'nav-link' do
+                  = "#{Activity.covid_safe_troop_ideas_count} Ideas for COVID Safe Troop Activities"
+                  .badge.badge-warning NEW
         - if signed_in?
           .dropdown
             = link_to "#", id: 'navbarDropdown', 'data-toggle': 'dropdown', class: 'nav-link dropdown-toggle' do

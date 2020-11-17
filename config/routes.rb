@@ -35,4 +35,5 @@ Rails.application.routes.draw do
   get 'resources' => 'home#resources', as: 'activity_resources'
   get '/sitemap' => 'sitemap#sitemap', as: 'sitemap'
   get 'ideas-for-troop-activities' => 'activities#ideas_for_troop_activities', as: 'ideas_for_troop_activities'
+  get 'ideas-for-covid-safe-troop-activities' => 'activities#ideas_for_covid_safe_troop_activities', as: 'ideas_for_covid_safe_troop_activities'
 end

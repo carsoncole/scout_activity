@@ -3,9 +3,9 @@ class ActivitiesController < ApplicationController
 
   before_action :set_activity, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:create, :update, :destroy, :copy]
-  before_action :require_unit_user, except: [:index, :show, :copy, :ideas_for_troop_activities]
+  before_action :require_unit_user, except: [:index, :show, :copy, :ideas_for_troop_activities, :ideas_for_covid_safe_troop_activities]
   before_action :require_author_admin_owner, only: [:edit, :update, :destroy]
-  before_action :set_title, except: [:ideas_for_troop_activities]
+  before_action :set_title, except: [:ideas_for_troop_activities, :ideas_for_covid_safe_troop_activities]
 
   def index
     @activities = @unit.activities.non_high_adventure.votable.order(votes_count: :desc)
@@ -112,6 +112,17 @@ class ActivitiesController < ApplicationController
     @title = @activities.count.to_s + ' Ideas for Troop Activities - ScoutActivity'
     @no_vote = true
     @description = "List of currated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events."
+    if params[:filter]
+      @activities = @activities.where(params[:filter])
+    end
+  end
+
+  def ideas_for_covid_safe_troop_activities
+    @activities = Unit.example.first.activities.troop.where(is_covid_safe: true)
+    @activities_count = @activities.count
+    @title = @activities.count.to_s + ' COVID Safe Ideas for Troop Activities - ScoutActivity'
+    @no_vote = true
+    @description = "List of currated COVID safe ideas for Scout Troop activiities, including both virtual and in-person activities."
     if params[:filter]
       @activities = @activities.where(params[:filter])
     end
