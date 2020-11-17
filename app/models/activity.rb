@@ -32,6 +32,27 @@ class Activity < ApplicationRecord
     end
   end
 
+  def types
+    result = []
+    result << 'swimming' if is_swimming
+    result << 'hiking' if is_hiking
+    result << 'camping' if is_camping
+    result << 'biking' if is_biking
+    result << 'cooking' if is_cooking
+    result
+  end
+
+  def categories
+    result = []
+    result << 'community service' if is_community_service
+    result << 'international' if is_international
+    result << 'merit badge opportunities' if is_merit_badge
+    result << 'High Adventure' if is_high_adventure
+    result << 'fundraising' if is_fundraising
+    result << 'virtual' if is_virtual
+    result
+  end
+
   def activity_icons?
     if is_swimming || is_hiking || is_plane || is_camping || is_community_service || is_biking || is_cooking || is_virtual || is_international || is_merit_badge || is_high_adventure || is_fundraising || is_game
       true
