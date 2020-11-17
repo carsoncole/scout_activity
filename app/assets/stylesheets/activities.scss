@@ -2,6 +2,25 @@ $text-muted-color: #999;
 $muted-color: #ccc;
 $border-color: #e8e8ed;
 
+
+#activity-filter {
+  margin: 1.25rem 0 1rem 0;
+  line-height: 1.2em;
+  .nav-link {
+    padding: 0.5rem 0.75rem;
+    &.active {
+      border: 1px solid #aeaeae;
+      border-radius: 10px;
+    }
+    svg {
+      line-height: 1.2em;
+      vertical-align: middle;
+    }
+  }
+}
+
+
+
 #activities {
   h1 {
     margin-bottom: 1.5em;

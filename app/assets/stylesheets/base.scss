@@ -166,13 +166,6 @@ table.activities {
 }
 
 #activities {
-  h1 {
-    margin-bottom: 1.5em;
-    line-height: 1.2em;
-    text-align: center;
-    font-weight: 300;
-    font-size: 2rem;
-  }
   .btn {
     margin: 0.25em;
   }
@@ -180,20 +173,6 @@ table.activities {
     display: block;
     text-align: center;
     margin-top: 4rem;
-  }
-  .list-group-item {
-    padding-right: 0.4em;
-  }
-  #activity-filter {
-    margin: 1.25rem 0 1rem 0;
-    line-height: 1.2em;
-    .nav-link {
-      padding: 0.5rem 0.75rem;
-      &.active {
-        border: 1px solid #aeaeae;
-        border-radius: 10px;
-      }
-    }
   }
 }
 
