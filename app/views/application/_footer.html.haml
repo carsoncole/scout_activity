@@ -1,24 +1,31 @@
-%footer
+%footer.justify-content-center
   .container-fluid
-    %nav.nav.justify-content-center
-      .nav-item.nav-link
-        Copyright
-        = Time.now.year
-      .nav-item 
-        = link_to "About", about_path(utm_source: 'footer'), class: 'nav-link'
-      .nav-item
-        = link_to "Activity Resources", activity_resources_path(utm_source: 'footer'), class: 'nav-link'
-      - if Activity.troop_ideas_count.positive?
-        .nav-item
-          .d-inline-block= link_to "#{Activity.troop_ideas_count} Ideas for Troop Activities", ideas_for_troop_activities_path(utm_source: 'footer'), class: 'nav-link'
-          .badge.badge-warning NEW
-      - if Activity.covid_safe_troop_ideas_count.positive?
-        .nav-item
-          .d-inline-block= link_to "#{Activity.covid_safe_troop_ideas_count} Ideas for COVID Safe Troop Activities", ideas_for_covid_safe_troop_activities_path(utm_source: 'footer'), class: 'nav-link'
-          .badge.badge-warning NEW
-      .nav-item
-        = link_to "FAQs", faqs_path(utm_source: 'footer'), class: 'nav-link'
-      .nav-item
-        = link_to 'http://www.facebook.com/sharer.php?u=' +request.url, class: 'nav-link', target: :blank do
-          = fa_icon "share"
-          Share
+    %nav
+      .row
+        .col-xl-2
+        .col-xl-8
+          .row
+            .col-xl-3
+              .group
+                .nav-item 
+                  = link_to "About", about_path(utm_source: 'footer'), class: 'nav-link'
+                .nav-item
+                  = link_to "FAQs", faqs_path(utm_source: 'footer'), class: 'nav-link'
+            .col-xl-4
+              .group
+                .nav-item
+                  = link_to "Activity Resources", activity_resources_path(utm_source: 'footer'), class: 'nav-link'
+                .nav-item
+                  = link_to 'http://www.facebook.com/sharer.php?u=' +request.url, class: 'nav-link', target: :blank do
+                    = fa_icon "share"
+                    Share
+            .col-xl-5
+              .group
+                - if Activity.troop_ideas_count.positive?
+                  .nav-item
+                    .d-inline-block= link_to "#{Activity.troop_ideas_count} Ideas for Troop Activities", ideas_for_troop_activities_path(utm_source: 'footer'), class: 'nav-link'
+                    .badge.badge-warning NEW
+                - if Activity.covid_safe_troop_ideas_count.positive?
+                  .nav-item
+                    .d-inline-block= link_to "#{Activity.covid_safe_troop_ideas_count} Ideas for COVID Safe Troop Activities", ideas_for_covid_safe_troop_activities_path(utm_source: 'footer'), class: 'nav-link'
+                    .badge.badge-warning NEW
