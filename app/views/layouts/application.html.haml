@@ -20,11 +20,11 @@
                 = link_to "Vote", unit_activities_path(@unit), class: 'nav-link', id: 'vote-link'
               %li.nav-item
                 = link_to "Propose an Activity", new_unit_activity_path(@unit), class: 'nav-link', id: 'propose-link'
-          - if Unit.example.first.activities&.count.positive?
+          - if Unit.example.first.activities&.troop&.count.positive?
             %li.nav-item
               .d-inline-block
                 = link_to ideas_for_troop_activities_path, class: 'nav-link' do
-                  = "#{Unit.example.first.activities&.count} Ideas for Troop Activities"
+                  = "#{Unit.example.first.activities&.troop&.count} Ideas for Troop Activities"
                   .badge.badge-warning NEW
           - if Unit.example.first.activities&.troop&.where(is_covid_safe: true).count.positive?
             %li.nav-item
