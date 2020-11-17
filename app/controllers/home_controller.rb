@@ -13,7 +13,7 @@ class HomeController < ApplicationController
 
   def resources
     @title = 'Activity Resources - ScoutActivity'
-    @description = 'A list of currated resources for sourcing Scout activities.'
+    @description = 'A list of curated resources for sourcing Scout activities.'
   end
 
   def faqs

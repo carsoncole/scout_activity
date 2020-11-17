@@ -111,7 +111,7 @@ class ActivitiesController < ApplicationController
     @activities_count = @activities.count
     @title = @activities.count.to_s + ' Ideas for Troop Activities - ScoutActivity'
     @no_vote = true
-    @description = "List of currated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events."
+    @description = "List of curated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events."
     if params[:filter]
       @activities = @activities.where(params[:filter])
     end
@@ -122,7 +122,7 @@ class ActivitiesController < ApplicationController
     @activities_count = @activities.count
     @title = @activities.count.to_s + ' COVID Safe Ideas for Troop Activities - ScoutActivity'
     @no_vote = true
-    @description = "List of currated COVID safe ideas for Scout Troop activiities, including both virtual and in-person activities."
+    @description = "List of curated COVID safe ideas for Scout Troop activiities, including both virtual and in-person activities."
     if params[:filter]
       @activities = @activities.where(params[:filter])
     end
