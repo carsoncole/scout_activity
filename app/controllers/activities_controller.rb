@@ -35,13 +35,13 @@ class ActivitiesController < ApplicationController
     unit.increment!(:visit_event_count)
     @questions = @activity.questions
     if @is_example
-      @description = @activity.name + " is an idea for a Troop activity."
+      @description = @activity.name + " is an idea for a Troop activity. "
     else
       @description = @activity.name + " is a proposed activity by #{unit.name}."
     end
     @description += @activity.summary_new || ""
     @description += "Will include the following: " + @activity.types.join(", ") if @activity.types.any?
-    @description += " This activity also has the following: " + @activity.categories.join(", ") + '.' if @activity.categories.any?
+    @description += " This activity also has been tagged with the following categories: " + @activity.categories.join(", ") + '.' if @activity.categories.any?
   end
 
   def archive_activity
