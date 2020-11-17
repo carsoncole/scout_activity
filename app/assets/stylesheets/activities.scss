@@ -17,17 +17,8 @@ $border-color: #e8e8ed;
     text-align: center;
     font-size: 2.1rem;
   }
-  h3 {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin: 0 0 0.05em 0;
-    line-height: 1.66em;
-  }
   .btn {
     margin: 0.25em;
-  }
-  .new-badge {
-    display: inline-block;
   }
   .share-link {
     display: block;
@@ -41,8 +32,35 @@ $border-color: #e8e8ed;
     display: inline-block;
   }
 
-  ul.activities {
-    margin-bottom: 3rem;
+  article {
+    border-top: 1px solid $muted-color;
+    margin-top: 2.5rem;
+    padding-top: 1rem;
+    h1 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin: 0 0 0.05em 0;
+      line-height: 1.66em;
+      text-align: left;
+    }
+    .new-badge {
+      display: inline-block;
+    }
+    .copy {
+      display: inline-block;
+      margin-left: 0.5em;
+      font-size: 1.2rem;
+    }
+    .images {
+      vertical-align: middle;
+      text-align: right;
+      margin-top: 0.50rem;
+
+      img {
+        display: inline-block;
+        padding: 0.2rem 0.2rem;
+      }
+    }
     .voting {
       margin-top: 0.5rem;
       .vote {
@@ -75,22 +93,8 @@ $border-color: #e8e8ed;
         }
       }
     }
-    .copy {
-      display: inline-block;
-      margin-left: 0.5em;
-      font-size: 1.2rem;
-    }
-    .images {
-      vertical-align: middle;
-      text-align: center;
-      margin-top: 0.50rem;
-
-      img {
-        display: inline-block;
-        padding: 0.2rem 0.2rem;
-      }
-    }
   }
+
 }
 
 #activity {

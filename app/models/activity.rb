@@ -25,11 +25,11 @@ class Activity < ApplicationRecord
   before_save :remove_votes_if_archived!, if: Proc.new {|a| a.is_archived_changed? && a.is_archived? }
 
   def self.troop_ideas_count
-    if Unit.example.any?
-      Unit.example.first.activities&.troop&.count
-    else
-      0
-    end
+    @ideas_count ||= if Unit.example.any?
+        Unit.example.first.activities&.troop&.count
+      else
+        0
+      end
   end
 
   def activity_icons?

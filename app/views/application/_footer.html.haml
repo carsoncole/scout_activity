@@ -8,7 +8,7 @@
         = link_to "About", about_path(utm_source: 'footer'), class: 'nav-link'
       .nav-item
         = link_to "Activity Resources", activity_resources_path(utm_source: 'footer'), class: 'nav-link'
-      - if Unit.example.any? && Unit.example.first.activities.troop.any?
+      - if Activity.troop_ideas_count.positive?
         .nav-item
           .d-inline-block= link_to "#{Activity.troop_ideas_count} Ideas for Troop Activities", ideas_for_troop_activities_path(utm_source: 'footer'), class: 'nav-link'
           .badge.badge-warning NEW

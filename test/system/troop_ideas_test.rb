@@ -10,11 +10,12 @@ class TroopIdeasTest < ApplicationSystemTestCase
 
   test "visiting as public, ideas for troop activities" do
     visit '/'
-    click_on "#{@count} Ideas for Troop Activities"
+    save_screenshot('tmp/screenshots/votes_cast.png')
+    click_on @title
     assert_selector "h1", text: @title
     assert_selector "#activities", count: 1
     within "#activities" do
-      assert_selector "li", count: @count
+      assert_selector "article", count: @count
       assert_no_selector "#copy-activity-#{@activities[0].id}-link"
     end
 
@@ -29,11 +30,13 @@ class TroopIdeasTest < ApplicationSystemTestCase
 
   test "visiting as user, ideas for troop activities" do
     sign_in
-    click_on "#{@count} Ideas for Troop Activities"
+    within "#main-nav" do
+      click_on "#{@count} Ideas for Troop Activities"
+    end
     assert_selector "h1", text: @title
     assert_selector "#activities", count: 1
     within "#activities" do
-      assert_selector "li", count: @count
+      assert_selector "article", count: @count
       assert_no_selector "#copy-activity-#{@activities[0].id}-link"
     end
     click_on @activities[1].name
@@ -48,11 +51,11 @@ class TroopIdeasTest < ApplicationSystemTestCase
   test "visiting as a unit owner, ideas for troop activities" do
     owner = create(:owner_user)
     sign_in(owner)
-    click_on "#{@count} Ideas for Troop Activities"
+    click_on @title
     assert_selector "h1", text: @title
     assert_selector "#activities", count: 1
     within "#activities" do
-      assert_selector "li", count: @count
+      assert_selector "article", count: @count
       assert_selector "#copy-activity-#{@activities[0].id}-link"
     end
     click_on @activities[1].name
@@ -67,11 +70,11 @@ class TroopIdeasTest < ApplicationSystemTestCase
   test "visiting as a unit admin, ideas for troop activities" do
     owner = create(:owner_user)
     sign_in(owner)
-    click_on "#{@count} Ideas for Troop Activities"
+    click_on @title
     assert_selector "h1", text: @title
     assert_selector "#activities", count: 1
     within "#activities" do
-      assert_selector "li", count: @count
+      assert_selector "article", count: @count
       assert_selector "#copy-activity-#{@activities[0].id}-link"
     end
     click_on @activities[1].name
@@ -86,11 +89,11 @@ class TroopIdeasTest < ApplicationSystemTestCase
   test "visiting as example unit owner, ideas for troop activities" do
     owner = create(:owner_user, unit: Unit.example.first)
     sign_in(owner)
-    click_on "#{@count} Ideas for Troop Activities"
+    click_on @title
     assert_selector "h1", text: @title
     assert_selector "#activities", count: 1
     within "#activities" do
-      assert_selector "li", count: @count
+      assert_selector "article", count: @count
       assert_selector "#copy-activity-#{@activities[0].id}-link"
     end
     click_on @activities[1].name
@@ -131,7 +134,7 @@ class TroopIdeasTest < ApplicationSystemTestCase
 
     visit root_url
     within "footer" do
-      click_on "#{@count} Ideas for Troop Activities"
+      click_on @title
     end
     assert_selector "#activities"
     assert_selector "article", count: 10

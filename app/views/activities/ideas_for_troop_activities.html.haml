@@ -6,8 +6,8 @@
         Ideas for Troop Activities
 
   .row
-    .col-md-2
-    .col-md-8
+    .col-md-1
+    .col-md-10
       %nav.nav#activity-filter
         = link_to ideas_for_troop_activities_path(filter: 'is_hiking'), class: "nav-link #{params[:filter]=='is_hiking' ? 'active':nil}", id: 'hiking-filter' do
           = fa_icon "hiking"
@@ -40,8 +40,7 @@
         = link_to "clear", ideas_for_troop_activities_path, class: 'nav-link', id: 'clear-filter'
 
   .row
-    .col-md-2
-    .col-md-8
+    .col-md-1
+    .col-md-10
       #activities
-        %ul.activities.list-group
-          = render @activities
+        = render @activities

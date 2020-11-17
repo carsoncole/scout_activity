@@ -6,7 +6,7 @@ class ActivitiesTest < ApplicationSystemTestCase
     visit unit_activities_url(activity.unit)
     assert_selector "h1", text: activity.unit.name + " Activity Vote"
     has_button? "Sign in or sign up to vote"
-    assert_selector "ul.activities li", count: 1
+    assert_selector "article", count: 1
     has_link? activity.name
     click_link activity.name
   end
