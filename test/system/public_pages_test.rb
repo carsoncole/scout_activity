@@ -41,7 +41,7 @@ class PublicPagesTest < ApplicationSystemTestCase
   test "visiting ideas for troop activities" do
     example_unit = create(:example_unit)
     create_list(:troop_activity, 10, unit: example_unit)
-    count = Activity.troop_ideas_count
+    count = example_unit.reload.troop_count
     title = "#{count} Ideas for Troop Activities"
     visit '/'
     click_on "#{count} Ideas for Troop Activities"

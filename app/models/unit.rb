@@ -7,7 +7,7 @@ class Unit < ApplicationRecord
   has_many :votes, through: :activities
 
   validates :name, presence: true
-  validates :name, length: { maximum: 35 }
+  validates :name, length: { maximum: 38 }
 
   scope :example, -> { where(is_example: true)}
 

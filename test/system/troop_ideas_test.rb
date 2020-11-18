@@ -4,7 +4,7 @@ class TroopIdeasTest < ApplicationSystemTestCase
   def setup
     @example_unit = create(:example_unit)
     @activities = create_list(:troop_activity, 10, unit: @example_unit)
-    @count = Activity.troop_ideas_count
+    @count = @example_unit.troop_count
     @activities_title = "#{@count} Ideas for Troop Activities"
   end
 

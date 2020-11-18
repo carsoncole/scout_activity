@@ -118,7 +118,7 @@ class ActivitiesController < ApplicationController
   end
 
   def ideas_for_covid_safe_troop_activities
-    @activities = Unit.example.first.activities.troop.where(is_covid_safe: true)
+    @activities = Unit.example.first.activities.troop.covid_safe
     @activities_count = @activities.count
     @title = @activities.count.to_s + ' COVID Safe Ideas for Troop Activities - ScoutActivity'
     @no_vote = true

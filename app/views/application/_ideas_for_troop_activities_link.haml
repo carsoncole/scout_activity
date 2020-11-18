@@ -1,4 +1,5 @@
-.row
-  .col-md-12.text-center
-    .ideas-for-activities
-      = link_to "#{Activity.troop_ideas_count} Ideas for Troop Ideas", ideas_for_troop_activities_path, class: 'btn btn-lg btn-warning'
+- if Unit.example.any?
+  .row
+    .col-md-12.text-center
+      .ideas-for-activities
+        = link_to "#{Unit.example.first.troop_count} Ideas for Troop Ideas", ideas_for_troop_activities_path, class: 'btn btn-lg btn-warning'
