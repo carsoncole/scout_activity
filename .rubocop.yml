@@ -1,0 +1,41 @@
+Layout/LineLength: # for Rubocop >= 0.78.0
+  # This will disable the rule completely, regardless what other options you put
+  Enabled: true
+  # Change the default 80 chars limit value
+  Max: 130
+  # If you want the rule only apply to a specific folder/file
+  Include:
+    - 'app/**/*'
+  # If you want the rule not to apply to a specific folder/file
+  Exclude:
+    - 'db/schema.rb'
+
+# Using numerals in method names
+Naming/VariableNumber:
+  Enabled: false
+
+Metrics/BlockLength:
+  Max: 35
+
+# length of methods
+Metrics/MethodLength:
+  Max: 20
+
+# Class comment explaining class purpose
+Style/Documentation:
+  Enabled: false
+
+# Complexity score allowed. Default is 8
+Metrics/PerceivedComplexity:
+  Max: 10
+
+# Complexity score allowed. Default is 7
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+# Default 100
+Metrics/ClassLength:
+  Max: 250
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

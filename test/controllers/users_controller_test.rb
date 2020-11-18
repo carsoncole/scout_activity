@@ -5,7 +5,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     @user = create(:user)
   end
 
-  test "viewing a user logged in and not logged in" do
+  test 'viewing a user logged in and not logged in' do
     get edit_user_url(@user)
     assert_redirected_to sign_in_path
 
@@ -16,7 +16,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   test "updating a user's own profile" do
     get edit_user_path(@user, as: @user)
     assert_response :success
-    patch user_path(@user, as: @user), params: { user: { email: 'newemail@example.com' }}
+    patch user_path(@user, as: @user), params: { user: { email: 'newemail@example.com' } }
     assert_equal 'newemail@example.com', @user.reload.email
   end
 
@@ -24,7 +24,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get edit_user_path(@user, as: @user)
     original_email = @user.email
     assert_response :success
-    patch user_path(@user, as: @user), params: { user: { email: 'junk' }}
+    patch user_path(@user, as: @user), params: { user: { email: 'junk' } }
     assert_response :success # render :edit
     assert_equal original_email, @user.reload.email
   end
@@ -34,8 +34,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     get edit_user_path(@user, as: user_2)
     assert_redirected_to root_path # blocked
 
-
-    patch user_path(@user, as: user_2), params: { user: { email: 'myemail@example.com' }}
+    patch user_path(@user, as: user_2), params: { user: { email: 'myemail@example.com' } }
     assert_redirected_to root_path # blocked
   end
 end

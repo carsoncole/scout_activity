@@ -1,31 +1,31 @@
 Rails.application.routes.draw do
-  resources :passwords, controller: "clearance/passwords", only: [:create, :new]
-  resource :session, controller: "sessions", only: [:create]
+  resources :passwords, controller: 'clearance/passwords', only: %i[create new]
+  resource :session, controller: 'sessions', only: [:create]
 
-  resources :users, controller: "users", only: [:edit, :create, :show, :update] do
+  resources :users, controller: 'users', only: %i[edit create show update] do
     get '/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     resource :password,
-      controller: "clearance/passwords",
-      only: [:edit, :update]
+             controller: 'clearance/passwords',
+             only: %i[edit update]
   end
 
-  get "/sign-in" => "sessions#new", as: "sign_in"
-  delete "/sign-out" => "clearance/sessions#destroy", as: "sign_out"
-  get "/sign-up" => "clearance/users#new", as: "sign_up"
-  get "successful-signup" => "users#successful_signup", as: 'successful_signup'
+  get '/sign-in' => 'sessions#new', as: 'sign_in'
+  delete '/sign-out' => 'clearance/sessions#destroy', as: 'sign_out'
+  get '/sign-up' => 'clearance/users#new', as: 'sign_up'
+  get 'successful-signup' => 'users#successful_signup', as: 'successful_signup'
   root to: 'home#index'
 
-  resources :units, except: [:index, :show] do
-    get "/sign-up" => "clearance/users#new", as: "sign_up"
+  resources :units, except: %i[index show] do
+    get '/sign-up' => 'clearance/users#new', as: 'sign_up'
     resources :users, only: [:destroy]
     resources :activities do
       post 'copy' => 'activities#copy', as: 'copy'
       resources :questions do
-        resources :answers, only: [:new, :create, :destroy]
+        resources :answers, only: %i[new create destroy]
       end
       post '/archive-activity' => 'activities#archive_activity', as: 'archive_activity'
     end
-    resources :votes, only: [:index, :create, :destroy]
+    resources :votes, only: %i[index create destroy]
   end
 
   resources :activities, only: [:show]

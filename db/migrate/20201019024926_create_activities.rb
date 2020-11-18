@@ -7,7 +7,6 @@ class CreateActivities < ActiveRecord::Migration[6.0]
       t.boolean :is_high_adventure, default: false, null: false
       t.boolean :is_author_volunteering, default: false, null: false
 
-
       t.timestamps
     end
   end

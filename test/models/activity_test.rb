@@ -1,11 +1,11 @@
 require 'test_helper'
 
 class ActivityTest < ActiveSupport::TestCase
-  test "creating an activity" do
+  test 'creating an activity' do
     assert create(:activity)
   end
 
-  test "archiving an activity and returning votes" do
+  test 'archiving an activity and returning votes' do
     activity = create(:activity)
     create_list(:vote, 10, user: activity.author, activity: activity)
     assert_equal 10, activity.votes.count
@@ -15,7 +15,7 @@ class ActivityTest < ActiveSupport::TestCase
     assert_equal 0, activity.votes.count
   end
 
-  test "clearing votes" do
+  test 'clearing votes' do
     activity = create(:activity)
     create_list(:vote, 10, user: activity.author, activity: activity)
     assert_equal 10, activity.author.votes_cast

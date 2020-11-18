@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :question do
     activity
-    content { "MyString" }
+    content { 'MyString' }
     user
   end
 end

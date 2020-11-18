@@ -15,5 +15,4 @@ class VotesControllerTest < ActionDispatch::IntegrationTest
   #   get votes_destroy_url
   #   assert_response :success
   # end
-
 end

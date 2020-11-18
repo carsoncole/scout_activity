@@ -18,9 +18,7 @@ class AnswersController < ApplicationController
 
   def destroy
     answer = @question.answers.find(params[:id])
-    if @activity.author == current_user || answer.user == current_user
-      answer.destroy
-    end
+    answer.destroy if @activity.author == current_user || answer.user == current_user
     redirect_to unit_activity_path(@unit, @activity)
   end
 

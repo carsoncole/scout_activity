@@ -1,15 +1,15 @@
 class ActivitiesController < ApplicationController
   include ActivitiesHelper
 
-  before_action :set_activity, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:create, :update, :destroy, :copy]
-  before_action :require_unit_user, except: [:index, :show, :copy, :ideas_for_troop_activities, :ideas_for_covid_safe_troop_activities]
-  before_action :require_author_admin_owner, only: [:edit, :update, :destroy]
-  before_action :set_title, except: [:ideas_for_troop_activities, :ideas_for_covid_safe_troop_activities]
+  before_action :set_activity, only: %i[show edit update destroy]
+  before_action :require_login, only: %i[create update destroy copy]
+  before_action :require_unit_user, except: %i[index show copy ideas_for_troop_activities ideas_for_covid_safe_troop_activities]
+  before_action :require_author_admin_owner, only: %i[edit update destroy]
+  before_action :set_title, except: %i[ideas_for_troop_activities ideas_for_covid_safe_troop_activities]
 
   def index
     @activities = @unit.activities.non_high_adventure.votable.order(votes_count: :desc)
-    @high_adventure_activities  = @unit.activities.high_adventure.votable.order(votes_count: :desc)
+    @high_adventure_activities = @unit.activities.high_adventure.votable.order(votes_count: :desc)
     if signed_in? && current_user.admin_or_owner? && current_user.unit == @unit
       @archived_activities = @unit.activities.archived if current_user.admin_or_owner? && current_user.unit == @unit
     elsif signed_in? && current_user.activities.where(unit_id: @unit.id).archived.any?
@@ -20,8 +20,8 @@ class ActivitiesController < ApplicationController
     else
       @description = "Add your ideas to #{@unit.name}'s list of activities that the Unit's Scouts can vote on. They are looking for exciting activities to engage and excite them."
     end
-    @title = "Activity Vote - ScoutActivity"
-    @title = @unit.name + " - " + @title unless @unit.is_example?
+    @title = 'Activity Vote - ScoutActivity'
+    @title = "#{@unit.name} - #{@title}" unless @unit.is_example?
     if signed_in? && current_user.unit.nil?
       flash[:alert] = "To vote, select a Unit in your <a href='/users/#{current_user.id}/edit'>Profile</a> settings."
     end
@@ -34,24 +34,26 @@ class ActivitiesController < ApplicationController
     @title = activity_page_title(@activity)
     unit.increment!(:visit_event_count)
     @questions = @activity.questions
-    if @is_example
-      @description = @activity.name + " is an idea for a Troop activity. "
-    else
-      @description = @activity.name + " is a proposed activity by #{unit.name}."
+    @description = if @is_example
+                     "#{@activity.name} is an idea for a Troop activity. "
+                   else
+                     @activity.name + " is a proposed activity by #{unit.name}."
+                   end
+    @description += @activity.summary_new || ''
+    @description += "Will include the following: #{@activity.types.join(', ')}" if @activity.types.any?
+    if @activity.categories.any?
+      @description += " This activity also has been tagged with the following categories: #{@activity.categories.join(', ')}."
     end
-    @description += @activity.summary_new || ""
-    @description += "Will include the following: " + @activity.types.join(", ") if @activity.types.any?
-    @description += " This activity also has been tagged with the following categories: " + @activity.categories.join(", ") + '.' if @activity.categories.any?
   end
 
   def archive_activity
     @activity = @unit.activities.find(params[:activity_id])
     @activity.toggle!(:is_archived)
-    if @activity.is_archived
-      message = 'Activity is archived, and no longer in the activity voting list.'
-    else
-      message = 'Activity is unarchived and showing in the activity voting list.'
-    end
+    message = if @activity.is_archived
+                'Activity is archived, and no longer in the activity voting list.'
+              else
+                'Activity is unarchived and showing in the activity voting list.'
+              end
     redirect_to unit_activity_path(@unit, @activity), notice: message
   end
 
@@ -67,14 +69,18 @@ class ActivitiesController < ApplicationController
       end
       redirect_back(fallback_location: unit_activities_path(current_user.unit), notice: "'#{new_activity.name}' copied to your Unit.")
     else
-      Bugsnag.notify(new_activity) rescue nil
+      begin
+        Bugsnag.notify(new_activity)
+      rescue StandardError
+        nil
+      end
       redirect_to unit_activities_path(current_user.unit), alert: "There was a problem. The activity '#{new_activity.name}' was not copied to your Unit."
     end
   end
 
   def new
     @activity = Activity.new
-    @title = @unit.name + ' - New Activity - ScoutActivity'
+    @title = "#{@unit.name} - New Activity - ScoutActivity"
     @description = "Propose and activity for #{@unit.name} that Scouts can vote on as an activity to do."
   end
 
@@ -109,23 +115,19 @@ class ActivitiesController < ApplicationController
   def ideas_for_troop_activities
     @activities = Unit.example.first.activities.troop
     @activities_count = @activities.count
-    @title = @activities.count.to_s + ' Ideas for Troop Activities - ScoutActivity'
+    @title = "#{@activities.count} Ideas for Troop Activities - ScoutActivity"
     @no_vote = true
-    @description = "List of curated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events."
-    if params[:filter]
-      @activities = @activities.where(params[:filter])
-    end
+    @description = 'List of curated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events.'
+    @activities = @activities.where(params[:filter]) if params[:filter]
   end
 
   def ideas_for_covid_safe_troop_activities
     @activities = Unit.example.first.activities.troop.covid_safe
     @activities_count = @activities.count
-    @title = @activities.count.to_s + ' COVID Safe Ideas for Troop Activities - ScoutActivity'
+    @title = "#{@activities.count} COVID Safe Ideas for Troop Activities - ScoutActivity"
     @no_vote = true
-    @description = "List of curated COVID safe ideas for Scout Troop activiities, including both virtual and in-person activities."
-    if params[:filter]
-      @activities = @activities.where(params[:filter])
-    end
+    @description = 'List of curated COVID safe ideas for Scout Troop activiities, including both virtual and in-person activities.'
+    @activities = @activities.where(params[:filter]) if params[:filter]
   end
 
   private
@@ -143,12 +145,13 @@ class ActivitiesController < ApplicationController
   end
 
   def set_title
-    if @unit
-      @title = @unit.name + ' - Activities - ScoutActivity'
-    else
-      @title = @activity.unit.name + ' - Activities - ScoutActivity'
-    end
+    @title = if @unit
+               "#{@unit.name} - Activities - ScoutActivity"
+             else
+               "#{@activity.unit.name} - Activities - ScoutActivity"
+             end
   end
+
   # Only allow a list of trusted parameters through.
   def activity_params
     params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_virtual, :is_swimming, :is_community_service, :is_archived, :is_biking, :is_cooking, :is_boating, :is_covid_safe, :is_game, :is_fundraising, :is_merit_badge, :is_international, :summary_new, :is_troop, :is_pack, images: [])

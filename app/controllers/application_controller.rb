@@ -1,4 +1,4 @@
-#TODO Add emailing for password resets
+# TODO: Add emailing for password resets
 class ApplicationController < ActionController::Base
   include Clearance::Controller
   before_action :set_unit
@@ -9,13 +9,11 @@ class ApplicationController < ActionController::Base
 
   def sign_in(user)
     # store current time to display "last signed in at" message
-    user.update(last_sign_in_at: Time.now, sign_in_count: user.sign_in_count + 1) if user
+    user&.update(last_sign_in_at: Time.now, sign_in_count: user.sign_in_count + 1)
     super user
   end
 
   def require_admin_owner_login
-    unless @unit && signed_in? && current_user.unit == @unit && current_user.admin_or_owner?
-      redirect_to root_path
-    end
+    redirect_to root_path unless @unit && signed_in? && current_user.unit == @unit && current_user.admin_or_owner?
   end
 end

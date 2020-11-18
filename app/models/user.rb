@@ -12,15 +12,15 @@ class User < ApplicationRecord
 
   scope :owner, -> { where(is_owner: true) }
   scope :admin, -> { where(is_admin: true) }
-  scope :app_admin, -> { where(is_app_admin: true)}
-  scope :active, -> { where("last_sign_in_at > ?", Time.now - 7.days) }
+  scope :app_admin, -> { where(is_app_admin: true) }
+  scope :active, -> { where('last_sign_in_at > ?', Time.now - 7.days) }
 
-  before_save :clear_votes!, if: Proc.new {|u| u.unit_id_changed?}
-  before_save :remove_admin!, if: Proc.new {|u| u.unit_id_changed? && u.persisted? }
+  before_save :clear_votes!, if: proc { |u| u.unit_id_changed? }
+  before_save :remove_admin!, if: proc { |u| u.unit_id_changed? && u.persisted? }
 
   def initialize(args)
     super(args)
-    self.token = SecureRandom.hex unless self.token.present?
+    self.token = SecureRandom.hex unless token.present?
   end
 
   def votes_available
@@ -28,15 +28,14 @@ class User < ApplicationRecord
   end
 
   def name_email
-    result = ""
-    result = last_name + ' ' + result if last_name.present? && first_name.present?
-    result = first_name + ' ' + result if first_name.present?
-    result = if result.present?
-        result + '(' + email + ')'
-      else
-        email
-      end
-    result
+    result = ''
+    result = "#{last_name} #{result}" if last_name.present? && first_name.present?
+    result = "#{first_name} #{result}" if first_name.present?
+    if result.present?
+      "#{result}(#{email})"
+    else
+      email
+    end
   end
 
   def votes_cast

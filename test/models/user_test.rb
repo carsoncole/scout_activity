@@ -1,19 +1,19 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "creating a user" do
+  test 'creating a user' do
     assert create(:user)
   end
 
-  test "creating a user without a unit" do
+  test 'creating a user without a unit' do
     create(:user, unit: nil)
- end
+  end
 
-  test "creating an author" do
+  test 'creating an author' do
     assert create(:author)
   end
 
-  test "destroying a user, their votes, but not their activites," do
+  test 'destroying a user, their votes, but not their activites,' do
     user = create(:user)
     unit = user.unit
     activities = create_list(:activity, 5, author: user)
@@ -33,7 +33,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal 5, unit.activities.count # unit activities unchanged
   end
 
-  test "name_email method" do
+  test 'name_email method' do
     user = create(:user)
     assert_equal user.email, user.name_email
 

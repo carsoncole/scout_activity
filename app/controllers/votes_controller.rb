@@ -1,6 +1,5 @@
 class VotesController < ApplicationController
-  def index
-  end
+  def index; end
 
   def create
     @vote = Vote.create(activity_id: params[:activity_id], user: current_user)
@@ -9,8 +8,12 @@ class VotesController < ApplicationController
   end
 
   def destroy
-    @vote = Vote.find(params[:id]) rescue nil
-    @vote.destroy if @vote
+    @vote = begin
+      Vote.find(params[:id])
+    rescue StandardError
+      nil
+    end
+    @vote&.destroy
     redirect_to unit_activities_path(@unit)
   end
 end

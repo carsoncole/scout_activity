@@ -51,7 +51,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
@@ -80,8 +80,8 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
+    logger           = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
@@ -112,17 +112,16 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'scoutactivity.com' }
 
-  config.action_mailer.asset_host =  'localhost:3000'
+  config.action_mailer.asset_host = 'localhost:3000'
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: 'scoutactivity.com' }
   config.action_mailer.delivery_method = :smtp #:letter_opener #
   config.action_mailer.smtp_settings = {
-      :address => ENV["ACTION_MAILER_SMTP_ADDRESS"],
-      :port => 587, # Port 25 is throttled on AWS
-      :user_name => ENV["ACTION_MAILER_SMTP_USER_NAME"],
-      :password => ENV["ACTION_MAILER_SMTP_PASSWORD"],
-      :authentication => :login,
-      :enable_starttls_auto => true
+    address: ENV['ACTION_MAILER_SMTP_ADDRESS'],
+    port: 587, # Port 25 is throttled on AWS
+    user_name: ENV['ACTION_MAILER_SMTP_USER_NAME'],
+    password: ENV['ACTION_MAILER_SMTP_PASSWORD'],
+    authentication: :login,
+    enable_starttls_auto: true
   }
-
 end

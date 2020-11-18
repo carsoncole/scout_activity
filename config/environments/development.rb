@@ -62,17 +62,16 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
-  config.action_mailer.asset_host =  'localhost:3000'
+  config.action_mailer.asset_host = 'localhost:3000'
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = { host: 'localhost:3000' }
   config.action_mailer.delivery_method = :letter_opener #:smtp  #
   config.action_mailer.smtp_settings = {
-      :address => Rails.application.credentials.email[:user_name],
-      :port => 587, # Port 25 is throttled on AWS
-      :user_name => Rails.application.credentials.email[:user_name],
-      :password => Rails.application.credentials.email[:password],
-      :authentication => :login,
-      :enable_starttls_auto => true
+    address: Rails.application.credentials.email[:user_name],
+    port: 587, # Port 25 is throttled on AWS
+    user_name: Rails.application.credentials.email[:user_name],
+    password: Rails.application.credentials.email[:password],
+    authentication: :login,
+    enable_starttls_auto: true
   }
-
 end

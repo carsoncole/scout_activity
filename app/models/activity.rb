@@ -1,4 +1,4 @@
-#TODO Add icon for community service
+# TODO: Add icon for community service
 class Activity < ApplicationRecord
   belongs_to :unit, touch: true
   belongs_to :author, optional: true, class_name: 'User'
@@ -14,7 +14,6 @@ class Activity < ApplicationRecord
   scope :pack, -> { where(is_pack: true) }
   scope :covid_safe, -> { where(is_covid_safe: true) }
 
-
   validates :name, presence: true
   validates :name, length: { maximum: 75 }
   validates :summary_new, presence: true
@@ -23,9 +22,9 @@ class Activity < ApplicationRecord
   has_rich_text :description
   has_rich_text :itinerary
 
-  before_save :remove_votes_if_archived!, if: Proc.new {|a| a.is_archived_changed? && a.is_archived? }
-  after_save :update_covid_safe_count!, if: Proc.new {|a| a.is_covid_safe_previously_changed? }
-  after_save :update_troop_count!, if: Proc.new {|a| a.is_troop_previously_changed? }
+  before_save :remove_votes_if_archived!, if: proc { |a| a.is_archived_changed? && a.is_archived? }
+  after_save :update_covid_safe_count!, if: proc { |a| a.is_covid_safe_previously_changed? }
+  after_save :update_troop_count!, if: proc { |a| a.is_troop_previously_changed? }
 
   def types
     result = []
@@ -57,7 +56,7 @@ class Activity < ApplicationRecord
   end
 
   def self.duplicate(activity)
-    new_activity  = activity.dup
+    new_activity = activity.dup
     new_activity.is_author_volunteering = false
     new_activity.author_id = false
     new_activity.unit_id = nil
@@ -75,11 +74,13 @@ class Activity < ApplicationRecord
 
   def update_covid_safe_count!
     return unless unit.is_example?
+
     unit.update(covid_safe_count: unit.activities.troop.covid_safe.count)
   end
 
   def update_troop_count!
     return unless unit.is_example?
+
     unit.update(troop_count: unit.activities.troop.count)
   end
 end

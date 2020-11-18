@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SitemapControllerTest < ActionDispatch::IntegrationTest
-  test "should get sitemap" do
+  test 'should get sitemap' do
     unit = create(:activity).unit
     example_unit = create(:example_unit)
     create_list(:activity, 10, unit: unit)

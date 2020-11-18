@@ -1,15 +1,13 @@
 class UsersController < Clearance::UsersController
-  before_action :require_login, except: [:unsubscribe, :new, :create, :destroy]
-  before_action :set_user, only: [:edit, :update, :destroy]
-  before_action :require_admin_owner, only: [:edit, :update, :destroy]
+  before_action :require_login, except: %i[unsubscribe new create destroy]
+  before_action :set_user, only: %i[edit update destroy]
+  before_action :require_admin_owner, only: %i[edit update destroy]
   before_action :set_title, only: [:edit]
 
-  def edit
-  end
+  def edit; end
 
   def update
-    new_params = user_params
-    new_params = user_params.reject! { |k,v| v.blank? }
+    new_params = user_params.reject! { |_k, v| v.blank? }
     if @user.update(new_params)
       redirect_to unit_activities_path(@user.unit), notice: 'Your account has been updated'
     else
@@ -32,7 +30,7 @@ class UsersController < Clearance::UsersController
   end
 
   def successful_signup
-    @title = "You are signed up - ScoutActivity"
+    @title = 'You are signed up - ScoutActivity'
   end
 
   def set_user
@@ -48,8 +46,6 @@ class UsersController < Clearance::UsersController
   end
 
   def require_admin_owner
-    unless current_user == @user || (current_user.admin_or_owner? && current_user.unit == @user.unit)
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user == @user || (current_user.admin_or_owner? && current_user.unit == @user.unit)
   end
 end

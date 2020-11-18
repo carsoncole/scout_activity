@@ -2,14 +2,12 @@ class QuestionsController < ApplicationController
   before_action :get_activity
 
   def index
-    @questions =  @activity.questions.include(:answers)
+    @questions = @activity.questions.include(:answers)
   end
 
-  def show
-  end
+  def show; end
 
-  def edit
-  end
+  def edit; end
 
   def new
     @question = @activity.questions.new
@@ -25,14 +23,11 @@ class QuestionsController < ApplicationController
     end
   end
 
-  def update
-  end
+  def update; end
 
   def destroy
     question = @activity.questions.find(params[:id])
-    if @activity.author == current_user || question.user == current_user
-      question.destroy
-    end
+    question.destroy if @activity.author == current_user || question.user == current_user
     redirect_to unit_activity_path(@unit, @activity)
   end
 
