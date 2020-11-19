@@ -20,7 +20,6 @@ $border-color: #e8e8ed;
 }
 
 
-
 #activities {
   h1 {
     margin-bottom: 1.5em;
@@ -173,13 +172,17 @@ $border-color: #e8e8ed;
   form {
     display: inline-block;
   }
-  .action {
-    display: inline-block;
-    margin-right: 1rem;
-    line-height: 1.66em;
-  }
   #actions {
+    vertical-align: middle;
     margin: 3.2rem 0;
+    .action {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 1rem;
+    }
+    .action-link {
+      font-size: 1.4rem;
+   }
   }
   #activity-images {
     margin: 3.2rem 0;
@@ -189,6 +192,7 @@ $border-color: #e8e8ed;
   #proposer {
     margin: 3.2em 0;
   }
+
 }
 
 #discussion {

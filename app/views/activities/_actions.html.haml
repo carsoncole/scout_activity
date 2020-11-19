@@ -1,7 +1,7 @@
 - if signed_in? && (( @activity.author == current_user && current_user.unit == @activity.unit) || current_user.admin_or_owner?)
   #actions
     - if @activity.author == current_user || (current_user.admin_or_owner? && current_user.unit == @activity.unit)
-      = link_to edit_unit_activity_path(@activity.unit, @activity), class: 'action', id: 'activity-edit-link' do
+      = link_to edit_unit_activity_path(@activity.unit, @activity), class: 'action action-link', id: 'activity-edit-link' do
         = fa_icon "edit"
       - if @activity.is_archived?
         = button_to "Unarchive", unit_activity_archive_activity_path(@activity.unit, @activity), class: 'btn btn-primary action', id: 'unarchive-button'
@@ -9,5 +9,5 @@
         = button_to "Archive", unit_activity_archive_activity_path(@activity.unit, @activity), class: 'btn btn-primary action', id: 'archive-button'
       = button_to "Destroy", unit_activity_path(@activity.unit, @activity), method: :delete, data: { confirm: 'Are you sure? This will destroy the Activity and return any votes placed for it.'}, class: 'btn btn-danger action', id: 'destroy-button'
     - if current_user&.admin_or_owner?
-      = link_to unit_activity_copy_path(current_user.unit, @activity), id: 'copy-activity-link', method: :post do
+      = link_to unit_activity_copy_path(current_user.unit, @activity), id: 'copy-activity-link', class: 'action action-link', method: :post do
         = fa_icon "copy"
