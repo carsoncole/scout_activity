@@ -1,7 +1,7 @@
 class UserMailer < ApplicationMailer
   def welcome_email
     @unit = @user.unit
-    return unless (@user.unit && @user.is_owner?) || !@user.unit
+    return unless (@user.unit && @user.admin_or_owner?) || !@user.unit
     return if @user.logs.where(mailer_instance: 'welcome_email').any?
 
     mail to: @user.email, subject: 'Welcome to ScoutActivity'
