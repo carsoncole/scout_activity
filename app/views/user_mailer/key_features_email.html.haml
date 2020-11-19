@@ -1,0 +1,39 @@
+%h1(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;text-align: center;margin-bottom: 1.77em;")
+  Features Update
+
+%p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
+  I thought I'd tell you about a few of the key features in ScoutActivity to help you in garnering a great response to your search for exciting and engaging Unit activities.
+
+
+%p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
+  I recently introduced two new growing lists that I personally curated, of activity ideas that you can copy from:
+
+%ul(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
+  %li= link_to "#{Unit.example.first.troop_count} Ideas for Troop Activities", ideas_for_troop_activities_url(utm_source: 'update-email', utm_medium: 'email', utm_campgaign: 'basic')
+  %li= link_to "#{Unit.example.first.covid_safe_count} Ideas for COVID Safe Troop Activities", ideas_for_covid_safe_troop_activities_url(utm_source: 'update-email', utm_medium: 'email', utm_campgaign: 'basic')
+
+%p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
+  One feature in ScoutActivity is that you can easily copy, through a copy link on the activities description page, any of the activities in the lists above, or any activity in any Unit on ScoutActivity. Just copy, and then you can edit to tailor it for your own Unit. To copy, you need to be logged in, and you need to be either the owner or and admin on your Unit.
+
+%div(style="margin-bottom:1.5rem;margin-top:0rem;text-align:center")= image_tag "feature-copy-icon", width: '50px'
+
+- if @unit
+  %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
+    Two other useful links for your Unit that you can use to promote others to adding or viewing activies are the following:
+    %ul(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
+      %li= link_to unit_sign_up_url(@unit), unit_sign_up_url(@unit)
+      %li= link_to unit_activities_url(@unit), unit_activities_url(@unit)
+
+%p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
+  Lastly, join me on the ScoutActivity Facebook page, where you can post any feature requests and see what others are saying. Its a great place to let me know about something you'd like to make ScoutActivity even more useful to you.
+  = succeed(".") do
+    = link_to "https://www.facebook.com/groups/scoutactivity", "https://www.facebook.com/groups/scoutactivity"
+
+
+
+%p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left; margin-top:2.5em")
+  %strong
+    Keep on Scouting!
+    %br
+    Carson Cole
+
