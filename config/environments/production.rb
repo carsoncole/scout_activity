@@ -110,11 +110,10 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  config.action_mailer.default_url_options = { host: 'scoutactivity.com' }
+  config.action_mailer.default_url_options = { host: 'https://scoutactivity.com' }
 
-  config.action_mailer.asset_host = 'localhost:3000'
+  config.action_mailer.asset_host = 'https://scoutactivity.com'
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'scoutactivity.com' }
   config.action_mailer.delivery_method = :smtp #:letter_opener #
   config.action_mailer.smtp_settings = {
     address: ENV['ACTION_MAILER_SMTP_ADDRESS'],
