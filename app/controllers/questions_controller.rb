@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :get_activity
+  before_action :activity
 
   def index
     @questions = @activity.questions.include(:answers)
@@ -33,7 +33,7 @@ class QuestionsController < ApplicationController
 
   private
 
-  def get_activity
+  def activity
     @activity = Activity.find(params[:activity_id])
   end
 

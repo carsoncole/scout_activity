@@ -36,7 +36,7 @@
         %ul.activities.list-group
           = render partial: 'activity', collection: @high_adventure_activities, as: :activity
 
-  - if @activities.empty?
+  - if @activities.empty? && @high_adventure_activities.empty?
     %p.text-center
       No activities have been proposed.
       - if signed_in? && current_user.unit == @unit

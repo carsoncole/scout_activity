@@ -1,8 +1,7 @@
 class UnitsController < ApplicationController
   before_action :require_login
-  before_action :get_unit, only: %i[edit update]
   before_action :require_admin_owner_login, only: %i[edit update]
-  before_action :set_title
+  before_action :page_title
 
   def new
     @unit = Unit.new
@@ -16,7 +15,6 @@ class UnitsController < ApplicationController
 
   def create
     @unit = Unit.new(unit_params)
-
     if @unit.save
       current_user.update(unit_id: @unit.id, is_owner: true)
       redirect_to unit_activities_path(@unit), notice: 'Unit was successfully created.'
@@ -38,16 +36,10 @@ class UnitsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def get_unit
-    @unit = Unit.friendly.find(params[:id])
-  end
-
-  def set_title
+  def page_title
     @title = 'Unit - ScoutActivity'
   end
 
-  # Only allow a list of trusted parameters through.
   def unit_params
     params.require(:unit).permit(:name, :votes_allowed)
   end

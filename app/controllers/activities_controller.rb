@@ -22,9 +22,8 @@ class ActivitiesController < ApplicationController
     end
     @title = 'Activity Vote - ScoutActivity'
     @title = "#{@unit.name} - #{@title}" unless @unit.is_example?
-    if signed_in? && current_user.unit.nil?
-      flash[:alert] = "To vote, select a Unit in your <a href='/users/#{current_user.id}/edit'>Profile</a> settings."
-    end
+    return unless signed_in? && current_user.unit.nil?
+    flash[:alert] = "To vote, select a Unit in your <a href='/users/#{current_user.id}/edit'>Profile</a> settings."
   end
 
   def show
@@ -41,9 +40,7 @@ class ActivitiesController < ApplicationController
                    end
     @description += @activity.summary_new || ''
     @description += "Will include the following: #{@activity.types.join(', ')}" if @activity.types.any?
-    if @activity.categories.any?
-      @description += " This activity also has been tagged with the following categories: #{@activity.categories.join(', ')}."
-    end
+    @description += " This activity also has been tagged with the following categories: #{@activity.categories.join(', ')}." if @activity.categories.any?
   end
 
   def archive_activity
@@ -154,6 +151,12 @@ class ActivitiesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def activity_params
-    params.require(:activity).permit(:name, :author, :summary, :itinerary, :description, :duration_days, :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping, :is_plane, :is_virtual, :is_swimming, :is_community_service, :is_archived, :is_biking, :is_cooking, :is_boating, :is_covid_safe, :is_game, :is_fundraising, :is_merit_badge, :is_international, :summary_new, :is_troop, :is_pack, images: [])
+    params.require(:activity).permit(
+      :name, :author, :summary, :itinerary, :description, :duration_days,
+      :is_high_adventure, :is_author_volunteering, :is_hiking, :is_camping,
+      :is_plane, :is_virtual, :is_swimming, :is_community_service, :is_archived,
+      :is_biking, :is_cooking, :is_boating, :is_covid_safe, :is_game, :is_fundraising,
+      :is_merit_badge, :is_international, :summary_new, :is_troop, :is_pack, images: []
+      )
   end
 end

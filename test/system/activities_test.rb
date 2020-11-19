@@ -135,7 +135,7 @@ class ActivitiesTest < ApplicationSystemTestCase
     assert_text 'Activity was successfully created.'
   end
 
-  test 'creating an activity with all icons' do
+  test 'create an activity with all icons with unit user' do
     sign_in
     visit new_unit_activity_path(@user.unit)
     fill_in "What's a good title for your activity idea?", with: Faker::Lorem.sentence(word_count: 5)
@@ -155,10 +155,11 @@ class ActivitiesTest < ApplicationSystemTestCase
     check 'Game'
     check 'High Adventure'
     click_on 'Create Activity'
+
     assert_text 'Activity was successfully created.'
 
-    assert_selector '#hiking-icon'
     assert_selector '#camping-icon'
+    assert_selector '#hiking-icon'
     assert_selector '#swimming-icon'
     assert_selector '#biking-icon'
     assert_selector '#flying-icon'

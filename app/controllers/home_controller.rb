@@ -1,9 +1,9 @@
 class HomeController < ApplicationController
   def index
     @units = Unit.order(visit_event_count: :desc)
-    if signed_in? && current_user.unit.nil?
-      flash[:alert] = "To vote, select a Unit in your <a href='/users/#{current_user.id}/edit'>Profile</a> settings."
-    end
+    return unless signed_in? && current_user.unit.nil?
+
+    flash[:alert] = "To vote, select a Unit in your <a href='/users/#{current_user.id}/edit'>Profile</a> settings."
   end
 
   def about

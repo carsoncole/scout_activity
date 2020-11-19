@@ -2,31 +2,31 @@
   
   %url
     %loc= root_url
-    %lastmod= @last_root_page_update
+    %lastmod= @sitemap.last_root_page_update
     %priority 1.00
   %url
     %loc= about_url
-    %lastmod= File.new("app/views/home/about.html.haml").ctime.strftime("%FT%TZ")
+    %lastmod= @sitemap.about_last_updated
     %priority 0.90
   %url
     %loc= activity_resources_url
-    %lastmod= File.new("app/views/home/resources.html.haml").ctime.strftime("%FT%TZ")
+    %lastmod= @sitemap.resources_last_updated
     %priority 0.80
   %url
     %loc= faqs_url
-    %lastmod= File.new("app/views/home/faqs.html.haml").ctime.strftime("%FT%TZ")
+    %lastmod= @sitemap.faqs_last_updated
     %priority 0.80
   - if @last_troop_ideas_update
     %url
       %loc= ideas_for_troop_activities_url
-      %lastmod= @last_troop_ideas_update.strftime("%FT%TZ")
+      %lastmod= @sitemaap.ideas_for_troops_last_updated
       %priority 0.80
   - if @last_troop_covid_ideas_update
     %url
       %loc= ideas_for_covid_safe_troop_activities_url
-      %lastmod= @last_troop_covid_ideas_update.strftime("%FT%TZ")
+      %lastmod= @sitemap.ideas_for_troop_covid_safe_last_updated
       %priority 0.80
-  - @units.each do |unit|
+  - @sitemap.units.each do |unit|
     %url
       %loc= unit_activities_url(unit)
       - if unit.activities.any?
@@ -35,7 +35,7 @@
         %lastmod= unit.updated_at.strftime("%FT%TZ")
       %priority 0.85
 
-  - @activities.each do |activity|
+  - @sitemap.activities.each do |activity|
     %url
       %loc= unit_activity_url(activity.unit, activity)
       %lastmod= activity.updated_at.strftime("%FT%TZ")

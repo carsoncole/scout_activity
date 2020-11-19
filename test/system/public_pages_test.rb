@@ -18,6 +18,34 @@ class PublicPagesTest < ApplicationSystemTestCase
     assert_selector 'h1', text: 'Sign up'
   end
 
+  test 'ideas for troop activities' do
+    create_list(:troop_activity, 5, unit: create(:example_unit))
+    visit '/'
+    within'#main-nav' do
+      click_on "#{Unit.example.first.activities.troop.count} Ideas for Troop Activities"
+    end
+    assert_selector 'h1', text: "#{Unit.example.first.activities.troop.count} Ideas for Troop Activities"
+    assert_selector 'article', count: 5
+    visit '/'
+    within'footer' do
+      click_on "#{Unit.example.first.activities.troop.count} Ideas for Troop Activities"
+    end
+  end
+
+  test 'ideas for troop covid safe activities' do
+    create_list(:troop_covid_safe_activity, 5, unit: create(:example_unit))
+    visit '/'
+    within'#main-nav' do
+      click_on "#{Unit.example.first.activities.troop.covid_safe.count} Ideas for COVID Safe Troop Activities"
+    end
+    assert_selector 'h1', text: "#{Unit.example.first.activities.troop.covid_safe.count} Ideas for COVID Safe Troop Activities"
+    assert_selector 'article', count: 5
+    visit '/'
+    within'footer' do
+      click_on "#{Unit.example.first.activities.troop.covid_safe.count} Ideas for COVID Safe Troop Activities"
+    end
+  end
+
   test 'visiting about' do
     visit '/'
     click_on 'About'

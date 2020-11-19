@@ -4,7 +4,12 @@ class ApplicationController < ActionController::Base
   before_action :set_unit
 
   def set_unit
-    @unit = Unit.friendly.find(params[:unit_id]) if params[:unit_id]
+    if params[:unit_id]
+      @unit = Unit.friendly.find(params[:unit_id]) if params[:unit_id]
+    elsif
+      controller_name == 'units'
+      @unit = Unit.friendly.find(params[:id]) if params[:id]
+    end
   end
 
   def sign_in(user)
