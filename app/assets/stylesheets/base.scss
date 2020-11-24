@@ -255,6 +255,18 @@ table.activities {
     }
   }
 }
+
+/* MAIN NAV & FOOTER
+   ============================================================ */
+
+nav#main-nav {
+  .unit {
+    font-weight: 700;
+    font-color: #000;
+  }
+}
+
+
 footer {
   font-size: 0.9rem;
   margin-top: 8rem;

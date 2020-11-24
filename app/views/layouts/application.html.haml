@@ -12,9 +12,12 @@
 
       %div.collapse.navbar-collapse#navbarSupportedContent
         %ul.navbar-nav.mr-auto
+          %li.nav-item.nav-link
+            = link_to "All Units", root_path
+
           - if @unit && @unit.persisted? && action_name != 'top_activities'
-            %li.nav-item.nav-link
-              .badge.badge-primary= @unit.name
+            / %li.nav-item.nav-link
+            /   .unit= @unit.name
             - if current_user&.unit == @unit
               %li.nav-item
                 = link_to "Vote", unit_activities_path(@unit), class: 'nav-link', id: 'vote-link'
