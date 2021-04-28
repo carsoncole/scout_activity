@@ -78,7 +78,7 @@ class PublicPagesTest < ApplicationSystemTestCase
   test 'main nav logo' do
     visit root_url
     click_on 'brand-logo'
-    assert_text 'Scouting tool for collecting, promoting and voting on unit activity ideas.'
+    assert_text 'Scouting leader Unit tool for finding and promoting new activity ideas.'
   end
 
   test 'visiting sitemap' do

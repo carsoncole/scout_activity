@@ -10,6 +10,7 @@ class Unit < ApplicationRecord
   validates :name, length: { maximum: 38 }
 
   scope :example, -> { where(is_example: true) }
+  scope :non_example, -> { where(is_example: false) }
 
   before_save :update_vote_counts!, if: proc { |u| u.votes_allowed_changed? }
 
