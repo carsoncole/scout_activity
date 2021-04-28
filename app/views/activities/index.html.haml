@@ -1,8 +1,11 @@
 #activities
 
   %h1
-    = @unit.name
-    Activity Vote
+    - if @unit.is_example
+      Activity Ideas
+    - else
+      = @unit.name
+      Activity Vote
 
   - if signed_in? && @unit == current_user.unit
     .row
