@@ -5,12 +5,14 @@ class TroopIdeasTest < ApplicationSystemTestCase
     @example_unit = create(:example_unit)
     @activities = create_list(:troop_activity, 10, unit: @example_unit)
     @count = @example_unit.troop_count
-    @activities_title = "#{@count} Ideas for Troop Activities"
+    @activities_title = "#{@count} Troop Activity Ideas"
   end
 
   test 'visiting as public, ideas for troop activities' do
     visit '/'
-    click_on @activities_title
+    within "#main-nav" do
+      click_on @activities_title
+    end
     assert_selector 'h1', text: @activities_title
     assert_selector '#activities', count: 1
     within '#activities' do
@@ -30,7 +32,7 @@ class TroopIdeasTest < ApplicationSystemTestCase
   test 'visiting as user, ideas for troop activities' do
     sign_in
     within '#main-nav' do
-      click_on "#{@count} Ideas for Troop Activities"
+      click_on "#{@count} Troop Activity Ideas"
     end
     assert_selector 'h1', text: @activities_title
     assert_selector '#activities', count: 1
@@ -50,7 +52,9 @@ class TroopIdeasTest < ApplicationSystemTestCase
   test 'visiting as a unit owner, ideas for troop activities' do
     owner = create(:owner_user)
     sign_in(owner)
-    click_on @activities_title
+    within "#main-nav" do
+      click_on @activities_title
+    end
     assert_selector 'h1', text: @activities_title
     assert_selector '#activities', count: 1
     within '#activities' do
@@ -69,7 +73,9 @@ class TroopIdeasTest < ApplicationSystemTestCase
   test 'visiting as a unit admin, ideas for troop activities' do
     owner = create(:owner_user)
     sign_in(owner)
-    click_on @activities_title
+    within "#main-nav" do
+      click_on @activities_title
+    end
     assert_selector 'h1', text: @activities_title
     assert_selector '#activities', count: 1
     within '#activities' do
@@ -88,7 +94,9 @@ class TroopIdeasTest < ApplicationSystemTestCase
   test 'visiting as example unit owner, ideas for troop activities' do
     owner = create(:owner_user, unit: Unit.example.first)
     sign_in(owner)
-    click_on @activities_title
+    within "#main-nav" do
+      click_on @activities_title
+    end
     assert_selector 'h1', text: @activities_title
     assert_selector '#activities', count: 1
     within '#activities' do
@@ -107,7 +115,9 @@ class TroopIdeasTest < ApplicationSystemTestCase
   test 'visiting as a unit owner, ideas for troop activities, and copying' do
     owner = create(:owner_user)
     sign_in(owner)
-    click_on "#{@count} Ideas for Troop Activities"
+    within "#main-nav" do
+      click_on "#{@count} Troop Activity Ideas"
+    end
     click_on "copy-activity-#{@activities[0].id}-link"
     assert_equal 1, owner.unit.activities.count
     assert_text "'#{@activities[0].name}' copied to your Unit."

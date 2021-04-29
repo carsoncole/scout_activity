@@ -2,7 +2,8 @@
 
   %h1
     - if @unit.is_example
-      Activity Ideas
+      @unit.activities.count
+      Troop Activity Ideas
     - else
       = @unit.name
       Activity Vote

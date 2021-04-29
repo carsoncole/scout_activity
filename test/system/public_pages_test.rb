@@ -22,13 +22,30 @@ class PublicPagesTest < ApplicationSystemTestCase
     create_list(:troop_activity, 5, unit: create(:example_unit))
     visit '/'
     within'#main-nav' do
-      click_on "#{Unit.example.first.activities.troop.count} Ideas for Troop Activities"
+      click_on "#{Unit.example.first.activities.troop.count} Troop Activity Ideas"
     end
-    assert_selector 'h1', text: "#{Unit.example.first.activities.troop.count} Ideas for Troop Activities"
+    assert_selector 'h1', text: "#{Unit.example.first.activities.troop.count} Troop Activity Ideas"
     assert_selector 'article', count: 5
     visit '/'
     within'footer' do
-      click_on "#{Unit.example.first.activities.troop.count} Ideas for Troop Activities"
+      click_on "#{Unit.example.first.activities.troop.count} Troop Activity Ideas"
+    end
+  end
+
+  test 'ideas for troop fundraising activities' do
+    unit = create(:example_unit)
+    create_list(:troop_fundraising_activity, 5, unit: unit)
+    assert_equal 5, unit.activities.fundraising.count
+    assert Unit.example&.first&.fundraising_count&.positive?
+    visit '/'
+    within'#main-nav' do
+      click_on "#{Unit.example.first.activities.troop.fundraising.count} Troop Fundraising Activity Ideas"
+    end
+    assert_selector 'h1', text: "#{Unit.example.first.activities.troop.fundraising.count} Troop Fundraising Activity Ideas"
+    assert_selector 'article', count: 5
+    visit '/'
+    within'footer' do
+      click_on "#{Unit.example.first.activities.troop.fundraising.count} Troop Fundraising Activity Ideas"
     end
   end
 
@@ -36,13 +53,13 @@ class PublicPagesTest < ApplicationSystemTestCase
     create_list(:troop_covid_safe_activity, 5, unit: create(:example_unit))
     visit '/'
     within'#main-nav' do
-      click_on "#{Unit.example.first.activities.troop.covid_safe.count} Ideas for COVID Safe Troop Activities"
+      click_on "#{Unit.example.first.activities.troop.covid_safe.count} COVID Safe Troop Activity Ideas"
     end
-    assert_selector 'h1', text: "#{Unit.example.first.activities.troop.covid_safe.count} Ideas for COVID Safe Troop Activities"
+    assert_selector 'h1', text: "#{Unit.example.first.activities.troop.covid_safe.count} COVID Safe Troop Activity Ideas"
     assert_selector 'article', count: 5
     visit '/'
     within'footer' do
-      click_on "#{Unit.example.first.activities.troop.covid_safe.count} Ideas for COVID Safe Troop Activities"
+      click_on "#{Unit.example.first.activities.troop.covid_safe.count} COVID Safe Troop Activity Ideas"
     end
   end
 
@@ -69,9 +86,11 @@ class PublicPagesTest < ApplicationSystemTestCase
     example_unit = create(:example_unit)
     create_list(:troop_activity, 10, unit: example_unit)
     count = example_unit.reload.troop_count
-    title = "#{count} Ideas for Troop Activities"
+    title = "#{count} Troop Activity Ideas"
     visit '/'
-    click_on "#{count} Ideas for Troop Activities"
+    within "#main-nav" do
+      click_on "#{count} Troop Activity Ideas"
+    end
     assert_selector 'h1', text: title
   end
 

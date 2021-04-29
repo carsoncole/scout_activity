@@ -1,0 +1,19 @@
+%main
+  .row
+    .col-md-12
+      %h1
+        = @activities_count
+        Troop Fundraising Activity Ideas
+
+  #activities
+
+    .row
+      .col-md-1
+      .col-md-10
+        .important-icon= fa_icon "head-side-mask"
+
+
+    .row
+      .col-md-1
+      .col-md-10
+        = render @activities

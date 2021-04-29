@@ -23,9 +23,13 @@
               .group
                 - if Unit.example&.first&.troop_count&.positive?
                   .nav-item
-                    .d-inline-block= link_to "#{Unit.example.first.troop_count} Ideas for Troop Activities", ideas_for_troop_activities_path(utm_source: 'footer'), class: 'nav-link'
+                    .d-inline-block= link_to "#{Unit.example.first.troop_count} Troop Activity Ideas", ideas_for_troop_activities_path(utm_source: 'footer'), class: 'nav-link'
                     .badge.badge-warning NEW
                 - if Unit.example&.first&.covid_safe_count&.positive?
                   .nav-item
-                    .d-inline-block= link_to "#{Unit.example.first.covid_safe_count} Ideas for COVID Safe Troop Activities", ideas_for_covid_safe_troop_activities_path(utm_source: 'footer'), class: 'nav-link'
+                    .d-inline-block= link_to "#{Unit.example.first.covid_safe_count} COVID Safe Troop Activity Ideas", ideas_for_covid_safe_troop_activities_path(utm_source: 'footer'), class: 'nav-link'
+                    .badge.badge-warning NEW
+                - if Unit.example&.first&.fundraising_count&.positive?
+                  .nav-item
+                    .d-inline-block= link_to "#{Unit.example.first.fundraising_count} Troop Fundraising Activity Ideas", ideas_for_troop_fundraising_activities_path(utm_source: 'footer'), class: 'nav-link'
                     .badge.badge-warning NEW

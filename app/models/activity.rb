@@ -13,6 +13,7 @@ class Activity < ApplicationRecord
   scope :troop, -> { where(is_troop: true) }
   scope :pack, -> { where(is_pack: true) }
   scope :covid_safe, -> { where(is_covid_safe: true) }
+  scope :fundraising, -> { where(is_fundraising: true) }
 
   validates :name, presence: true
   validates :name, length: { maximum: 75 }
@@ -25,6 +26,7 @@ class Activity < ApplicationRecord
   before_save :remove_votes_if_archived!, if: proc { |a| a.is_archived_changed? && a.is_archived? }
   after_save :update_covid_safe_count!, if: proc { |a| a.is_covid_safe_previously_changed? }
   after_save :update_troop_count!, if: proc { |a| a.is_troop_previously_changed? }
+  after_save :update_fundraising_count!, if: proc { |a| a.is_fundraising_previously_changed? }
 
   def types
     result = []
@@ -76,6 +78,12 @@ class Activity < ApplicationRecord
     return unless unit.is_example?
 
     unit.update(covid_safe_count: unit.activities.troop.covid_safe.count)
+  end
+
+  def update_fundraising_count!
+    return unless unit.is_example?
+
+    unit.update(fundraising_count: unit.activities.troop.fundraising.count)
   end
 
   def update_troop_count!

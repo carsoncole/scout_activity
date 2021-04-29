@@ -9,6 +9,11 @@ FactoryBot.define do
       is_troop { true }
     end
 
+    factory :troop_fundraising_activity do
+      is_troop { true }
+      is_fundraising { true }
+    end
+
     factory :troop_covid_safe_activity do
       is_troop { true }
       is_covid_safe { true }
