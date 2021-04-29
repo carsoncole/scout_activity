@@ -19,6 +19,10 @@ class Unit < ApplicationRecord
     activities.sum(:votes_count)
   end
 
+  def example?
+    is_example
+  end
+
   def update_vote_counts!
     return if votes_allowed_was < votes_allowed
 
