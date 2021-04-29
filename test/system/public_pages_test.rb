@@ -34,18 +34,18 @@ class PublicPagesTest < ApplicationSystemTestCase
 
   test 'ideas for troop fundraising activities' do
     unit = create(:example_unit)
-    create_list(:troop_fundraising_activity, 5, unit: unit)
+    create_list(:fundraising_activity, 5, unit: unit)
     assert_equal 5, unit.activities.fundraising.count
     assert Unit.example&.first&.fundraising_count&.positive?
     visit '/'
     within'#main-nav' do
-      click_on "#{Unit.example.first.activities.troop.fundraising.count} Troop Fundraising Activity Ideas"
+      click_on "#{Unit.example.first.activities.fundraising.count} Fundraising Activity Ideas"
     end
-    assert_selector 'h1', text: "#{Unit.example.first.activities.troop.fundraising.count} Troop Fundraising Activity Ideas"
+    assert_selector 'h1', text: "#{Unit.example.first.activities.fundraising.count} Fundraising Activity Ideas"
     assert_selector 'article', count: 5
     visit '/'
     within'footer' do
-      click_on "#{Unit.example.first.activities.troop.fundraising.count} Troop Fundraising Activity Ideas"
+      click_on "#{Unit.example.first.activities.fundraising.count} Fundraising Activity Ideas"
     end
   end
 

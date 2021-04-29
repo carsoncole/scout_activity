@@ -16,27 +16,33 @@
     %loc= faqs_url
     %lastmod= @sitemap.faqs_last_updated
     %priority 0.80
-  - if @last_troop_ideas_update
+  - if @sitemap.ideas_for_troops_last_updated
     %url
-      %loc= ideas_for_troop_activities_url
-      %lastmod= @sitemaap.ideas_for_troops_last_updated
+      %loc= troop_activity_ideas_url
+      %lastmod= @sitemap.ideas_for_troops_last_updated
       %priority 0.80
-  - if @last_troop_covid_ideas_update
+  - if @sitemap.ideas_for_troop_covid_safe_last_updated
     %url
-      %loc= ideas_for_covid_safe_troop_activities_url
+      %loc= covid_safe_troop_activity_ideas_url
       %lastmod= @sitemap.ideas_for_troop_covid_safe_last_updated
       %priority 0.80
-  - @sitemap.units.each do |unit|
+  - if @sitemap.ideas_for_fundraising_last_updated
     %url
-      %loc= unit_activities_url(unit)
-      - if unit.activities.any?
-        %lastmod= unit.activities.last.updated_at.strftime("%FT%TZ")
+      %loc= fundraising_activity_ideas_url
+      %lastmod= @sitemap.ideas_for_fundraising_last_updated
+      %priority 0.80
+  - example_unit = Unit.example.first
+  - if example_unit
+    %url
+      %loc= link_to unit_activities_url(example_unit)
+      - if example_unit.activities.any?
+        %lastmod= example_unit.activities.last.updated_at.strftime("%FT%TZ")
       - else
-        %lastmod= unit.updated_at.strftime("%FT%TZ")
+        %lastmod= example_unit.updated_at.strftime("%FT%TZ")
       %priority 0.85
 
-  - @sitemap.activities.each do |activity|
-    %url
-      %loc= unit_activity_url(activity.unit, activity)
-      %lastmod= activity.updated_at.strftime("%FT%TZ")
-      %priority 0.80
+    - Unit.example.first.activities.each do |activity|
+      %url
+        %loc= unit_activity_url(activity.unit, activity)
+        %lastmod= activity.updated_at.strftime("%FT%TZ")
+        %priority 0.80

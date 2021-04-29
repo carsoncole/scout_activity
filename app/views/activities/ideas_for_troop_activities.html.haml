@@ -6,46 +6,40 @@
         Troop Activity Ideas
 
   .row
-    .col-md-3
-    .col-md-6
-      %p.text-center This is a curated list of ideas for Troop Activities. 
-
-
-  .row
     .col-md-1
     .col-md-10
       %nav.nav#activity-filter.justify-content-center
-        = link_to ideas_for_troop_activities_path(filter: 'is_covid_safe'), class: "nav-link #{params[:filter]=='is_covid_safe' ? 'active':nil}", id: 'covid-safe-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_covid_safe'), class: "nav-link #{params[:filter]=='is_covid_safe' ? 'active':nil}", id: 'covid-safe-filter' do
           = fa_icon "head-side-mask"
-        = link_to ideas_for_troop_activities_path(filter: 'is_hiking'), class: "nav-link #{params[:filter]=='is_hiking' ? 'active':nil}", id: 'hiking-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_hiking'), class: "nav-link #{params[:filter]=='is_hiking' ? 'active':nil}", id: 'hiking-filter' do
           = fa_icon "hiking"
-        = link_to ideas_for_troop_activities_path(filter: 'is_swimming'), class: "nav-link #{params[:filter]=='is_swimming' ? 'active':nil}", id: 'swimming-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_swimming'), class: "nav-link #{params[:filter]=='is_swimming' ? 'active':nil}", id: 'swimming-filter' do
           = fa_icon "swimmer"
-        = link_to ideas_for_troop_activities_path(filter: 'is_biking'), class: "nav-link #{params[:filter]=='is_biking' ? 'active':nil}", id: 'biking-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_biking'), class: "nav-link #{params[:filter]=='is_biking' ? 'active':nil}", id: 'biking-filter' do
           = fa_icon "biking"
-        = link_to ideas_for_troop_activities_path(filter: 'is_plane'), class: "nav-link #{params[:filter]=='is_plane' ? 'active':nil}", id: 'flying-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_plane'), class: "nav-link #{params[:filter]=='is_plane' ? 'active':nil}", id: 'flying-filter' do
           = fa_icon "plane"
-        = link_to ideas_for_troop_activities_path(filter: 'is_cooking'), class: "nav-link #{params[:filter]=='is_cooking' ? 'active':nil}", id: 'cooking-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_cooking'), class: "nav-link #{params[:filter]=='is_cooking' ? 'active':nil}", id: 'cooking-filter' do
           = fa_icon "utensils"
-        = link_to ideas_for_troop_activities_path(filter: 'is_merit_badge'), class: "nav-link #{params[:filter]=='is_merit_badge' ? 'active':nil}", id: 'merit-badge-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_merit_badge'), class: "nav-link #{params[:filter]=='is_merit_badge' ? 'active':nil}", id: 'merit-badge-filter' do
           = image_tag "merit-badge.svg", width: '26px'
-        = link_to ideas_for_troop_activities_path(filter: 'is_camping'), class: "nav-link #{params[:filter]=='is_camping' ? 'active':nil}", id: 'camping-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_camping'), class: "nav-link #{params[:filter]=='is_camping' ? 'active':nil}", id: 'camping-filter' do
           = fa_icon "campground"
-        = link_to ideas_for_troop_activities_path(filter: 'is_virtual'), class: "nav-link #{params[:filter]=='is_virtual' ? 'active':nil}", id: 'virtual-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_virtual'), class: "nav-link #{params[:filter]=='is_virtual' ? 'active':nil}", id: 'virtual-filter' do
           = fa_icon "video"
-        = link_to ideas_for_troop_activities_path(filter: 'is_fundraising'), class: "nav-link #{params[:filter]=='is_fundraising' ? 'active':nil}", id: 'fundraising-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_fundraising'), class: "nav-link #{params[:filter]=='is_fundraising' ? 'active':nil}", id: 'fundraising-filter' do
           = fa_icon "dollar-sign"
-        = link_to ideas_for_troop_activities_path(filter: 'is_game'), class: "nav-link #{params[:filter]=='is_game' ? 'active':nil}", id: 'game-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_game'), class: "nav-link #{params[:filter]=='is_game' ? 'active':nil}", id: 'game-filter' do
           = fa_icon "trophy"
-        = link_to ideas_for_troop_activities_path(filter: 'is_boating'), class: "nav-link #{params[:filter]=='is_boating' ? 'active':nil}", id: 'boating-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_boating'), class: "nav-link #{params[:filter]=='is_boating' ? 'active':nil}", id: 'boating-filter' do
           = fa_icon "anchor"
-        = link_to ideas_for_troop_activities_path(filter: 'is_community_service'), class: "nav-link #{params[:filter]=='is_community_service' ? 'active':nil}", id: 'community-service-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_community_service'), class: "nav-link #{params[:filter]=='is_community_service' ? 'active':nil}", id: 'community-service-filter' do
           = fa_icon "store"
-        = link_to ideas_for_troop_activities_path(filter: 'is_international'), class: "nav-link #{params[:filter]=='is_international' ? 'active':nil}", id: 'international-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_international'), class: "nav-link #{params[:filter]=='is_international' ? 'active':nil}", id: 'international-filter' do
           = image_tag "world-crest.png", width: '26px'
-        = link_to ideas_for_troop_activities_path(filter: 'is_high_adventure'), class: "nav-link #{params[:filter]=='is_high_adventure' ? 'active':nil}", id: 'high-adventure-filter' do
+        = link_to troop_activity_ideas_path(filter: 'is_high_adventure'), class: "nav-link #{params[:filter]=='is_high_adventure' ? 'active':nil}", id: 'high-adventure-filter' do
           = fa_icon "mountain"
-        = link_to "clear", ideas_for_troop_activities_path, class: 'nav-link', id: 'clear-filter'
+        = link_to "clear", troop_activity_ideas_path, class: 'nav-link', id: 'clear-filter'
 
   .row
     .col-md-1

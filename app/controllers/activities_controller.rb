@@ -3,9 +3,9 @@ class ActivitiesController < ApplicationController
 
   before_action :set_activity, only: %i[show edit update destroy]
   before_action :require_login, only: %i[create update destroy copy]
-  before_action :require_unit_user, except: %i[index show copy ideas_for_troop_activities ideas_for_covid_safe_troop_activities ideas_for_troop_fundraising_activities]
+  before_action :require_unit_user, except: %i[index show copy ideas_for_troop_activities ideas_for_covid_safe_troop_activities ideas_for_fundraising_activities]
   before_action :require_author_admin_owner, only: %i[edit update destroy]
-  before_action :set_title, except: %i[ideas_for_troop_activities ideas_for_covid_safe_troop_activities ideas_for_troop_fundraising_activities]
+  before_action :set_title, except: %i[ideas_for_troop_activities ideas_for_covid_safe_troop_activities ideas_for_fundraising_activities]
 
   def index
     @activities = @unit.activities.non_high_adventure.votable.order(votes_count: :desc)
@@ -118,12 +118,12 @@ class ActivitiesController < ApplicationController
     @activities = @activities.where(params[:filter]) if params[:filter]
   end
 
-  def ideas_for_troop_fundraising_activities
+  def ideas_for_fundraising_activities
     @activities = Unit.example.first.activities.fundraising
     @activities_count = @activities.count
-    @title = "#{@activities.count} Ideas for Troop Fundraising Activities - ScoutActivity"
+    @title = "#{@activities.count} Ideas for Fundraising Activities - ScoutActivity"
     @no_vote = true
-    @description = 'List of ideas for Scout Troop fundraising activities.'
+    @description = 'List of ideas for Scout fundraising activities.'
     @activities = @activities.where(params[:filter]) if params[:filter]
   end
 

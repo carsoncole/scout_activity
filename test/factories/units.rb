@@ -4,6 +4,7 @@ FactoryBot.define do
 
     factory :example_unit do
       is_example { true }
+      name { "Example"}
     end
   end
 end

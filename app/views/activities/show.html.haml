@@ -1,6 +1,6 @@
 .container
   - if @is_example
-    = render partial: 'breadcrumbs', locals: { link_url: ideas_for_troop_activities_path, link_text: 'Ideas for Troop activities' }
+    = render partial: 'breadcrumbs', locals: { link_url: troop_activity_ideas_path, link_text: 'Ideas for Troop activities' }
   - else
     = render partial: 'breadcrumbs', locals: { link_url: unit_activities_path(@unit), link_text: 'All activities' }
 

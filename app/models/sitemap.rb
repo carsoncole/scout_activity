@@ -6,16 +6,23 @@ class Sitemap
     last_root_page_update.strftime('%FT%TZ')
   end
 
-  def example_troop_unit_acttivities
+  def last_troop_fundraising_ideas_update
+  end
+
+  def example_troop_unit_activities
     Unit.example&.first&.activities&.troop
   end
 
   def ideas_for_troops_last_updated
-    example_troop_unit_activities&.order(updated_at: :desc)&.first&.updated_at.strftime('%FT%TZ') if example_troop_unit_acttivities
+    example_troop_unit_activities&.order(updated_at: :desc)&.first&.updated_at&.strftime('%FT%TZ') if example_troop_unit_activities
   end
 
   def ideas_for_troop_covid_safe_last_updated
-    example_troop_unit_activities&.covid_safe&.order(updated_at: :desc)&.first&.updated_at.strftime('%FT%TZ') if example_troop_unit_acttivities
+    example_troop_unit_activities&.covid_safe&.order(updated_at: :desc)&.first&.updated_at&.strftime('%FT%TZ') if example_troop_unit_activities
+  end
+
+  def ideas_for_fundraising_last_updated
+    Unit.example&.first&.activities&.fundraising&.order(updated_at: :desc)&.first&.updated_at&.strftime('%FT%TZ')
   end
 
   def about_last_updated

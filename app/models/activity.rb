@@ -77,18 +77,18 @@ class Activity < ApplicationRecord
   def update_covid_safe_count!
     return unless unit.is_example?
 
-    unit.update(covid_safe_count: unit.activities.troop.covid_safe.count)
+    unit.update(covid_safe_count: unit.activities.covid_safe.count)
   end
 
   def update_fundraising_count!
     return unless unit.is_example?
 
-    unit.update(fundraising_count: unit.activities.troop.fundraising.count)
+    unit.update(fundraising_count: unit.activities.fundraising.count)
   end
 
   def update_troop_count!
     return unless unit.is_example?
 
-    unit.update(troop_count: unit.activities.troop.count)
+    unit.update(troop_count: unit.activities.count)
   end
 end

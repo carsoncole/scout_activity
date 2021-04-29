@@ -9,8 +9,7 @@ FactoryBot.define do
       is_troop { true }
     end
 
-    factory :troop_fundraising_activity do
-      is_troop { true }
+    factory :fundraising_activity do
       is_fundraising { true }
     end
 
