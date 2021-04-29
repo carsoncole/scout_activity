@@ -5,7 +5,7 @@ class TroopIdeasTest < ApplicationSystemTestCase
     @example_unit = create(:example_unit)
     @activities = create_list(:troop_activity, 10, unit: @example_unit)
     @count = @example_unit.troop_count
-    @activities_title = "#{@count} Troop Activity Ideas"
+    @activities_title = "Troop Activity Ideas"
   end
 
   test 'visiting as public, ideas for troop activities' do
@@ -32,7 +32,7 @@ class TroopIdeasTest < ApplicationSystemTestCase
   test 'visiting as user, ideas for troop activities' do
     sign_in
     within '#main-nav' do
-      click_on "#{@count} Troop Activity Ideas"
+      click_on "Troop Activity Ideas"
     end
     assert_selector 'h1', text: @activities_title
     assert_selector '#activities', count: 1
@@ -116,7 +116,7 @@ class TroopIdeasTest < ApplicationSystemTestCase
     owner = create(:owner_user)
     sign_in(owner)
     within "#main-nav" do
-      click_on "#{@count} Troop Activity Ideas"
+      click_on "Troop Activity Ideas"
     end
     click_on "copy-activity-#{@activities[0].id}-link"
     assert_equal 1, owner.unit.activities.count
