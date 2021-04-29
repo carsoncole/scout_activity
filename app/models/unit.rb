@@ -8,6 +8,7 @@ class Unit < ApplicationRecord
 
   validates :name, presence: true
   validates :name, length: { maximum: 38 }
+  validates :is_example, uniqueness: true, if: Proc.new { |u| u.is_example }
 
   scope :example, -> { where(is_example: true) }
   scope :non_example, -> { where(is_example: false) }

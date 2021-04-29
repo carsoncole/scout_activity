@@ -111,8 +111,7 @@ class ActivitiesController < ApplicationController
 
   def ideas_for_troop_activities
     @activities = Unit.example.first.activities.troop
-    @activities_count = @activities.count
-    @title = "#{@activities.count} Ideas for Troop Activities - ScoutActivity"
+    @title = "Ideas for Troop Activities - ScoutActivity"
     @no_vote = true
     @description = 'List of curated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events.'
     @activities = @activities.where(params[:filter]) if params[:filter]
@@ -120,8 +119,7 @@ class ActivitiesController < ApplicationController
 
   def ideas_for_fundraising_activities
     @activities = Unit.example.first.activities.fundraising
-    @activities_count = @activities.count
-    @title = "#{@activities.count} Ideas for Fundraising Activities - ScoutActivity"
+    @title = "Ideas for Fundraising Activities - ScoutActivity"
     @no_vote = true
     @description = 'List of ideas for Scout fundraising activities.'
     @activities = @activities.where(params[:filter]) if params[:filter]
@@ -129,8 +127,7 @@ class ActivitiesController < ApplicationController
 
   def ideas_for_covid_safe_troop_activities
     @activities = Unit.example.first.activities.troop.covid_safe
-    @activities_count = @activities.count
-    @title = "#{@activities.count} COVID Safe Ideas for Troop Activities - ScoutActivity"
+    @title = "COVID Safe Ideas for Troop Activities - ScoutActivity"
     @no_vote = true
     @description = 'List of curated COVID safe ideas for Scout Troop activiities, including both virtual and in-person activities.'
     @activities = @activities.where(params[:filter]) if params[:filter]
