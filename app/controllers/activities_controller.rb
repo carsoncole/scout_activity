@@ -136,7 +136,7 @@ class ActivitiesController < ApplicationController
   private
 
   def require_unit_user
-    redirect_to root_path unless signed_in? && current_user.unit == @unit
+    redirect_to root_path unless signed_in? && current_user.unit == @unit || current_user.admin?
   end
 
   def require_author_admin_owner
