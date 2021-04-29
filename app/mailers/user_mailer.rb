@@ -11,9 +11,9 @@ class UserMailer < ApplicationMailer
   def key_features_email
     @unit = @user.unit
     return unless (@user.unit && @user.is_owner?) || !@user.unit
-    return if @user.logs.where(mailer_instance: 'key_features_email').any?
+    return if @user.logs.where(mailer_instance: 'key_features_email #2').any?
 
     mail to: @user.email, subject: "Key features I'd like to tell you about"
-    Log.create(mailer_instance: 'key_features_email', user_id: @user.id)
+    Log.create(mailer_instance: 'key_features_email #2', user_id: @user.id)
   end
 end

@@ -5,18 +5,19 @@
   Hello again,
 
 %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
-  I thought I'd tell you about a few of the key features in ScoutActivity to help you in garnering a great response to your search for exciting and engaging Unit activities.
+  I've been reengineering ScoutActivity to be even more helpful tool for your Unit in providing awesome activities to Scouts. I've applied a number of tweaks that I felt were needed through my own usage of ScoutActivity with my Troop.
 
 
 %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
-  I added two new lists I personally curated, of activity ideas that you can copy from. I continue to add to these lists, so there should be something useful in there for you.
+  I've changed the focus to be first on highlighting activity ideas for Units, and I'm now allowing everyone to not only vote on them, but propose their own. Links to the list of all activities, which can be filtered, is now on the home page. We still profile some lists such as these which are pre-filtered for you:
 
 %ul(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
-  %li= link_to "#{Unit.example.first.troop_count} Ideas for Troop Activities", troop_activity_ideas_url(utm_source: 'update-email', utm_medium: 'email', utm_campgaign: 'basic')
-  %li= link_to "#{Unit.example.first.covid_safe_count} Ideas for COVID Safe Troop Activities", covid_safe_troop_activity_ideas_url(utm_source: 'update-email', utm_medium: 'email', utm_campgaign: 'basic')
+  %li= link_to "Troop Activity Ideas", troop_activity_ideas_url(utm_source: 'update-email', utm_medium: 'email', utm_campgaign: 'basic')
+  %li= link_to "COVID Safe Troop Activity Ideas", covid_safe_troop_activity_ideas_url(utm_source: 'update-email', utm_medium: 'email', utm_campgaign: 'basic')
+  %li= link_to "Fundraising Ideas", fundraising_activity_ideas_url(utm_source: 'update-email', utm_medium: 'email', utm_campgaign: 'basic')
 
 %p(style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: left;line-height: 1.5em;")
-  One feature in ScoutActivity is that you can easily copy, through a copy link on each activity's description page, any of the activities in the lists above, or any activity in any Unit on ScoutActivity. Just copy, and then you can edit to tailor it for your own Unit. To copy, you need to be logged in, and you need to be either the owner or and admin on your Unit.
+  The second component of Scoutactivity is creating a list of activities for your own Unit to vote on. You can easily copy, through a copy link on each activity's description page, any of the activities in the lists above, or any activity in any Unit on ScoutActivity. Just copy, and then you can edit to tailor it for your own Unit. To copy, you need to be logged in, and you need to be either the owner or and admin on your Unit.
 
 %div(style="margin-bottom:1.5rem;margin-top:0rem;text-align:center")= image_tag "feature-copy-icon.png", width: '50px'
 
