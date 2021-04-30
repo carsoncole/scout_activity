@@ -34,7 +34,7 @@
   - example_unit = Unit.example.first
   - if example_unit
     %url
-      %loc= link_to unit_activities_url(example_unit)
+      %loc= unit_activities_url(example_unit)
       - if example_unit.activities.any?
         %lastmod= example_unit.activities.last.updated_at.strftime("%FT%TZ")
       - else
