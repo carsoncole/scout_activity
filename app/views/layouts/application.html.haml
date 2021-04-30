@@ -12,9 +12,6 @@
 
       %div.collapse.navbar-collapse#navbarSupportedContent
         %ul.navbar-nav.mr-auto
-          %li.nav-item
-            = link_to "All Units", root_path, class: 'nav-link'
-
           - if @unit && @unit.persisted? && action_name != 'top_activities'
             / %li.nav-item.nav-link
             /   .unit= @unit.name

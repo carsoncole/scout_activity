@@ -18,7 +18,7 @@ class ActivitiesController < ApplicationController
     if @activities.any? && !@unit.is_example
       @description = "Vote now for your favorite #{@unit.name} activities that you'd like to see happen. There are currently #{@unit.activities.count} activities. The Unit will consider the vote tally in determining which activites they schedule."
     else
-      @description = "Add your ideas to #{@unit.name}'s list of activities that the Unit's Scouts can vote on. They are looking for exciting activities to engage and excite them."
+      @description = "Engaging Scout unit outdoor, fundraising and covid safe and other types of activities submitted and voted on by users."
     end
     @title = 'Activity Vote - Scout Activity'
     @title = "#{@unit.name} - #{@title}" unless @unit.is_example?
@@ -113,7 +113,7 @@ class ActivitiesController < ApplicationController
     @activities = Unit.example.first.activities.troop
     @title = "Troop activity ideas - Scout Activity"
     @no_vote = true
-    @description = 'List of curated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events.'
+    @description = "A list of #{Unit.example.first.activities.count} Scouting activities that could be used by your Unit, ranging from outdoor, merit badge-oriented, fundraising, covid safe and other types of activities submitted and voted on by users."
     @activities = @activities.where(params[:filter]) if params[:filter]
   end
 
@@ -121,7 +121,7 @@ class ActivitiesController < ApplicationController
     @activities = Unit.example.first.activities.fundraising
     @title = "Unit fundraising activity ideas - Scout Activity"
     @no_vote = true
-    @description = 'List of ideas for Scout fundraising activities.'
+    @description = "A list of #{Unit.example.first.activities.fundraising.count} Scouting fundraising activities that could help your Unit raise funds, submitted and voted on by users."
     @activities = @activities.where(params[:filter]) if params[:filter]
   end
 
@@ -129,7 +129,7 @@ class ActivitiesController < ApplicationController
     @activities = Unit.example.first.activities.troop.covid_safe
     @title = "COVID safe ideas for Troop activities - Scout Activity"
     @no_vote = true
-    @description = 'List of curated COVID safe ideas for Scout Troop activiities, including both virtual and in-person activities.'
+    @description = "A list of #{Unit.example.first.activities.covid_safe.count} Scouting activities that may be more COVID safe, submitted and voted on by users."
     @activities = @activities.where(params[:filter]) if params[:filter]
   end
 
