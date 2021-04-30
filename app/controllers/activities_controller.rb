@@ -20,13 +20,13 @@ class ActivitiesController < ApplicationController
     else
       @description = "Add your ideas to #{@unit.name}'s list of activities that the Unit's Scouts can vote on. They are looking for exciting activities to engage and excite them."
     end
-    @title = 'Activity Vote - ScoutActivity'
+    @title = 'Activity Vote - Scout Activity'
     @title = "#{@unit.name} - #{@title}" unless @unit.is_example?
     return unless signed_in? && current_user.unit.nil?
     flash[:alert] = "To vote, select a Unit in your <a href='/users/#{current_user.id}/edit'>Profile</a> settings."
   end
 
-  def show
+  def shows
     unit = @activity.unit
     @is_example = true if unit.is_example
     @votes = @activity.votes.includes(:user).group(:user_id).count
@@ -77,7 +77,7 @@ class ActivitiesController < ApplicationController
 
   def new
     @activity = Activity.new
-    @title = "#{@unit.name} - New Activity - ScoutActivity"
+    @title = "#{@unit.name} - New Activity - Scout Activity"
     @description = "Propose and activity for #{@unit.name} that Scouts can vote on as an activity to do."
   end
 
@@ -111,7 +111,7 @@ class ActivitiesController < ApplicationController
 
   def ideas_for_troop_activities
     @activities = Unit.example.first.activities.troop
-    @title = "Ideas for Troop Activities - ScoutActivity"
+    @title = "Troop activity ideas - Scout Activity"
     @no_vote = true
     @description = 'List of curated ideas for Scout Troop activiities. Ideas ranging from simple competitions, to multi-day events.'
     @activities = @activities.where(params[:filter]) if params[:filter]
@@ -119,7 +119,7 @@ class ActivitiesController < ApplicationController
 
   def ideas_for_fundraising_activities
     @activities = Unit.example.first.activities.fundraising
-    @title = "Ideas for Fundraising Activities - ScoutActivity"
+    @title = "Unit fundraising activity ideas - Scout Activity"
     @no_vote = true
     @description = 'List of ideas for Scout fundraising activities.'
     @activities = @activities.where(params[:filter]) if params[:filter]
@@ -127,7 +127,7 @@ class ActivitiesController < ApplicationController
 
   def ideas_for_covid_safe_troop_activities
     @activities = Unit.example.first.activities.troop.covid_safe
-    @title = "COVID Safe Ideas for Troop Activities - ScoutActivity"
+    @title = "COVID safe ideas for Troop activities - Scout Activity"
     @no_vote = true
     @description = 'List of curated COVID safe ideas for Scout Troop activiities, including both virtual and in-person activities.'
     @activities = @activities.where(params[:filter]) if params[:filter]
@@ -149,9 +149,9 @@ class ActivitiesController < ApplicationController
 
   def set_title
     @title = if @unit
-               "#{@unit.name} - Activities - ScoutActivity"
+               "#{@unit.name} - Activities - Scout Activity"
              else
-               "#{@activity.unit.name} - Activities - ScoutActivity"
+               "Activities - Scout Activity"
              end
   end
 

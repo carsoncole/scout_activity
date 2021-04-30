@@ -1,6 +1,6 @@
 class SessionsController < Clearance::SessionsController
   def new
-    @title = 'Sign in - ScoutActivity'
+    @title = 'Sign in - Scout Activity'
     super
   end
 

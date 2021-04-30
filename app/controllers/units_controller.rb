@@ -5,12 +5,12 @@ class UnitsController < ApplicationController
 
   def new
     @unit = Unit.new
-    @title = 'New Unit - ScoutActivity'
+    @title = 'New Unit - Scout Activity'
   end
 
   def edit
     @users = @unit.users
-    @title = "Unit info - #{@unit.name} - ScoutActivity"
+    @title = "Unit info - #{@unit.name} - Scout Activity"
   end
 
   def create
@@ -37,7 +37,7 @@ class UnitsController < ApplicationController
   private
 
   def page_title
-    @title = 'Unit - ScoutActivity'
+    @title = 'Unit - Scout Activity'
   end
 
   def unit_params

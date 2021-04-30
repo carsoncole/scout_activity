@@ -8,17 +8,17 @@ class HomeController < ApplicationController
   end
 
   def about
-    @title = 'About - ScoutActivity'
+    @title = 'About - Scout Activity'
     @description = 'Scout Units need a constant source of good ideas for activities. Scout Activity can help in sourcing ideas from Scouts, parents, and the wider community and then allow for Scouts to vote on their favorites.'
   end
 
   def resources
-    @title = 'Activity Resources - ScoutActivity'
+    @title = 'Helpful Scout activity resources - Scout Activity'
     @description = 'A list of curated resources for sourcing Scout activities.'
   end
 
   def faqs
-    @title = 'Frequently Asked Questions - ScoutActivity'
+    @title = 'Frequently asked questions - Scout Activity'
     @description = 'Frequently asked questions about how to best use ScoutActivity.com'
   end
 end

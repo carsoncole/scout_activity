@@ -30,7 +30,7 @@ class UsersController < Clearance::UsersController
   end
 
   def successful_signup
-    @title = 'You are signed up - ScoutActivity'
+    @title = 'You are signed up - Scout Activity'
   end
 
   def set_user
@@ -38,7 +38,7 @@ class UsersController < Clearance::UsersController
   end
 
   def set_title
-    @title = 'Profile - ScoutActivity'
+    @title = 'Profile - Scout Activity'
   end
 
   def user_params
