@@ -14,7 +14,7 @@
       = @unit.name
       Activity Vote
 
-  - if signed_in? && @unit == current_user.unit || @unit.example?
+  - if (signed_in? && @unit == current_user.unit) || (signed_in? && @unit.example?)
     .row
       .col-md-3
       .col-md-6
