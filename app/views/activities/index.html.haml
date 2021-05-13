@@ -1,19 +1,30 @@
 #activities
 
   %h1
-    - if @unit.is_example
-      Troop Activity Ideas
+    - if action_name == 'ideas_for_covid_safe_troop_activities'
+      = Unit.example.first.activities.votable.covid_safe.count
+      COVID Safe Activity Ideas
+    - elsif action_name == 'ideas_for_fundraising_activities'
+      = Unit.example.first.activities.votable.covid_safe.count
+      Fundraising Activity Ideas
+    - elsif @unit.is_example
+      = Unit.example.first.activities.count
+      Unit Activity Ideas
     - else
       = @unit.name
       Activity Vote
 
-  - if signed_in? && @unit == current_user.unit
+  - if signed_in? && @unit == current_user.unit || @unit.example?
     .row
       .col-md-3
       .col-md-6
         .text-center.mb-5
           .vote-count
-            .badge.badge-primary#votes-available= current_user.votes_available
+            .badge.badge-primary#votes-available
+              - if @unit.example?
+                = current_user.example_votes_available
+              - else
+                = current_user.unit_votes_available
             %span.text-muted votes left
 
   - if @activities.any?
@@ -21,6 +32,8 @@
     - unless signed_in?
       .text-center.mb-4= button_to "Sign in or sign up to vote", sign_in_path, method: :get, class: 'btn btn-primary'
 
+
+    = render 'activities_filter'
 
     .row
       .col-md-1

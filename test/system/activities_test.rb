@@ -178,7 +178,7 @@ class ActivitiesTest < ApplicationSystemTestCase
     activity = create(:activity, author: @user)
 
     user = create(:user, unit: @user.unit)
-    create_list(:vote, 6, user: user, activity: activity)
+    create_list(:unit_vote, 6, user: user, activity: activity)
 
     assert_equal 1, activity.unit.activities.votable.count
     assert_equal 0, activity.unit.activities.archived.count
@@ -188,7 +188,7 @@ class ActivitiesTest < ApplicationSystemTestCase
 
     assert_equal 1, activity.unit.activities.votable.count
     assert_equal 0, activity.unit.activities.archived.count
-    assert_equal 6, activity.votes.count
+    assert_equal 6, activity.unit_votes.count
 
     click_button 'Archive'
     assert_selector '#flash', text: 'Activity is archived, and no longer in the activity voting list.'
@@ -206,7 +206,7 @@ class ActivitiesTest < ApplicationSystemTestCase
 
     assert_equal 1, activity.reload.unit.activities.votable.count
     assert_equal 0, activity.unit.activities.archived.count
-    assert_equal 0, activity.votes.count
+    assert_equal 0, activity.unit_votes.count
   end
 
   test 'voting on an activity' do

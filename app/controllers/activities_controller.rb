@@ -8,8 +8,8 @@ class ActivitiesController < ApplicationController
   before_action :set_title, except: %i[ideas_for_troop_activities ideas_for_covid_safe_troop_activities ideas_for_fundraising_activities]
 
   def index
-    @activities = @unit.activities.non_high_adventure.votable.order(votes_count: :desc)
-    @high_adventure_activities = @unit.activities.high_adventure.votable.order(votes_count: :desc)
+    @activities = @unit.activities.votable.order(unit_votes_count: :desc)
+    @high_adventure_activities = []
     if signed_in? && current_user.admin_or_owner? && current_user.unit == @unit
       @archived_activities = @unit.activities.archived if current_user.admin_or_owner? && current_user.unit == @unit
     elsif signed_in? && current_user.activities.where(unit_id: @unit.id).archived.any?
@@ -26,10 +26,10 @@ class ActivitiesController < ApplicationController
     flash[:alert] = "To vote, select a Unit in your <a href='/users/#{current_user.id}/edit'>Profile</a> settings."
   end
 
-  def shows
+  def show
     unit = @activity.unit
     @is_example = true if unit.is_example
-    @votes = @activity.votes.includes(:user).group(:user_id).count
+    @votes = @activity.unit_votes.includes(:user).group(:user_id).count
     @title = activity_page_title(@activity)
     unit.increment!(:visit_event_count)
     @questions = @activity.questions
@@ -110,27 +110,33 @@ class ActivitiesController < ApplicationController
   end
 
   def ideas_for_troop_activities
-    @activities = Unit.example.first.activities.troop
+    @unit = Unit.example.first
+    @activities = Unit.example.first.activities.votable.order(unit_votes_count: :desc)
     @title = "Troop activity ideas - Scout Activity"
-    @no_vote = true
+    @no_vote = false
     @description = "A list of #{Unit.example.first.activities.count} Scouting activities that could be used by your Unit, ranging from outdoor, merit badge-oriented, fundraising, covid safe and other types of activities submitted and voted on by users."
     @activities = @activities.where(params[:filter]) if params[:filter]
+    render :index
   end
 
   def ideas_for_fundraising_activities
-    @activities = Unit.example.first.activities.fundraising
+    @unit = Unit.example.first
+    @activities = Unit.example.first.activities.fundraising.votable
     @title = "Unit fundraising activity ideas - Scout Activity"
-    @no_vote = true
+    @no_vote = false
     @description = "A list of #{Unit.example.first.activities.fundraising.count} Scouting fundraising activities that could help your Unit raise funds, submitted and voted on by users."
     @activities = @activities.where(params[:filter]) if params[:filter]
+    render :index
   end
 
   def ideas_for_covid_safe_troop_activities
-    @activities = Unit.example.first.activities.troop.covid_safe
+    @unit = Unit.example.first
+    @activities = Unit.example.first.activities.votable.covid_safe
     @title = "COVID safe ideas for Troop activities - Scout Activity"
-    @no_vote = true
+    @no_vote = false
     @description = "A list of #{Unit.example.first.activities.covid_safe.count} Scouting activities that may be more COVID safe, submitted and voted on by users."
     @activities = @activities.where(params[:filter]) if params[:filter]
+    render :index
   end
 
   private

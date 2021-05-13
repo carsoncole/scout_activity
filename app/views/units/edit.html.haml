@@ -15,7 +15,8 @@
         %thead
           %tr
             %th.email User
-            %th.vote-count Votes cast
+            %th.vote-count Unit Votes
+            %th.vote-count Example Votes
         - @users.each do |user|
           %tr
             %td.email
@@ -30,5 +31,6 @@
                 - unless user.is_owner?
                   = link_to unit_user_path(@unit, user), method: :delete, id: "user-#{user.id}-remove-link", data: { confirm: 'This will remove the User from your Unit, and remove any votes they placed. The User will still have a ScoutActivity account and they can re-associate to any Unit.'} do
                     = fa_icon "trash"
-            %td.vote-count= user.votes_count
+            %td.vote-count= user.unit_votes_count
+            %td.vote-count= user.example_unit_votes_count
 

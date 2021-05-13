@@ -4,7 +4,7 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } # this allows bad emails such as "test@examplecom"
 
   belongs_to :unit, optional: true
-  has_many :votes, dependent: :destroy
+  has_many :unit_votes, dependent: :destroy
   has_many :activities, foreign_key: 'author_id', dependent: :nullify
   has_many :questions, dependent: :nullify
   has_many :answers, dependent: :nullify
@@ -15,7 +15,7 @@ class User < ApplicationRecord
   scope :app_admin, -> { where(is_app_admin: true) }
   scope :active, -> { where('last_sign_in_at > ?', Time.now - 7.days) }
 
-  before_save :clear_votes!, if: proc { |u| u.unit_id_changed? }
+  before_save :clear_unit_votes!, if: proc { |u| u.unit_id_changed? }
   before_save :remove_admin!, if: proc { |u| u.unit_id_changed? && u.persisted? }
 
   def initialize(args)
@@ -23,8 +23,12 @@ class User < ApplicationRecord
     self.token = SecureRandom.hex unless token.present?
   end
 
-  def votes_available
-    unit.votes_allowed - votes.count
+  def unit_votes_available
+    unit.votes_allowed - unit_votes.joins(:activity).where("activities.unit_id = ?", unit_id).count
+  end
+
+  def example_votes_available
+    Unit.example.first.votes_allowed - example_unit_votes_count
   end
 
   def name_email
@@ -36,10 +40,6 @@ class User < ApplicationRecord
     else
       email
     end
-  end
-
-  def votes_cast
-    votes.count
   end
 
   def admin?
@@ -54,8 +54,8 @@ class User < ApplicationRecord
     admin? || owner?
   end
 
-  def clear_votes!
-    votes.destroy_all
+  def clear_unit_votes!
+    unit_votes.destroy_all
   end
 
   def remove_admin!

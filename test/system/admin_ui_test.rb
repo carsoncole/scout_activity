@@ -24,7 +24,7 @@ class AdminUiTest < ApplicationSystemTestCase
     assert_selector 'table#users tr td', text: '0', count: 2
 
     activity = create(:activity, author: user, unit: user.unit)
-    create_list(:vote, 7, activity: activity, user: user)
+    create_list(:unit_vote, 7, activity: activity, user: user)
     visit edit_unit_path(owner_user.unit)
     assert_selector 'table#users tr td', text: '7', count: 1
     save_screenshot('tmp/screenshots/votes_cast.png')

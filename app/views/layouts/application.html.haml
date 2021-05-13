@@ -24,12 +24,12 @@
             %li.nav-item
               .d-inline-block
                 = link_to troop_activity_ideas_path, class: 'nav-link' do
-                  Troop Activity Ideas
+                  Activity Ideas
           - if Unit.example&.first&.covid_safe_count&.positive?
             %li.nav-item
               .d-inline-block
                 = link_to covid_safe_troop_activity_ideas_path, class: 'nav-link' do
-                  COVID Safe Troop Activity Ideas
+                  COVID Safe Activity Ideas
           - if Unit.example&.first&.fundraising_count&.positive?
             %li.nav-item
               .d-inline-block

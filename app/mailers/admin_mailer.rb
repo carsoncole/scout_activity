@@ -11,8 +11,8 @@ class AdminMailer < ApplicationMailer
     @new_activities_count = Activity.where('created_at > ?', Time.now - 7.days).count
     @active_users_count = User.active.all.count
     @total_users_count = User.all.count
-    @total_votes_count = Vote.all.count
-    @new_votes_count = Vote.where('created_at > ?', Time.now - 7.days).count
+    @total_votes_count = UnitVote.all.count
+    @new_votes_count = UnitVote.where('created_at > ?', Time.now - 7.days).count
 
     emails = User.app_admin.collect(&:email).join(',')
     User.admin.each { |u| u.logs.create(mailer_instance: 'master_report') }

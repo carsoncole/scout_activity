@@ -97,7 +97,7 @@ class PublicPagesTest < ApplicationSystemTestCase
   test 'main nav logo' do
     visit root_url
     click_on 'brand-logo'
-    assert_text 'Scouting leader Unit tool for finding and promoting new activity ideas.'
+    assert_text 'Scouting leader tool for new activity ideas.'
   end
 
   test 'visiting sitemap' do
@@ -114,6 +114,6 @@ class PublicPagesTest < ApplicationSystemTestCase
 
   test 'Adding a Troop without signed in' do
     visit root_url
-    click_on 'Get started'
+    click_on 'Add your Own Unit Ideas'
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_28_212722) do
+ActiveRecord::Schema.define(version: 2021_04_30_222808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_212722) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "unit_id", null: false
-    t.integer "votes_count", default: 0
+    t.integer "unit_votes_count", default: 0
     t.integer "author_id"
     t.boolean "is_hiking", default: false, null: false
     t.boolean "is_camping", default: false, null: false
@@ -126,6 +126,16 @@ ActiveRecord::Schema.define(version: 2021_04_28_212722) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+  create_table "unit_votes", force: :cascade do |t|
+    t.bigint "activity_id", null: false
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "unit_id"
+    t.index ["activity_id"], name: "index_unit_votes_on_activity_id"
+    t.index ["created_at"], name: "index_unit_votes_on_created_at"
+  end
+
   create_table "units", force: :cascade do |t|
     t.string "name"
     t.boolean "is_polling_active", default: true
@@ -143,7 +153,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_212722) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.integer "votes_count", default: 0
+    t.integer "unit_votes_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email"
@@ -160,17 +170,9 @@ ActiveRecord::Schema.define(version: 2021_04_28_212722) do
     t.boolean "is_admin", default: false, null: false
     t.string "first_name"
     t.string "last_name"
+    t.integer "example_unit_votes_count", default: 0, null: false
     t.index ["email"], name: "index_users_on_email"
     t.index ["remember_token"], name: "index_users_on_remember_token"
-  end
-
-  create_table "votes", force: :cascade do |t|
-    t.bigint "activity_id", null: false
-    t.integer "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["activity_id"], name: "index_votes_on_activity_id"
-    t.index ["created_at"], name: "index_votes_on_created_at"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -179,5 +181,5 @@ ActiveRecord::Schema.define(version: 2021_04_28_212722) do
   add_foreign_key "answers", "users"
   add_foreign_key "questions", "activities"
   add_foreign_key "questions", "users"
-  add_foreign_key "votes", "activities"
+  add_foreign_key "unit_votes", "activities"
 end

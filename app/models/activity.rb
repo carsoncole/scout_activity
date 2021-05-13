@@ -2,7 +2,7 @@
 class Activity < ApplicationRecord
   belongs_to :unit, touch: true
   belongs_to :author, optional: true, class_name: 'User'
-  has_many :votes, dependent: :destroy
+  has_many :unit_votes, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many_attached :images
 
@@ -62,7 +62,7 @@ class Activity < ApplicationRecord
     new_activity.is_author_volunteering = false
     new_activity.author_id = false
     new_activity.unit_id = nil
-    new_activity.votes_count = 0
+    new_activity.unit_votes_count = 0
     new_activity.description = activity.description.dup
     new_activity.itinerary = activity.itinerary.dup
     new_activity
@@ -71,7 +71,7 @@ class Activity < ApplicationRecord
   private
 
   def remove_votes_if_archived!
-    votes.destroy_all
+    unit_votes.destroy_all
   end
 
   def update_covid_safe_count!

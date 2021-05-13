@@ -45,7 +45,16 @@ h1 {
 }
 
 
+#activities article {
+  .image {
+    float: left;
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
 ul.activities {
+
   margin-bottom: 3rem;
   .name {
     font-size: 1rem;

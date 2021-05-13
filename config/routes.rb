@@ -25,7 +25,7 @@ Rails.application.routes.draw do
       end
       post '/archive-activity' => 'activities#archive_activity', as: 'archive_activity'
     end
-    resources :votes, only: %i[index create destroy]
+    resources :unit_votes, only: %i[index create destroy]
   end
 
   resources :activities, only: [:show]

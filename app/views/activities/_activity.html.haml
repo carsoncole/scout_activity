@@ -1,6 +1,14 @@
 %article
   .row
-    .col-xl-8
+    .col-md-8
+      - images = activity.images
+      - if images.any?
+        .image
+          - if images.first.variable?
+            = image_tag activity.images.first.variant(resize_to_limit: [100, 100]), class: 'img-fluid rounded'
+          / - if images.count > 1 && images[1].variable?
+          /   = image_tag images[1].variant(resize_to_limit: [100, 100]), class: 'img-fluid rounded'
+
       %h1.name
         - if activity.unit.is_example && action_name != 'index'
           = link_to activity.name, activity_path(activity)
@@ -20,35 +28,36 @@
             = fa_icon "copy"
 
     - if @no_vote != true
-      .col-xl-4
+      .col-md-4
         .voting
           .votes-count(id="activity-#{activity.id}-total-count")
             - unless activity.is_archived?
-              = activity.votes_count || 0
+              = activity.unit_votes_count || 0
               / .votes
-              / # = "vote".pluralize(activity.votes_count)
-          - if signed_in? && current_user.unit == activity.unit
+              / # = "vote".pluralize(activity.unit_votes_count)
+          - if signed_in? && current_user.unit == activity.unit || activity.unit.example?
             .vote
               - unless activity.is_archived?
-                - if signed_in? && current_user.unit == activity.unit
-                  - if current_user.votes_available.positive?
-                    = button_to unit_votes_path(activity.unit, activity_id: activity.id), class: 'btn btn-primary', id: "place-vote-#{activity.id}" do
-                      = fa_icon "plus"
-                  - if current_user.votes.find_by(activity_id: activity.id)
-                    - vote = current_user.votes.order(created_at: :desc).where(activity_id: activity.id).first
-                    = button_to unit_vote_path(activity.unit, vote), method: :delete, class: 'btn btn-primary', id: "remove-vote-#{activity.id}" do
-                      = fa_icon "minus"
+                - if signed_in?
+                  - if current_user.unit == activity.unit
+                    - if current_user.unit_votes_available.positive?
+                      = button_to unit_unit_votes_path(activity.unit, activity_id: activity.id), class: 'btn btn-success', id: "place-vote-#{activity.id}" do
+                        = fa_icon "thumbs-up"
+                    - if current_user.unit_votes.where(unit_id: current_user.unit_id).find_by(activity_id: activity.id)
+                      - vote = current_user.where(unit_id: current_user.unit_id).unit_votes.order(created_at: :desc).where(activity_id: activity.id).first
+                      = button_to unit_unit_vote_path(activity.unit, vote), method: :delete, class: 'btn btn-danger', id: "remove-vote-#{activity.id}" do
+                        = fa_icon "minus"
+                  - elsif activity.unit.example?
+                    - if current_user.example_votes_available.positive?
+                      = button_to unit_unit_votes_path(activity.unit, activity_id: activity.id), class: 'btn btn-success', id: "place-vote-#{activity.id}" do
+                        = fa_icon "thumbs-up"
+                    - if current_user.unit_votes.where(unit_id: Unit.example.first.id).find_by(activity_id: activity.id)
+                      - vote = current_user.unit_votes.where(unit_id: Unit.example.first.id).order(created_at: :desc).where(activity_id: activity.id).first
+                      = button_to unit_unit_vote_path(activity.unit, vote), method: :delete, class: 'btn btn-danger', id: "remove-vote-#{activity.id}" do
+                        = fa_icon "minus"
             .votes-count
               - unless activity.is_archived?
-                - count = activity.votes.where(user: current_user).count
+                - count = activity.unit_votes.where(user: current_user).count
                 = count || 0
 
-    - if @no_vote == true && activity.images.attached?
-      .col-xl-4
-        .images
-          - images = activity.images
-          - if images.any?
-            - if images.first.variable?
-              = image_tag activity.images.first.variant(resize_to_limit: [90, 90]), class: 'img-fluid rounded'
-            - if images.count > 1 && images[1].variable?
-              = image_tag images[1].variant(resize_to_limit: [90, 90]), class: 'img-fluid rounded'
+    / - if @no_vote == true && activity.images.attached?

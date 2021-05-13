@@ -45,8 +45,8 @@ class UnitsTest < ApplicationSystemTestCase
     owner = create(:owner_user)
     user = create(:user, unit: owner.unit)
     activity = create(:activity, unit: user.unit)
-    create_list(:vote, 10, activity: activity, user: user)
-    assert_equal 10, activity.votes.count
+    create_list(:unit_vote, 10, activity: activity, user: user)
+    assert_equal 10, activity.unit_votes.count
     sign_in(owner)
     visit edit_unit_url(owner.unit)
     assert_selector 'h1', text: owner.unit.name
@@ -63,7 +63,7 @@ class UnitsTest < ApplicationSystemTestCase
     assert user.reload
     assert_nil user.unit_id
 
-    assert_equal 0, activity.reload.votes.count
+    assert_equal 0, activity.reload.unit_votes.count
   end
 
   test 'updating a Unit' do

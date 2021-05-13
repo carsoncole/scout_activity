@@ -1,7 +1,7 @@
 .container
   - if @is_example
     = render partial: 'breadcrumbs', locals: { link_url: troop_activity_ideas_path, link_text: 'Ideas for Troop activities' }
-  - else
+  - elsif @unit
     = render partial: 'breadcrumbs', locals: { link_url: unit_activities_path(@unit), link_text: 'All activities' }
 
 %main#activity
@@ -23,8 +23,8 @@
           .col-md-3
             #activity-vote-count
               .activity-count
-                = @activity.votes_count || 0
-              .votes= "vote".pluralize(@activity.votes_count)
+                = @activity.unit_votes_count || 0
+              .votes= "vote".pluralize(@activity.unit_votes_count)
 
       .row
         .col-md-9

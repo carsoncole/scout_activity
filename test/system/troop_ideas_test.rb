@@ -91,8 +91,8 @@ class TroopIdeasTest < ApplicationSystemTestCase
     assert_no_selector '#destroy-button'
   end
 
-  test 'visiting as example unit owner, ideas for troop activities' do
-    owner = create(:owner_user, unit: Unit.example.first)
+  test 'visiting as admin, ideas for troop activities' do
+    owner = create(:admin_user, unit: Unit.example.first)
     sign_in(owner)
     within "#main-nav" do
       click_on @activities_title

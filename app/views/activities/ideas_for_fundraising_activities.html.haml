@@ -4,6 +4,15 @@
       %h1
         Fundraising Activity Ideas
 
+  - if signed_in?
+    .row
+      .col-md-3
+      .col-md-6
+        .text-center.mb-5
+          .vote-count
+            .badge.badge-primary#votes-available= current_user.unit_votes_available
+            %span.text-muted votes left
+
   #activities
 
     .row

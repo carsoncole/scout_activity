@@ -1,6 +1,6 @@
 - if signed_in? && (( @activity.author == current_user && current_user.unit == @activity.unit) || current_user.admin_or_owner?)
   #actions
-    - if @activity.author == current_user || (current_user.admin_or_owner? && current_user.unit == @activity.unit) || (current_user.admin_or_owner? && @activity.unit.example?)
+    - if @activity.author == current_user || (current_user.admin_or_owner? && current_user.unit == @activity.unit) || (current_user.admin? && @activity.unit.example?)
       = link_to edit_unit_activity_path(@activity.unit, @activity), class: 'action action-link', id: 'activity-edit-link' do
         = fa_icon "edit"
       - if @activity.is_archived?
